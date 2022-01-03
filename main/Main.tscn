@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://addons/rpg_framework/custom_nodes/party/party.gd" type="Script" id=1]
 [ext_resource path="res://main/ui/combat/Combat.tscn" type="PackedScene" id=2]
@@ -7,12 +7,18 @@
 [ext_resource path="res://main/press_turn_cycle/press_turn_cycle.gd" type="Script" id=5]
 [ext_resource path="res://main/player_party/player_party.gd" type="Script" id=6]
 [ext_resource path="res://main/main_camera/main_camera.gd" type="Script" id=7]
+[ext_resource path="res://main/AudioStreamPlayer2D.gd" type="Script" id=8]
+[ext_resource path="res://main/music/13 Hellsing Ultimate Soundtrack - Hyaku Yorozu Hatsudan.mp3" type="AudioStream" id=9]
 
 [node name="Main" type="Node"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Combat" parent="CanvasLayer" instance=ExtResource( 2 )]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer/Combat"]
+stream = ExtResource( 9 )
+script = ExtResource( 8 )
 
 [node name="TeamCycle" type="Node" parent="."]
 script = ExtResource( 5 )
