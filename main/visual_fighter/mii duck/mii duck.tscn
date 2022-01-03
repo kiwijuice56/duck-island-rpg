@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://main/visual_fighter/mii duck/mii_duck_sprite.png" type="Texture" id=1]
+[ext_resource path="res://main/visual_fighter/VisualFighter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://main/custom_action_deciders/player_action_decider/player_action_decider.gd" type="Script" id=3]
+
+[node name="MiiDuck" instance=ExtResource( 2 )]
+save_id = "mii duck"
+
+[node name="ActionDecider" parent="." index="0"]
+script = ExtResource( 3 )
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 1 )
