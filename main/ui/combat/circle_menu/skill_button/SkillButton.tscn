@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://main/ui/assets/fonts/main_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://main/ui/combat/circle_menu/skill_button/skill_button.gd" type="Script" id=2]
+[ext_resource path="res://main/ui/assets/themes/main.tres" type="Theme" id=3]
+
+[node name="SkillButton" type="Button"]
+margin_right = 325.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 325, 30 )
+size_flags_horizontal = 11
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 1 )
+align = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -325.0
+margin_top = -12.5
+margin_bottom = 12.5
+rect_min_size = Vector2( 325, 25 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true

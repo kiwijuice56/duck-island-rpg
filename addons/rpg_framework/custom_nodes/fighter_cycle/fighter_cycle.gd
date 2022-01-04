@@ -23,7 +23,6 @@ func remove_fighter_from_cycle(fighter: Node) -> bool:
 			push_warning("Removing a fighter from the PartyCycle while still in tree")
 		cycle.remove(idx)
 		return true
-	push_warning("Attempted to remove fighter that was not in the PartyCycle")
 	return false
 
 func start_next_fighter() -> Dictionary:

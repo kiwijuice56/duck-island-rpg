@@ -1,106 +1,223 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/rpg_framework/custom_nodes/party/party.gd" type="Script" id=1]
 [ext_resource path="res://main/ui/combat/Combat.tscn" type="PackedScene" id=2]
-[ext_resource path="res://main/visual_fighter/mii duck/mii duck.tscn" type="PackedScene" id=3]
-[ext_resource path="res://main/player/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://main/press_turn_cycle/press_turn_cycle.gd" type="Script" id=5]
-[ext_resource path="res://main/player_party/player_party.gd" type="Script" id=6]
+[ext_resource path="res://main/combat/visual_fighter/mii duck/mii duck.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/overworld/player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://main/combat/press_turn_cycle/press_turn_cycle.gd" type="Script" id=5]
+[ext_resource path="res://main/combat/player_party/player_party.gd" type="Script" id=6]
 [ext_resource path="res://main/main_camera/main_camera.gd" type="Script" id=7]
-[ext_resource path="res://main/AudioStreamPlayer2D.gd" type="Script" id=8]
+[ext_resource path="res://main/ui/assets/shaders/dissolve.shader" type="Shader" id=8]
 [ext_resource path="res://main/music/13 Hellsing Ultimate Soundtrack - Hyaku Yorozu Hatsudan.mp3" type="AudioStream" id=9]
+[ext_resource path="res://main/overworld/overworld_map/debug_room/DebugRoom.tscn" type="PackedScene" id=10]
+[ext_resource path="res://main/ui/transition/transition.gd" type="Script" id=11]
+[ext_resource path="res://main/combat/visual_fighter/yukid/yukid.tscn" type="PackedScene" id=12]
+[ext_resource path="res://main/combat/visual_fighter/nate/nate.tscn" type="PackedScene" id=13]
+[ext_resource path="res://main/combat/6.png" type="Texture" id=14]
+[ext_resource path="res://main/combat/4.png" type="Texture" id=15]
+[ext_resource path="res://main/combat/2.png" type="Texture" id=16]
+[ext_resource path="res://main/combat/3.png" type="Texture" id=17]
+[ext_resource path="res://main/combat/1.png" type="Texture" id=18]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 8 )
+shader_param/fragment_number = Vector2( 30, 20 )
+shader_param/dissolve_state = 1.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "transition_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:material:shader_param/dissolve_state")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "transition_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:material:shader_param/dissolve_state")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
 
 [node name="Main" type="Node"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CombatUI" type="CanvasLayer" parent="."]
 
-[node name="Combat" parent="CanvasLayer" instance=ExtResource( 2 )]
+[node name="Combat" parent="CombatUI" instance=ExtResource( 2 )]
+visible = false
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer/Combat"]
+[node name="Transition" type="CanvasLayer" parent="."]
+script = ExtResource( 11 )
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
+playback_speed = 1.4
+anims/transition_in = SubResource( 3 )
+anims/transition_out = SubResource( 4 )
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
-script = ExtResource( 8 )
 
-[node name="TeamCycle" type="Node" parent="."]
+[node name="Overworld" type="Node" parent="."]
+
+[node name="DebugRoom" parent="Overworld" instance=ExtResource( 10 )]
+visible = false
+
+[node name="Player" parent="Overworld" instance=ExtResource( 4 )]
+position = Vector2( 387.682, 558.927 )
+
+[node name="Combat" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Combat"]
+layer = -1
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="Combat/ParallaxBackground"]
+position = Vector2( -480, -180 )
+motion_scale = Vector2( 0.6, 0.6 )
+motion_mirroring = Vector2( 980, 0 )
+
+[node name="Sprite" type="Sprite" parent="Combat/ParallaxBackground/ParallaxLayer5"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 14 )
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Combat/ParallaxBackground"]
+position = Vector2( -480, -120 )
+motion_scale = Vector2( 0.7, 0.7 )
+motion_mirroring = Vector2( 980, 0 )
+
+[node name="Sprite" type="Sprite" parent="Combat/ParallaxBackground/ParallaxLayer4"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 15 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Combat/ParallaxBackground"]
+position = Vector2( -480, -150 )
+motion_scale = Vector2( 0.85, 0.85 )
+motion_mirroring = Vector2( 980, 0 )
+
+[node name="Sprite" type="Sprite" parent="Combat/ParallaxBackground/ParallaxLayer3"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 17 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Combat/ParallaxBackground"]
+position = Vector2( -480, -180 )
+motion_scale = Vector2( 0.9, 0.9 )
+motion_mirroring = Vector2( 980, 0 )
+
+[node name="Sprite" type="Sprite" parent="Combat/ParallaxBackground/ParallaxLayer2"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 16 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Combat/ParallaxBackground"]
+position = Vector2( -480, 80 )
+motion_mirroring = Vector2( 980, 0 )
+
+[node name="Sprite" type="Sprite" parent="Combat/ParallaxBackground/ParallaxLayer"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 18 )
+
+[node name="PressTurnCycle" type="Node" parent="Combat"]
 script = ExtResource( 5 )
 
-[node name="EnemyParty" type="Node" parent="TeamCycle"]
+[node name="EnemyParty" type="Node" parent="Combat/PressTurnCycle"]
 script = ExtResource( 1 )
 
-[node name="Mia1" parent="TeamCycle/EnemyParty" instance=ExtResource( 3 )]
-save_id = "mia1"
-hp = 38
-mp = 6
-max_hp = 56
-max_mp = 35
-
-[node name="Sprite" parent="TeamCycle/EnemyParty/Mia1" index="1"]
-visible = false
-position = Vector2( 230.958, 237.766 )
-
-[node name="Mia3" parent="TeamCycle/EnemyParty" instance=ExtResource( 3 )]
-save_id = "mia3"
-hp = 38
-mp = 6
-max_hp = 56
-max_mp = 35
-
-[node name="Sprite" parent="TeamCycle/EnemyParty/Mia3" index="1"]
-visible = false
-position = Vector2( 230.958, 237.766 )
-
-[node name="Mia2" parent="TeamCycle/EnemyParty" instance=ExtResource( 3 )]
-save_id = "mia2"
-hp = 38
-mp = 6
-max_hp = 56
-max_mp = 35
-
-[node name="Sprite" parent="TeamCycle/EnemyParty/Mia2" index="1"]
-visible = false
-position = Vector2( 210.776, 242.811 )
-
-[node name="PlayerParty" type="Node" parent="TeamCycle"]
+[node name="PlayerParty" type="Node" parent="Combat/PressTurnCycle"]
 script = ExtResource( 6 )
 
-[node name="MiiDuck" parent="TeamCycle/PlayerParty" instance=ExtResource( 3 )]
+[node name="MiiDuck" parent="Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 3 )]
+position = Vector2( -384.166, 4.58275 )
+hp = 55
+mp = 33
+max_hp = 76
+max_mp = 53
+defense = {
+}
+offense = {
+}
+
+[node name="Nate" parent="Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 13 )]
+defense = {
+}
+offense = {
+}
+
+[node name="Yukid" parent="Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 12 )]
 hp = 45
-mp = 4
-max_hp = 60
-max_mp = 37
+mp = 65
+max_hp = 50
+max_mp = 70
+defense = {
+}
+offense = {
+}
 
-[node name="Sprite" parent="TeamCycle/PlayerParty/MiiDuck" index="1"]
-position = Vector2( 150, 335 )
+[node name="Positions" type="Node" parent="Combat"]
 
-[node name="MiiDuck2" parent="TeamCycle/PlayerParty" instance=ExtResource( 3 )]
-hp = 45
-mp = 4
-max_hp = 60
-max_mp = 37
+[node name="1" type="Node" parent="Combat/Positions"]
 
-[node name="Sprite" parent="TeamCycle/PlayerParty/MiiDuck2" index="1"]
-position = Vector2( 71.9709, 414.29 )
+[node name="1" type="Position2D" parent="Combat/Positions/1"]
+position = Vector2( 256, 0 )
 
-[node name="MiiDuck3" parent="TeamCycle/PlayerParty" instance=ExtResource( 3 )]
-hp = 45
-mp = 4
-max_hp = 60
-max_mp = 37
+[node name="2" type="Node" parent="Combat/Positions"]
 
-[node name="Sprite" parent="TeamCycle/PlayerParty/MiiDuck3" index="1"]
-position = Vector2( 71.0104, 261.842 )
+[node name="1" type="Position2D" parent="Combat/Positions/2"]
+position = Vector2( 192, 0 )
+
+[node name="2" type="Position2D" parent="Combat/Positions/2"]
+position = Vector2( 320, 0 )
+
+[node name="3" type="Node" parent="Combat/Positions"]
+
+[node name="1" type="Position2D" parent="Combat/Positions/3"]
+position = Vector2( 192, 0 )
+
+[node name="2" type="Position2D" parent="Combat/Positions/3"]
+position = Vector2( 320, 0 )
+
+[node name="3" type="Position2D" parent="Combat/Positions/3"]
+position = Vector2( 256, -32 )
+
+[node name="4" type="Node" parent="Combat/Positions"]
+
+[node name="1" type="Position2D" parent="Combat/Positions/4"]
+position = Vector2( 192, 0 )
+
+[node name="2" type="Position2D" parent="Combat/Positions/4"]
+position = Vector2( 320, 0 )
+
+[node name="3" type="Position2D" parent="Combat/Positions/4"]
+position = Vector2( 256, -32 )
+
+[node name="4" type="Position2D" parent="Combat/Positions/4"]
+position = Vector2( 256, 32 )
 
 [node name="MainCamera" type="Camera2D" parent="."]
-position = Vector2( 512.421, 296.665 )
-current = true
 script = ExtResource( 7 )
 
 [node name="Tween" type="Tween" parent="MainCamera"]
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
-
-[editable path="TeamCycle/EnemyParty/Mia1"]
-[editable path="TeamCycle/EnemyParty/Mia3"]
-[editable path="TeamCycle/EnemyParty/Mia2"]
-[editable path="TeamCycle/PlayerParty/MiiDuck"]
-[editable path="TeamCycle/PlayerParty/MiiDuck2"]
-[editable path="TeamCycle/PlayerParty/MiiDuck3"]
+[node name="Timer" type="Timer" parent="MainCamera"]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://main/combat/visual_fighter/visual_fighter.gd" type="Script" id=1]
+[ext_resource path="res://addons/rpg_framework/custom_nodes/action_decider/action_decider.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "current"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 2, 2, 2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="VisualFighter" type="Node2D"]
+script = ExtResource( 1 )
+defense = {
+}
+offense = {
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -128 )
+scale = Vector2( 2, 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/current = SubResource( 1 )
+
+[node name="ActionDecider" type="Node" parent="."]
+script = ExtResource( 2 )

@@ -37,8 +37,9 @@ func _input(event):
 	if event.is_action_pressed("ui_right", false):
 		rotate(1)
 
-func select_action() -> void:
+func select_action(fighter: Node) -> void:
 	reset()
+	$SkillContainer.initialize(fighter)
 	yield(transition_in(), "completed")
 	enable()
 

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/combat/visual_fighter/mii duck/mii_duck_sprite.png" type="Texture" id=2]
+
+[node name="MirrorDuck" instance=ExtResource( 1 )]
+save_id = "mirror duck"
+hp = 50
+mp = 50
+max_hp = 50
+max_mp = 50
+strength = 3
+vitality = 4
+magic = 5
+agility = 2
+luck = 4
+defense = {
+}
+offense = {
+}
+
+[node name="Sprite" parent="." index="0"]
+modulate = Color( 0.247059, 0.301961, 0.592157, 1 )
+scale = Vector2( -2, 2 )
+texture = ExtResource( 2 )

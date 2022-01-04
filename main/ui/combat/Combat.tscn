@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://main/ui/assets/style_boxes/bottom_panel_container.tres" type="StyleBox" id=1]
 [ext_resource path="res://main/ui/combat/fighter_container/FighterContainer.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://main/ui/combat/circle_menu/circle_button/items.png" type="Texture" id=13]
 [ext_resource path="res://main/ui/combat/circle_menu/circle_button/run.png" type="Texture" id=14]
 [ext_resource path="res://main/ui/combat/circle_menu/circle_button/defend.png" type="Texture" id=15]
+[ext_resource path="res://main/ui/combat/circle_menu/skill_button/SkillButton.tscn" type="PackedScene" id=16]
 [ext_resource path="res://main/ui/combat/action_container/action_container.gd" type="Script" id=17]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -55,7 +56,7 @@ content_margin_left = 1.0
 content_margin_right = 1.0
 content_margin_top = 1.0
 content_margin_bottom = 1.0
-bg_color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
+bg_color = Color( 0.0980392, 0.0980392, 0.0980392, 0.631373 )
 
 [node name="Combat" type="Control"]
 anchor_right = 1.0
@@ -116,7 +117,7 @@ custom_constants/separation = 7
 margin_top = 462.0
 margin_right = 1024.0
 margin_bottom = 600.0
-size_flags_vertical = 8
+size_flags_vertical = 10
 custom_styles/panel = ExtResource( 1 )
 script = ExtResource( 7 )
 
@@ -126,7 +127,6 @@ margin_top = 5.0
 margin_right = 1019.0
 margin_bottom = 133.0
 rect_min_size = Vector2( 0, 128 )
-text = "What will mii duck do?"
 
 [node name="Tween" type="Tween" parent="VBoxContainer/TextBox"]
 
@@ -140,10 +140,10 @@ margin_right = 1019.0
 margin_bottom = 133.0
 
 [node name="CircleMenu" type="Control" parent="."]
-margin_left = 230.581
-margin_top = 161.782
-margin_right = 630.581
-margin_bottom = 289.782
+margin_left = 270.0
+margin_top = 160.0
+margin_right = 670.0
+margin_bottom = 288.0
 rect_min_size = Vector2( 400, 128 )
 script = ExtResource( 9 )
 __meta__ = {
@@ -189,29 +189,25 @@ margin_bottom = 128.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CircleMenu/SkillContainer/ScrollContainer"]
 margin_right = 325.0
-margin_bottom = 78.0
+margin_bottom = 82.0
 size_flags_horizontal = 11
 custom_constants/separation = 0
 
-[node name="Button" type="Button" parent="CircleMenu/SkillContainer/ScrollContainer/VBoxContainer"]
-margin_right = 325.0
-margin_bottom = 26.0
-size_flags_horizontal = 11
-text = "Megido 999mp"
-align = 2
+[node name="Button" parent="CircleMenu/SkillContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+margin_bottom = 30.0
 
 [node name="Button2" type="Button" parent="CircleMenu/SkillContainer/ScrollContainer/VBoxContainer"]
-margin_top = 26.0
+margin_top = 30.0
 margin_right = 325.0
-margin_bottom = 52.0
+margin_bottom = 56.0
 size_flags_horizontal = 11
 text = "Trisagion 999mp"
 align = 2
 
 [node name="Button3" type="Button" parent="CircleMenu/SkillContainer/ScrollContainer/VBoxContainer"]
-margin_top = 52.0
+margin_top = 56.0
 margin_right = 325.0
-margin_bottom = 78.0
+margin_bottom = 82.0
 size_flags_horizontal = 11
 text = "Maragidyne 999mp"
 align = 2
@@ -267,8 +263,9 @@ align = 2
 [node name="Tween" type="Tween" parent="CircleMenu/ItemContainer"]
 
 [node name="Background" type="TextureRect" parent="CircleMenu"]
-margin_right = 128.0
-margin_bottom = 128.0
+modulate = Color( 1, 1, 1, 0.662745 )
+margin_right = 164.0
+margin_bottom = 164.0
 texture = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
