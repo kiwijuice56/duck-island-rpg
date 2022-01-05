@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://main/combat/visual_fighter/visual_fighter.gd" type="Script" id=1]
 [ext_resource path="res://main/combat/custom_action_deciders/enemy_action_decider/enemy_action_decider.gd" type="Script" id=2]
 [ext_resource path="res://main/combat/visual_fighter/current_icon.png" type="Texture" id=3]
 [ext_resource path="res://main/combat/visual_fighter/mii duck/mii_duck_sprite.png" type="Texture" id=4]
 [ext_resource path="res://main/ui/combat/fighter_selection/focus-sheet.png" type="Texture" id=5]
+[ext_resource path="res://main/ui/assets/fonts/PressStart2P.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "current"
@@ -38,6 +39,72 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1.25, 1.25, 1.25, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.984496 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "hurt"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 64, -128 ), Vector2( -48, -128 ), Vector2( 32, -128 ), Vector2( -18, -128 ), Vector2( 4, -128 ), Vector2( 0, -128 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ParticleEmitter:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "miss"
+length = 0.562
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -128 ), Vector2( 48, -128 ), Vector2( 16, -128 ), Vector2( 0, -128 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ParticleEmitter:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="DynamicFont" id=5]
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+font_data = ExtResource( 6 )
+
 [node name="VisualFighter" type="Node2D"]
 script = ExtResource( 1 )
 defense = {
@@ -48,8 +115,8 @@ offense = {
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -128 )
 scale = Vector2( 2, 2 )
-z_index = 1
 texture = ExtResource( 4 )
+hframes = 2
 
 [node name="CurrentIcon" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -61,9 +128,6 @@ texture = ExtResource( 3 )
 
 [node name="CurrentIconAnim" type="AnimationPlayer" parent="CurrentIcon"]
 anims/current = SubResource( 1 )
-
-[node name="ActionDecider" type="Node" parent="."]
-script = ExtResource( 2 )
 
 [node name="SelectIcon" type="Sprite" parent="."]
 position = Vector2( 0, -32 )
@@ -80,3 +144,53 @@ anims/select = SubResource( 2 )
 [node name="SelectTween" type="Tween" parent="SelectIcon"]
 
 [node name="TransitionTween" type="Tween" parent="SelectIcon"]
+
+[node name="ActionDecider" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="ParticleEmitter" type="CPUParticles2D" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 0, -32 )
+scale = Vector2( 2, 2 )
+emitting = false
+amount = 36
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.25
+explosiveness = 0.51
+randomness = 0.16
+spread = 180.0
+initial_velocity = 108.43
+initial_velocity_random = 1.0
+angle = 8.9
+angle_random = 1.0
+scale_amount = 2.0
+color_ramp = SubResource( 4 )
+
+[node name="BasicAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hurt = SubResource( 3 )
+anims/miss = SubResource( 6 )
+
+[node name="SpriteAnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DamageLabel" type="Label" parent="CanvasLayer"]
+margin_left = -32.0
+margin_right = 32.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 64, 0 )
+rect_pivot_offset = Vector2( 32, 0 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/line_spacing = 3
+custom_constants/shadow_offset_y = 2
+text = "9999"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DamageTween" type="Tween" parent="CanvasLayer/DamageLabel"]

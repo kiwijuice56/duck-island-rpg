@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://main/combat/skills/damage_skill/DamageSkill.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/combat/graphic_effects/multi/wind_blast/WindBlast.tscn" type="PackedScene" id=2]
+
+[node name="Wind Cutter" instance=ExtResource( 1 )]
+save_id = "wind cutter"
+cost_type = "mp"
+type = "earth"
+cost = 19
+target_count = "all"
+graphic_effect = ExtResource( 2 )
+power = 59

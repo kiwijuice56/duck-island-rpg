@@ -19,10 +19,39 @@ onready var combat_ui := get_tree().get_root().get_node("Main/CombatUI/Combat")
 onready var text_box = combat_ui.get_node("VBoxContainer/TextBox")
 onready var cam := get_tree().get_root().get_node("Main/MainCamera")
 
+var calculation_cache := {}
+
 func _ready() -> void:
+	$Sprite.frame = 0
 	$CurrentIcon.modulate = Color(1,1,1,0)
 	$SelectIcon.modulate = Color(1,1,1,0)
+	$CanvasLayer/DamageLabel.modulate = Color(1,1,1,0)
 	$Sprite.visible = false
+
+func on_impact() -> void:
+	$ParticleEmitter.global_position = $SelectIcon.global_position
+	$CanvasLayer/DamageLabel.rect_position = $SelectIcon.get_global_transform_with_canvas().get_origin()-Vector2(32,0)
+	
+	if calculation_cache["contact"] == "miss":
+		$BasicAnimationPlayer.current_animation = "miss"
+		if $SpriteAnimationPlayer.has_animation("miss"):
+			$SpriteAnimationPlayer.current_animation = "miss"
+		$CanvasLayer/DamageLabel.text = "miss"
+	else:
+		$BasicAnimationPlayer.current_animation = "hurt"
+		if $SpriteAnimationPlayer.has_animation("hurt"):
+			$SpriteAnimationPlayer.current_animation = "hurt"
+		$CanvasLayer/DamageLabel.text = str(calculation_cache["damage"])
+	
+	$CanvasLayer/DamageLabel/DamageTween.interpolate_property($CanvasLayer/DamageLabel, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$CanvasLayer/DamageLabel/DamageTween.interpolate_property($CanvasLayer/DamageLabel, "rect_position", null, $CanvasLayer/DamageLabel.rect_position + Vector2(0,-5), 0.4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$CanvasLayer/DamageLabel/DamageTween.start()
+	
+	yield($CanvasLayer/DamageLabel/DamageTween, "tween_completed")
+	
+	$CanvasLayer/DamageLabel/DamageTween.interpolate_property($CanvasLayer/DamageLabel, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$CanvasLayer/DamageLabel/DamageTween.interpolate_property($CanvasLayer/DamageLabel, "rect_position", null, $CanvasLayer/DamageLabel.rect_position + Vector2(0,-40), 1.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$CanvasLayer/DamageLabel/DamageTween.start()
 
 func set_select_eligible(enable: bool) -> void:
 	if enable:

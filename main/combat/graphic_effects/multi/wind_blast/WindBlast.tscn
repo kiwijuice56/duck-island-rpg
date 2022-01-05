@@ -4,4 +4,5 @@
 [ext_resource path="res://main/combat/graphic_effects/multi/MultiEffect.tscn" type="PackedScene" id=2]
 
 [node name="WindBlast" instance=ExtResource( 2 )]
+wait_time = 0.35
 impact_effect = ExtResource( 1 )

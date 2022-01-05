@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/rpg_framework/custom_nodes/party/party.gd" type="Script" id=1]
 [ext_resource path="res://main/ui/combat/Combat.tscn" type="PackedScene" id=2]
@@ -8,10 +8,11 @@
 [ext_resource path="res://main/combat/player_party/player_party.gd" type="Script" id=6]
 [ext_resource path="res://main/main_camera/main_camera.gd" type="Script" id=7]
 [ext_resource path="res://main/ui/assets/shaders/dissolve.shader" type="Shader" id=8]
-[ext_resource path="res://main/music/13 Hellsing Ultimate Soundtrack - Hyaku Yorozu Hatsudan.mp3" type="AudioStream" id=9]
+[ext_resource path="res://main/music/encounter.mp3" type="AudioStream" id=9]
 [ext_resource path="res://main/overworld/overworld_map/debug_room/DebugRoom.tscn" type="PackedScene" id=10]
 [ext_resource path="res://main/ui/transition/transition.gd" type="Script" id=11]
 [ext_resource path="res://main/combat/visual_fighter/yukid/yukid.tscn" type="PackedScene" id=12]
+[ext_resource path="res://main/main_camera/cover.png" type="Texture" id=13]
 [ext_resource path="res://main/combat/6.png" type="Texture" id=14]
 [ext_resource path="res://main/combat/4.png" type="Texture" id=15]
 [ext_resource path="res://main/combat/2.png" type="Texture" id=16]
@@ -80,7 +81,7 @@ anims/transition_out = SubResource( 3 )
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
-volume_db = -4.854
+volume_db = -9.526
 autoplay = true
 
 [node name="Overworld" type="Node2D" parent="."]
@@ -209,14 +210,14 @@ position = Vector2( 256, -32 )
 
 [node name="4" type="Node" parent="Combat/Positions"]
 
+[node name="3" type="Position2D" parent="Combat/Positions/4"]
+position = Vector2( 256, -32 )
+
 [node name="1" type="Position2D" parent="Combat/Positions/4"]
 position = Vector2( 192, 0 )
 
 [node name="2" type="Position2D" parent="Combat/Positions/4"]
 position = Vector2( 320, 0 )
-
-[node name="3" type="Position2D" parent="Combat/Positions/4"]
-position = Vector2( 256, -32 )
 
 [node name="4" type="Position2D" parent="Combat/Positions/4"]
 position = Vector2( 256, 32 )
@@ -227,3 +228,8 @@ script = ExtResource( 7 )
 [node name="Tween" type="Tween" parent="MainCamera"]
 
 [node name="Timer" type="Timer" parent="MainCamera"]
+
+[node name="Cover" type="Sprite" parent="MainCamera"]
+modulate = Color( 1, 1, 1, 0 )
+z_index = 1
+texture = ExtResource( 13 )

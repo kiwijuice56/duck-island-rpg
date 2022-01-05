@@ -9,9 +9,14 @@ export(String, "team", "enemy") var party_target = "enemy"
 export var graphic_effect: PackedScene
 
 func action(user: Node, targets: Array) -> void:
+	var result = calculation(user, targets)
 	var new_effect = graphic_effect.instance()
 	add_child(new_effect)
 	new_effect.animate(user, targets)
 	yield(new_effect, "effect_complete")
 	new_effect.queue_free()
-	emit_signal("action_completed", {"success": 0, "Critical": true, "Hit Weakness": true})
+	emit_signal("action_completed", result)
+
+
+func calculation(user: Node, targets: Array) -> Dictionary:
+	return {"success": 0}

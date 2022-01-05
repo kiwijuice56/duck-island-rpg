@@ -2,6 +2,18 @@ extends Camera2D
 
 var res := Vector2(ProjectSettings.get_setting("display/window/size/width"), ProjectSettings.get_setting("display/window/size/height"))
 
+func toggle_cover(enable: bool) -> void:
+	$Tween.interpolate_property($Cover, "modulate", null, Color(1,1,1,.6) if enable else Color(1,1,1,0), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.start()
+	
+func prioritize(nodes: Array):
+	for node in nodes:
+		node.z_index = 2
+
+func deprioritize(nodes: Array):
+	for node in nodes:
+		node.z_index = 0
+
 func pan(node: Node2D, pan_time: float, pan_offset: Vector2) -> void:
 	$Tween.interpolate_property(self, "global_position", null, node.global_position + pan_offset, pan_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.interpolate_property(self, "zoom", null, Vector2(1,1), pan_time,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
