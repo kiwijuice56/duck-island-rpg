@@ -17,10 +17,10 @@ func set_enemies(enemies: Array) -> void:
 func position_fighters() -> void:
 	for i in range($PlayerParty.get_child_count()):
 		$PlayerParty.get_child(i).global_position = get_node("../Positions").get_child($PlayerParty.get_child_count()-1).get_child(i).global_position
-		$PlayerParty.get_child(i).global_position.x -= 250
+		$PlayerParty.get_child(i).global_position.x -= 200
 	for i in range($EnemyParty.get_child_count()):
 		$EnemyParty.get_child(i).global_position = get_node("../Positions").get_child($EnemyParty.get_child_count()-1).get_child(i).global_position
-		$EnemyParty.get_child(i).global_position.x += 250
+		$EnemyParty.get_child(i).global_position.x += 200
 
 func battle() -> void:
 	cam.current = true
@@ -28,10 +28,11 @@ func battle() -> void:
 	for child in get_children():
 		for fighter in child.get_children():
 			fighter.get_node("Sprite").visible = true
-	cam.fit($EnemyParty.get_children(), 0, 0)
+	cam.fit($EnemyParty.get_children(), 0, -125)
+	get_tree().get_root().get_node("Main/Overworld").visible = false
 	yield(transition.transition_out(), "completed")
 	text_box.display_text("Enemies approach!", 0.02, .7)
-	yield(cam.fit($EnemyParty.get_children(), 2, -75), "completed")
+	yield(cam.fit($EnemyParty.get_children(), 2, -175), "completed")
 	while true:
 		update_cycle()
 		for _i in range(get_child_count()):

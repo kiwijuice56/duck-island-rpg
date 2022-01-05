@@ -1,16 +1,9 @@
 extends Node2D
 
+signal effect_complete
+onready var cam := get_tree().get_root().get_node("Main/MainCamera")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func animate(user: Node, targets: Array) -> void:
+	$Timer.start(1)
+	yield($Timer, "timeout")
+	emit_signal("effect_complete")

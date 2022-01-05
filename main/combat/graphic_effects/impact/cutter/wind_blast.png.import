@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wind_blast.png-ea1a90c46efa704bf6bfb77dee63763f.stex"
+path="res://.import/wind_blast.png-a5e7732bfab33bea3c84f7a9d223b582.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/combat/graphic_effects/cutter/wind_blast.png"
-dest_files=[ "res://.import/wind_blast.png-ea1a90c46efa704bf6bfb77dee63763f.stex" ]
+source_file="res://main/combat/graphic_effects/impact/cutter/wind_blast.png"
+dest_files=[ "res://.import/wind_blast.png-a5e7732bfab33bea3c84f7a9d223b582.stex" ]
 
 [params]
 

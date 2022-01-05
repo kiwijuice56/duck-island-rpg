@@ -3,12 +3,14 @@ extends Node
 
 export var action_scene_path := "res://"
 
+signal action_decided(decision)
+
 # Called by Fighter parent to receive input of what actions to take
 # Input context consists of other parties in a battle and other conditional information
-# Returns a dictionary detailing the action, targets, or any other information needed by the Fighter
+# Emits a signal containing a dictionary detailing the action, targets, or any other information needed by the Fighter
 # In your extension class, override this method and implement logic for your players and enemies
-func decide(context: Dictionary) -> Dictionary:
-	return {"action": null, "target": []}
+func decide(context: Dictionary) -> void:
+	emit_signal("action_decided", {"action_type": "Pass", "action": null, "target": []})
 
 func get_action_array() -> Array:
 	var save_ids := []

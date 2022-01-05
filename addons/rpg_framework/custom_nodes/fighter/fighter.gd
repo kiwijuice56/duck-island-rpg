@@ -14,8 +14,9 @@ signal act_completed(result)
 # Emits a signal with a report of this fighter's turn
 # In your extension class, override this method and implement any unique game logic
 func act(context: Dictionary) -> void:
-	var decision : Dictionary = yield(get_action_decider().decide(context), "completed")
-	emit_signal("act_completed", {"Success": true})
+	get_action_decider().call_deferred("decide", context)
+	var decision : Dictionary = yield(get_action_decider(), "action_decided")
+	emit_signal("act_completed", {"success": true})
 
 func get_action_decider() -> Node:
 	var action_decider_script : Script = load(RpgFramework.addon_path + "action_decider/action_decider.gd")

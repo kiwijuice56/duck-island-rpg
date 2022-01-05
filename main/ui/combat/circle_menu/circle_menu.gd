@@ -1,7 +1,12 @@
 extends Control
 
 export var transition_time := 0.11
+
+onready var player_party = get_tree().get_root().get_node("Main/Combat/PressTurnCycle/PlayerParty")
+onready var enemy_party = get_tree().get_root().get_node("Main/Combat/PressTurnCycle/EnemyParty")
+
 var index := 0 setget set_index
+
 
 signal action_selected(selection)
 
@@ -24,6 +29,7 @@ func reset() -> void:
 
 func _input(event):
 	if event.is_action_pressed("ui_accept", false):
+		SoundPlayer.play_sound(SoundPlayer.accept)
 		yield(center_selection(), "completed")
 		var button_name := $Buttons.get_child($Buttons.get_child_count()-1-index).name
 		if button_name in ["Pass", "Defend", "Flee"]:
@@ -33,8 +39,10 @@ func _input(event):
 		else:
 			switch_menu(button_name)
 	if event.is_action_pressed("ui_left", false):
+		SoundPlayer.play_sound(SoundPlayer.switch)
 		rotate(-1)
 	if event.is_action_pressed("ui_right", false):
+		SoundPlayer.play_sound(SoundPlayer.switch)
 		rotate(1)
 
 func select_action(fighter: Node) -> void:
@@ -70,15 +78,41 @@ func set_index(new_index: int):
 		index = $Buttons.get_child_count() + index
 
 func switch_menu(input: String) -> void:
+	var menu: Container
 	match input:
 		"Skills":
-			disable()
-			yield($SkillContainer.transition_in(), "completed")
-			$SkillContainer.enable()
+			menu = $SkillContainer
 		"Items":
-			disable()
-			yield($ItemContainer.transition_in(), "completed")
-			$ItemContainer.enable()
+			menu = $ItemContainer
+	disable()
+	yield(menu.transition_in(), "completed")
+	menu.enable()
+	var action = yield(menu, "action_selected")
+	
+	if not action:
+		SoundPlayer.play_sound(SoundPlayer.cancel)
+		decenter_selection()
+		yield(menu.transition_out(), "completed")
+		enable()
+	else:
+		menu.disable()
+		yield(menu.transition_out(), "completed")
+		yield(transition_out(), "completed")
+		
+		var party: Node
+		if action.party_target == "enemy":
+			party = enemy_party
+		else:
+			party = player_party
+		get_node("../TargetSelector").call_deferred("select_targets", party, action.target_count)
+		var targets = yield(get_node("../TargetSelector"), "targets_selected")
+		
+		if len(targets) == 0:
+			SoundPlayer.play_sound(SoundPlayer.cancel)
+			yield(transition_in(), "completed")
+			call_deferred("switch_menu", input)
+		else:
+			emit_signal("action_selected", {"action_type": "Skill", "targets": targets, "action": action})
 
 func center_selection() -> void:
 	for i in range($Buttons.get_child_count()):

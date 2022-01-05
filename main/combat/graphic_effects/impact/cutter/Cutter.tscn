@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://main/combat/graphic_effects/impact/Impact.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/combat/graphic_effects/impact/cutter/cutter.tres" type="Animation" id=2]
+[ext_resource path="res://main/combat/graphic_effects/impact/cutter/wind_blast.png" type="Texture" id=3]
+
+[node name="Cutter" instance=ExtResource( 1 )]
+texture = ExtResource( 3 )
+hframes = 12
+anim_name = "cutter"
+
+[node name="AnimationPlayer" parent="." index="0"]
+playback_speed = 1.5
+anims/cutter = ExtResource( 2 )

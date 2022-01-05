@@ -20,6 +20,6 @@ scale = Vector2( 2, 2 )
 cell_size = Vector2( 32, 32 )
 format = 1
 
-[node name="Enemies" type="Node" parent="."]
+[node name="Enemies" type="Node2D" parent="."]
 
 [node name="Items" type="Node" parent="."]

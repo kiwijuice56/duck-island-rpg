@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://addons/rpg_framework/custom_nodes/party/party.gd" type="Script" id=1]
 [ext_resource path="res://main/ui/combat/Combat.tscn" type="PackedScene" id=2]
@@ -12,19 +12,18 @@
 [ext_resource path="res://main/overworld/overworld_map/debug_room/DebugRoom.tscn" type="PackedScene" id=10]
 [ext_resource path="res://main/ui/transition/transition.gd" type="Script" id=11]
 [ext_resource path="res://main/combat/visual_fighter/yukid/yukid.tscn" type="PackedScene" id=12]
-[ext_resource path="res://main/combat/visual_fighter/nate/nate.tscn" type="PackedScene" id=13]
 [ext_resource path="res://main/combat/6.png" type="Texture" id=14]
 [ext_resource path="res://main/combat/4.png" type="Texture" id=15]
 [ext_resource path="res://main/combat/2.png" type="Texture" id=16]
 [ext_resource path="res://main/combat/3.png" type="Texture" id=17]
 [ext_resource path="res://main/combat/1.png" type="Texture" id=18]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 8 )
 shader_param/fragment_number = Vector2( 30, 20 )
 shader_param/dissolve_state = 1.0
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "transition_in"
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:material:shader_param/dissolve_state")
@@ -39,7 +38,7 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "transition_out"
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:material:shader_param/dissolve_state")
@@ -66,7 +65,7 @@ script = ExtResource( 11 )
 
 [node name="ColorRect" type="ColorRect" parent="Transition"]
 modulate = Color( 0, 0, 0, 1 )
-material = SubResource( 2 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
@@ -76,16 +75,17 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
 playback_speed = 1.4
-anims/transition_in = SubResource( 3 )
-anims/transition_out = SubResource( 4 )
+anims/transition_in = SubResource( 2 )
+anims/transition_out = SubResource( 3 )
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
+volume_db = -4.854
+autoplay = true
 
-[node name="Overworld" type="Node" parent="."]
+[node name="Overworld" type="Node2D" parent="."]
 
 [node name="DebugRoom" parent="Overworld" instance=ExtResource( 10 )]
-visible = false
 
 [node name="Player" parent="Overworld" instance=ExtResource( 4 )]
 position = Vector2( 387.682, 558.927 )
@@ -94,6 +94,8 @@ position = Vector2( 387.682, 558.927 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Combat"]
 layer = -1
+offset = Vector2( 150, 0 )
+transform = Transform2D( 1, 0, 0, 1, 150, 0 )
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="Combat/ParallaxBackground"]
 position = Vector2( -480, -180 )
@@ -103,6 +105,8 @@ motion_mirroring = Vector2( 980, 0 )
 [node name="Sprite" type="Sprite" parent="Combat/ParallaxBackground/ParallaxLayer5"]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 490, 276 )
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="Combat/ParallaxBackground"]
 position = Vector2( -480, -120 )
@@ -112,6 +116,8 @@ motion_mirroring = Vector2( 980, 0 )
 [node name="Sprite" type="Sprite" parent="Combat/ParallaxBackground/ParallaxLayer4"]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 15 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 490, 276 )
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Combat/ParallaxBackground"]
 position = Vector2( -480, -150 )
@@ -121,6 +127,8 @@ motion_mirroring = Vector2( 980, 0 )
 [node name="Sprite" type="Sprite" parent="Combat/ParallaxBackground/ParallaxLayer3"]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 17 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 490, 276 )
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Combat/ParallaxBackground"]
 position = Vector2( -480, -180 )
@@ -130,6 +138,8 @@ motion_mirroring = Vector2( 980, 0 )
 [node name="Sprite" type="Sprite" parent="Combat/ParallaxBackground/ParallaxLayer2"]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 490, 276 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Combat/ParallaxBackground"]
 position = Vector2( -480, 80 )
@@ -138,6 +148,8 @@ motion_mirroring = Vector2( 980, 0 )
 [node name="Sprite" type="Sprite" parent="Combat/ParallaxBackground/ParallaxLayer"]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 490, 276 )
 
 [node name="PressTurnCycle" type="Node" parent="Combat"]
 script = ExtResource( 5 )
@@ -154,12 +166,6 @@ hp = 55
 mp = 33
 max_hp = 76
 max_mp = 53
-defense = {
-}
-offense = {
-}
-
-[node name="Nate" parent="Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 13 )]
 defense = {
 }
 offense = {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://main/ui/assets/style_boxes/bottom_panel_container.tres" type="StyleBox" id=1]
 [ext_resource path="res://main/ui/combat/fighter_container/FighterContainer.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://main/ui/combat/circle_menu/circle_button/defend.png" type="Texture" id=15]
 [ext_resource path="res://main/ui/combat/circle_menu/skill_button/SkillButton.tscn" type="PackedScene" id=16]
 [ext_resource path="res://main/ui/combat/action_container/action_container.gd" type="Script" id=17]
+[ext_resource path="res://main/ui/combat/fighter_selection/target_selector.gd" type="Script" id=18]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -330,6 +331,14 @@ margin_right = 32.0
 margin_bottom = 32.0
 rect_pivot_offset = Vector2( 16, 16 )
 texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TargetSelector" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

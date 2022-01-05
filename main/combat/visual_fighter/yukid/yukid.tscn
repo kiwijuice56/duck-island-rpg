@@ -16,3 +16,6 @@ texture = ExtResource( 2 )
 
 [node name="ActionDecider" parent="." index="2"]
 script = ExtResource( 3 )
+
+[node name="SelectIcon" parent="." index="3"]
+position = Vector2( 0, -72 )

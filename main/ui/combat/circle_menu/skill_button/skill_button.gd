@@ -2,8 +2,10 @@ extends Button
 
 export var hp_color := Color("#fde1c1")
 export var mp_color := Color("#d4bbfb")
+var action: Node
 
 func initialize(skill: Node) -> void:
+	action = skill
 	$RichTextLabel.clear()
 	var color_label = ""
 	if skill.cost_type == "hp":

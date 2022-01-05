@@ -24,6 +24,10 @@ config/name="MiiDuckIsland"
 run/main_scene="res://main/Main.tscn"
 config/icon="res://main/overworld/enemy/debug_enemy/icon.png"
 
+[autoload]
+
+SoundPlayer="*res://main/ui/assets/sounds/sound_player.gd"
+
 [display]
 
 window/stretch/mode="viewport"
