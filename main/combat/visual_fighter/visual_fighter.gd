@@ -15,14 +15,21 @@ export var luck: int
 export var defense := {}
 export var offense := {}
 
+var status := "okay"
+
 onready var combat_ui := get_tree().get_root().get_node("Main/CombatUI/Combat")
 onready var text_box = combat_ui.get_node("VBoxContainer/TextBox")
 onready var cam := get_tree().get_root().get_node("Main/MainCamera")
 
 var calculation_cache := {}
 
+var miss_color := Color("#ff0044")
+var crit_color := Color("#ffcc00")
+
 func _ready() -> void:
 	$Sprite.frame = 0
+	$Sprite.modulate = Color(1,1,1,1)
+	$Sprite.position = Vector2(0, -128)
 	$CurrentIcon.modulate = Color(1,1,1,0)
 	$SelectIcon.modulate = Color(1,1,1,0)
 	$CanvasLayer/DamageLabel.modulate = Color(1,1,1,0)
@@ -33,15 +40,30 @@ func on_impact() -> void:
 	$CanvasLayer/DamageLabel.rect_position = $SelectIcon.get_global_transform_with_canvas().get_origin()-Vector2(32,0)
 	
 	if calculation_cache["contact"] == "miss":
+		SoundPlayer.play_sound(SoundPlayer.woosh)
 		$BasicAnimationPlayer.current_animation = "miss"
 		if $SpriteAnimationPlayer.has_animation("miss"):
 			$SpriteAnimationPlayer.current_animation = "miss"
-		$CanvasLayer/DamageLabel.text = "miss"
+		$CanvasLayer/DamageLabel.text = "miss!"
+		$CanvasLayer/DamageLabel.add_color_override("font_color", miss_color)
 	else:
-		$BasicAnimationPlayer.current_animation = "hurt"
-		if $SpriteAnimationPlayer.has_animation("hurt"):
-			$SpriteAnimationPlayer.current_animation = "hurt"
-		$CanvasLayer/DamageLabel.text = str(calculation_cache["damage"])
+		if status == "dead":
+			$BasicAnimationPlayer.current_animation = "dead"
+			if $SpriteAnimationPlayer.has_animation("dead"):
+				$SpriteAnimationPlayer.current_animation = "dead"
+		else:
+			$BasicAnimationPlayer.current_animation = "hurt"
+			if $SpriteAnimationPlayer.has_animation("hurt"):
+				$SpriteAnimationPlayer.current_animation = "hurt"
+		if calculation_cache["contact"] == "critical":
+			SoundPlayer.play_sound(SoundPlayer.crit)
+			$CanvasLayer/DamageLabel.add_color_override("font_color", crit_color)
+			$CanvasLayer/DamageLabel.text = "crit! " + str(calculation_cache["damage"])
+		else:
+			$CanvasLayer/DamageLabel.add_color_override("font_color", Color(1.0,1.0,1.0))
+			$CanvasLayer/DamageLabel.text = str(calculation_cache["damage"])
+		
+		
 	
 	$CanvasLayer/DamageLabel/DamageTween.interpolate_property($CanvasLayer/DamageLabel, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$CanvasLayer/DamageLabel/DamageTween.interpolate_property($CanvasLayer/DamageLabel, "rect_position", null, $CanvasLayer/DamageLabel.rect_position + Vector2(0,-5), 0.4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

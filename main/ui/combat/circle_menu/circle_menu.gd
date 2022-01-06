@@ -29,9 +29,12 @@ func reset() -> void:
 
 func _input(event):
 	if event.is_action_pressed("ui_accept", false):
+		var button_name := $Buttons.get_child($Buttons.get_child_count()-1-index).name
+		if button_name in ["Items", "Switch", "Run"]:
+			SoundPlayer.play_sound(SoundPlayer.cancel)
+			return
 		SoundPlayer.play_sound(SoundPlayer.accept)
 		yield(center_selection(), "completed")
-		var button_name := $Buttons.get_child($Buttons.get_child_count()-1-index).name
 		if button_name in ["Pass", "Defend", "Flee"]:
 			yield(transition_out(), "completed")
 			disable()

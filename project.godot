@@ -27,6 +27,7 @@ config/icon="res://main/overworld/enemy/debug_enemy/icon.png"
 [autoload]
 
 SoundPlayer="*res://main/ui/assets/sounds/sound_player.gd"
+MusicPlayer="*res://main/music/music_player.gd"
 
 [display]
 

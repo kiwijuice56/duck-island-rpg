@@ -14,3 +14,7 @@ func set_fighter_containers(fighters: Array) -> Array:
 		container.add_child(new_fighter_container)
 		fighter_containers.append(new_fighter_container)
 	return fighter_containers
+
+func set_turn_label(team) -> void:
+	$TurnLabel/AnimationPlayer.current_animation = team
+	yield($TurnLabel/AnimationPlayer, "animation_finished")

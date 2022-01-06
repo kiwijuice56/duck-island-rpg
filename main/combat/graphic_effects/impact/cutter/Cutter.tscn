@@ -7,9 +7,8 @@
 [node name="Cutter" instance=ExtResource( 1 )]
 texture = ExtResource( 3 )
 hframes = 12
-frame = 1
 anim_name = "cutter"
 
 [node name="AnimationPlayer" parent="." index="0"]
-playback_speed = 1.5
+playback_speed = 2.0
 anims/cutter = ExtResource( 2 )

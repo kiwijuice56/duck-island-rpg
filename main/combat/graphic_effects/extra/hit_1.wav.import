@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hit_1.wav-34840990e01de7a1248714ab9335fd96.sample"
+
+[deps]
+
+source_file="res://main/combat/graphic_effects/extra/hit_1.wav"
+dest_files=[ "res://.import/hit_1.wav-34840990e01de7a1248714ab9335fd96.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

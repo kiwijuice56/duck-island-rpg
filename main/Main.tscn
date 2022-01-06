@@ -8,7 +8,7 @@
 [ext_resource path="res://main/combat/player_party/player_party.gd" type="Script" id=6]
 [ext_resource path="res://main/main_camera/main_camera.gd" type="Script" id=7]
 [ext_resource path="res://main/ui/assets/shaders/dissolve.shader" type="Shader" id=8]
-[ext_resource path="res://main/music/encounter.mp3" type="AudioStream" id=9]
+[ext_resource path="res://main/overworld/overworld.gd" type="Script" id=9]
 [ext_resource path="res://main/overworld/overworld_map/debug_room/DebugRoom.tscn" type="PackedScene" id=10]
 [ext_resource path="res://main/ui/transition/transition.gd" type="Script" id=11]
 [ext_resource path="res://main/combat/visual_fighter/yukid/yukid.tscn" type="PackedScene" id=12]
@@ -79,12 +79,8 @@ playback_speed = 1.4
 anims/transition_in = SubResource( 2 )
 anims/transition_out = SubResource( 3 )
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
-volume_db = -9.526
-autoplay = true
-
 [node name="Overworld" type="Node2D" parent="."]
+script = ExtResource( 9 )
 
 [node name="DebugRoom" parent="Overworld" instance=ExtResource( 10 )]
 
@@ -167,6 +163,7 @@ hp = 55
 mp = 33
 max_hp = 76
 max_mp = 53
+magic = 2
 defense = {
 }
 offense = {
@@ -177,6 +174,11 @@ hp = 45
 mp = 65
 max_hp = 50
 max_mp = 70
+strength = 3
+vitality = 3
+magic = 7
+agility = 7
+luck = 6
 defense = {
 }
 offense = {

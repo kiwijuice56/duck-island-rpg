@@ -8,15 +8,21 @@ onready var cycle = get_tree().get_root().get_node("Main/Combat/PressTurnCycle")
 
 func _ready() -> void:
 	$Area2D.connect("area_entered", self, "area_entered")
+	get_tree().get_root().get_node("Main/Combat/PressTurnCycle").connect("battle_ended", self, "battle_ended")
 
 func area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyHitbox"):
 		call_deferred("disable")
 		yield(transition.transition_in(), "completed")
 		cycle.set_enemies(area.get_parent().enemies)
-		combat_ui.visible = true
 		visible = false
 		cycle.battle()
+
+func battle_ended() -> void:
+	global_position = Vector2()
+	visible = true
+	$Camera2D.current = true
+	call_deferred("enable")
 
 func disable() -> void:
 	set_physics_process(false)

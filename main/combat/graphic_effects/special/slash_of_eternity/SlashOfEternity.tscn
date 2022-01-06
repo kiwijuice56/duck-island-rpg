@@ -1,0 +1,21 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://main/combat/graphic_effects/special/slash_of_eternity/slash_of_eternity.gd" type="Script" id=1]
+[ext_resource path="res://main/combat/graphic_effects/extra/swoosh/Swoosh.tscn" type="PackedScene" id=2]
+[ext_resource path="res://main/combat/graphic_effects/extra/slash/Slash.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/combat/graphic_effects/extra/flicker/Flicker.tscn" type="PackedScene" id=4]
+[ext_resource path="res://main/combat/graphic_effects/GraphicEffect.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "slash_of_eternity"
+length = 0.5
+loop = true
+
+[node name="SlashOfEternity" instance=ExtResource( 5 )]
+script = ExtResource( 1 )
+slash = ExtResource( 3 )
+flicker = ExtResource( 4 )
+swoosh = ExtResource( 2 )
+
+[node name="AnimationPlayer" parent="." index="1"]
+anims/slash_of_eternity = SubResource( 1 )
