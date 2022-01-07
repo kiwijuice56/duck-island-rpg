@@ -7,6 +7,7 @@ signal complete
 
 func on_impact() -> void:
 	target.on_impact()
+	target.emit_signal("update_points")
 
 func impact(target: Node) -> void:
 	self.target = target

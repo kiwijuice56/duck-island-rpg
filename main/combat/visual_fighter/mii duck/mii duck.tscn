@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://main/combat/custom_action_deciders/player_action_decider/player_action_decider.gd" type="Script" id=1]
 [ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main/combat/skills/damage_skill/wind cutter/wind cutter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://main/combat/graphic_effects/special/tornado/Tornado.tscn" type="PackedScene" id=4]
+[ext_resource path="res://main/combat/skills/buff_skill/BuffSkill.tscn" type="PackedScene" id=5]
+[ext_resource path="res://main/combat/graphic_effects/special/buff/Buff.tscn" type="PackedScene" id=6]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "dead"
 length = 0.55
 tracks/0/type = "value"
@@ -21,7 +23,7 @@ tracks/0/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "hold_magic"
 length = 0.55
 tracks/0/type = "value"
@@ -37,8 +39,7 @@ tracks/0/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "hurt"
+[sub_resource type="Animation" id=3]
 length = 0.55
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -92,8 +93,17 @@ power = 12
 accuracy = 0.99
 critical = 0.45
 
-[node name="SpriteAnimationPlayer" parent="." index="6"]
-anims/dead = SubResource( 2 )
-anims/hold_magic = SubResource( 3 )
-anims/hurt = SubResource( 1 )
+[node name="BuffSkill" parent="ActionDecider" index="1" instance=ExtResource( 5 )]
+save_id = "tarukaja"
+cost_type = "mp"
+type = "support"
+cost = 20
+target_count = "all"
+party_target = "team"
+graphic_effect = ExtResource( 6 )
+
+[node name="SpriteAnimationPlayer" parent="." index="7"]
+anims/dead = SubResource( 1 )
+anims/hold_magic = SubResource( 2 )
+anims/hurt = SubResource( 3 )
 anims/idle = SubResource( 4 )

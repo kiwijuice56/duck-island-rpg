@@ -75,6 +75,9 @@ func battle() -> void:
 	position_fighters()
 	for child in get_children():
 		for fighter in child.get_children():
+			fighter.hp = fighter.max_hp
+			fighter.mp = fighter.max_mp
+			fighter.emit_signal("update_points")
 			fighter.get_node("Sprite").visible = true
 	cam.fit($EnemyParty.get_children(), 0, -125)
 	get_tree().get_root().get_node("Main/Overworld").visible = false

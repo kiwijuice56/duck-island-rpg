@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Sound effect master spark.mp3-afa00f7c01cb17b7aab9f15532fc49d8.mp3str"
+
+[deps]
+
+source_file="res://main/combat/graphic_effects/special/divine_shot/Sound effect master spark.mp3"
+dest_files=[ "res://.import/Sound effect master spark.mp3-afa00f7c01cb17b7aab9f15532fc49d8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

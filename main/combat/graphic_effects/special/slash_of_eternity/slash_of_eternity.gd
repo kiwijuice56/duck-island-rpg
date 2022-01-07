@@ -15,7 +15,8 @@ func animate(user: Node, targets: Array) -> void:
 	cam.toggle_cover(true)
 	cam.prioritize([user] + [targets[0]])
 	user.get_node("SpriteAnimationPlayer").current_animation = "hold_magic"
-	for i in range(40):
+	cam.toggle_shake(true)
+	for i in range(35):
 		angle = rand_range(0, 360)
 		var new_slash = slash.instance()
 		new_slash.rotation_degrees = angle
@@ -34,16 +35,16 @@ func animate(user: Node, targets: Array) -> void:
 		new_swoosh.global_position = targets[0].get_node("SelectIcon").global_position
 		$Timer.start(.13 + rand_range(-.05, .05))
 		
-		
-		
 		targets[0].get_node("BasicAnimationPlayer").current_animation = "hurt"
 		targets[0].get_node("SpriteAnimationPlayer").current_animation = "hurt"
 		yield($Timer, "timeout")
 	targets[0].get_node("BasicAnimationPlayer").playback_speed = old_speed1
 	targets[0].get_node("SpriteAnimationPlayer").playback_speed = old_speed2
 	targets[0].on_impact()
+	
 	$Timer.start(.5)
 	yield($Timer, "timeout")
+	cam.toggle_shake(false)
 	user.get_node("SpriteAnimationPlayer").current_animation = "idle"
 	cam.toggle_cover(false)
 	cam.deprioritize([user] + [targets[0]])

@@ -15,6 +15,10 @@ export var luck: int
 export var defense := {}
 export var offense := {}
 
+var atk := 0
+var def := 0
+var hit_eva := 0
+
 var status := "okay"
 
 onready var combat_ui := get_tree().get_root().get_node("Main/CombatUI/Combat")
@@ -22,6 +26,8 @@ onready var text_box = combat_ui.get_node("VBoxContainer/TextBox")
 onready var cam := get_tree().get_root().get_node("Main/MainCamera")
 
 var calculation_cache := {}
+
+signal update_points
 
 var miss_color := Color("#ff0044")
 var crit_color := Color("#ffcc00")
@@ -39,7 +45,11 @@ func on_impact() -> void:
 	$ParticleEmitter.global_position = $SelectIcon.global_position
 	$CanvasLayer/DamageLabel.rect_position = $SelectIcon.get_global_transform_with_canvas().get_origin()-Vector2(32,0)
 	
-	if calculation_cache["contact"] == "miss":
+	emit_signal("update_points")
+	
+	if calculation_cache["contact"] == "none":
+		return
+	elif calculation_cache["contact"] == "miss":
 		SoundPlayer.play_sound(SoundPlayer.woosh)
 		$BasicAnimationPlayer.current_animation = "miss"
 		if $SpriteAnimationPlayer.has_animation("miss"):

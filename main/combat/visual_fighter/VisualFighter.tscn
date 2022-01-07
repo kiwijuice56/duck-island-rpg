@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://main/combat/visual_fighter/visual_fighter.gd" type="Script" id=1]
 [ext_resource path="res://main/combat/custom_action_deciders/enemy_action_decider/enemy_action_decider.gd" type="Script" id=2]
@@ -6,12 +6,13 @@
 [ext_resource path="res://main/combat/visual_fighter/mii duck/mii_duck_sprite.png" type="Texture" id=4]
 [ext_resource path="res://main/ui/combat/fighter_selection/focus-sheet.png" type="Texture" id=5]
 [ext_resource path="res://main/ui/assets/fonts/PressStart2P.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://main/combat/skills/damage_skill/attack/Attack.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "current"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("../CurrentIcon:modulate")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -43,7 +44,7 @@ tracks/0/keys = {
 offsets = PoolRealArray( 0, 0.984496 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "dead"
 length = 0.55
 tracks/0/type = "value"
@@ -83,7 +84,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.298039 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.55
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
@@ -110,8 +111,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "miss"
+[sub_resource type="Animation" id=6]
 length = 0.562
 step = 0.05
 tracks/0/type = "value"
@@ -139,7 +139,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
 extra_spacing_top = -2
 extra_spacing_bottom = -2
 font_data = ExtResource( 6 )
@@ -187,6 +187,8 @@ anims/select = SubResource( 2 )
 [node name="ActionDecider" type="Node" parent="."]
 script = ExtResource( 2 )
 
+[node name="Attack" parent="." instance=ExtResource( 7 )]
+
 [node name="ParticleEmitter" type="CPUParticles2D" parent="."]
 modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 0, -32 )
@@ -207,9 +209,9 @@ scale_amount = 2.0
 color_ramp = SubResource( 3 )
 
 [node name="BasicAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/dead = SubResource( 7 )
-anims/hurt = SubResource( 4 )
-anims/miss = SubResource( 5 )
+anims/dead = SubResource( 4 )
+anims/hurt = SubResource( 5 )
+anims/miss = SubResource( 6 )
 
 [node name="SpriteAnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -221,7 +223,7 @@ margin_right = 32.0
 margin_bottom = 12.0
 rect_min_size = Vector2( 64, 0 )
 rect_pivot_offset = Vector2( 32, 0 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/line_spacing = 3

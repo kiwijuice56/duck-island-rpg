@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/combat/visual_fighter/yukid/yukid_sprite.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://main/combat/graphic_effects/special/slash_of_eternity/SlashOfEternity.tscn" type="PackedScene" id=5]
 [ext_resource path="res://main/combat/visual_fighter/yukid/orb.gd" type="Script" id=6]
 [ext_resource path="res://main/combat/visual_fighter/yukid/blob.png" type="Texture" id=7]
+[ext_resource path="res://main/combat/skills/buff_skill/BuffSkill.tscn" type="PackedScene" id=8]
+[ext_resource path="res://main/combat/graphic_effects/special/buff/Buff.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "hold_magic"
@@ -88,10 +90,8 @@ offense = {
 }
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 0, -128 )
 texture = ExtResource( 2 )
 hframes = 4
-frame = 1
 
 [node name="SelectIcon" parent="." index="2"]
 position = Vector2( 0, -72 )
@@ -108,7 +108,16 @@ power_stat = "magic"
 power = 100
 critical = 0.99
 
-[node name="SpriteAnimationPlayer" parent="." index="6"]
+[node name="BuffSkill" parent="ActionDecider" index="1" instance=ExtResource( 8 )]
+save_id = "Tarukaja"
+cost_type = "mp"
+type = "support"
+cost = 12
+target_count = "all"
+party_target = "team"
+graphic_effect = ExtResource( 9 )
+
+[node name="SpriteAnimationPlayer" parent="." index="7"]
 anims/hold_magic = SubResource( 1 )
 anims/idle = SubResource( 2 )
 

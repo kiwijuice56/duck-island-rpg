@@ -75,4 +75,9 @@ value = 100.0
 texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 5 )
 
+[node name="Buffs" type="HBoxContainer" parent="."]
+margin_top = 54.0
+margin_right = 120.0
+margin_bottom = 54.0
+
 [node name="Tween" type="Tween" parent="."]

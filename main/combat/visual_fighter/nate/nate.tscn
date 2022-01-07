@@ -1,15 +1,104 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/combat/visual_fighter/nate/nate_sprite.png" type="Texture" id=2]
 [ext_resource path="res://main/combat/custom_action_deciders/player_action_decider/player_action_decider.gd" type="Script" id=3]
+[ext_resource path="res://main/combat/graphic_effects/special/divine_shot/DivineShot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://main/combat/skills/damage_skill/wind cutter/wind cutter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://main/combat/visual_fighter/nate/light.png" type="Texture" id=6]
+[ext_resource path="res://main/combat/skills/buff_skill/BuffSkill.tscn" type="PackedScene" id=7]
+[ext_resource path="res://main/combat/graphic_effects/special/buff/Buff.tscn" type="PackedScene" id=8]
+
+[sub_resource type="Animation" id=1]
+resource_name = "hold_physical"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 10, -74 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -2, -84 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "flicker"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.75, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.8, 0.8 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ) ]
+}
 
 [node name="Nate" instance=ExtResource( 1 )]
 save_id = "nate"
 hp = 56
-mp = 24
+mp = 70
 max_hp = 90
-max_mp = 49
+max_mp = 89
 defense = {
 }
 offense = {
@@ -18,5 +107,44 @@ offense = {
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
 
-[node name="ActionDecider" parent="." index="2"]
+[node name="SelectIcon" parent="." index="2"]
+position = Vector2( 0, -72 )
+
+[node name="ActionDecider" parent="." index="3"]
 script = ExtResource( 3 )
+
+[node name="Wind Cutter" parent="ActionDecider" index="0" instance=ExtResource( 5 )]
+save_id = "divine shot"
+cost = 13
+target_count = "one"
+graphic_effect = ExtResource( 4 )
+power = 100
+critical = 1.0
+
+[node name="BuffSkill" parent="ActionDecider" index="1" instance=ExtResource( 7 )]
+save_id = "rakukaja"
+cost_type = "mp"
+type = "support"
+cost = 20
+target_count = "all"
+party_target = "team"
+graphic_effect = ExtResource( 8 )
+
+[node name="SpriteAnimationPlayer" parent="." index="7"]
+anims/hold_physical = SubResource( 1 )
+anims/idle = SubResource( 2 )
+
+[node name="SpearPivot" type="Node2D" parent="." index="8"]
+position = Vector2( 68, -45 )
+
+[node name="Light2D" type="Light2D" parent="." index="9"]
+position = Vector2( 10, -74 )
+scale = Vector2( 0.82666, 0.82666 )
+texture = ExtResource( 6 )
+color = Color( 0.580392, 0.741176, 0.298039, 1 )
+energy = 0.0999741
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Light2D" index="0"]
+autoplay = "flicker"
+playback_speed = 0.25
+anims/flicker = SubResource( 3 )

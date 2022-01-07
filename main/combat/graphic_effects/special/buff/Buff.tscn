@@ -1,0 +1,11 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://main/combat/graphic_effects/GraphicEffect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/combat/graphic_effects/special/buff/buff.gd" type="Script" id=2]
+[ext_resource path="res://main/combat/graphic_effects/extra/flicker/Flicker.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/combat/graphic_effects/extra/ghost_swoosh/GhostSwoosh.tscn" type="PackedScene" id=4]
+
+[node name="Buff" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+flicker = ExtResource( 3 )
+ghost_swoosh = ExtResource( 4 )

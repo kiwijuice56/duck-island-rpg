@@ -61,7 +61,7 @@ content_margin_top = 1.0
 content_margin_bottom = 1.0
 bg_color = Color( 0.0980392, 0.0980392, 0.0980392, 0.631373 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 resource_name = "enemy_turn"
 tracks/0/type = "value"
 tracks/0/path = NodePath("TurnLabel:modulate")
@@ -259,7 +259,7 @@ tracks/7/keys = {
 "values": [ Color( 0.168627, 0.121569, 0.737255, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=7]
 size = 8
 outline_size = 1
 font_data = ExtResource( 19 )
@@ -566,7 +566,7 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TurnLabel"]
 playback_speed = 0.8
-anims/enemy_turn = SubResource( 7 )
+anims/enemy_turn = SubResource( 5 )
 anims/player_turn = SubResource( 6 )
 
 [node name="TextureRect" type="TextureRect" parent="TurnLabel"]
@@ -598,7 +598,7 @@ margin_bottom = 4.0
 rect_min_size = Vector2( 88, 0 )
 rect_scale = Vector2( 2, 2 )
 rect_pivot_offset = Vector2( 44, 4 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0.486275, 0.701961, 1 )
 custom_colors/font_outline_modulate = Color( 0.592157, 0.0705882, 0.0705882, 1 )
 text = "Enemy Turn"
