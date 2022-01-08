@@ -28,7 +28,7 @@ func animate(user: Node, targets: Array) -> void:
 		for _j in range(16):
 				var new_flicker = flicker.instance()
 				add_child(new_flicker)
-				new_flicker.global_position = target.get_node("SelectIcon").global_position + Vector2(randi() % 128 - 64, randi() % 32 - 16)
+				new_flicker.global_position = target.get_node("SelectIcon").global_position + Vector2(randi() % 128 - 64, -randi() % 32)
 				new_flicker.rotation_degrees = -90
 		
 		$Timer.start(.2)

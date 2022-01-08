@@ -31,6 +31,8 @@ MusicPlayer="*res://main/music/music_player.gd"
 
 [debug]
 
+settings/fps/force_fps=120
+settings/stdout/print_fps=true
 gdscript/warnings/return_value_discarded=false
 
 [display]

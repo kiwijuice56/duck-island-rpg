@@ -9,7 +9,7 @@
 [ext_resource path="res://main/main_camera/main_camera.gd" type="Script" id=7]
 [ext_resource path="res://main/ui/assets/shaders/dissolve.shader" type="Shader" id=8]
 [ext_resource path="res://main/overworld/overworld.gd" type="Script" id=9]
-[ext_resource path="res://main/overworld/overworld_map/debug_room/DebugRoom.tscn" type="PackedScene" id=10]
+[ext_resource path="res://main/overworld/overworld_map/beach/Beach.tscn" type="PackedScene" id=10]
 [ext_resource path="res://main/ui/transition/transition.gd" type="Script" id=11]
 [ext_resource path="res://main/combat/visual_fighter/yukid/yukid.tscn" type="PackedScene" id=12]
 [ext_resource path="res://main/main_camera/cover.png" type="Texture" id=13]
@@ -152,7 +152,8 @@ anims/transition_out = SubResource( 4 )
 [node name="Overworld" type="Node2D" parent="."]
 script = ExtResource( 9 )
 
-[node name="DebugRoom" parent="Overworld" instance=ExtResource( 10 )]
+[node name="Beach" parent="Overworld" instance=ExtResource( 10 )]
+position = Vector2( 128, 976 )
 
 [node name="Player" parent="Overworld" instance=ExtResource( 4 )]
 position = Vector2( 280, 1104 )
@@ -304,7 +305,7 @@ position = Vector2( 304, 56 )
 
 [node name="Npc" parent="." instance=ExtResource( 21 )]
 position = Vector2( 368, 984 )
-convo = [ [ "mii_duck", ".05", "where the hell are we. . ." ], [ "yukid", ".05", "We're in development, asshole." ] ]
+convo = [ [ "mii_duck", ".05", "where the hell are we. . ." ], [ "yukid", ".05", "We're in development, asshole." ], [ "mii_duck", "0.05", "you are a wicked creature" ] ]
 
 [node name="MainCamera" type="Camera2D" parent="."]
 script = ExtResource( 7 )

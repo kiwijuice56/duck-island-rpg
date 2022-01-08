@@ -1,0 +1,14 @@
+[gd_scene format=2]
+
+[node name="Decoration" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Under" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+
+[node name="Above" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+z_index = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

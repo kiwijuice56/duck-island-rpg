@@ -32,12 +32,11 @@ tracks/1/keys = {
 }
 
 [node name="GhostSwoosh" instance=ExtResource( 1 )]
-modulate = Color( 2, 2, 2, 1 )
+modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 2, 2 )
 z_index = 15
 texture = ExtResource( 2 )
 hframes = 11
-frame = 10
 
 [node name="AnimationPlayer" parent="." index="0"]
 playback_speed = 1.75

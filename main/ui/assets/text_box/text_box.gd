@@ -27,9 +27,10 @@ func _input(event):
 		emit_signal("pressed")
 
 func display_text(text: String, sec_per_char: float, after_delay: float) -> void:
+	self.visible_characters = 0
 	$HBoxContainer/Icon.visible = false
 	label.text = text
-	$Tween.interpolate_property(self, "visible_characters", -1,  len(text), len(text) * sec_per_char, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property(self, "visible_characters", 0,  len(text), len(text) * sec_per_char, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
 	yield($Tween, "tween_completed")
 	$Timer.start(after_delay)
@@ -38,12 +39,14 @@ func display_text(text: String, sec_per_char: float, after_delay: float) -> void
 func display_convo(convo: Array) -> void:
 	sound_on = true
 	for sentence in convo:
+		self.visible_characters = 0
 		$AudioStreamPlayer.stream = voices[sentence[0]]
-		label.text = sentence[2]
 		$HBoxContainer/Icon.texture = icons[sentence[0]]
 		$HBoxContainer/Icon. visible = true
-		$Tween.interpolate_property(self, "visible_characters", -1, len(sentence[2]), len(sentence[2]) * float(sentence[1]), Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		label.text = sentence[2]
+		$Tween.interpolate_property(self, "visible_characters", 0, len(sentence[2]), len(sentence[2]) * float(sentence[1]), Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Tween.start()
+		
 		yield($Tween, "tween_completed")
 		yield(self, "pressed")
 	sound_on = false
@@ -51,7 +54,8 @@ func display_convo(convo: Array) -> void:
 func set_visible(new_visible) -> void:
 	if sound_on and int(new_visible) != visible_characters:
 		$AudioStreamPlayer.playing = true
-	label.visible_characters = visible_characters
 	visible_characters = new_visible
+	label.visible_characters = visible_characters
+	
 	
 	
