@@ -7,7 +7,8 @@
 [ext_resource path="res://main/combat/graphic_effects/special/buff/hit_3.wav" type="AudioStream" id=5]
 [ext_resource path="res://main/ui/assets/sounds/shimmer.wav" type="AudioStream" id=6]
 
-[node name="Buff" instance=ExtResource( 1 )]
+[node name="Debuff" instance=ExtResource( 1 )]
+modulate = Color( 1, 0.407843, 0.407843, 1 )
 script = ExtResource( 2 )
 flicker = ExtResource( 3 )
 ghost_swoosh = ExtResource( 4 )

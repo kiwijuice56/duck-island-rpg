@@ -13,6 +13,7 @@ func animate(user: Node, targets: Array) -> void:
 	cam.toggle_cover(true)
 	cam.prioritize([user] +targets)
 	user.get_node("SpriteAnimationPlayer").current_animation = "hold_magic"
+	$AudioStreamPlayer.playing = true
 	for _i in range(5):
 		for target in targets:
 			var new_swoosh = swoosh.instance()

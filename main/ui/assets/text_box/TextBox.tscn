@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://main/ui/assets/text_box/text_box.gd" type="Script" id=1]
 [ext_resource path="res://main/ui/assets/style_boxes/bottom_panel_container.tres" type="StyleBox" id=2]
+[ext_resource path="res://main/ui/assets/text_box/icons/yukid.png" type="Texture" id=3]
+[ext_resource path="res://main/ui/assets/text_box/voices/mii_duck.wav" type="AudioStream" id=4]
 
 [node name="TextBox" type="PanelContainer"]
 margin_top = 462.0
@@ -10,6 +12,15 @@ margin_bottom = 600.0
 size_flags_vertical = 10
 custom_styles/panel = ExtResource( 2 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1019.0
+margin_bottom = 133.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 5.0
@@ -21,6 +32,10 @@ margin_bottom = 133.0
 margin_right = 128.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
 margin_left = 132.0
@@ -33,3 +48,8 @@ size_flags_horizontal = 3
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 7.0
+pitch_scale = 1.15

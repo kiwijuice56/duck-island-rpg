@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://main/combat/graphic_effects/special/tornado/tornado.gd" type="Script" id=1]
 [ext_resource path="res://main/combat/graphic_effects/extra/swoosh/Swoosh.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://main/combat/graphic_effects/extra/flicker/Flicker.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main/combat/graphic_effects/GraphicEffect.tscn" type="PackedScene" id=5]
 [ext_resource path="res://main/combat/graphic_effects/impact/cutter/Cutter.tscn" type="PackedScene" id=6]
+[ext_resource path="res://main/combat/graphic_effects/special/tornado/howling_wind.wav" type="AudioStream" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "slash_of_eternity"
@@ -21,3 +22,8 @@ swoosh = ExtResource( 2 )
 
 [node name="AnimationPlayer" parent="." index="1"]
 anims/slash_of_eternity = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource( 7 )
+volume_db = 12.0
+pitch_scale = 0.63

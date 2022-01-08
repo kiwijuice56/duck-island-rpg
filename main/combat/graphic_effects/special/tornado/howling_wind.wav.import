@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/howling_wind.wav-4507275e5916a97326fa04873414f121.sample"
+
+[deps]
+
+source_file="res://main/combat/graphic_effects/special/tornado/howling_wind.wav"
+dest_files=[ "res://.import/howling_wind.wav-4507275e5916a97326fa04873414f121.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

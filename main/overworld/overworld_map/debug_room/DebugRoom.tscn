@@ -20,6 +20,3 @@ tile_data = PoolIntArray( -983049, 5, 0, -983048, 5, 0, -983047, 5, 0, -983046, 
 [node name="DebugEnemy" parent="Enemies" index="0" instance=ExtResource( 3 )]
 position = Vector2( 64, 960 )
 enemies = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 5 ) ]
-
-[node name="DebugEnemy2" parent="Enemies" index="1" instance=ExtResource( 3 )]
-position = Vector2( 640, 512 )

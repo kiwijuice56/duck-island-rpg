@@ -19,7 +19,7 @@ func area_entered(area: Area2D) -> void:
 		cycle.battle()
 
 func battle_ended() -> void:
-	global_position = Vector2()
+	global_position = Vector2(280, 1104)
 	visible = true
 	$Camera2D.current = true
 	call_deferred("enable")

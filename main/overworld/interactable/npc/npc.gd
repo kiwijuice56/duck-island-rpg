@@ -25,6 +25,7 @@ func talk(player) -> void:
 	overworld_ui.hide_prompt()
 	player.disable()
 	overworld_ui.get_node("TextBox").label.text = ""
+	overworld_ui.get_node("TextBox/HBoxContainer/Icon").visible = false
 	$Tween.interpolate_property(overworld_ui.get_node("TextBox"), "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.2)
 	$Tween.start()
 	yield($Tween, "tween_completed")

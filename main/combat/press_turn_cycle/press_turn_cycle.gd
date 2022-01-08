@@ -78,6 +78,14 @@ func battle() -> void:
 	position_fighters()
 	for child in get_children():
 		for fighter in child.get_children():
+			fighter.status = "ok"
+			fighter.get_node("Sprite").frame = 0
+			fighter.get_node("Sprite").modulate = Color(1,1,1,1)
+			if fighter.get_node("SpriteAnimationPlayer").has_animation("idle"):
+				fighter.get_node("SpriteAnimationPlayer").current_animation = "idle"
+			fighter.atk = 0
+			fighter.def = 0
+			fighter.hit_eva = 0
 			fighter.hp = fighter.max_hp
 			fighter.mp = fighter.max_mp
 			fighter.emit_signal("update_points")
