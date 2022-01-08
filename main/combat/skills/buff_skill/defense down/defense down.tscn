@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://main/combat/skills/buff_skill/BuffSkill.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/combat/graphic_effects/special/buff/Buff.tscn" type="PackedScene" id=2]
+
+[node name="defense down" instance=ExtResource( 1 )]
+save_id = "defense down"
+cost_type = "mp"
+type = "support"
+cost = 20
+target_count = "all"
+graphic_effect = ExtResource( 2 )
+buff_type = "def"
+stages = -1

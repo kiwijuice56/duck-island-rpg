@@ -16,14 +16,14 @@ func calculation(user: Node, targets: Array) -> Dictionary:
 		else:
 			if rand_range(0, 1.0) < critical:
 				crit = true
-				var damage = ceil (1.8 * (1 + (user.atk * .18)) * (power/2.0) + (user.get(power_stat) * 1.5) ) 
+				var damage = ceil (1.8 * (1 + (user.atk * .21) - (user.def * .21) ) * (power/2.0) + (user.get(power_stat) * 1.5) ) 
 				
 				target.calculation_cache["contact"] = "critical"
 				target.calculation_cache["damage"] = damage
 				target.hp = target.hp - damage
 			else:
 				target.calculation_cache["contact"] = "normal"
-				var damage = ceil(  (1 + (user.atk * .18)) * (power/2.0) + (user.get(power_stat) * 1.5) )
+				var damage = ceil(  (1 + (user.atk * .21) - (user.def * .21)) * (power/2.0) + (user.get(power_stat) * 1.5) )
 				target.calculation_cache["damage"] = damage
 				target.hp = target.hp - damage
 			if target.hp <= 0:

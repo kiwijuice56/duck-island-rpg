@@ -4,8 +4,8 @@
 [ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main/combat/skills/damage_skill/wind cutter/wind cutter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://main/combat/graphic_effects/special/tornado/Tornado.tscn" type="PackedScene" id=4]
-[ext_resource path="res://main/combat/skills/buff_skill/BuffSkill.tscn" type="PackedScene" id=5]
-[ext_resource path="res://main/combat/graphic_effects/special/buff/Buff.tscn" type="PackedScene" id=6]
+[ext_resource path="res://main/combat/skills/buff_skill/defense up/defense up.tscn" type="PackedScene" id=5]
+[ext_resource path="res://main/combat/skills/buff_skill/attack up/attack up.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "dead"
@@ -72,14 +72,25 @@ tracks/0/keys = {
 
 [node name="MiiDuck" instance=ExtResource( 2 )]
 save_id = "mii duck"
+level = 25
+hp = 175
+mp = 80
+max_hp = 175
+max_mp = 80
+strength = 5
+vitality = 7
+magic = 9
+agility = 5
+luck = 7
 defense = {
 }
 offense = {
 }
 
 [node name="Sprite" parent="." index="0"]
+position = Vector2( 64, -128 )
 hframes = 4
-frame = 2
+frame = 1
 
 [node name="ActionDecider" parent="." index="3"]
 script = ExtResource( 1 )
@@ -93,14 +104,9 @@ power = 12
 accuracy = 0.99
 critical = 0.45
 
-[node name="BuffSkill" parent="ActionDecider" index="1" instance=ExtResource( 5 )]
-save_id = "tarukaja"
-cost_type = "mp"
-type = "support"
-cost = 20
-target_count = "all"
-party_target = "team"
-graphic_effect = ExtResource( 6 )
+[node name="DefenseUp" parent="ActionDecider" index="1" instance=ExtResource( 5 )]
+
+[node name="AttackUp" parent="ActionDecider" index="2" instance=ExtResource( 6 )]
 
 [node name="SpriteAnimationPlayer" parent="." index="7"]
 anims/dead = SubResource( 1 )

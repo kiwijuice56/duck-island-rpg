@@ -29,6 +29,10 @@ config/icon="res://main/overworld/enemy/debug_enemy/icon.png"
 SoundPlayer="*res://main/ui/assets/sounds/sound_player.gd"
 MusicPlayer="*res://main/music/music_player.gd"
 
+[debug]
+
+gdscript/warnings/return_value_discarded=false
+
 [display]
 
 window/stretch/mode="viewport"
@@ -60,6 +64,14 @@ texture={
 "stream": false,
 "svg/scale": 1.0
 }
+
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="interactable"
+2d_physics/layer_3="npc"
+2d_physics/layer_4="map"
+2d_physics/layer_5="enemy"
 
 [physics]
 

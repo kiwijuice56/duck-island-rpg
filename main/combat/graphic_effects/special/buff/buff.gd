@@ -19,7 +19,7 @@ func animate(user: Node, targets: Array) -> void:
 			var new_swoosh = ghost_swoosh.instance()
 			add_child(new_swoosh)
 			new_swoosh.global_position = target.get_node("SelectIcon").global_position + Vector2(randi() % 64 - 32, randi() % 64 - 32)
-			$Timer.start(.05)
+			$Timer.start(.03)
 			yield($Timer, "timeout")
 	
 	for target in targets:
@@ -28,12 +28,13 @@ func animate(user: Node, targets: Array) -> void:
 		for _j in range(16):
 				var new_flicker = flicker.instance()
 				add_child(new_flicker)
-				new_flicker.global_position = target.get_node("SelectIcon").global_position + Vector2(randi() % 128 - 64, randi() % 64 - 32)
+				new_flicker.global_position = target.get_node("SelectIcon").global_position + Vector2(randi() % 128 - 64, randi() % 32 - 16)
 				new_flicker.rotation_degrees = -90
-		$Timer.start(.3)
+		
+		$Timer.start(.2)
 		yield($Timer, "timeout")
 		target.on_impact()
-		
+		$AudioStreamPlayer.playing = true
 	$Timer.start(.5)
 	yield($Timer, "timeout")
 	

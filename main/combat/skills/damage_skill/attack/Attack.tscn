@@ -4,8 +4,9 @@
 [ext_resource path="res://main/combat/graphic_effects/multi/wind_blast/WindBlast.tscn" type="PackedScene" id=2]
 
 [node name="Attack" instance=ExtResource( 1 )]
-save_id = "Attack"
+save_id = "attack"
 cost_type = ""
 graphic_effect = ExtResource( 2 )
-power = 15
-accuracy = 0.975
+power = 25
+accuracy = 0.925
+critical = 0.07

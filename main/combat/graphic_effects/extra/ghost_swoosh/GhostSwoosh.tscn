@@ -18,12 +18,26 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 2, 2, 2, 1 ), Color( 2, 2, 2, 1 ) ]
+}
 
 [node name="GhostSwoosh" instance=ExtResource( 1 )]
+modulate = Color( 2, 2, 2, 1 )
 scale = Vector2( 2, 2 )
 z_index = 15
 texture = ExtResource( 2 )
 hframes = 11
+frame = 10
 
 [node name="AnimationPlayer" parent="." index="0"]
 playback_speed = 1.75

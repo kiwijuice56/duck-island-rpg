@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://main/combat/skills/damage_skill/DamageSkill.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/combat/graphic_effects/special/tornado/Tornado.tscn" type="PackedScene" id=2]
+
+[node name="tornado" instance=ExtResource( 1 )]
+save_id = "tornado"
+cost_type = "mp"
+type = "earth"
+cost = 17
+target_count = "all"
+graphic_effect = ExtResource( 2 )
+power_stat = "magic"
+power = 25
+accuracy = 0.95
+critical = 0.15

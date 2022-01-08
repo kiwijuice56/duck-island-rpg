@@ -10,9 +10,20 @@ func animate(user: Node, targets: Array) -> void:
 	user.get_node("SpriteAnimationPlayer").current_animation = "hold_physical"
 	var new_beam = beam.instance()
 	add_child(new_beam)
+	
+	
+	new_beam.get_node("Line2D").global_position = user.get_node("SpearPivot").global_position
+	new_beam.get_node("Line2D").set_point_position(0, Vector2())
+	
+	
+	
 	$AudioStreamPlayer.playing = true
-	new_beam.global_position = Vector2()
-	new_beam.get_node("Line2D").set_point_position(0, user.get_node("SpearPivot").global_position-Vector2(32, -21))
+	
+	
+	print(new_beam.global_position)
+	print(new_beam.get_node("Line2D").get_point_position(0))
+	print(user.get_node("SpearPivot").global_position)
+	
 	var tween = Tween.new()
 	add_child(tween)
 	tween.interpolate_property(user, "modulate", Color(1,1,1,0), Color(1.5,1.5,1.5,1), .95, Tween.TRANS_CUBIC, Tween.EASE_OUT)

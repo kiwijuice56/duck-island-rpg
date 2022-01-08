@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://main/combat/skills/damage_skill/DamageSkill.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/combat/graphic_effects/special/slash_of_eternity/SlashOfEternity.tscn" type="PackedScene" id=2]
+
+[node name="eternity slash" instance=ExtResource( 1 )]
+save_id = "eternity slash"
+cost_type = "mp"
+type = "ghost"
+cost = 45
+graphic_effect = ExtResource( 2 )
+power = 55
+critical = 1.0

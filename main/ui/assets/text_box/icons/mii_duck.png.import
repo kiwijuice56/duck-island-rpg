@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wind_blast.png-a5e7732bfab33bea3c84f7a9d223b582.stex"
+path="res://.import/mii_duck.png-12bf5c219a5fe09c1afacafa97ddd073.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/combat/graphic_effects/impact/cutter/wind_blast.png"
-dest_files=[ "res://.import/wind_blast.png-a5e7732bfab33bea3c84f7a9d223b582.stex" ]
+source_file="res://main/ui/assets/text_box/icons/mii_duck.png"
+dest_files=[ "res://.import/mii_duck.png-12bf5c219a5fe09c1afacafa97ddd073.stex" ]
 
 [params]
 

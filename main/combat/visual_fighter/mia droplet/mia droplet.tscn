@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/combat/visual_fighter/mia droplet/mia2.png" type="Texture" id=2]
+[ext_resource path="res://main/combat/skills/buff_skill/defense down/defense down.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "dead"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "hurt"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.55 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[node name="MiaDroplet" instance=ExtResource( 1 )]
+save_id = "mia droplet"
+level = 25
+hp = 120
+mp = 120
+max_hp = 120
+max_mp = 120
+strength = 15
+vitality = 8
+magic = 8
+agility = 12
+luck = 12
+defense = {
+}
+offense = {
+}
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 64, -128 )
+texture = ExtResource( 2 )
+
+[node name="SelectIcon" parent="." index="2"]
+position = Vector2( 0, -40 )
+
+[node name="defense down" parent="ActionDecider" index="0" instance=ExtResource( 3 )]
+
+[node name="SpriteAnimationPlayer" parent="." index="7"]
+anims/dead = SubResource( 1 )
+anims/hurt = SubResource( 2 )

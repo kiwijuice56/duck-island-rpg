@@ -6,7 +6,7 @@
 [ext_resource path="res://main/combat/visual_fighter/mii duck/mii_duck_sprite.png" type="Texture" id=4]
 [ext_resource path="res://main/ui/combat/fighter_selection/focus-sheet.png" type="Texture" id=5]
 [ext_resource path="res://main/ui/assets/fonts/PressStart2P.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://main/combat/skills/damage_skill/attack/Attack.tscn" type="PackedScene" id=7]
+[ext_resource path="res://main/combat/skills/damage_skill/attack/attack.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "current"

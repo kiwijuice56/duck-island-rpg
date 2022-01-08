@@ -1,6 +1,7 @@
 tool
 extends "res://addons/rpg_framework/custom_nodes/fighter/fighter.gd"
 
+export var level: int
 export var hp: int
 export var mp: int
 export var max_hp: int

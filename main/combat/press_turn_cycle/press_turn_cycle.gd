@@ -24,6 +24,9 @@ func position_fighters() -> void:
 		$EnemyParty.get_child(i).global_position = get_node("../Positions").get_child($EnemyParty.get_child_count()-1).get_child(i).global_position
 		$EnemyParty.get_child(i).global_position.x += 200
 
+func compare_fighters(a, b) -> bool:
+	return a.agility > b.agility
+
 func update_cycle() -> Array:
 	cycle = []
 	var fighter_script : Script = load(RpgFramework.addon_path + "fighter/fighter.gd")
