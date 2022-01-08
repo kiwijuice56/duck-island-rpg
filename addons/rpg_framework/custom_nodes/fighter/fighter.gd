@@ -19,9 +19,9 @@ func act(context: Dictionary) -> void:
 	emit_signal("act_completed", {"success": true})
 
 func get_action_decider() -> Node:
-	var action_decider_script : Script = load(RpgFramework.addon_path + "action_decider/action_decider.gd")
+	var action_decider_script : Script = load("res://addons/rpg_framework/custom_nodes/action_decider/action_decider.gd")
 	for child in get_children():
-		if child is action_decider_script:
+		if child is ActionDecider:
 			return child
 	push_error("Missing ActionDecider as child of Fighter")
 	return null
@@ -40,7 +40,7 @@ func load_data(data: Dictionary) -> void:
 
 # Overrides built-in configuration warning to display warning when missing an ActionDecider
 func _get_configuration_warning() -> String:
-	var action_decider_script : Script = load(RpgFramework.addon_path + "action_decider/action_decider.gd")
+	var action_decider_script : Script = load("res://addons/rpg_framework/custom_nodes/action_decider/action_decider.gd")
 	var action_decider_count := 0
 	for child in get_children():
 		if child is action_decider_script:

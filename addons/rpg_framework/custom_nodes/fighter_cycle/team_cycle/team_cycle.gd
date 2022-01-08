@@ -3,8 +3,8 @@ extends "res://addons/rpg_framework/custom_nodes/fighter_cycle/fighter_cycle.gd"
 var sub_cycle : Array
 
 func update_cycle() -> Array:
-	var fighter_script : Script = load(RpgFramework.addon_path + "fighter/fighter.gd")
-	var party_script : Script = load(RpgFramework.addon_path + "party/party.gd")
+	var fighter_script : Script = load("res://addons/rpg_framework/custom_nodes/fighter/fighter.gd")
+	var party_script : Script = load("res://addons/rpg_framework/custom_nodes/party/party.gd")
 	for party in get_children():
 		if not party is party_script:
 			continue

@@ -1,4 +1,5 @@
 extends Node
+class_name ActionDecider
 # Component node of Fighter that controls decisions of a fighter
 
 export var action_scene_path := "res://"

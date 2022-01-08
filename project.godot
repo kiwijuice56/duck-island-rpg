@@ -9,13 +9,13 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "EditorPlugin",
-"class": "RpgFramework",
+"base": "Node",
+"class": "ActionDecider",
 "language": "GDScript",
-"path": "res://addons/rpg_framework/rpg_framework.gd"
+"path": "res://addons/rpg_framework/custom_nodes/action_decider/action_decider.gd"
 } ]
 _global_script_class_icons={
-"RpgFramework": ""
+"ActionDecider": ""
 }
 
 [application]
@@ -37,10 +37,6 @@ gdscript/warnings/return_value_discarded=false
 
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "res://addons/rpg_framework/plugin.cfg" )
 
 [importer_defaults]
 

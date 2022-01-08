@@ -1,6 +1,7 @@
 extends Node
 # Represents any action in combat, such as guarding or using a magic skill
 
+
 signal action_completed
 
 export var save_id := ""
