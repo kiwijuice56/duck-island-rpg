@@ -131,10 +131,10 @@ position = Vector2( 68, -45 )
 
 [node name="Light2D" type="Light2D" parent="." index="9"]
 position = Vector2( 10, -74 )
-scale = Vector2( 0.936382, 0.936382 )
+scale = Vector2( 0.976443, 0.976443 )
 texture = ExtResource( 6 )
 color = Color( 0.580392, 0.741176, 0.298039, 1 )
-energy = 0.681908
+energy = 0.882214
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Light2D" index="0"]
 autoplay = "flicker"

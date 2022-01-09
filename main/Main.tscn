@@ -1,8 +1,8 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://addons/rpg_framework/custom_nodes/party/party.gd" type="Script" id=1]
 [ext_resource path="res://main/ui/combat/Combat.tscn" type="PackedScene" id=2]
-[ext_resource path="res://main/combat/visual_fighter/mii duck/mii duck.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/combat/visual_fighter/pard/pard.tscn" type="PackedScene" id=3]
 [ext_resource path="res://main/overworld/player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main/combat/press_turn_cycle/press_turn_cycle.gd" type="Script" id=5]
 [ext_resource path="res://main/combat/player_party/player_party.gd" type="Script" id=6]
@@ -16,7 +16,7 @@
 [ext_resource path="res://main/combat/6.png" type="Texture" id=14]
 [ext_resource path="res://main/combat/4.png" type="Texture" id=15]
 [ext_resource path="res://main/combat/2.png" type="Texture" id=16]
-[ext_resource path="res://main/combat/3.png" type="Texture" id=17]
+[ext_resource path="res://main/overworld/overworld_map/assets/water/Water.tscn" type="PackedScene" id=17]
 [ext_resource path="res://main/combat/1.png" type="Texture" id=18]
 [ext_resource path="res://main/combat/visual_fighter/nate/nate.tscn" type="PackedScene" id=19]
 [ext_resource path="res://main/ui/assets/text_box/TextBox.tscn" type="PackedScene" id=20]
@@ -24,7 +24,8 @@
 [ext_resource path="res://main/ui/assets/themes/main.tres" type="Theme" id=22]
 [ext_resource path="res://main/ui/assets/style_boxes/fancy.png" type="Texture" id=23]
 [ext_resource path="res://main/ui/overworld/overworld.gd" type="Script" id=24]
-[ext_resource path="res://main/combat/visual_fighter/pard/Pard.tscn" type="PackedScene" id=25]
+[ext_resource path="res://main/combat/visual_fighter/mii duck/mii duck.tscn" type="PackedScene" id=25]
+[ext_resource path="res://main/combat/3.png" type="Texture" id=26]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 23 )
@@ -154,6 +155,7 @@ anims/transition_out = SubResource( 4 )
 script = ExtResource( 9 )
 
 [node name="Beach" parent="Overworld" instance=ExtResource( 10 )]
+visible = false
 position = Vector2( 128, 976 )
 
 [node name="Player" parent="Overworld" instance=ExtResource( 4 )]
@@ -172,32 +174,42 @@ motion_scale = Vector2( 0.6, 0.6 )
 motion_mirroring = Vector2( 980, 0 )
 
 [node name="Sprite" type="Sprite" parent="Combat/ParallaxBackground/ParallaxLayer5"]
-scale = Vector2( 2, 2 )
+position = Vector2( -118, -12 )
+scale = Vector2( 2, 1 )
 texture = ExtResource( 14 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 980, 276 )
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="Combat/ParallaxBackground"]
+position = Vector2( -480, -120 )
+motion_scale = Vector2( 0.7, 0.7 )
+motion_mirroring = Vector2( 980, 0 )
+
+[node name="Sprite" type="Sprite" parent="Combat/ParallaxBackground/ParallaxLayer6"]
+position = Vector2( -14, -16 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 15 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 980, 276 )
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="Combat/ParallaxBackground"]
 position = Vector2( -480, -120 )
 motion_scale = Vector2( 0.7, 0.7 )
-motion_mirroring = Vector2( 980, 0 )
 
 [node name="Sprite" type="Sprite" parent="Combat/ParallaxBackground/ParallaxLayer4"]
+position = Vector2( 2, -40 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 15 )
+texture = ExtResource( 26 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 980, 276 )
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Combat/ParallaxBackground"]
 position = Vector2( -480, -150 )
 motion_scale = Vector2( 0.85, 0.85 )
-motion_mirroring = Vector2( 980, 0 )
 
-[node name="Sprite" type="Sprite" parent="Combat/ParallaxBackground/ParallaxLayer3"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 17 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 980, 276 )
+[node name="Water" parent="Combat/ParallaxBackground/ParallaxLayer3" instance=ExtResource( 17 )]
+position = Vector2( 0, 158 )
+scale = Vector2( 313.475, 13.0117 )
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Combat/ParallaxBackground"]
 position = Vector2( -480, -180 )
@@ -241,13 +253,13 @@ defense = {
 offense = {
 }
 
-[node name="Pard" parent="Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 25 )]
+[node name="Pard" parent="Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 3 )]
 defense = {
 }
 offense = {
 }
 
-[node name="MiiDuck" parent="Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 3 )]
+[node name="MiiDuck" parent="Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 25 )]
 defense = {
 }
 offense = {

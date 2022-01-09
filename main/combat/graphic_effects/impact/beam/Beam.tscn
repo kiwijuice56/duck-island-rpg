@@ -7,11 +7,12 @@
 
 [node name="Beam" instance=ExtResource( 1 )]
 position = Vector2( 0, 0 )
+scale = Vector2( 1, 1 )
 script = ExtResource( 4 )
 
 [node name="Line2D" type="Line2D" parent="." index="1"]
-points = PoolVector2Array( 0, 0, 10, 0 )
-width = 23.0
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 52.0
 default_color = Color( 0.592157, 1, 0.741176, 1 )
 texture = ExtResource( 3 )
 texture_mode = 2

@@ -7,7 +7,7 @@ var overworld = preload("res://main/music/overworld_demo.mp3")
 var volumes = {
 	battle: -10.0,
 	overworld: -10.0,
-	boss: -5.0
+	boss: -7.0
 }
 
 func play_music(sound) -> void:

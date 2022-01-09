@@ -1,15 +1,20 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=1]
-[ext_resource path="res://main/combat/visual_fighter/pard/pard.png" type="Texture" id=2]
-[ext_resource path="res://main/combat/custom_action_deciders/player_action_decider/player_action_decider.gd" type="Script" id=3]
-[ext_resource path="res://main/combat/visual_fighter/pard/book.png" type="Texture" id=4]
-[ext_resource path="res://main/combat/graphic_effects/extra/slash/light.png" type="Texture" id=5]
+[ext_resource path="res://main/combat/visual_fighter/pard/book.png" type="Texture" id=2]
+[ext_resource path="res://main/combat/visual_fighter/pard/pard.png" type="Texture" id=3]
+[ext_resource path="res://main/combat/graphic_effects/extra/slash/light.png" type="Texture" id=4]
+[ext_resource path="res://main/combat/custom_action_deciders/player_action_decider/player_action_decider.gd" type="Script" id=5]
+[ext_resource path="res://main/combat/visual_fighter/pard/book_effect.gd" type="Script" id=6]
+[ext_resource path="res://main/combat/graphic_effects/extra/letter/Letter.tscn" type="PackedScene" id=7]
+[ext_resource path="res://main/combat/visual_fighter/pard/top_rods.png" type="Texture" id=8]
+[ext_resource path="res://main/combat/visual_fighter/pard/back_rods.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
 length = 1.2
 loop = true
+step = 0.05
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Book:position:y")
 tracks/0/interp = 1
@@ -27,8 +32,75 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 0.15, -0.25, 0, 0.25, 0, 0.35, -0.25, 0, 0.25, 0, 0.15, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 0.15, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0.15, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.6, 1.2 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Book:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( -0.5, 0, 0.45, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 0, 1, 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Book:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.55, 0.65, 0.85, 0.95, 1.1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 3, 3, 3, 1 ), Color( 3, 3, 3, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 3, 3, 3, 1 ), Color( 3, 3, 3, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Book")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.45 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "burst"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "rotate"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Back:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Front:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
 }
 
 [node name="Pard" instance=ExtResource( 1 )]
@@ -49,25 +121,51 @@ offense = {
 }
 
 [node name="Sprite" parent="." index="0"]
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 hframes = 1
 
 [node name="SelectIcon" parent="." index="2"]
 position = Vector2( 0, -80 )
 
 [node name="ActionDecider" parent="." index="3"]
-script = ExtResource( 3 )
+script = ExtResource( 5 )
 
 [node name="SpriteAnimationPlayer" parent="." index="7"]
 anims/idle = SubResource( 1 )
 
 [node name="Book" type="Sprite" parent="." index="9"]
-position = Vector2( 32, -68.5698 )
+modulate = Color( 1.22626, 1.22626, 1.22626, 1 )
+position = Vector2( 32, -69.5624 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 hframes = 2
+frame = 1
+script = ExtResource( 6 )
+letter = ExtResource( 7 )
 
-[node name="Light2D" type="Light2D" parent="Book" index="0"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-energy = 0.321508
+[node name="Back" type="Sprite" parent="Book" index="0"]
+modulate = Color( 1, 1, 1, 0.572549 )
+position = Vector2( 2, -3 )
+z_index = -1
+texture = ExtResource( 9 )
+hframes = 4
+
+[node name="Light2D" type="Light2D" parent="Book" index="1"]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+energy = 0.363291
+
+[node name="Timer" type="Timer" parent="Book" index="2"]
+wait_time = 0.015
+one_shot = true
+
+[node name="Front" type="Sprite" parent="Book" index="3"]
+modulate = Color( 1, 1, 1, 0.572549 )
+position = Vector2( 2, -3 )
+texture = ExtResource( 8 )
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Book" index="4"]
+autoplay = "rotate"
+playback_speed = 3.0
+anims/rotate = SubResource( 2 )

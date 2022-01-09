@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://main/combat/graphic_effects/extra/Extra.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/combat/graphic_effects/extra/letter/letters.png" type="Texture" id=2]
+[ext_resource path="res://main/combat/graphic_effects/extra/letter/letter.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "effect"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 3, 2, 3, 1 ), Color( 2, 1, 2, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -3, 3 ), Vector2( 3, -3 ), Vector2( 3, 3 ), Vector2( -3, -3 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0.5, 0.5 ), Vector2( 0.2, 0.2 ) ]
+}
+
+[node name="Letter" instance=ExtResource( 1 )]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 2 )
+hframes = 9
+script = ExtResource( 3 )
+
+[node name="AnimationPlayer" parent="." index="0"]
+playback_speed = 1.6
+anims/effect = SubResource( 1 )
