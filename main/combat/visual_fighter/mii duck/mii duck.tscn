@@ -79,7 +79,7 @@ max_mp = 80
 strength = 5
 vitality = 7
 magic = 9
-agility = 5
+agility = 3
 luck = 7
 defense = {
 }

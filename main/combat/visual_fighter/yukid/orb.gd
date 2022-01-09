@@ -20,6 +20,7 @@ func on() -> void:
 
 func off() -> void:
 	$Light2D/AnimationPlayer.current_animation = "[stop]"
+	$Light2D.energy = 0
 	$Tween.interpolate_property(self, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
 	

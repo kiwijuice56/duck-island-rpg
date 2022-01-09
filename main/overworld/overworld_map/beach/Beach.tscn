@@ -50,10 +50,10 @@ tile_data = PoolIntArray( -524291, 0, 0, -524290, 0, 0, -524289, 0, 0, -589824, 
 enemies = [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ) ]
 
 [node name="PalmTree" parent="Decoration" index="0" instance=ExtResource( 4 )]
-position = Vector2( 95.1367, 237.842 )
+position = Vector2( 90, 240 )
 
 [node name="PalmTree2" parent="Decoration" index="1" instance=ExtResource( 4 )]
-position = Vector2( -40, 288 )
+position = Vector2( -40, 280 )
 
 [node name="PalmTree3" parent="Decoration" index="2" instance=ExtResource( 4 )]
 position = Vector2( 400, 280 )
