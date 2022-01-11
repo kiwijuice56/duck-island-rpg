@@ -72,7 +72,7 @@ func battle_end() -> void:
 	yield(transition.transition_out(), "completed")
 
 func battle() -> void:
-	MusicPlayer.play_music(MusicPlayer.boss)
+	MusicPlayer.play_music(MusicPlayer.battle)
 	combat_ui.visible = true
 	cam.current = true
 	position_fighters()

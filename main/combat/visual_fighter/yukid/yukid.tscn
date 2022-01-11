@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 1 ]
+"values": [ 3 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Orb:on")
@@ -37,7 +37,9 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
+length = 0.6
 loop = true
+step = 0.025
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -45,10 +47,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.275, 0.4, 0.525 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 0, 1, 2, 1 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Orb:on")
@@ -79,6 +81,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0.0, 3.5, 0.0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Light2D2:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
 
 [node name="Yukid" instance=ExtResource( 1 )]
 save_id = "yukid"
@@ -99,7 +113,7 @@ offense = {
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
-hframes = 4
+hframes = 6
 
 [node name="SelectIcon" parent="." index="2"]
 position = Vector2( 0, -72 )
@@ -131,4 +145,9 @@ energy = 0.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Orb/Light2D" index="0"]
 anims/flicker = SubResource( 3 )
 
-[node name="Tween" type="Tween" parent="Orb" index="1"]
+[node name="Light2D2" type="Light2D" parent="Orb" index="1"]
+scale = Vector2( 3, 3 )
+texture = ExtResource( 7 )
+energy = 0.0
+
+[node name="Tween" type="Tween" parent="Orb" index="2"]

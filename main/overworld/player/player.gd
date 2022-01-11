@@ -56,7 +56,37 @@ func set_anim() -> void:
 	else:
 		$AnimationPlayer.current_animation = "[stop]"
 
+func jump(pos: Vector2) -> void:
+	disable()
+	$Tween.interpolate_property(self, "global_position", null, pos, .45)
+	$Tween.interpolate_property($Sprite, "position", null, $Sprite.position - Vector2(0, 64), 0.25, Tween.TRANS_QUAD, Tween.EASE_IN)
+	
+	$Tween.start()
+	$Timer.start(0.15)
+	yield($Timer, "timeout")
+	yield($Tween, "tween_completed")
+	$Tween.interpolate_property($Sprite, "position", null, $Sprite.position + Vector2(0, 64), 0.25, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	$Tween.start()
+	yield($Tween, "tween_all_completed")
+	$Tween.interpolate_property($Sprite, "region_rect", null, Rect2(0,0,$Sprite.hframes * 60, 0), 0.09)
+	$Tween.start()
+	$BigSplash.emitting = true
+	yield($Tween, "tween_completed")
+	$Timer.start(0.15)
+	yield($Timer, "timeout")
+	$Tween.interpolate_property($Sprite, "region_rect", null, Rect2(0,0,$Sprite.hframes * 60, 25), 0.015)
+	$Tween.start()
+	yield($Tween, "tween_completed")
+	enable()
+
 func _physics_process(_delta):
+	var snapped = (Vector2(-16,-16)+global_position).snapped(Vector2(64,64))/64
+	if not get_tree().get_root().get_node("Main/Overworld/Beach/WaterTiles").get_cell( snapped.x, snapped.y)  == -1:
+		if not (dir == Vector2() or $SmallSplash.emitting):
+			$SmallSplash.emitting = true
+		$Sprite.set_region_rect(Rect2(0,0,$Sprite.hframes * 60, 25))
+	else:
+		$Sprite.set_region_rect(Rect2(0,0,$Sprite.hframes * 60, 40))
 	get_input()
 	set_anim()
 	move_and_slide(dir*speed)

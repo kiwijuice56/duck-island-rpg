@@ -42,10 +42,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( -0.5, 0, 0.45, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.45, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 0, 1, 0 ]
+"values": [ 0, 1, 0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Book:modulate")
@@ -72,6 +72,18 @@ tracks/4/keys = {
 "args": [  ],
 "method": "burst"
 } ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.35, 0.65, 0.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0, 1 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -122,7 +134,6 @@ offense = {
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 3 )
-hframes = 1
 
 [node name="SelectIcon" parent="." index="2"]
 position = Vector2( 0, -80 )
@@ -134,12 +145,10 @@ script = ExtResource( 5 )
 anims/idle = SubResource( 1 )
 
 [node name="Book" type="Sprite" parent="." index="9"]
-modulate = Color( 1.22626, 1.22626, 1.22626, 1 )
-position = Vector2( 32, -69.5624 )
+position = Vector2( 32, -72 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 2
-frame = 1
 script = ExtResource( 6 )
 letter = ExtResource( 7 )
 
@@ -153,7 +162,7 @@ hframes = 4
 [node name="Light2D" type="Light2D" parent="Book" index="1"]
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 4 )
-energy = 0.363291
+energy = 0.15
 
 [node name="Timer" type="Timer" parent="Book" index="2"]
 wait_time = 0.015

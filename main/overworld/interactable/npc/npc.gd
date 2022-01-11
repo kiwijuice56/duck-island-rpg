@@ -2,10 +2,6 @@ extends "res://main/overworld/interactable/interactable.gd"
 
 export(Array, Array, String) var convo := []
 
-var disabled := true
-
-onready var overworld_ui = get_tree().get_root().get_node("Main/OverworldUI/Overworld")
-
 func _input(event):
 	if not disabled and Input.is_action_just_pressed("ui_accept"):
 		call_deferred("talk", body)
@@ -13,7 +9,7 @@ func _input(event):
 func body_entered(body) -> void:
 	self.body = body
 	disabled = false
-	overworld_ui.display_prompt("Talk: Enter")
+	overworld_ui.display_prompt("Talk: Z")
 
 func body_exited(body) -> void:
 	body = null

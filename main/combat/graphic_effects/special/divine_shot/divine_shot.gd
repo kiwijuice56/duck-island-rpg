@@ -14,15 +14,9 @@ func animate(user: Node, targets: Array) -> void:
 	new_beam.global_scale = Vector2(1,1)
 	new_beam.get_node("Line2D").set_point_position(0, user.get_node("SpearPivot").global_position)
 	$AudioStreamPlayer.playing = true
-	var tween = Tween.new()
-	add_child(tween)
-	tween.interpolate_property(user, "modulate", Color(1,1,1,0), Color(1.5,1.5,1.5,1), .95, Tween.TRANS_CUBIC, Tween.EASE_OUT)
-	tween.start()
 	new_beam.impact(targets[0])
 	cam.toggle_shake(true)
 	yield(new_beam, "complete")
-	tween.interpolate_property(user, "modulate", Color(1.5,1.5,1.5,1), Color(1,1,1,1), .6, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
 	for i in range(10):
 		for target in targets:
 			var new_swoosh = swoosh.instance()
@@ -37,4 +31,3 @@ func animate(user: Node, targets: Array) -> void:
 	cam.deprioritize([user, targets[0]])
 	cam.toggle_cover(false)
 	emit_signal("effect_complete")
-	tween.queue_free()

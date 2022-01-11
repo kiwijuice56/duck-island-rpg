@@ -20,6 +20,7 @@ __meta__ = {
 [node name="Name" type="Label" parent="."]
 margin_right = 120.0
 margin_bottom = 14.0
+custom_colors/font_color_shadow = Color( 0.517647, 0.517647, 0.517647, 1 )
 text = "mii duck"
 align = 1
 
@@ -36,6 +37,7 @@ margin_bottom = 17.0
 rect_min_size = Vector2( 36, 0 )
 custom_colors/font_color = Color( 0.992157, 0.882353, 0.756863, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.686275, 0.509804, 0.419608, 1 )
 text = "999"
 align = 2
 
@@ -62,6 +64,7 @@ margin_bottom = 17.0
 rect_min_size = Vector2( 36, 0 )
 custom_colors/font_color = Color( 0.831373, 0.733333, 0.984314, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.466667, 0.376471, 0.513726, 1 )
 text = "999"
 align = 2
 
