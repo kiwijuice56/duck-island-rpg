@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://main/overworld/player/player.gd" type="Script" id=1]
 [ext_resource path="res://main/overworld/player/mii_duck_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://main/overworld/player/shadow.png" type="Texture" id=3]
 [ext_resource path="res://main/overworld/player/water_hider.png" type="Texture" id=4]
+[ext_resource path="res://main/overworld/player/190080__tran5ient__splash7.wav" type="AudioStream" id=5]
+[ext_resource path="res://main/overworld/player/398038__swordofkings128__water-splash-1.mp3" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "walk_down"
@@ -173,3 +175,12 @@ color_ramp = SubResource( 7 )
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Splash1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = 12.356
+
+[node name="Splash2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -9.267
+pitch_scale = 1.59

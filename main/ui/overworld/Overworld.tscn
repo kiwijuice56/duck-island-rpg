@@ -1,0 +1,182 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://main/ui/assets/text_box/TextBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/ui/assets/themes/main.tres" type="Theme" id=2]
+[ext_resource path="res://main/ui/assets/fighter_bar/fighter_container/FighterContainer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/ui/assets/fighter_bar/fighter_bar.gd" type="Script" id=4]
+[ext_resource path="res://main/ui/overworld/overworld.gd" type="Script" id=5]
+[ext_resource path="res://main/ui/assets/style_boxes/fancy.png" type="Texture" id=6]
+[ext_resource path="res://main/ui/assets/style_boxes/border_panel.tres" type="StyleBox" id=7]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 32, 32 )
+margin_left = 14.0
+margin_right = 14.0
+margin_top = 4.0
+
+[node name="Overworld" type="Control"]
+margin_right = 1024.0
+margin_bottom = 600.0
+theme = ExtResource( 2 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextBox" parent="." instance=ExtResource( 1 )]
+modulate = Color( 1, 1, 1, 0 )
+speed_up_enabled = true
+
+[node name="Prompt" type="PanelContainer" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -51.0
+margin_top = -70.0
+margin_right = 51.0
+margin_bottom = -30.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Prompt"]
+margin_left = 14.0
+margin_top = 10.0
+margin_right = 88.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+text = "Talk: A"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="PopupMenu" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupMenu"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1019.0
+margin_bottom = 595.0
+
+[node name="PanelContainer" type="PanelContainer" parent="PopupMenu/HBoxContainer"]
+margin_right = 250.0
+margin_bottom = 240.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = ExtResource( 7 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupMenu/HBoxContainer/PanelContainer"]
+margin_top = 12.0
+margin_right = 250.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 250, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 12
+
+[node name="Button" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Skills"
+
+[node name="Button2" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
+margin_top = 38.0
+margin_right = 250.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Items"
+
+[node name="Button3" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
+margin_top = 76.0
+margin_right = 250.0
+margin_bottom = 102.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Party"
+
+[node name="Button5" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
+margin_top = 114.0
+margin_right = 250.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Quests"
+
+[node name="System" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
+margin_top = 152.0
+margin_right = 250.0
+margin_bottom = 178.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "System"
+
+[node name="Button6" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
+margin_top = 190.0
+margin_right = 250.0
+margin_bottom = 216.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Quit"
+
+[node name="FighterPanel" type="PanelContainer" parent="PopupMenu/HBoxContainer"]
+margin_left = 254.0
+margin_right = 404.0
+margin_bottom = 357.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = ExtResource( 7 )
+
+[node name="FighterBar" type="VBoxContainer" parent="PopupMenu/HBoxContainer/FighterPanel"]
+margin_top = 12.0
+margin_right = 150.0
+margin_bottom = 345.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 4
+size_flags_vertical = 2
+custom_constants/separation = 15
+script = ExtResource( 4 )
+
+[node name="FighterContainer" parent="PopupMenu/HBoxContainer/FighterPanel/FighterBar" instance=ExtResource( 3 )]
+margin_left = 15.0
+margin_right = 135.0
+
+[node name="FighterContainer2" parent="PopupMenu/HBoxContainer/FighterPanel/FighterBar" instance=ExtResource( 3 )]
+margin_left = 15.0
+margin_top = 87.0
+margin_right = 135.0
+margin_bottom = 159.0
+
+[node name="FighterContainer3" parent="PopupMenu/HBoxContainer/FighterPanel/FighterBar" instance=ExtResource( 3 )]
+margin_left = 15.0
+margin_top = 174.0
+margin_right = 135.0
+margin_bottom = 246.0
+
+[node name="FighterContainer4" parent="PopupMenu/HBoxContainer/FighterPanel/FighterBar" instance=ExtResource( 3 )]
+margin_left = 15.0
+margin_top = 261.0
+margin_right = 135.0
+margin_bottom = 333.0

@@ -2,7 +2,6 @@ extends "res://main/combat/skills/skill.gd"
 
 export(String, "strength", "magic") var power_stat := "strength"
 export var power := 0
-export var accuracy := 1.0
 export var critical := 0.05
 
 func calculation(user: Node, targets: Array) -> Dictionary:

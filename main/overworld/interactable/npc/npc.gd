@@ -3,7 +3,7 @@ extends "res://main/overworld/interactable/interactable.gd"
 export(Array, Array, String) var convo := []
 
 func _input(event):
-	if not disabled and Input.is_action_just_pressed("ui_accept"):
+	if not disabled and not overworld_ui.open and Input.is_action_just_pressed("ui_accept"):
 		call_deferred("talk", body)
 
 func body_entered(body) -> void:

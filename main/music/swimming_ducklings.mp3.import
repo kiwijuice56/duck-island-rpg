@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/swimming_ducklings.mp3-42db05423ec9a109d8d247f8df206300.mp3str"
+
+[deps]
+
+source_file="res://main/music/swimming_ducklings.mp3"
+dest_files=[ "res://.import/swimming_ducklings.mp3-42db05423ec9a109d8d247f8df206300.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

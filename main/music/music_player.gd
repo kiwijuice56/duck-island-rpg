@@ -3,11 +3,17 @@ extends AudioStreamPlayer
 var battle = preload("res://main/music/encounter.mp3")
 var boss = preload("res://main/music/boss_theme_1.mp3")
 var overworld = preload("res://main/music/overworld_demo.mp3")
+var water = preload("res://main/music/swimming_ducklings.mp3")
+var title = preload("res://main/music/title_theme.mp3")
+var island = preload("res://main/music/stranded_on_an_island__who_done_it.mp3")
 
 var volumes = {
 	battle: -10.0,
 	overworld: -10.0,
-	boss: -7.0
+	boss: -7.0,
+	water: -6.5,
+	title: -8,
+	island: -11,
 }
 
 func play_music(sound) -> void:

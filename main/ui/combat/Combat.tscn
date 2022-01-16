@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://main/ui/assets/text_box/TextBox.tscn" type="PackedScene" id=1]
-[ext_resource path="res://main/ui/combat/fighter_container/FighterContainer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://main/ui/assets/fighter_bar/FighterBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main/ui/combat/combat.gd" type="Script" id=3]
 [ext_resource path="res://main/ui/assets/themes/main.tres" type="Theme" id=4]
 [ext_resource path="res://main/ui/assets/style_boxes/top_panel_container.tres" type="StyleBox" id=5]
@@ -307,16 +307,11 @@ playback_speed = 1.45
 anims/fade_in = SubResource( 2 )
 anims/fade_out = SubResource( 3 )
 
-[node name="Fighters" type="HBoxContainer" parent="VBoxContainer"]
+[node name="FighterBar" parent="VBoxContainer" instance=ExtResource( 2 )]
 margin_left = 452.0
 margin_top = 52.0
 margin_right = 572.0
 margin_bottom = 124.0
-size_flags_horizontal = 4
-size_flags_vertical = 2
-custom_constants/separation = 7
-
-[node name="FighterContainer" parent="VBoxContainer/Fighters" instance=ExtResource( 2 )]
 
 [node name="TextBox" parent="VBoxContainer" instance=ExtResource( 1 )]
 

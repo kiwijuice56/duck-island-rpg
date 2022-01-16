@@ -11,6 +11,35 @@ export var developer_save_folder_path: String = "res://"
 
 var save_file_template_path: String = "res://addons/rpg_framework/custom_nodes/save_file/save_file_template.gd"
 
+func get_files(developer_mode: bool) -> Array:
+	var dir = Directory.new()
+	dir.open(developer_save_folder_path if developer_mode else save_folder_path)
+	dir.list_dir_begin()
+	var files = []
+	while true:
+		var file = dir.get_next()
+		if file.begins_with("."):
+			continue
+		if file == "":
+			break
+		files.append((developer_save_folder_path if developer_mode else save_folder_path) + file)
+	dir.list_dir_end()
+	return files
+
+func get_file_count(developer_mode: bool) -> int:
+	var dir = Directory.new()
+	dir.list_dir_begin()
+	var count := 0
+	while true:
+		var file = dir.get_next()
+		if file.begins_with("."):
+			continue
+		if file == "":
+			break
+		count += 1
+	dir.list_dir_end()
+	return count
+
 # Developer files are saved as .tres files without encryption
 func save_file(id: int, developer_mode: bool) -> void:
 	var file = load(save_file_template_path).new()
