@@ -27,7 +27,9 @@ func _input(event) -> void:
 		disable()
 		visible = false
 		yield(transition.transition_out(), "completed")
+		last.enable()
 		last.call(last_func)
+
 
 func select_file() -> void:
 	file_container.get_child(0).get_node("Button").grab_focus()

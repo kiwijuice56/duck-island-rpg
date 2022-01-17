@@ -125,6 +125,9 @@ script = ExtResource( 3 )
 
 [node name="defense down" parent="ActionDecider" index="1" instance=ExtResource( 4 )]
 
+[node name="ParticleEmitter" parent="." index="5"]
+position = Vector2( -3.70811, -70.6704 )
+
 [node name="SpriteAnimationPlayer" parent="." index="7"]
 anims/hold_magic = SubResource( 1 )
 anims/idle = SubResource( 2 )

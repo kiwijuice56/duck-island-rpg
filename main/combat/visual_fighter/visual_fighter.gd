@@ -73,8 +73,6 @@ func on_impact() -> void:
 		else:
 			$CanvasLayer/DamageLabel.add_color_override("font_color", Color(1.0,1.0,1.0))
 			$CanvasLayer/DamageLabel.text = str(calculation_cache["damage"])
-		
-		
 	
 	$CanvasLayer/DamageLabel/DamageTween.interpolate_property($CanvasLayer/DamageLabel, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$CanvasLayer/DamageLabel/DamageTween.interpolate_property($CanvasLayer/DamageLabel, "rect_position", null, $CanvasLayer/DamageLabel.rect_position + Vector2(0,-5), 0.4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
@@ -85,9 +83,10 @@ func on_impact() -> void:
 	$CanvasLayer/DamageLabel/DamageTween.interpolate_property($CanvasLayer/DamageLabel, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$CanvasLayer/DamageLabel/DamageTween.interpolate_property($CanvasLayer/DamageLabel, "rect_position", null, $CanvasLayer/DamageLabel.rect_position + Vector2(0,-40), 1.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$CanvasLayer/DamageLabel/DamageTween.start()
-	if $SpriteAnimationPlayer.is_playing():
+	if $SpriteAnimationPlayer.is_playing() and not $SpriteAnimationPlayer.current_animation == "idle":
 		yield($SpriteAnimationPlayer, "animation_finished")
-	$SpriteAnimationPlayer.current_animation = "idle"
+	if not status == "dead":
+		$SpriteAnimationPlayer.current_animation = "idle"
 
 func set_select_eligible(enable: bool) -> void:
 	if enable:

@@ -12,7 +12,7 @@ var island = preload("res://main/music/stranded_on_an_island__who_done_it.mp3")
 var stream_volume := 0.0
 
 var volumes = {
-	battle: -10.0,
+	battle: -16,
 	overworld: -10.0,
 	boss: -7.0,
 	water: -6.5,

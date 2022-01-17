@@ -17,13 +17,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 4, 1 ]
+"values": [ 4 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "hold_magic"
 length = 0.55
 step = 0.05
@@ -34,14 +34,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 5, 1 ]
+"values": [ 5 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "hurt"
+[sub_resource type="Animation" id=3]
 length = 0.55
 step = 0.05
 tracks/0/type = "value"
@@ -51,14 +50,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.55 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 4, 1 ]
+"values": [ 4 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "idle"
+[sub_resource type="Animation" id=4]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -75,7 +73,7 @@ tracks/0/keys = {
 }
 
 [node name="Chessful" instance=ExtResource( 1 )]
-save_id = "chessul"
+save_id = "chessful"
 level = 25
 hp = 250
 mp = 300
@@ -94,6 +92,7 @@ offense = {
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
 hframes = 6
+frame = 4
 
 [node name="SelectIcon" parent="." index="2"]
 position = Vector2( 0, -72 )
@@ -104,8 +103,11 @@ position = Vector2( 0, -72 )
 
 [node name="AttackUp" parent="ActionDecider" index="2" instance=ExtResource( 4 )]
 
+[node name="ParticleEmitter" parent="." index="5"]
+position = Vector2( 0, -64 )
+
 [node name="SpriteAnimationPlayer" parent="." index="7"]
 anims/dead = SubResource( 1 )
-anims/hold_magic = SubResource( 4 )
-anims/hurt = SubResource( 2 )
-anims/idle = SubResource( 3 )
+anims/hold_magic = SubResource( 2 )
+anims/hurt = SubResource( 3 )
+anims/idle = SubResource( 4 )

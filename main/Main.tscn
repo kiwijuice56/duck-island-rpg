@@ -30,12 +30,12 @@
 [ext_resource path="res://main/overworld/overworld_map/beach/shell2.png" type="Texture" id=29]
 [ext_resource path="res://main/main.gd" type="Script" id=30]
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 8 )
 shader_param/fragment_number = Vector2( 30, 20 )
 shader_param/dissolve_state = 0.0
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:material:shader_param/dissolve_state")
 tracks/0/interp = 1
@@ -49,7 +49,7 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:material:shader_param/dissolve_state")
 tracks/0/interp = 1
@@ -63,7 +63,7 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=4]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -114,7 +114,7 @@ script = ExtResource( 11 )
 [node name="ColorRect" type="ColorRect" parent="Transition"]
 visible = false
 modulate = Color( 0, 0, 0, 1 )
-material = SubResource( 6 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
@@ -123,9 +123,9 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
-playback_speed = 1.6
-anims/transition_in = SubResource( 7 )
-anims/transition_out = SubResource( 8 )
+playback_speed = 1.85
+anims/transition_in = SubResource( 2 )
+anims/transition_out = SubResource( 3 )
 
 [node name="Overworld" type="Node2D" parent="." groups=[
 "overworld_nodes",
@@ -333,7 +333,7 @@ texture = ExtResource( 13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MainCamera"]
 playback_speed = 2.25
-anims/shake = SubResource( 9 )
+anims/shake = SubResource( 4 )
 
 [node name="SaveFileHandler" type="Node" parent="."]
 script = ExtResource( 24 )

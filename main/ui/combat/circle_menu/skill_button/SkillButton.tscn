@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://main/ui/assets/fonts/main_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://main/ui/combat/circle_menu/skill_button/skill_button.gd" type="Script" id=2]
 [ext_resource path="res://main/ui/assets/themes/main.tres" type="Theme" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 0.129412 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.0470588 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="SkillButton" type="Button"]
 margin_right = 325.0
@@ -10,6 +18,11 @@ margin_bottom = 26.0
 rect_min_size = Vector2( 325, 30 )
 size_flags_horizontal = 11
 theme = ExtResource( 3 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
 custom_fonts/font = ExtResource( 1 )
 align = 2
 script = ExtResource( 2 )

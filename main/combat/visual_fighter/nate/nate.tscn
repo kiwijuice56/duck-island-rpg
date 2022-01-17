@@ -126,6 +126,9 @@ script = ExtResource( 3 )
 [node name="DivineShot" parent="ActionDecider" index="0" instance=ExtResource( 5 )]
 graphic_effect = ExtResource( 4 )
 
+[node name="ParticleEmitter" parent="." index="5"]
+position = Vector2( -2.3811, -70.8914 )
+
 [node name="SpriteAnimationPlayer" parent="." index="7"]
 playback_speed = 0.8
 anims/hold_physical = SubResource( 1 )

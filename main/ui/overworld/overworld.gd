@@ -51,6 +51,7 @@ func choose_button() -> void:
 func open() -> void:
 	SoundPlayer.play_sound(SoundPlayer.accept)
 	get_tree().get_root().get_node("Main/Overworld/Player").disable()
+	enable()
 	open = true
 	$Tween.interpolate_property($PopupMenu, "modulate", null, Color(1,1,1,1), 0.1)
 	$Tween.start()

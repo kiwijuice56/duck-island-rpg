@@ -6,6 +6,8 @@ onready var transition = get_tree().get_root().get_node("Main/Transition")
 onready var save_ui = get_tree().get_root().get_node("Main/SaveUI/Save")
 onready var system_ui = get_tree().get_root().get_node("Main/SystemUI/System")
 
+var last_focus = null
+
 func _ready():
 	for child in buttons.get_children():
 		child.connect("pressed", self, "pressed", [child.name])
@@ -27,6 +29,7 @@ func pressed(button_name: String) -> void:
 			yield(transition.transition_in(), "completed")
 			save_ui.visible = true
 			save_ui.last = self
+			save_ui.last_func = "choose_button"
 			visible = false
 			yield(transition.transition_out(), "completed")
 			save_ui.enable()
