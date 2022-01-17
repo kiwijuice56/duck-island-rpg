@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://main/ui/assets/text_box/TextBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/ui/assets/themes/main.tres" type="Theme" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://main/ui/overworld/overworld.gd" type="Script" id=5]
 [ext_resource path="res://main/ui/assets/style_boxes/fancy.png" type="Texture" id=6]
 [ext_resource path="res://main/ui/assets/style_boxes/border_panel.tres" type="StyleBox" id=7]
+[ext_resource path="res://main/ui/assets/style_boxes/transparent_border.png" type="Texture" id=8]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 6 )
@@ -14,6 +15,16 @@ region_rect = Rect2( 0, 0, 32, 32 )
 margin_left = 14.0
 margin_right = 14.0
 margin_top = 4.0
+
+[sub_resource type="StyleBoxTexture" id=2]
+content_margin_left = 0.0
+content_margin_right = 0.0
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 5, 7 )
+margin_left = 3.0
+margin_right = 3.0
+margin_top = 3.0
+margin_bottom = 3.0
 
 [node name="Overworld" type="Control"]
 margin_right = 1024.0
@@ -80,19 +91,18 @@ margin_bottom = 595.0
 
 [node name="PanelContainer" type="PanelContainer" parent="PopupMenu/HBoxContainer"]
 margin_right = 250.0
-margin_bottom = 240.0
+margin_bottom = 182.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = ExtResource( 7 )
+custom_styles/panel = SubResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PopupMenu/HBoxContainer/PanelContainer"]
-margin_top = 12.0
+margin_top = 3.0
 margin_right = 250.0
-margin_bottom = 228.0
+margin_bottom = 179.0
 rect_min_size = Vector2( 250, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 12
 
 [node name="Button" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
 margin_right = 250.0
@@ -102,41 +112,41 @@ size_flags_vertical = 3
 text = "Skills"
 
 [node name="Button2" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 38.0
+margin_top = 30.0
 margin_right = 250.0
-margin_bottom = 64.0
+margin_bottom = 56.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Items"
 
 [node name="Button3" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 76.0
+margin_top = 60.0
 margin_right = 250.0
-margin_bottom = 102.0
+margin_bottom = 86.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Party"
 
 [node name="Button5" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 114.0
+margin_top = 90.0
 margin_right = 250.0
-margin_bottom = 140.0
+margin_bottom = 116.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Quests"
 
 [node name="System" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 152.0
+margin_top = 120.0
 margin_right = 250.0
-margin_bottom = 178.0
+margin_bottom = 146.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "System"
 
 [node name="Button6" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 190.0
+margin_top = 150.0
 margin_right = 250.0
-margin_bottom = 216.0
+margin_bottom = 176.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Quit"

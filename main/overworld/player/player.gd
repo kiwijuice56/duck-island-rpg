@@ -29,10 +29,12 @@ func battle_ended() -> void:
 func disable() -> void:
 	set_physics_process(false)
 	$Area2D/CollisionShape2D.set_disabled(true)
+	overworld_ui.disable()
 
 func enable() -> void:
 	set_physics_process(true)
 	$Area2D/CollisionShape2D.set_disabled(false)
+	overworld_ui.enable()
 
 func get_input() -> void:
 	dir = Vector2()

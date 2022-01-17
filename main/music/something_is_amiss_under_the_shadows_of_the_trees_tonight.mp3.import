@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/something_is_amiss_under_the_shadows_of_the_trees_tonight.mp3-2d7a6670bc430de2f2d6ce402c341c7c.mp3str"
+
+[deps]
+
+source_file="res://main/music/something_is_amiss_under_the_shadows_of_the_trees_tonight.mp3"
+dest_files=[ "res://.import/something_is_amiss_under_the_shadows_of_the_trees_tonight.mp3-2d7a6670bc430de2f2d6ce402c341c7c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -5,6 +5,11 @@
 [resource]
 script = ExtResource( 1 )
 data = {
+"overworld_nodes": {
+"overworld": {
+"location": "beach"
+}
+}
 }
 time = 15
 location = "beach"

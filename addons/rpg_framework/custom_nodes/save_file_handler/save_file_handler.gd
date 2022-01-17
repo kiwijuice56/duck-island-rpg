@@ -9,6 +9,8 @@ export(Array, String) var save_groups: Array
 export var save_folder_path: String = "user://"
 export var developer_save_folder_path: String = "res://"
 
+signal file_managing_complete
+
 var save_file_template_path: String = "res://addons/rpg_framework/custom_nodes/save_file/save_file_template.gd"
 
 func get_files(developer_mode: bool) -> Array:
@@ -55,6 +57,7 @@ func save_file(id: int, developer_mode: bool) -> void:
 	else:
 		dir.remove(save_folder_path + "%02d.tres" % id)
 		ResourceSaver.save(save_folder_path + "%02d.tres" % id, file)
+	emit_signal("file_managing_complete")
 
 func load_file(id: int, developer_mode: bool) -> void:
 	var file
@@ -65,3 +68,4 @@ func load_file(id: int, developer_mode: bool) -> void:
 	for group in save_groups:
 		for node in get_tree().get_nodes_in_group(group):
 			node.load_data(file.data[group][node.save_id])
+	emit_signal("file_managing_complete")

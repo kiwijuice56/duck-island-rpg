@@ -4,7 +4,7 @@
 [ext_resource path="res://main/overworld/overworld_map/assets/water/Water.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main/overworld/overworld_map/beach/sand.png" type="Texture" id=3]
 [ext_resource path="res://main/overworld/overworld_map/assets/decoration/palm_tree/PalmTree.tscn" type="PackedScene" id=4]
-[ext_resource path="res://main/combat/visual_fighter/mia droplet/mia droplet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://main/combat/visual_fighter/chessful/chessful.tscn" type="PackedScene" id=5]
 [ext_resource path="res://main/overworld/enemy/debug_enemy/DebugEnemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://main/overworld/overworld_map/beach/shell.png" type="Texture" id=7]
 [ext_resource path="res://main/overworld/overworld_map/beach/shell2.png" type="Texture" id=8]
@@ -37,7 +37,7 @@ void fragment() {
 //	COLOR = vec4(UV * aspect_ratio, vec2(0.0, 1.0));
 }"
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=16]
 shader = SubResource( 1 )
 shader_param/tile_factor = 124.92
 shader_param/aspect_ratio = 1.00064
@@ -181,9 +181,10 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
 [node name="Beach" instance=ExtResource( 1 )]
 save_id = "beach"
+music = "island"
 
 [node name="Water" parent="." index="0" instance=ExtResource( 2 )]
-material = SubResource( 2 )
+material = SubResource( 16 )
 scale = Vector2( 249.84, 250 )
 
 [node name="WaterTiles" parent="." index="1"]
@@ -199,7 +200,7 @@ tile_set = ExtResource( 10 )
 
 [node name="DebugEnemy" parent="Enemies" index="0" instance=ExtResource( 6 )]
 position = Vector2( 208, 1776 )
-enemies = [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ) ]
+enemies = [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ) ]
 
 [node name="Jumper" parent="." index="6" instance=ExtResource( 11 )]
 position = Vector2( 160, 2080 )

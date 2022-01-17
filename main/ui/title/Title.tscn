@@ -146,6 +146,12 @@ margin_right = 328.0
 margin_bottom = 116.0
 text = "Quit"
 
+[node name="Label" type="Label" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 23.0
+margin_right = 338.0
+margin_bottom = 47.0
+
 [node name="Label" type="Label" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
