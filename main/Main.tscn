@@ -133,7 +133,7 @@ anims/transition_out = SubResource( 3 )
 script = ExtResource( 9 )
 
 [node name="Player" parent="Overworld" instance=ExtResource( 4 )]
-position = Vector2( 168, 1984 )
+position = Vector2( 392, 2368 )
 
 [node name="Combat" type="Node" parent="."]
 
