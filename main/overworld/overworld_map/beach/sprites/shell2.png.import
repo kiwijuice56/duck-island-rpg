@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sand_dollar.png-cabfe18de251644a9de0ff8b78398365.stex"
+path="res://.import/shell2.png-d96bef9a9e1dc63ff88cfbd46070259a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/overworld/overworld_map/beach/sand_dollar.png"
-dest_files=[ "res://.import/sand_dollar.png-cabfe18de251644a9de0ff8b78398365.stex" ]
+source_file="res://main/overworld/overworld_map/beach/sprites/shell2.png"
+dest_files=[ "res://.import/shell2.png-d96bef9a9e1dc63ff88cfbd46070259a.stex" ]
 
 [params]
 

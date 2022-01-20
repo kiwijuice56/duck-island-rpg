@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://main/overworld/overworld_map.gd" type="Script" id=1]
-[ext_resource path="res://main/overworld/overworld_map/water_tiles.gd" type="Script" id=2]
+[ext_resource path="res://main/overworld/overworld_map/assets/editor_tiles.gd" type="Script" id=2]
+[ext_resource path="res://main/overworld/overworld_map/assets/encounter/encounter_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://main/overworld/overworld_map/assets/encounter/encounter_type_tileset.tres" type="TileSet" id=4]
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource( 1 )
+encounters = [ null ]
 
 [node name="WaterTiles" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
@@ -27,6 +30,26 @@ cell_size = Vector2( 32, 32 )
 collision_layer = 8
 collision_mask = 0
 format = 1
+
+[node name="EncounterRate" type="TileMap" parent="."]
+modulate = Color( 1, 1, 1, 0.470588 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 8
+collision_mask = 0
+format = 1
+script = ExtResource( 2 )
+
+[node name="EncounterType" type="TileMap" parent="."]
+modulate = Color( 1, 1, 1, 0.313726 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 8
+collision_mask = 0
+format = 1
+script = ExtResource( 2 )
 
 [node name="Enemies" type="Node2D" parent="."]
 

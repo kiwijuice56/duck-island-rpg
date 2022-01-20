@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rocks1.png-e819577ef8a879d7f5c17d8d2b22dc81.stex"
+path="res://.import/encounter_progress.png-546030a1e55d79baa66b8b976b855602.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/overworld/overworld_map/beach/rocks1.png"
-dest_files=[ "res://.import/rocks1.png-e819577ef8a879d7f5c17d8d2b22dc81.stex" ]
+source_file="res://main/ui/overworld/encounter_meter/encounter_progress.png"
+dest_files=[ "res://.import/encounter_progress.png-546030a1e55d79baa66b8b976b855602.stex" ]
 
 [params]
 

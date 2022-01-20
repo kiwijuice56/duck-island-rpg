@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shell.png-737dcb692373e8379b0a1fd68c380f7f.stex"
+path="res://.import/encounter_tiles.png-e289115b6c4380003cf3fa49f8d50541.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/overworld/overworld_map/beach/shell.png"
-dest_files=[ "res://.import/shell.png-737dcb692373e8379b0a1fd68c380f7f.stex" ]
+source_file="res://main/overworld/overworld_map/assets/encounter/encounter_tiles.png"
+dest_files=[ "res://.import/encounter_tiles.png-e289115b6c4380003cf3fa49f8d50541.stex" ]
 
 [params]
 

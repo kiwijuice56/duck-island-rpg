@@ -15,12 +15,18 @@ _global_script_classes=[ {
 "path": "res://addons/rpg_framework/custom_nodes/action_decider/action_decider.gd"
 }, {
 "base": "Resource",
+"class": "EncounterData",
+"language": "GDScript",
+"path": "res://main/overworld/overworld_map/assets/encounter/encounter_data.gd"
+}, {
+"base": "Resource",
 "class": "SaveFile",
 "language": "GDScript",
 "path": "res://main/save_game/save_file_template/save_file_template.gd"
 } ]
 _global_script_class_icons={
 "ActionDecider": "",
+"EncounterData": "",
 "SaveFile": ""
 }
 

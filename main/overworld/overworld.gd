@@ -9,3 +9,4 @@ func load_data(data: Dictionary) -> void:
 	move_child(new_location, 0)
 	MusicPlayer.play_music(MusicPlayer.get(new_location.music))
 	$Player.enable()
+	$Player.room_loaded()

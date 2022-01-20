@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shell2.png-0b18652d0fb8de905471ed7c8926248d.stex"
+path="res://.import/rocks1.png-379c1fbfbc8538cfb6d3263210431452.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/overworld/overworld_map/beach/shell2.png"
-dest_files=[ "res://.import/shell2.png-0b18652d0fb8de905471ed7c8926248d.stex" ]
+source_file="res://main/overworld/overworld_map/beach/sprites/rocks1.png"
+dest_files=[ "res://.import/rocks1.png-379c1fbfbc8538cfb6d3263210431452.stex" ]
 
 [params]
 
