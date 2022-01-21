@@ -30,7 +30,7 @@ void fragment() {
 //	COLOR = vec4(UV * aspect_ratio, vec2(0.0, 1.0));
 }"
 
-[sub_resource type="ShaderMaterial" id=7]
+[sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 shader_param/tile_factor = 27.5
 shader_param/aspect_ratio = 0.636364
@@ -59,7 +59,7 @@ func calculate_aspect_ratio():
 		material.set_shader_param(\"tile_factor\", scale.x/2)
 "
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxTexture" id=5]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 4.0
@@ -82,7 +82,7 @@ __meta__ = {
 
 [node name="Water" parent="." instance=ExtResource( 1 )]
 modulate = Color( 0.623529, 0.627451, 0.772549, 1 )
-material = SubResource( 7 )
+material = SubResource( 2 )
 position = Vector2( 616, 344 )
 scale = Vector2( 55, 35 )
 texture = SubResource( 3 )
@@ -110,7 +110,7 @@ margin_left = 12.0
 margin_top = 12.0
 margin_right = 1012.0
 margin_bottom = 588.0
-custom_styles/panel = SubResource( 6 )
+custom_styles/panel = SubResource( 5 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
 margin_left = 4.0

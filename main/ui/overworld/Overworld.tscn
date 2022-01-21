@@ -30,7 +30,7 @@ margin_top = 3.0
 margin_bottom = 3.0
 
 [sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0, 0.4125, 0.7875, 1 )
+offsets = PoolRealArray( 0, 0.231707, 0.628049, 1 )
 colors = PoolColorArray( 0.368042, 0.347656, 1, 1, 0.12085, 0.859375, 0.374718, 1, 0.907498, 1, 0, 1, 1, 0, 0, 1 )
 
 [node name="Overworld" type="Control"]

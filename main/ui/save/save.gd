@@ -30,7 +30,6 @@ func _input(event) -> void:
 		last.enable()
 		last.call(last_func)
 
-
 func select_file() -> void:
 	file_container.get_child(0).get_node("Button").grab_focus()
 

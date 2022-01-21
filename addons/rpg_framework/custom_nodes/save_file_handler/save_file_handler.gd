@@ -8,6 +8,8 @@ export(Array, String) var save_groups: Array
 # Note that any files saved in res:// are impossible to be read in an exported game, so it is ideal to keep the actual save path within user://
 export var save_folder_path: String = "user://"
 export var developer_save_folder_path: String = "res://"
+export var new_game_developer_path: String = "res://"
+export var new_game_path: String = "user://"
 
 signal file_managing_complete
 
@@ -61,10 +63,16 @@ func save_file(id: int, developer_mode: bool) -> void:
 
 func load_file(id: int, developer_mode: bool) -> void:
 	var file
-	if developer_mode:
-		file = load(developer_save_folder_path + "%02d.tres" % (id)) 
+	if id == -1:
+		if developer_mode:
+			file = load(new_game_developer_path)
+		else:
+			file = load(new_game_path)
 	else:
-		file = load(save_folder_path + "%02d.tres" % (id)) 
+		if developer_mode:
+			file = load(developer_save_folder_path + "%02d.tres" % (id)) 
+		else:
+			file = load(save_folder_path + "%02d.tres" % (id)) 
 	for group in save_groups:
 		for node in get_tree().get_nodes_in_group(group):
 			node.load_data(file.data[group][node.save_id])

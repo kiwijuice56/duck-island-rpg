@@ -24,6 +24,13 @@ func _input(event):
 
 func pressed(button_name: String) -> void:
 	match button_name:
+		"New Game":
+			disable()
+			yield(transition.transition_in(), "completed")
+			save_file_handler.call_deferred("load_file", -1, true)
+			visible = false
+			yield(save_file_handler, "file_managing_complete")
+			yield(transition.transition_out(), "completed")
 		"Load Game":
 			disable()
 			yield(transition.transition_in(), "completed")

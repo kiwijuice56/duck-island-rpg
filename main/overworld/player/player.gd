@@ -31,10 +31,13 @@ func battle_started() -> void:
 	var enemies = []
 	for i in range(0, 1+int(rand_range(encounter.enemy_count_min, encounter.enemy_count_max))):
 		var rand = rand_range(0,1)
-		var j = -1
-		while j != len(encounter.enemies)-1 and rand > 0:
+		var j = 0
+		while j != len(encounter.enemies)-1:
 			rand -= encounter.spawn_chances[j]
-			j += 1
+			if rand > 0:
+				j += 1
+			else:
+				break
 		enemies.append(encounter.enemies[j])
 	cycle.set_enemies(enemies)
 	visible = false

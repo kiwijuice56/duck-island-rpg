@@ -10,9 +10,9 @@ func _ready():
 
 func reset_tween(tween, key) -> void:
 	if under:
-		$Tween.interpolate_property(self, "color_change", -.25, .25, 1.5)
+		$Tween.interpolate_property(self, "color_change", -.15, .15, 1.5)
 	else:
-		$Tween.interpolate_property(self, "color_change", .25, -.25, 1.5)
+		$Tween.interpolate_property(self, "color_change", .15, -.15, 1.5)
 	$Tween.start()
 	under = not under
 
