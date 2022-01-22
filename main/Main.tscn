@@ -2,7 +2,7 @@
 
 [ext_resource path="res://addons/rpg_framework/custom_nodes/party/party.gd" type="Script" id=1]
 [ext_resource path="res://main/ui/combat/Combat.tscn" type="PackedScene" id=2]
-[ext_resource path="res://main/combat/visual_fighter/pard/pard.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/ui/status/Status.tscn" type="PackedScene" id=3]
 [ext_resource path="res://main/overworld/player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main/combat/press_turn_cycle/press_turn_cycle.gd" type="Script" id=5]
 [ext_resource path="res://main/combat/player_party/player_party.gd" type="Script" id=6]
@@ -18,7 +18,7 @@
 [ext_resource path="res://main/combat/2.png" type="Texture" id=16]
 [ext_resource path="res://main/overworld/overworld_map/assets/water/Water.tscn" type="PackedScene" id=17]
 [ext_resource path="res://main/combat/1.png" type="Texture" id=18]
-[ext_resource path="res://main/combat/visual_fighter/nate/nate.tscn" type="PackedScene" id=19]
+[ext_resource path="res://main/ui/after_battle/AfterBattle.tscn" type="PackedScene" id=19]
 [ext_resource path="res://main/ui/overworld/Overworld.tscn" type="PackedScene" id=20]
 [ext_resource path="res://main/ui/system/System.tscn" type="PackedScene" id=21]
 [ext_resource path="res://main/ui/title/Title.tscn" type="PackedScene" id=22]
@@ -159,6 +159,14 @@ playback_speed = 1.85
 anims/transition_in = SubResource( 2 )
 anims/transition_out = SubResource( 3 )
 
+[node name="StatusUI" type="CanvasLayer" parent="."]
+
+[node name="Status" parent="StatusUI" instance=ExtResource( 3 )]
+
+[node name="AfterBattleUI" type="CanvasLayer" parent="."]
+
+[node name="Status" parent="AfterBattleUI" instance=ExtResource( 19 )]
+
 [node name="Overworld" type="Node2D" parent="." groups=[
 "overworld_nodes",
 ]]
@@ -270,18 +278,6 @@ script = ExtResource( 1 )
 script = ExtResource( 6 )
 
 [node name="Yukid" parent="Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 12 )]
-defense = {
-}
-offense = {
-}
-
-[node name="Nate" parent="Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 19 )]
-defense = {
-}
-offense = {
-}
-
-[node name="Pard" parent="Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 3 )]
 defense = {
 }
 offense = {

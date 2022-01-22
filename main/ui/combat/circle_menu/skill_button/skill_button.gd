@@ -7,17 +7,17 @@ var action: Node
 
 func initialize(skill: Node) -> void:
 	action = skill
-	$RichTextLabel.clear()
+	$HBoxContainer/RichTextLabel.clear()
 	var color_label = ""
 	if skill.cost_type == "hp":
 		color_label = "[color=#" + hp_color.to_html() + "]"
 	elif skill.cost_type == "mp":
 		color_label = "[color=#" + mp_color.to_html() + "]"
 	else:
-		$RichTextLabel.bbcode_text = "[right]" + skill.save_id.capitalize() + "[/right]"
+		$HBoxContainer/RichTextLabel.bbcode_text = "[right]" + skill.save_id.capitalize() + "[/right]"
 		return
 	if disabled:
-		$RichTextLabel.bbcode_text = "[right]" + "[color=#" + disabled_color.to_html() + "]" + skill.save_id.capitalize() + "[/color] " + color_label + str(skill.cost) + skill.cost_type + "[/color][/right]"
+		$HBoxContainer/RichTextLabel.bbcode_text = "[right]" + "[color=#" + disabled_color.to_html() + "]" + skill.save_id.capitalize() + "[/color] " + color_label + str(skill.cost) + skill.cost_type + "[/color][/right]"
 	else:
-		$RichTextLabel.bbcode_text = "[right]" + skill.save_id.capitalize() + " " + color_label + str(skill.cost) + skill.cost_type + "[/color][/right]"
+		$HBoxContainer/RichTextLabel.bbcode_text = "[right]" + skill.save_id.capitalize() + " " + color_label + str(skill.cost) + skill.cost_type + "[/color][/right]"
 

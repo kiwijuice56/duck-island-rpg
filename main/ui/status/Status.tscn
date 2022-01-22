@@ -1,0 +1,357 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://main/ui/assets/themes/main.tres" type="Theme" id=1]
+[ext_resource path="res://main/ui/status/affinity_panel_container/affinity_panel/AffinityPanel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://main/ui/assets/affinity_icons/fire.png" type="Texture" id=3]
+[ext_resource path="res://main/ui/assets/affinity_icons/light.png" type="Texture" id=4]
+[ext_resource path="res://main/ui/assets/affinity_icons/wind.png" type="Texture" id=5]
+[ext_resource path="res://main/ui/assets/affinity_icons/normal.png" type="Texture" id=6]
+[ext_resource path="res://main/ui/assets/affinity_icons/phys.png" type="Texture" id=7]
+[ext_resource path="res://main/ui/assets/affinity_icons/null.png" type="Texture" id=8]
+[ext_resource path="res://main/ui/assets/affinity_icons/water.png" type="Texture" id=9]
+[ext_resource path="res://main/ui/assets/affinity_icons/elec.png" type="Texture" id=10]
+[ext_resource path="res://main/ui/assets/affinity_icons/dark.png" type="Texture" id=11]
+[ext_resource path="res://main/ui/status/stat_bar/StatBar.tscn" type="PackedScene" id=12]
+[ext_resource path="res://main/ui/combat/circle_menu/skill_button/SkillButton.tscn" type="PackedScene" id=13]
+[ext_resource path="res://main/overworld/overworld_map/assets/water/Water.tscn" type="PackedScene" id=14]
+[ext_resource path="res://main/ui/assets/style_boxes/round_flat_panel.tres" type="StyleBox" id=15]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float tile_factor = 10.0;
+uniform float aspect_ratio = 0.5;
+
+uniform vec2 time_factor = vec2(2.0, 3.0);
+uniform vec2 offset_factor = vec2(5.0, 2.0);
+uniform vec2 amplitude = vec2(0.05, 0.05);
+
+void fragment() {
+	vec2 tiled_uvs = UV * tile_factor;
+	tiled_uvs.y *= aspect_ratio;
+	
+	vec2 wave_uv_offset;
+	wave_uv_offset.x += sin(TIME * time_factor.x + (tiled_uvs.x + tiled_uvs.y) * offset_factor.x);
+	wave_uv_offset.y += cos(TIME * time_factor.y + (tiled_uvs.x + tiled_uvs.y) * offset_factor.y);
+	
+//	COLOR = texture(TEXTURE, tiled_uvs);
+	COLOR = texture(TEXTURE, tiled_uvs + wave_uv_offset * amplitude);
+//	COLOR = vec4(wave_uv_offset, vec2(0.0, 1.0));
+//	COLOR = vec4(UV * aspect_ratio, vec2(0.0, 1.0));
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/tile_factor = 27.52
+shader_param/aspect_ratio = 0.599564
+shader_param/time_factor = Vector2( 2, 3 )
+shader_param/offset_factor = Vector2( 5, 2 )
+shader_param/amplitude = Vector2( 0.05, 0.05 )
+
+[node name="Status" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Water" parent="." instance=ExtResource( 14 )]
+modulate = Color( 0.623529, 0.627451, 0.772549, 1 )
+material = SubResource( 2 )
+position = Vector2( 400, 224 )
+scale = Vector2( 55.04, 33 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1019.0
+margin_bottom = 595.0
+custom_constants/separation = 14
+
+[node name="NameLabelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 300.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 300, 0 )
+size_flags_horizontal = 0
+custom_styles/panel = ExtResource( 15 )
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/NameLabelContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 298.0
+margin_bottom = 26.0
+text = "Yukid"
+
+[node name="ExpLabelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 42.0
+margin_right = 300.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 300, 0 )
+size_flags_horizontal = 0
+custom_styles/panel = ExtResource( 15 )
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ExpLabelContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 298.0
+margin_bottom = 26.0
+text = "LVL 99         Next: 19923"
+
+[node name="AffinityPanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 84.0
+margin_right = 258.0
+margin_bottom = 148.0
+size_flags_horizontal = 0
+custom_styles/panel = ExtResource( 15 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 256.0
+margin_bottom = 62.0
+custom_constants/separation = 5
+
+[node name="AffinityPanel5" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_right = 32.0
+margin_bottom = 60.0
+
+[node name="Type" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel5/VBoxContainer" index="0"]
+texture = ExtResource( 7 )
+
+[node name="Effectiveness" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel5/VBoxContainer" index="1"]
+texture = ExtResource( 6 )
+
+[node name="AffinityPanel" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 37.0
+margin_right = 69.0
+margin_bottom = 60.0
+
+[node name="Type" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel/VBoxContainer" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Effectiveness" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel/VBoxContainer" index="1"]
+texture = ExtResource( 6 )
+
+[node name="AffinityPanel2" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 74.0
+margin_right = 106.0
+margin_bottom = 60.0
+
+[node name="Type" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel2/VBoxContainer" index="0"]
+texture = ExtResource( 10 )
+
+[node name="Effectiveness" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel2/VBoxContainer" index="1"]
+texture = ExtResource( 6 )
+
+[node name="AffinityPanel3" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 111.0
+margin_right = 143.0
+margin_bottom = 60.0
+
+[node name="Type" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel3/VBoxContainer" index="0"]
+texture = ExtResource( 9 )
+
+[node name="Effectiveness" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel3/VBoxContainer" index="1"]
+texture = ExtResource( 6 )
+
+[node name="AffinityPanel4" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 148.0
+margin_right = 180.0
+margin_bottom = 60.0
+
+[node name="Type" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel4/VBoxContainer" index="0"]
+texture = ExtResource( 5 )
+
+[node name="AffinityPanel6" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 185.0
+margin_right = 217.0
+margin_bottom = 60.0
+
+[node name="Type" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel6/VBoxContainer" index="0"]
+texture = ExtResource( 4 )
+
+[node name="Effectiveness" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel6/VBoxContainer" index="1"]
+texture = ExtResource( 8 )
+
+[node name="AffinityPanel7" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 222.0
+margin_right = 254.0
+margin_bottom = 60.0
+
+[node name="Type" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel7/VBoxContainer" index="0"]
+texture = ExtResource( 11 )
+
+[node name="Effectiveness" parent="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel7/VBoxContainer" index="1"]
+texture = ExtResource( 8 )
+
+[node name="StarBarContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 162.0
+margin_right = 410.0
+margin_bottom = 302.0
+size_flags_horizontal = 0
+custom_styles/panel = ExtResource( 15 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 408.0
+margin_bottom = 138.0
+
+[node name="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer" instance=ExtResource( 12 )]
+margin_right = 406.0
+margin_bottom = 24.0
+
+[node name="HBoxContainer2" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer" instance=ExtResource( 12 )]
+margin_top = 28.0
+margin_right = 406.0
+margin_bottom = 52.0
+
+[node name="HBoxContainer3" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer" instance=ExtResource( 12 )]
+margin_top = 56.0
+margin_right = 406.0
+margin_bottom = 80.0
+
+[node name="HBoxContainer4" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer" instance=ExtResource( 12 )]
+margin_top = 84.0
+margin_right = 406.0
+margin_bottom = 108.0
+
+[node name="HBoxContainer5" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer" instance=ExtResource( 12 )]
+margin_top = 112.0
+margin_right = 406.0
+margin_bottom = 136.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 316.0
+margin_right = 1014.0
+margin_bottom = 584.0
+custom_constants/separation = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 254.0
+margin_bottom = 268.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 254.0
+margin_bottom = 24.0
+text = "Skills"
+
+[node name="SkillContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 254.0
+margin_bottom = 268.0
+custom_styles/panel = ExtResource( 15 )
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 252.0
+margin_bottom = 242.0
+rect_min_size = Vector2( 250, 240 )
+size_flags_horizontal = 0
+custom_constants/vseparation = 0
+
+[node name="SkillButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
+margin_right = 250.0
+
+[node name="SkillButton2" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 30.0
+margin_right = 250.0
+margin_bottom = 60.0
+
+[node name="SkillButton3" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 60.0
+margin_right = 250.0
+margin_bottom = 90.0
+
+[node name="SkillButton4" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 90.0
+margin_right = 250.0
+margin_bottom = 120.0
+
+[node name="SkillButton5" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 120.0
+margin_right = 250.0
+margin_bottom = 150.0
+
+[node name="SkillButton6" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 150.0
+margin_right = 250.0
+margin_bottom = 180.0
+
+[node name="SkillButton7" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 180.0
+margin_right = 250.0
+margin_bottom = 210.0
+
+[node name="SkillButton8" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 210.0
+margin_right = 250.0
+margin_bottom = 240.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 260.0
+margin_right = 514.0
+margin_bottom = 268.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 254.0
+margin_bottom = 24.0
+text = "To Learn"
+
+[node name="UnlearnedSkillContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 24.0
+margin_right = 254.0
+margin_bottom = 268.0
+custom_styles/panel = ExtResource( 15 )
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/UnlearnedSkillContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 252.0
+margin_bottom = 242.0
+rect_min_size = Vector2( 250, 240 )
+size_flags_horizontal = 0
+custom_constants/vseparation = 0
+
+[node name="SkillButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/UnlearnedSkillContainer/GridContainer" instance=ExtResource( 13 )]
+margin_right = 250.0
+
+[node name="SkillButton2" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/UnlearnedSkillContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 30.0
+margin_right = 250.0
+margin_bottom = 60.0
+
+[node name="SkillButton3" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/UnlearnedSkillContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 60.0
+margin_right = 250.0
+margin_bottom = 90.0
+
+[editable path="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel5"]
+[editable path="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel"]
+[editable path="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel2"]
+[editable path="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel3"]
+[editable path="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel4"]
+[editable path="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel6"]
+[editable path="PanelContainer/MarginContainer/VBoxContainer/AffinityPanelContainer/HBoxContainer/AffinityPanel7"]

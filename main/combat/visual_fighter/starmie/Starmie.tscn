@@ -1,7 +1,41 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/combat/visual_fighter/starmie/starmie.png" type="Texture" id=2]
+[ext_resource path="res://main/combat/skills/buff_skill/attack up/attack up.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/combat/skills/buff_skill/defense down/defense down.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Animation" id=2]
+resource_name = "dead"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "hurt"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -23,6 +57,16 @@ tracks/0/keys = {
 
 [node name="Starmie" instance=ExtResource( 1 )]
 save_id = "starmie"
+level = 7
+hp = 70
+mp = 90
+max_hp = 70
+max_mp = 90
+strength = 1
+vitality = 2
+magic = 5
+agility = 5
+luck = 3
 defense = {
 }
 offense = {
@@ -30,14 +74,20 @@ offense = {
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
-hframes = 7
-frame = 1
+hframes = 9
+frame = 8
 
 [node name="SelectIcon" parent="." index="2"]
 position = Vector2( 0, -96 )
+
+[node name="AttackUp" parent="ActionDecider" index="0" instance=ExtResource( 3 )]
+
+[node name="defense down" parent="ActionDecider" index="1" instance=ExtResource( 4 )]
 
 [node name="ParticleEmitter" parent="." index="5"]
 position = Vector2( 0, -96 )
 
 [node name="SpriteAnimationPlayer" parent="." index="7"]
+anims/dead = SubResource( 2 )
+anims/hurt = SubResource( 3 )
 anims/idle = SubResource( 1 )

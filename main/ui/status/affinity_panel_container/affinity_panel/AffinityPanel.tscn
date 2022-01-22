@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://main/ui/assets/affinity_icons/buff.png" type="Texture" id=1]
+[ext_resource path="res://main/ui/status/affinity_panel_container/affinity_panel/affinity_panel.gd" type="Script" id=2]
+[ext_resource path="res://main/ui/assets/affinity_icons/weak.png" type="Texture" id=3]
+[ext_resource path="res://main/ui/assets/style_boxes/round_flat_panel_dark.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 8, 8 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 2.0
+margin_bottom = 2.0
+
+[node name="AffinityPanel" type="PanelContainer"]
+margin_right = 28.0
+margin_bottom = 56.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 30.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 28, 28 )
+custom_constants/separation = 0
+
+[node name="Type" type="TextureRect" parent="VBoxContainer"]
+margin_right = 28.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 28, 28 )
+texture = ExtResource( 1 )
+stretch_mode = 1
+
+[node name="Effectiveness" type="TextureRect" parent="VBoxContainer"]
+margin_top = 28.0
+margin_right = 28.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 28, 28 )
+texture = ExtResource( 3 )
+stretch_mode = 1

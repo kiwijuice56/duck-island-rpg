@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://main/ui/assets/fonts/main_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://main/ui/combat/circle_menu/skill_button/skill_button.gd" type="Script" id=2]
 [ext_resource path="res://main/ui/assets/themes/main.tres" type="Theme" id=3]
+[ext_resource path="res://main/ui/assets/affinity_icons/fire.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.129412 )
@@ -13,9 +14,9 @@ bg_color = Color( 0, 0, 0, 0.0470588 )
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="SkillButton" type="Button"]
-margin_right = 325.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 325, 30 )
+margin_right = 200.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 200, 30 )
 size_flags_horizontal = 11
 theme = ExtResource( 3 )
 custom_styles/hover = SubResource( 1 )
@@ -31,14 +32,37 @@ __meta__ = {
 }
 disabled_color = Color( 0.52549, 0.52549, 0.52549, 1 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -325.0
-margin_top = -12.5
-margin_bottom = 12.5
-rect_min_size = Vector2( 325, 25 )
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 232.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+margin_right = 28.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 28, 28 )
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource( 4 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
+margin_left = 32.0
+margin_right = 232.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 200, 25 )
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
+bbcode_text = "[right]Trisagion [color=#d4bbfb]30mp[/color][/right]"
+text = "Trisagion 30mp"
+__meta__ = {
+"_edit_use_anchors_": false
+}
