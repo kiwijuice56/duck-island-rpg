@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://addons/rpg_framework/custom_nodes/party/party.gd" type="Script" id=1]
 [ext_resource path="res://main/ui/combat/Combat.tscn" type="PackedScene" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://main/overworld/overworld.gd" type="Script" id=9]
 [ext_resource path="res://main/ui/save/Save.tscn" type="PackedScene" id=10]
 [ext_resource path="res://main/ui/transition/transition.gd" type="Script" id=11]
-[ext_resource path="res://main/combat/visual_fighter/yukid/yukid.tscn" type="PackedScene" id=12]
 [ext_resource path="res://main/main_camera/cover.png" type="Texture" id=13]
 [ext_resource path="res://main/combat/6.png" type="Texture" id=14]
 [ext_resource path="res://main/overworld/overworld_map/assets/decoration/palm_tree/PalmTree2.tscn" type="PackedScene" id=15]
@@ -162,10 +161,12 @@ anims/transition_out = SubResource( 3 )
 [node name="StatusUI" type="CanvasLayer" parent="."]
 
 [node name="Status" parent="StatusUI" instance=ExtResource( 3 )]
+visible = false
 
 [node name="AfterBattleUI" type="CanvasLayer" parent="."]
 
 [node name="Status" parent="AfterBattleUI" instance=ExtResource( 19 )]
+visible = false
 
 [node name="Overworld" type="Node2D" parent="." groups=[
 "overworld_nodes",
@@ -276,12 +277,6 @@ script = ExtResource( 1 )
 
 [node name="PlayerParty" type="Node" parent="Combat/PressTurnCycle"]
 script = ExtResource( 6 )
-
-[node name="Yukid" parent="Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 12 )]
-defense = {
-}
-offense = {
-}
 
 [node name="MiiDuck" parent="Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 25 )]
 defense = {

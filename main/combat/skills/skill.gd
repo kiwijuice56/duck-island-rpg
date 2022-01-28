@@ -1,7 +1,7 @@
 extends "res://addons/rpg_framework/custom_nodes/action/action.gd"
 
 export(String, "hp", "mp", "") var cost_type := "hp"
-export(String, "physical","fire", "water", "electric", "wind", "light", "ghost", "support", "heal") var type := "physical"
+export(String, "phys","fire", "water", "elec", "wind", "nuclear", "ghost", "buff", "heal") var type := "phys"
 export var cost: int
 export var accuracy := 1.0
 export(String, "all", "one", "random") var target_count = "one"

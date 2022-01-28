@@ -13,7 +13,7 @@ extents = Vector2( 43, 40 )
 texture = ExtResource( 2 )
 
 [node name="Above" parent="." index="1"]
-position = Vector2( 4, -82 )
+position = Vector2( 8, -82 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" parent="." index="2"]

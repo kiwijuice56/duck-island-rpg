@@ -14,10 +14,10 @@ bg_color = Color( 0, 0, 0, 0.0470588 )
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="SkillButton" type="Button"]
-margin_right = 200.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 200, 30 )
-size_flags_horizontal = 11
+margin_right = 265.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 265, 28 )
+size_flags_horizontal = 10
 theme = ExtResource( 3 )
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 1 )
@@ -33,11 +33,11 @@ __meta__ = {
 disabled_color = Color( 0.52549, 0.52549, 0.52549, 1 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 232.0
+margin_right = 264.0
 margin_bottom = 28.0
-rect_min_size = Vector2( 200, 0 )
-size_flags_horizontal = 0
+size_flags_horizontal = 10
 size_flags_vertical = 0
+custom_constants/separation = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -55,14 +55,16 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
-margin_left = 32.0
-margin_right = 232.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 200, 25 )
+margin_left = 30.0
+margin_top = 1.0
+margin_right = 262.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 232, 25 )
+size_flags_vertical = 6
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
-bbcode_text = "[right]Trisagion [color=#d4bbfb]30mp[/color][/right]"
-text = "Trisagion 30mp"
+bbcode_text = "[right]Defense down [color=#d4bbfb]30mp[/color][/right]"
+text = "Defense down 30mp"
 __meta__ = {
 "_edit_use_anchors_": false
 }

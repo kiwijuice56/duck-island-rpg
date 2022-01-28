@@ -72,7 +72,7 @@ tracks/0/keys = {
 }
 
 [node name="MiiDuck" instance=ExtResource( 2 )]
-save_id = "mii duck"
+save_id = "duckling"
 level = 25
 hp = 175
 mp = 80

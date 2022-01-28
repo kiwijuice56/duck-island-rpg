@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light.png-5718eb3376f61ac0c13b21d401ad07ae.stex"
+path="res://.import/ref2.png-96c129b7bc12b70721209ed17084b3cb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/ui/assets/affinity_icons/light.png"
-dest_files=[ "res://.import/light.png-5718eb3376f61ac0c13b21d401ad07ae.stex" ]
+source_file="res://main/ui/status/ref2.png"
+dest_files=[ "res://.import/ref2.png-96c129b7bc12b70721209ed17084b3cb.stex" ]
 
 [params]
 

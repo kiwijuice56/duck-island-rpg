@@ -3,10 +3,13 @@ extends Button
 export var disabled_color := Color("#fde1c1")
 export var hp_color := Color("#fde1c1")
 export var mp_color := Color("#d4bbfb")
+
+var icon_path = "res://main/ui/assets/affinity_icons/"
 var action: Node
 
 func initialize(skill: Node) -> void:
 	action = skill
+	$HBoxContainer/TextureRect.texture = load(icon_path + skill.type + ".png")
 	$HBoxContainer/RichTextLabel.clear()
 	var color_label = ""
 	if skill.cost_type == "hp":

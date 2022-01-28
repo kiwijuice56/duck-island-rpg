@@ -6,11 +6,11 @@
 [node name="tornado" instance=ExtResource( 1 )]
 save_id = "tornado"
 cost_type = "mp"
-type = "earth"
+type = "wind"
 cost = 14
+accuracy = 0.95
 target_count = "all"
 graphic_effect = ExtResource( 2 )
 power_stat = "magic"
 power = 35
-accuracy = 0.95
 critical = 0.15

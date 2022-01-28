@@ -6,7 +6,7 @@
 [node name="defense down" instance=ExtResource( 1 )]
 save_id = "defense down"
 cost_type = "mp"
-type = "support"
+type = "buff"
 cost = 20
 target_count = "all"
 graphic_effect = ExtResource( 2 )

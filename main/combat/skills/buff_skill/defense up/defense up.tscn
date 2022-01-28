@@ -6,7 +6,7 @@
 [node name="DefenseUp" instance=ExtResource( 1 )]
 save_id = "defense up"
 cost_type = "mp"
-type = "support"
+type = "buff"
 cost = 20
 target_count = "all"
 party_target = "team"
