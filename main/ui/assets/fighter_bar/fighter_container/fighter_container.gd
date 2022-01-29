@@ -30,6 +30,11 @@ var buff_icons := {
 	"hit_eva-2": preload("res://main/ui/assets/fighter_bar/fighter_container/buff_icons/acc_eva_debuff_icon2.png"),
 	}
 
+var status_icons = {
+	"panic": preload("res://main/ui/assets/fighter_bar/fighter_container/status_icons/status_icons3.png"),
+	"rot": preload("res://main/ui/assets/fighter_bar/fighter_container/status_icons/status_icons2.png")
+	}
+
 func initialize(fighter: Node) -> void:
 	$Name.text = fighter.save_id
 	fighter.connect("update_points", self, "update_points", [fighter])
@@ -59,5 +64,11 @@ func update_points(fighter: Node) -> void:
 			var new_icon := TextureRect.new()
 			new_icon.texture = buff_icons[ buff_type + str(fighter.get(buff_type)) ]
 			$Buffs.add_child(new_icon)
+	
+	if fighter.status == "ok":
+		$Name/StatusIcon.visible = false
+	else:
+		$Name/StatusIcon.visible = true
+		$Name/StatusIcon.texture = status_icons[fighter.status]
 	
 	$Tween.start()

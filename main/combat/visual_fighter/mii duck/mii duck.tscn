@@ -89,7 +89,6 @@ offense = {
 }
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 64, -128 )
 hframes = 6
 frame = 5
 

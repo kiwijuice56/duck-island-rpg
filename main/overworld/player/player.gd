@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export var speed := 128
 var dir := Vector2()
-var steps := 255.0
+var steps := 5.0
 
 onready var transition = get_tree().get_root().get_node("Main/Transition")
 onready var combat_ui = get_tree().get_root().get_node("Main/CombatUI/Combat")
@@ -128,14 +128,14 @@ func _physics_process(delta):
 	
 	if dir != Vector2() and encounter_rate_tiles and room:
 		if encounter_rate_tiles.get_cell(snapped.x, snapped.y) == 0:
-			steps = 255
+			steps = 5
 		else:
 			steps -= room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
 		encounter = room.encounters[encounter_type_tiles.get_cell(snapped.x, snapped.y)]
 	
 	if steps <= 0:
 		battle_started()
-		steps = 255
+		steps =  5
 	encounter_meter.set_encounter_modulate(steps)
 	get_input()
 	set_anim()

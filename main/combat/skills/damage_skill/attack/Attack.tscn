@@ -6,7 +6,7 @@
 [node name="Attack" instance=ExtResource( 1 )]
 save_id = "attack"
 cost_type = ""
+accuracy = 0.925
 graphic_effect = ExtResource( 2 )
 power = 25
-accuracy = 0.925
 critical = 0.07

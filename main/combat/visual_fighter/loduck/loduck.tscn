@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/combat/visual_fighter/loduck/loduck.png" type="Texture" id=2]
+[ext_resource path="res://main/combat/skills/status_skill/panic caster/panic caster.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "dead"
@@ -87,9 +88,10 @@ offense = {
 }
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 64, -128 )
 texture = ExtResource( 2 )
 hframes = 6
+
+[node name="panic caster" parent="ActionDecider" index="0" instance=ExtResource( 3 )]
 
 [node name="SpriteAnimationPlayer" parent="." index="7"]
 anims/dead = SubResource( 1 )

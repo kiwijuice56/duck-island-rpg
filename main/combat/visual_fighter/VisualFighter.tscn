@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://main/combat/visual_fighter/visual_fighter.gd" type="Script" id=1]
 [ext_resource path="res://main/combat/custom_action_deciders/enemy_action_decider/enemy_action_decider.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://main/ui/combat/fighter_selection/focus-sheet.png" type="Texture" id=5]
 [ext_resource path="res://main/ui/assets/fonts/PressStart2P.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://main/combat/skills/damage_skill/attack/attack.tscn" type="PackedScene" id=7]
+[ext_resource path="res://main/combat/visual_fighter/_particle_effects/panic_particle.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "current"
@@ -41,8 +42,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0, 0.984496 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+offsets = PoolRealArray( 0, 0.132813, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "dead"
@@ -60,7 +61,7 @@ tracks/0/keys = {
 "values": [ Vector2( 64, -128 ), Vector2( -48, -128 ), Vector2( 32, -128 ), Vector2( -18, -128 ), Vector2( 4, -128 ), Vector2( 0, -128 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("ParticleEmitter:emitting")
+tracks/1/path = NodePath("ParticleEffects/Blood:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -99,7 +100,7 @@ tracks/0/keys = {
 "values": [ Vector2( 64, -128 ), Vector2( -48, -128 ), Vector2( 32, -128 ), Vector2( -18, -128 ), Vector2( 4, -128 ), Vector2( 0, -128 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("ParticleEmitter:emitting")
+tracks/1/path = NodePath("ParticleEffects/Blood:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -127,7 +128,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -128 ), Vector2( 48, -128 ), Vector2( 16, -128 ), Vector2( 0, -128 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("ParticleEmitter:emitting")
+tracks/1/path = NodePath("ParticleEffects/Blood:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -152,7 +153,7 @@ offense = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -128 )
+position = Vector2( 64, -128 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 hframes = 2
@@ -189,9 +190,11 @@ script = ExtResource( 2 )
 
 [node name="Attack" parent="." instance=ExtResource( 7 )]
 
-[node name="ParticleEmitter" type="CPUParticles2D" parent="."]
-modulate = Color( 1, 0, 0, 1 )
+[node name="ParticleEffects" type="Node2D" parent="."]
 position = Vector2( 0, -32 )
+
+[node name="Blood" type="CPUParticles2D" parent="ParticleEffects"]
+modulate = Color( 1, 0, 0, 1 )
 scale = Vector2( 2, 2 )
 emitting = false
 amount = 64
@@ -207,6 +210,25 @@ angle = 8.9
 angle_random = 1.0
 scale_amount = 2.0
 color_ramp = SubResource( 3 )
+
+[node name="Panic" type="CPUParticles2D" parent="ParticleEffects"]
+scale = Vector2( 2, 2 )
+emitting = false
+amount = 6
+speed_scale = 0.8
+randomness = 0.16
+texture = ExtResource( 8 )
+emission_shape = 1
+emission_sphere_radius = 12.0
+spread = 180.0
+gravity = Vector2( 0, -98 )
+initial_velocity = 50.0
+initial_velocity_random = 1.0
+angle = 8.9
+angle_random = 1.0
+color_ramp = SubResource( 3 )
+hue_variation = 0.12
+hue_variation_random = 0.35
 
 [node name="BasicAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/dead = SubResource( 4 )
