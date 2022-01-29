@@ -4,7 +4,7 @@ export var disabled_color := Color("#fde1c1")
 export var hp_color := Color("#fde1c1")
 export var mp_color := Color("#d4bbfb")
 
-var icon_path = "res://main/ui/assets/affinity_icons/"
+var icon_path = "res://main/ui/_assets/affinity_icons/"
 var action: Node
 
 func initialize(skill: Node) -> void:

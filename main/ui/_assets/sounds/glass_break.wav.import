@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/glass_break.wav-b2ed74a39b15d9236bd422b49a3be5fd.sample"
+
+[deps]
+
+source_file="res://main/ui/_assets/sounds/glass_break.wav"
+dest_files=[ "res://.import/glass_break.wav-b2ed74a39b15d9236bd422b49a3be5fd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

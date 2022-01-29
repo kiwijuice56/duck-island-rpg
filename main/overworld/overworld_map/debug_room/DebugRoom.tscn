@@ -2,7 +2,7 @@
 
 [ext_resource path="res://main/overworld/overworld_map/OverworldMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/overworld/overworld_map/debug_room/debug_tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://main/overworld/enemy/debug_enemy/DebugEnemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/overworld/overworld_map/_assets/enemy/debug_enemy/DebugEnemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://main/combat/visual_fighter/mirror duck/mirror duck.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main/combat/visual_fighter/mia droplet/mia droplet.tscn" type="PackedScene" id=5]
 

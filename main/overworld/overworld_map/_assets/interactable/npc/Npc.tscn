@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://main/overworld/overworld_map/_assets/interactable/Interactable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/overworld/overworld_map/_assets/interactable/npc/npc.gd" type="Script" id=2]
+[ext_resource path="res://main/overworld/overworld_map/_assets/interactable/npc/sprite.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 49.5
+
+[sub_resource type="Animation" id=2]
+resource_name = "flicker"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Npc" instance=ExtResource( 1 )]
+collision_layer = 4
+script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="." index="2"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+autoplay = "flicker"
+playback_speed = 0.25
+anims/flicker = SubResource( 2 )

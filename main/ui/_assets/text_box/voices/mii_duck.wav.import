@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mii_duck.wav-cc1a92f10fac0aa3d3575bf6c0759eb7.sample"
+
+[deps]
+
+source_file="res://main/ui/_assets/text_box/voices/mii_duck.wav"
+dest_files=[ "res://.import/mii_duck.wav-cc1a92f10fac0aa3d3575bf6c0759eb7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

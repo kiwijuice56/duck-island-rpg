@@ -5,7 +5,7 @@
 [ext_resource path="res://main/combat/graphic_effects/extra/flicker/Flicker.tscn" type="PackedScene" id=3]
 [ext_resource path="res://main/combat/graphic_effects/extra/ghost_swoosh/GhostSwoosh.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main/combat/graphic_effects/special/buff/hit_3.wav" type="AudioStream" id=5]
-[ext_resource path="res://main/ui/assets/sounds/shimmer.wav" type="AudioStream" id=6]
+[ext_resource path="res://main/ui/_assets/sounds/shimmer.wav" type="AudioStream" id=6]
 
 [node name="Buff" instance=ExtResource( 1 )]
 script = ExtResource( 2 )

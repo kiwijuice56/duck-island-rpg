@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://main/ui/assets/affinity_icons/buff.png" type="Texture" id=1]
+[ext_resource path="res://main/ui/_assets/affinity_icons/buff.png" type="Texture" id=1]
 [ext_resource path="res://main/ui/status/affinity_panel_container/affinity_panel/affinity_panel.gd" type="Script" id=2]
-[ext_resource path="res://main/ui/assets/affinity_icons/weak.png" type="Texture" id=3]
-[ext_resource path="res://main/ui/assets/style_boxes/round_flat_panel_dark.png" type="Texture" id=4]
+[ext_resource path="res://main/ui/_assets/affinity_icons/weak.png" type="Texture" id=3]
+[ext_resource path="res://main/ui/_assets/style_boxes/round_flat_panel_dark.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )

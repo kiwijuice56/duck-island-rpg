@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://main/overworld/overworld_map.gd" type="Script" id=1]
-[ext_resource path="res://main/overworld/overworld_map/assets/editor_tiles.gd" type="Script" id=2]
-[ext_resource path="res://main/overworld/overworld_map/assets/encounter/encounter_tileset.tres" type="TileSet" id=3]
-[ext_resource path="res://main/overworld/overworld_map/assets/encounter/encounter_type_tileset.tres" type="TileSet" id=4]
+[ext_resource path="res://main/overworld/overworld_map/overworld_map.gd" type="Script" id=1]
+[ext_resource path="res://main/overworld/overworld_map/_assets/editor_tiles.gd" type="Script" id=2]
+[ext_resource path="res://main/overworld/overworld_map/_assets/encounter/encounter_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://main/overworld/overworld_map/_assets/encounter/encounter_type_tileset.tres" type="TileSet" id=4]
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource( 1 )

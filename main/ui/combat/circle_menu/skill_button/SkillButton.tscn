@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://main/ui/assets/fonts/main_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://main/ui/_assets/fonts/main_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://main/ui/combat/circle_menu/skill_button/skill_button.gd" type="Script" id=2]
-[ext_resource path="res://main/ui/assets/themes/main.tres" type="Theme" id=3]
-[ext_resource path="res://main/ui/assets/affinity_icons/fire.png" type="Texture" id=4]
+[ext_resource path="res://main/ui/_assets/themes/main.tres" type="Theme" id=3]
+[ext_resource path="res://main/ui/_assets/affinity_icons/fire.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.129412 )

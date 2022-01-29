@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://main/ui/assets/style_boxes/round_flat_panel.tres" type="StyleBox" id=1]
-[ext_resource path="res://main/ui/assets/themes/main.tres" type="Theme" id=2]
-[ext_resource path="res://main/overworld/overworld_map/assets/water/Water.tscn" type="PackedScene" id=14]
+[ext_resource path="res://main/ui/_assets/style_boxes/round_flat_panel.tres" type="StyleBox" id=1]
+[ext_resource path="res://main/ui/_assets/themes/main.tres" type="Theme" id=2]
+[ext_resource path="res://main/overworld/overworld_map/_assets/water/Water.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;

@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "EncounterData",
 "language": "GDScript",
-"path": "res://main/overworld/overworld_map/assets/encounter/encounter_data.gd"
+"path": "res://main/overworld/overworld_map/_assets/encounter/encounter_data.gd"
 }, {
 "base": "Resource",
 "class": "SaveFile",
@@ -38,7 +38,7 @@ config/icon="res://main/icon.png"
 
 [autoload]
 
-SoundPlayer="*res://main/ui/assets/sounds/sound_player.gd"
+SoundPlayer="*res://main/ui/_assets/sounds/sound_player.gd"
 MusicPlayer="*res://main/music/music_player.gd"
 
 [debug]

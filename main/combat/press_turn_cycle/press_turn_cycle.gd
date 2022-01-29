@@ -102,14 +102,6 @@ func battle() -> void:
 		switch_sub_cycle()
 		for _i in range(get_child_count()):
 			yield(combat_ui.set_turn_label("player_turn" if sub_cycle[0].get_parent() == $PlayerParty else "enemy_turn"), "completed")
-			
-			for s in cycle:
-				var a = ""
-				for f in s:
-					a += f.save_id + ", "
-				print(a)
-				print("_")
-			print("______")
 			var full_turns := len(sub_cycle)
 			var half_turns := 0
 			

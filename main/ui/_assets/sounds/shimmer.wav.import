@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shimmer.wav-65fc933f1fde158b920229a8b1cbbc17.sample"
+
+[deps]
+
+source_file="res://main/ui/_assets/sounds/shimmer.wav"
+dest_files=[ "res://.import/shimmer.wav-65fc933f1fde158b920229a8b1cbbc17.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

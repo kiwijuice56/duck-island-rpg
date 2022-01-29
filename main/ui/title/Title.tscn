@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://main/overworld/overworld_map/assets/water/Water.tscn" type="PackedScene" id=1]
-[ext_resource path="res://main/ui/assets/fonts/HelvetiPixel.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://main/ui/assets/themes/main.tres" type="Theme" id=3]
+[ext_resource path="res://main/overworld/overworld_map/_assets/water/Water.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/ui/_assets/fonts/HelvetiPixel.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://main/ui/_assets/themes/main.tres" type="Theme" id=3]
 [ext_resource path="res://main/ui/title/title.gd" type="Script" id=4]
 
 [sub_resource type="Shader" id=1]
