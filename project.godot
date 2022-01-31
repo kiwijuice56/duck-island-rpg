@@ -14,10 +14,35 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/rpg_framework/custom_nodes/action_decider/action_decider.gd"
 }, {
+"base": "ItemData",
+"class": "CombatItemData",
+"language": "GDScript",
+"path": "res://main/items/combat/combat_item_data.gd"
+}, {
 "base": "Resource",
 "class": "EncounterData",
 "language": "GDScript",
 "path": "res://main/overworld/overworld_map/_assets/encounter/encounter_data.gd"
+}, {
+"base": "Area2D",
+"class": "Interactable",
+"language": "GDScript",
+"path": "res://main/overworld/overworld_map/_assets/interactable/interactable.gd"
+}, {
+"base": "Interactable",
+"class": "Item",
+"language": "GDScript",
+"path": "res://main/overworld/overworld_map/_assets/interactable/item/item.gd"
+}, {
+"base": "Resource",
+"class": "ItemData",
+"language": "GDScript",
+"path": "res://main/items/item_data.gd"
+}, {
+"base": "Interactable",
+"class": "Npc",
+"language": "GDScript",
+"path": "res://main/overworld/overworld_map/_assets/interactable/npc/npc.gd"
 }, {
 "base": "Resource",
 "class": "SaveFile",
@@ -26,7 +51,12 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ActionDecider": "",
+"CombatItemData": "",
 "EncounterData": "",
+"Interactable": "",
+"Item": "",
+"ItemData": "",
+"Npc": "",
 "SaveFile": ""
 }
 

@@ -1,4 +1,4 @@
-extends "res://main/overworld/overworld_map/_assets/interactable/interactable.gd"
+extends Interactable
 
 export var direction := Vector2(32, 0)
 

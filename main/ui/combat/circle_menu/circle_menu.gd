@@ -30,7 +30,7 @@ func reset() -> void:
 func _input(event):
 	if event.is_action_pressed("ui_accept", false):
 		var button_name := $Buttons.get_child($Buttons.get_child_count()-1-index).name
-		if button_name in ["Items", "Switch", "Run"]:
+		if button_name in ["Switch", "Run"]:
 			SoundPlayer.play_sound(SoundPlayer.cancel)
 			return
 		SoundPlayer.play_sound(SoundPlayer.accept)
@@ -50,6 +50,7 @@ func _input(event):
 
 func select_action(fighter: Node) -> void:
 	reset()
+	$ItemContainer.initialize()
 	$SkillContainer.initialize(fighter)
 	yield(transition_in(), "completed")
 	enable()

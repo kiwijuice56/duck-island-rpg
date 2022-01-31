@@ -79,6 +79,7 @@ func battle() -> void:
 	for child in get_children():
 		for fighter in child.get_children():
 			fighter.status = "ok"
+			fighter.update_status()
 			fighter.get_node("Sprite").frame = 0
 			fighter.get_node("Sprite").modulate = Color(1,1,1,1)
 			if fighter.get_node("SpriteAnimationPlayer").has_animation("idle"):

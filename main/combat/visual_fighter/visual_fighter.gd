@@ -79,13 +79,7 @@ func on_impact() -> void:
 			damage_label.add_color_override("font_color", Color(1.0,1.0,1.0))
 			damage_label.text = str(calculation_cache["damage"])
 	
-	match status:
-		"panic": 
-			$Sprite.self_modulate = panic_color
-			panic.emitting = true
-		_:
-			$Sprite.self_modulate = Color(1.0,1.0,1.0)
-			panic.emitting = false
+	update_status()
 	
 	damage_label.get_node("DamageTween").interpolate_property(damage_label, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.1)
 	damage_label.get_node("DamageTween").interpolate_property(damage_label, "rect_position", null, damage_label.rect_position + Vector2(0,-5), 0.4)
@@ -100,6 +94,15 @@ func on_impact() -> void:
 		yield($SpriteAnimationPlayer, "animation_finished")
 	if not status == "dead":
 		$SpriteAnimationPlayer.current_animation = "idle"
+
+func update_status():
+	match status:
+		"panic": 
+			$Sprite.self_modulate = panic_color
+			panic.emitting = true
+		_:
+			$Sprite.self_modulate = Color(1.0,1.0,1.0)
+			panic.emitting = false
 
 func set_select_eligible(enable: bool) -> void:
 	if enable:
@@ -136,7 +139,8 @@ func act(context: Dictionary) -> void:
 		"Skill":
 			decision["action"].action(self, decision["targets"])
 			var data = yield(decision["action"], "action_completed")
-			data["success"] = min(0, data["success"])
+			if status == "panic":
+				data["success"] = min(0, data["success"])
 			emit_signal("act_completed", data)
 	$CurrentIcon/CurrentIconAnim.current_animation = "[stop]"
 	$CurrentIcon/CurrentIconTween.interpolate_property($CurrentIcon, "modulate", null, Color(1,1,1,0), .4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

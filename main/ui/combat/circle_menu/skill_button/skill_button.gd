@@ -23,4 +23,3 @@ func initialize(skill: Node) -> void:
 		$HBoxContainer/RichTextLabel.bbcode_text = "[right]" + "[color=#" + disabled_color.to_html() + "]" + skill.save_id.capitalize() + "[/color] " + color_label + str(skill.cost) + skill.cost_type + "[/color][/right]"
 	else:
 		$HBoxContainer/RichTextLabel.bbcode_text = "[right]" + skill.save_id.capitalize() + " " + color_label + str(skill.cost) + skill.cost_type + "[/color][/right]"
-

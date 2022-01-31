@@ -14,7 +14,6 @@ func _input(event):
 	if event.is_action_pressed("ui_down", false):
 		SoundPlayer.play_sound(SoundPlayer.action)
 
-
 func enable() -> void:
 	get_node("ScrollContainer").get_child(0).get_child(0).grab_focus()
 	set_process_input(true)

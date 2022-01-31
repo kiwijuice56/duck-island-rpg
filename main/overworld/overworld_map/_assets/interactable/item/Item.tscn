@@ -1,5 +1,35 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://main/overworld/overworld_map/_assets/interactable/Interactable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/overworld/overworld_map/_assets/interactable/item/item.gd" type="Script" id=2]
+[ext_resource path="res://main/combat/graphic_effects/extra/light_beam/LightBeam.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/overworld/overworld_map/_assets/interactable/item/particle.png" type="Texture" id=4]
+[ext_resource path="res://main/items/combat/puffle/berry puffle.png" type="Texture" id=5]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.46875, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1.25, 1.25, 1.25, 1, 0.868713, 0.859375, 1, 0 )
 
 [node name="Item" instance=ExtResource( 1 )]
+position = Vector2( 180, 180 )
+script = ExtResource( 2 )
+light_beam = ExtResource( 3 )
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="." index="2"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="3"]
+texture = ExtResource( 4 )
+emission_shape = 1
+emission_sphere_radius = 48.0
+spread = 180.0
+gravity = Vector2( 0, -98 )
+initial_velocity = 5.0
+initial_velocity_random = 0.5
+scale_amount = 2.0
+scale_amount_random = 0.57
+color_ramp = SubResource( 1 )
+hue_variation = 0.05
+hue_variation_random = 1.0
