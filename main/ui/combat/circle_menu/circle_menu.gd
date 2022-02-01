@@ -91,7 +91,10 @@ func switch_menu(input: String) -> void:
 	disable()
 	yield(menu.transition_in(), "completed")
 	menu.enable()
-	var action = yield(menu, "action_selected")
+	
+	#[action node, item icon (null for skills)
+	var action_data: Array = yield(menu, "action_selected")
+	var action = action_data[0]
 	
 	if not action:
 		SoundPlayer.play_sound(SoundPlayer.cancel)
@@ -116,7 +119,7 @@ func switch_menu(input: String) -> void:
 			yield(transition_in(), "completed")
 			call_deferred("switch_menu", input)
 		else:
-			emit_signal("action_selected", {"action_type": "Skill", "targets": targets, "action": action})
+			emit_signal("action_selected", {"action_type": input.substr(0, len(input)-1), "item_icon": action_data[1], "targets": targets, "action": action})
 
 func center_selection() -> void:
 	for i in range($Buttons.get_child_count()):

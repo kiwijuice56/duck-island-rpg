@@ -142,6 +142,12 @@ func act(context: Dictionary) -> void:
 			if status == "panic":
 				data["success"] = min(0, data["success"])
 			emit_signal("act_completed", data)
+		"Item":
+			decision["action"].action(self, decision["targets"], decision["item_icon"])
+			var data = yield(decision["action"], "action_completed")
+			if status == "panic":
+				data["success"] = min(0, data["success"])
+			emit_signal("act_completed", data)
 	$CurrentIcon/CurrentIconAnim.current_animation = "[stop]"
 	$CurrentIcon/CurrentIconTween.interpolate_property($CurrentIcon, "modulate", null, Color(1,1,1,0), .4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$CurrentIcon/CurrentIconTween.start()

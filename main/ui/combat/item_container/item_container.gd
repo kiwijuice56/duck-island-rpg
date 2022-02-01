@@ -9,7 +9,7 @@ signal action_selected(action)
 func _input(event):
 	if event.is_action_pressed("ui_cancel", false):
 		disable()
-		emit_signal("action_selected", null)
+		emit_signal("action_selected", [null, null])
 	if event.is_action_pressed("ui_up", false):
 		SoundPlayer.play_sound(SoundPlayer.action)
 	if event.is_action_pressed("ui_down", false):
@@ -36,7 +36,7 @@ func initialize() -> void:
 
 func button_down(button: Button) -> void:
 	SoundPlayer.play_sound(SoundPlayer.accept)
-	emit_signal("action_selected", button.action)
+	emit_signal("action_selected", [items.instance_item(button.action), button.item_icon])
 
 func transition_in() -> void:
 	$ScrollContainer.modulate = Color(1,1,1,0)

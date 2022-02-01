@@ -141,6 +141,16 @@ visible = false
 
 [node name="Title" parent="TitleUI" instance=ExtResource( 22 )]
 
+[node name="StatusUI" type="CanvasLayer" parent="."]
+
+[node name="Status" parent="StatusUI" instance=ExtResource( 3 )]
+visible = false
+
+[node name="AfterBattleUI" type="CanvasLayer" parent="."]
+
+[node name="Status" parent="AfterBattleUI" instance=ExtResource( 19 )]
+visible = false
+
 [node name="Transition" type="CanvasLayer" parent="."]
 script = ExtResource( 11 )
 
@@ -159,16 +169,6 @@ __meta__ = {
 playback_speed = 1.85
 anims/transition_in = SubResource( 2 )
 anims/transition_out = SubResource( 3 )
-
-[node name="StatusUI" type="CanvasLayer" parent="."]
-
-[node name="Status" parent="StatusUI" instance=ExtResource( 3 )]
-visible = false
-
-[node name="AfterBattleUI" type="CanvasLayer" parent="."]
-
-[node name="Status" parent="AfterBattleUI" instance=ExtResource( 19 )]
-visible = false
 
 [node name="Overworld" type="Node2D" parent="." groups=[
 "overworld_nodes",
@@ -375,3 +375,5 @@ new_game_developer_path = "res://main/save_game/new_game.tres"
 
 [node name="Items" type="Node" parent="."]
 script = ExtResource( 23 )
+
+[node name="Combat" type="Node" parent="Items"]
