@@ -4,6 +4,7 @@ class_name Interactable
 var body
 var disabled := true
 onready var overworld_ui = get_tree().get_root().get_node("Main/OverworldUI/Overworld")
+onready var cam = get_tree().get_root().get_node("Main/MainCamera")
 
 func _ready():
 	connect("body_entered", self, "body_entered")

@@ -32,6 +32,7 @@ onready var damage_label = $CanvasLayer/DamageLabel
 
 var calculation_cache := {}
 
+
 signal update_points
 
 var miss_color := Color("#ff0044")
@@ -50,9 +51,7 @@ func _ready() -> void:
 
 func on_impact() -> void:
 	$CanvasLayer/DamageLabel.rect_position = $SelectIcon.get_global_transform_with_canvas().get_origin()-Vector2(32,0)
-	
 	emit_signal("update_points")
-	
 	if calculation_cache["contact"] == "none":
 		return
 	elif calculation_cache["contact"] == "miss":

@@ -53,6 +53,6 @@ script = ExtResource( 2 )
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Items" type="Node" parent="."]
+[node name="Items" type="Node2D" parent="."]
 
 [node name="Decoration" type="Node2D" parent="."]

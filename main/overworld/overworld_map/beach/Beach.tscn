@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://main/overworld/overworld_map/OverworldMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/overworld/overworld_map/_assets/water/Water.tscn" type="PackedScene" id=2]
@@ -14,8 +14,11 @@
 [ext_resource path="res://main/overworld/overworld_map/beach/210249__julius-galla__atmosphere-shore-loop.wav" type="AudioStream" id=12]
 [ext_resource path="res://main/overworld/overworld_map/_assets/decoration/beach_junk/sand_dollar.png" type="Texture" id=13]
 [ext_resource path="res://main/overworld/overworld_map/beach/encounters/beach1.tres" type="Resource" id=14]
+[ext_resource path="res://main/items/combat/puffle/puffle.tres" type="Resource" id=15]
 [ext_resource path="res://main/overworld/overworld_map/_assets/decoration/beach_junk/shell3.png" type="Texture" id=16]
 [ext_resource path="res://main/overworld/overworld_map/_assets/decoration/beach_junk/shell4.png" type="Texture" id=17]
+[ext_resource path="res://main/overworld/overworld_map/_assets/interactable/item/Item.tscn" type="PackedScene" id=18]
+[ext_resource path="res://main/overworld/overworld_map/_assets/interactable/item/sprites/puffle1.png" type="Texture" id=19]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -41,7 +44,7 @@ void fragment() {
 //	COLOR = vec4(UV * aspect_ratio, vec2(0.0, 1.0));
 }"
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=16]
 shader = SubResource( 1 )
 shader_param/tile_factor = 124.92
 shader_param/aspect_ratio = 1.00064
@@ -189,7 +192,7 @@ music = "island"
 encounters = [ ExtResource( 14 ) ]
 
 [node name="Water" parent="." index="0" instance=ExtResource( 2 )]
-material = SubResource( 2 )
+material = SubResource( 16 )
 scale = Vector2( 249.84, 250 )
 
 [node name="WaterTiles" parent="." index="1"]
@@ -221,6 +224,14 @@ enemies = [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5
 stream = ExtResource( 12 )
 volume_db = -7.208
 autoplay = true
+
+[node name="Item" parent="Items" index="0" instance=ExtResource( 18 )]
+position = Vector2( 208, 2296 )
+item = ExtResource( 15 )
+item_name = "Berry Puffle"
+
+[node name="Sprite" parent="Items/Item" index="0"]
+texture = ExtResource( 19 )
 
 [node name="PalmTree" parent="Decoration" index="0" instance=ExtResource( 4 )]
 position = Vector2( -184, 2392 )
@@ -580,3 +591,5 @@ texture = ExtResource( 13 )
 position = Vector2( -96, 2368 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 13 )
+
+[editable path="Items/Item"]

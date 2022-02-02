@@ -5,10 +5,10 @@ var res := Vector2(ProjectSettings.get_setting("display/window/size/width"), Pro
 func toggle_cover(enable: bool) -> void:
 	$Tween.interpolate_property($Cover, "modulate", null, Color(1,1,1,.6) if enable else Color(1,1,1,0), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
-	
+
 func prioritize(nodes: Array):
 	for node in nodes:
-		node.z_index = 2
+		node.z_index = 6
 
 func deprioritize(nodes: Array):
 	for node in nodes:
@@ -22,7 +22,8 @@ func toggle_shake(shake: bool) -> void:
 		$Tween.interpolate_property(self, "offset", null, Vector2(), 0.3)
 
 func pan(node: Node2D, pan_time: float, pan_offset: Vector2) -> void:
-	$Tween.interpolate_property(self, "global_position", null, node.global_position + pan_offset - Vector2(0,16), pan_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	print(global_position, node.global_position)
+	$Tween.interpolate_property(self, "global_position", global_position, node.global_position + pan_offset, pan_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.interpolate_property(self, "zoom", null, Vector2(1,1), pan_time,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
 	yield($Tween, "tween_completed")

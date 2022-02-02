@@ -360,7 +360,7 @@ script = ExtResource( 7 )
 
 [node name="Cover" type="Sprite" parent="MainCamera"]
 modulate = Color( 1, 1, 1, 0 )
-z_index = 1
+z_index = 5
 texture = ExtResource( 13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MainCamera"]

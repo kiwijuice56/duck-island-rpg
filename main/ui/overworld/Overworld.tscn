@@ -199,7 +199,9 @@ margin_right = 135.0
 margin_bottom = 333.0
 
 [node name="EncounterRate" type="Control" parent="."]
-margin_right = 40.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.0
 margin_bottom = 40.0
 script = ExtResource( 11 )
 __meta__ = {
@@ -208,19 +210,19 @@ __meta__ = {
 color = SubResource( 3 )
 
 [node name="Cover" type="TextureRect" parent="EncounterRate"]
-margin_left = 8.0
-margin_top = 528.0
-margin_right = 48.0
-margin_bottom = 568.0
+margin_left = -32.0
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 48.0
 rect_scale = Vector2( 2, 2 )
 texture = ExtResource( 10 )
 
 [node name="Progress" type="TextureRect" parent="EncounterRate"]
 modulate = Color( 1, 0, 0, 1 )
-margin_left = 8.0
-margin_top = 528.0
-margin_right = 48.0
-margin_bottom = 568.0
+margin_left = -32.0
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 48.0
 rect_scale = Vector2( 2, 2 )
 texture = ExtResource( 9 )
 __meta__ = {

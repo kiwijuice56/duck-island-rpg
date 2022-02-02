@@ -34,8 +34,8 @@ tracks/1/keys = {
 modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 0.5, 1 )
 texture = ExtResource( 2 )
-offset = Vector2( 0, 64 )
+offset = Vector2( 0, 48 )
 
 [node name="AnimationPlayer" parent="." index="0"]
-playback_speed = 1.25
+playback_speed = 1.5
 anims/effect = SubResource( 1 )
