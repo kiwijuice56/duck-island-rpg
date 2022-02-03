@@ -2,8 +2,8 @@ extends Control
 
 var open := false
 onready var buttons := get_node("PopupMenu/HBoxContainer/PanelContainer/VBoxContainer")
-onready var system_ui = get_tree().get_root().get_node("Main/SystemUI/System")
-onready var transition = get_tree().get_root().get_node("Main/Transition")
+onready var system_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SystemUI/System")
+onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
 
 func _input(event):
 	if event.is_action_pressed("menu", false):
@@ -50,7 +50,7 @@ func choose_button() -> void:
 
 func open() -> void:
 	SoundPlayer.play_sound(SoundPlayer.accept)
-	get_tree().get_root().get_node("Main/Overworld/Player").disable()
+	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld/Player").disable()
 	enable()
 	open = true
 	$Tween.interpolate_property($PopupMenu, "modulate", null, Color(1,1,1,1), 0.1)

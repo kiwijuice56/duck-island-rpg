@@ -4,10 +4,10 @@ export var speed := 128
 var dir := Vector2()
 var steps := 5.0
 
-onready var transition = get_tree().get_root().get_node("Main/Transition")
-onready var combat_ui = get_tree().get_root().get_node("Main/CombatUI/Combat")
-onready var overworld_ui = get_tree().get_root().get_node("Main/OverworldUI/Overworld")
-onready var cycle = get_tree().get_root().get_node("Main/Combat/PressTurnCycle")
+onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
+onready var combat_ui = get_tree().get_root().get_node("Main//ViewportContainer/Viewport/UI/CombatUI/Combat")
+onready var overworld_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/OverworldUI/Overworld")
+onready var cycle = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Combat/PressTurnCycle")
 onready var encounter_meter = overworld_ui.get_node("EncounterRate")
 
 var room
@@ -18,7 +18,7 @@ var encounter
 
 func _ready() -> void:
 	$Area2D.connect("area_entered", self, "area_entered")
-	get_tree().get_root().get_node("Main/Combat/PressTurnCycle").connect("battle_ended", self, "battle_ended")
+	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Combat/PressTurnCycle").connect("battle_ended", self, "battle_ended")
 	disable()
 
 func area_entered(area: Area2D) -> void:
@@ -111,10 +111,10 @@ func jump(pos: Vector2) -> void:
 	overworld_ui.enable()
 
 func room_loaded() -> void:
-	water_tiles = get_tree().get_root().get_node("Main/Overworld").get_child(0).get_node("WaterTiles") 
-	encounter_rate_tiles = get_tree().get_root().get_node("Main/Overworld").get_child(0).get_node("EncounterRate") 
-	encounter_type_tiles = get_tree().get_root().get_node("Main/Overworld").get_child(0).get_node("EncounterType") 
-	room = get_tree().get_root().get_node("Main/Overworld").get_child(0)
+	water_tiles = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0).get_node("WaterTiles") 
+	encounter_rate_tiles = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0).get_node("EncounterRate") 
+	encounter_type_tiles = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0).get_node("EncounterType") 
+	room = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0)
 
 func _physics_process(delta):
 	var snapped = (Vector2(-16,-16)+global_position).snapped(Vector2(64,64))/64

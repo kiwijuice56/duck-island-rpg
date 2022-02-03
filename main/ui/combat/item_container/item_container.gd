@@ -2,7 +2,7 @@ extends PanelContainer
 
 export var transition_time := 0.125
 export var item_button = preload("res://main/ui/combat/circle_menu/item_button/ItemButton.tscn")
-onready var items := get_tree().get_root().get_node("Main/Items")
+onready var items := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Items")
 
 signal action_selected(action)
 

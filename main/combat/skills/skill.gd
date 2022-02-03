@@ -6,8 +6,8 @@ export var cost: int
 export var accuracy := 1.0
 export(String, "all", "one", "random") var target_count = "one"
 export(String, "team", "enemy") var party_target = "enemy"
-onready var text_box = get_tree().get_root().get_node("Main/CombatUI/Combat/VBoxContainer/TextBox")
-onready var item_node = get_tree().get_root().get_node("Main/Items")
+onready var text_box = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/CombatUI/Combat/VBoxContainer/TextBox")
+onready var item_node = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Items")
 
 export var graphic_effect: PackedScene
 

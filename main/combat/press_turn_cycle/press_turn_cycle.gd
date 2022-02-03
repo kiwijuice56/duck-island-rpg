@@ -1,10 +1,10 @@
 extends "res://addons/rpg_framework/custom_nodes/fighter_cycle/team_cycle/team_cycle.gd"
 
-onready var combat_ui := get_tree().get_root().get_node("Main/CombatUI/Combat")
+onready var combat_ui := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/CombatUI/Combat")
 onready var text_box = combat_ui.get_node("VBoxContainer/TextBox")
 onready var press_turn_container := combat_ui.get_node("VBoxContainer/Top/PressTurnContainer")
-onready var cam := get_tree().get_root().get_node("Main/MainCamera")
-onready var transition = get_tree().get_root().get_node("Main/Transition")
+onready var cam := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/MainCamera")
+onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
 
 signal battle_ended
 
@@ -65,7 +65,7 @@ func battle_end() -> void:
 	emit_signal("battle_ended")
 	combat_ui.visible = false
 	
-	get_tree().get_root().get_node("Main/Overworld").visible = true
+	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").visible = true
 	for child in get_children():
 		for fighter in child.get_children():
 			fighter.get_node("Sprite").visible = false
@@ -92,7 +92,7 @@ func battle() -> void:
 			fighter.emit_signal("update_points")
 			fighter.get_node("Sprite").visible = true
 	cam.fit($EnemyParty.get_children(), 0, -125)
-	get_tree().get_root().get_node("Main/Overworld").visible = false
+	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").visible = false
 	text_box.display_text("", 0, 0)
 	press_turn_container.update_turns(0, 0)
 	yield(transition.transition_out(), "completed")

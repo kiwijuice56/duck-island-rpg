@@ -1,7 +1,7 @@
 extends Control
-onready var save_file_handler := get_node("../../SaveFileHandler")
+onready var save_file_handler := get_node("../../../SaveFileHandler")
 onready var file_container = get_node("MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer")
-onready var transition = get_tree().get_root().get_node("Main/Transition")
+onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
 
 export var save_button = preload("res://main/ui/save/save_button/SaveButton.tscn")
 

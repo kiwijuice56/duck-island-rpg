@@ -1,10 +1,10 @@
 extends Control
 
-onready var save_file_handler := get_node("../../SaveFileHandler")
+onready var save_file_handler := get_node("../../../SaveFileHandler")
 onready var buttons = $MarginContainer/VBoxContainer/VBoxContainer
-onready var transition = get_tree().get_root().get_node("Main/Transition")
-onready var save_ui = get_tree().get_root().get_node("Main/SaveUI/Save")
-onready var system_ui = get_tree().get_root().get_node("Main/SystemUI/System")
+onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
+onready var save_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SaveUI/Save")
+onready var system_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SystemUI/System")
 
 var last_focus = null
 

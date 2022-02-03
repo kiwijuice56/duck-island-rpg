@@ -2,8 +2,8 @@ extends Control
 
 export var transition_time := 0.11
 
-onready var player_party = get_tree().get_root().get_node("Main/Combat/PressTurnCycle/PlayerParty")
-onready var enemy_party = get_tree().get_root().get_node("Main/Combat/PressTurnCycle/EnemyParty")
+onready var player_party = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Combat/PressTurnCycle/PlayerParty")
+onready var enemy_party = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Combat/PressTurnCycle/EnemyParty")
 
 var index := 0 setget set_index
 

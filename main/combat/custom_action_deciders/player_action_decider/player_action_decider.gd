@@ -1,9 +1,9 @@
 extends "res://addons/rpg_framework/custom_nodes/action_decider/action_decider.gd"
 
-onready var combat_ui := get_tree().get_root().get_node("Main/CombatUI/Combat")
+onready var combat_ui := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/CombatUI/Combat")
 onready var circle_menu := combat_ui.get_node("CircleMenu")
 onready var text_box = combat_ui.get_node("VBoxContainer/TextBox")
-onready var cam := get_tree().get_root().get_node("Main/MainCamera")
+onready var cam := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/MainCamera")
 
 func decide(context: Dictionary) -> void:
 	yield(cam.pan(get_parent().get_node("Sprite"), 0.35, Vector2(300,64)), "completed")

@@ -22,9 +22,9 @@ var hit_eva := 0
 
 var status := "okay"
 
-onready var combat_ui := get_tree().get_root().get_node("Main/CombatUI/Combat")
+onready var combat_ui := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/CombatUI/Combat")
 onready var text_box = combat_ui.get_node("VBoxContainer/TextBox")
-onready var cam := get_tree().get_root().get_node("Main/MainCamera")
+onready var cam := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/MainCamera")
 
 onready var blood = $ParticleEffects/Blood
 onready var panic = $ParticleEffects/Panic

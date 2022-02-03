@@ -1,6 +1,6 @@
 extends Control
 
-onready var transition = get_tree().get_root().get_node("Main/Transition")
+onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
 onready var music_slider = get_node("MarginContainer/PanelContainer/ScrollContainer/VBoxContainer/MusicVolume/HSlider")
 var last 
 var last_func = ""

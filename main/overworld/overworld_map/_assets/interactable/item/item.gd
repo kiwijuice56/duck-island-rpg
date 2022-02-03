@@ -5,7 +5,7 @@ export var item: Resource
 export(int, 1, 99) var count := 1
 export var light_beam: PackedScene
 
-onready var item_node = get_tree().get_root().get_node("Main/Items")
+onready var item_node = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Items")
 
 var emitting_light := false
 

@@ -12,7 +12,7 @@ func play_sound(sound) -> void:
 	var player = AudioStreamPlayer.new()
 	player.stream = sound
 	player.playing = true
-	add_child(player)
+	get_tree().get_root().get_node("Main/ViewportContainer/Viewport").add_child(player)
 	yield(player, "finished")
-	remove_child(player)
+	get_tree().get_root().get_node("Main/ViewportContainer/Viewport").remove_child(player)
 	player.queue_free()
