@@ -32,7 +32,6 @@ onready var damage_label = $CanvasLayer/DamageLabel
 
 var calculation_cache := {}
 
-
 signal update_points
 
 var miss_color := Color("#ff0044")
@@ -77,7 +76,6 @@ func on_impact() -> void:
 		else:
 			damage_label.add_color_override("font_color", Color(1.0,1.0,1.0))
 			damage_label.text = str(calculation_cache["damage"])
-	
 	update_status()
 	
 	damage_label.get_node("DamageTween").interpolate_property(damage_label, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.1)
@@ -142,7 +140,7 @@ func act(context: Dictionary) -> void:
 				data["success"] = min(0, data["success"])
 			emit_signal("act_completed", data)
 		"Item":
-			decision["action"].action(self, decision["targets"], decision["item_icon"])
+			decision["action"].action(self, decision["targets"], decision["item"])
 			var data = yield(decision["action"], "action_completed")
 			if status == "panic":
 				data["success"] = min(0, data["success"])

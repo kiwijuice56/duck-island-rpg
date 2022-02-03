@@ -2,9 +2,7 @@ extends Interactable
 class_name Item
 
 export var item: Resource
-export var item_name := ""
 export(int, 1, 99) var count := 1
-export(String, "combat_items") var category = "combat_items"
 export var light_beam: PackedScene
 
 onready var item_node = get_tree().get_root().get_node("Main/Items")
@@ -60,7 +58,7 @@ func collect(player) -> void:
 	emitting_light = true
 	shine_light()
 	yield($Tween, "tween_completed")
-	yield(overworld_ui.get_node("TextBox").display_text("You got x%d %s!" % [count, item_name], 0.02, 3.0), "completed")
+	yield(overworld_ui.get_node("TextBox").display_text("You got x%d %s!" % [count, item.save_id.capitalize()], 0.02, 3.0), "completed")
 	$Tween.interpolate_property(overworld_ui.get_node("TextBox"), "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.2)
 	$Tween.interpolate_property(self, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.2)
 	$Tween.interpolate_property(self, "position", null, position - Vector2(0,-85), 0.4)
@@ -73,5 +71,10 @@ func collect(player) -> void:
 	yield($Tween, "tween_completed")
 	emitting_light = false
 	player.enable()
-	item_node.get(category)[item] = item_node.get(category)[item]+1
+	# gets inventory specific to this category of items, then adds this item
+	var inventory = item_node.get(item.category + "_items")
+	if item in inventory:
+		inventory[item] += 1
+	else:
+		inventory[item] = 1
 	queue_free()

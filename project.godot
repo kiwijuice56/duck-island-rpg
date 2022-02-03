@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "ItemData",
 "class": "CombatItemData",
 "language": "GDScript",
-"path": "res://main/items/combat/combat_item_data.gd"
+"path": "res://main/items/healing/combat_item_data.gd"
 }, {
 "base": "Resource",
 "class": "EncounterData",
@@ -74,7 +74,6 @@ MusicPlayer="*res://main/music/music_player.gd"
 [debug]
 
 settings/fps/force_fps=120
-settings/stdout/print_fps=true
 gdscript/warnings/return_value_discarded=false
 
 [display]

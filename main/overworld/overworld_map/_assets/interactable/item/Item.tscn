@@ -6,10 +6,10 @@
 [ext_resource path="res://main/overworld/overworld_map/_assets/interactable/item/particle.png" type="Texture" id=4]
 [ext_resource path="res://main/overworld/overworld_map/_assets/interactable/item_get.mp3" type="AudioStream" id=6]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 radius = 16.0
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.46875, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 1.25, 1.25, 1.25, 1, 0.868713, 0.859375, 1, 0 )
 
@@ -18,7 +18,7 @@ script = ExtResource( 2 )
 light_beam = ExtResource( 3 )
 
 [node name="CollisionShape2D" parent="." index="1"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="." index="2"]
 
@@ -33,7 +33,7 @@ initial_velocity = 5.0
 initial_velocity_random = 0.5
 scale_amount = 2.0
 scale_amount_random = 0.57
-color_ramp = SubResource( 1 )
+color_ramp = SubResource( 2 )
 hue_variation = 0.05
 hue_variation_random = 1.0
 

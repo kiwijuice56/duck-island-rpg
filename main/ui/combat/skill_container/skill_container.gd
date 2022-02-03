@@ -27,6 +27,7 @@ func initialize(fighter: Node) -> void:
 	for child in $ScrollContainer/VBoxContainer.get_children():
 		$ScrollContainer/VBoxContainer.remove_child(child)
 		child.queue_free()
+	var last_button = null
 	for skill in [fighter.get_node("Attack")] + fighter.get_action_decider().get_children():
 		var new_button = skill_button.instance()
 		new_button.connect("button_down", self, "button_down", [new_button])
@@ -34,6 +35,8 @@ func initialize(fighter: Node) -> void:
 			new_button.disabled = true
 		$ScrollContainer/VBoxContainer.add_child(new_button)
 		new_button.initialize(skill)
+		last_button = new_button
+	last_button.set_focus_neighbour(MARGIN_BOTTOM, last_button.get_path())
 
 func button_down(button: Button) -> void:
 	SoundPlayer.play_sound(SoundPlayer.accept)

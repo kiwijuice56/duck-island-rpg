@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/berry puffle.png-3584672b3a5db0a6dc9229ba13637b66.stex"
+path="res://.import/fruit puff.png-3114879dc1f7fd7adf10d8f2b80b77f2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/items/combat/puffle/berry puffle.png"
-dest_files=[ "res://.import/berry puffle.png-3584672b3a5db0a6dc9229ba13637b66.stex" ]
+source_file="res://main/items/healing/fruit puff/fruit puff.png"
+dest_files=[ "res://.import/fruit puff.png-3114879dc1f7fd7adf10d8f2b80b77f2.stex" ]
 
 [params]
 

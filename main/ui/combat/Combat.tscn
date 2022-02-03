@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://main/ui/_assets/text_box/TextBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/ui/_assets/fighter_bar/FighterBar.tscn" type="PackedScene" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://main/ui/combat/circle_menu/circle_button/items.png" type="Texture" id=13]
 [ext_resource path="res://main/ui/combat/circle_menu/circle_button/run.png" type="Texture" id=14]
 [ext_resource path="res://main/ui/combat/circle_menu/circle_button/defend.png" type="Texture" id=15]
-[ext_resource path="res://main/ui/combat/circle_menu/skill_button/SkillButton.tscn" type="PackedScene" id=16]
 [ext_resource path="res://main/ui/combat/skill_container/skill_container.gd" type="Script" id=17]
 [ext_resource path="res://main/ui/combat/fighter_selection/target_selector.gd" type="Script" id=18]
 [ext_resource path="res://main/ui/_assets/fonts/PressStart2P.ttf" type="DynamicFontData" id=19]
@@ -385,30 +384,9 @@ margin_bottom = 128.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CircleMenu/SkillContainer/ScrollContainer"]
 margin_right = 330.0
-margin_bottom = 76.0
 size_flags_horizontal = 11
 theme = SubResource( 7 )
 custom_constants/separation = 0
-
-[node name="Button" parent="CircleMenu/SkillContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_left = 65.0
-margin_right = 330.0
-
-[node name="Button2" type="Button" parent="CircleMenu/SkillContainer/ScrollContainer/VBoxContainer"]
-margin_top = 28.0
-margin_right = 330.0
-margin_bottom = 52.0
-size_flags_horizontal = 11
-text = "Trisagion 999mp"
-align = 2
-
-[node name="Button3" type="Button" parent="CircleMenu/SkillContainer/ScrollContainer/VBoxContainer"]
-margin_top = 52.0
-margin_right = 330.0
-margin_bottom = 76.0
-size_flags_horizontal = 11
-text = "Maragidyne 999mp"
-align = 2
 
 [node name="Tween" type="Tween" parent="CircleMenu/SkillContainer"]
 
@@ -430,32 +408,8 @@ margin_bottom = 128.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CircleMenu/ItemContainer/ScrollContainer"]
 margin_right = 325.0
-margin_bottom = 78.0
 size_flags_horizontal = 11
 custom_constants/separation = 0
-
-[node name="Button" type="Button" parent="CircleMenu/ItemContainer/ScrollContainer/VBoxContainer"]
-margin_right = 325.0
-margin_bottom = 26.0
-size_flags_horizontal = 11
-text = "Medicine x99"
-align = 2
-
-[node name="Button2" type="Button" parent="CircleMenu/ItemContainer/ScrollContainer/VBoxContainer"]
-margin_top = 26.0
-margin_right = 325.0
-margin_bottom = 52.0
-size_flags_horizontal = 11
-text = "Life Stone x12"
-align = 2
-
-[node name="Button3" type="Button" parent="CircleMenu/ItemContainer/ScrollContainer/VBoxContainer"]
-margin_top = 52.0
-margin_right = 325.0
-margin_bottom = 78.0
-size_flags_horizontal = 11
-text = "Balm of Life x2"
-align = 2
 
 [node name="Tween" type="Tween" parent="CircleMenu/ItemContainer"]
 

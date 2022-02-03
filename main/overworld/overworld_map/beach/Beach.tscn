@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://main/overworld/overworld_map/OverworldMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/overworld/overworld_map/_assets/water/Water.tscn" type="PackedScene" id=2]
@@ -14,11 +14,13 @@
 [ext_resource path="res://main/overworld/overworld_map/beach/210249__julius-galla__atmosphere-shore-loop.wav" type="AudioStream" id=12]
 [ext_resource path="res://main/overworld/overworld_map/_assets/decoration/beach_junk/sand_dollar.png" type="Texture" id=13]
 [ext_resource path="res://main/overworld/overworld_map/beach/encounters/beach1.tres" type="Resource" id=14]
-[ext_resource path="res://main/items/combat/puffle/puffle.tres" type="Resource" id=15]
+[ext_resource path="res://main/items/healing/fruit puff/fruit puff.tres" type="Resource" id=15]
 [ext_resource path="res://main/overworld/overworld_map/_assets/decoration/beach_junk/shell3.png" type="Texture" id=16]
 [ext_resource path="res://main/overworld/overworld_map/_assets/decoration/beach_junk/shell4.png" type="Texture" id=17]
 [ext_resource path="res://main/overworld/overworld_map/_assets/interactable/item/Item.tscn" type="PackedScene" id=18]
 [ext_resource path="res://main/overworld/overworld_map/_assets/interactable/item/sprites/puffle1.png" type="Texture" id=19]
+[ext_resource path="res://main/items/healing/cream puff/cream puff.tres" type="Resource" id=20]
+[ext_resource path="res://main/items/healing/choco puff/choco puff.tres" type="Resource" id=21]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -228,9 +230,22 @@ autoplay = true
 [node name="Item" parent="Items" index="0" instance=ExtResource( 18 )]
 position = Vector2( 208, 2296 )
 item = ExtResource( 15 )
-item_name = "Berry Puffle"
 
 [node name="Sprite" parent="Items/Item" index="0"]
+texture = ExtResource( 19 )
+
+[node name="Item2" parent="Items" index="1" instance=ExtResource( 18 )]
+position = Vector2( 304, 2304 )
+item = ExtResource( 20 )
+
+[node name="Sprite" parent="Items/Item2" index="0"]
+texture = ExtResource( 19 )
+
+[node name="Item3" parent="Items" index="2" instance=ExtResource( 18 )]
+position = Vector2( 200, 2400 )
+item = ExtResource( 21 )
+
+[node name="Sprite" parent="Items/Item3" index="0"]
 texture = ExtResource( 19 )
 
 [node name="PalmTree" parent="Decoration" index="0" instance=ExtResource( 4 )]
@@ -593,3 +608,5 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 13 )
 
 [editable path="Items/Item"]
+[editable path="Items/Item2"]
+[editable path="Items/Item3"]

@@ -28,15 +28,19 @@ func initialize() -> void:
 	for child in $ScrollContainer/VBoxContainer.get_children():
 		$ScrollContainer/VBoxContainer.remove_child(child)
 		child.queue_free()
-	for item in items.combat_items:
-		var new_button = item_button.instance()
-		new_button.connect("button_down", self, "button_down", [new_button])
-		$ScrollContainer/VBoxContainer.add_child(new_button)
-		new_button.initialize(item, items.combat_items[item])
+	var last_button = null
+	for inventory in [items.combat_items, items.healing_items]:
+		for item in inventory:
+			var new_button = item_button.instance()
+			new_button.connect("button_down", self, "button_down", [new_button])
+			$ScrollContainer/VBoxContainer.add_child(new_button)
+			new_button.initialize(item, inventory[item])
+			last_button = new_button
+	last_button.set_focus_neighbour(MARGIN_BOTTOM, last_button.get_path())
 
 func button_down(button: Button) -> void:
 	SoundPlayer.play_sound(SoundPlayer.accept)
-	emit_signal("action_selected", [items.instance_item(button.action), button.item_icon])
+	emit_signal("action_selected", [items.instance_item(button.action), button.item])
 
 func transition_in() -> void:
 	$ScrollContainer.modulate = Color(1,1,1,0)

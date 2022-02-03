@@ -377,3 +377,5 @@ new_game_developer_path = "res://main/save_game/new_game.tres"
 script = ExtResource( 23 )
 
 [node name="Combat" type="Node" parent="Items"]
+
+[node name="Healing" type="Node" parent="Items"]

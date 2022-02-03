@@ -1,10 +1,13 @@
 extends Node
 
 export var combat_items: Dictionary
+export var healing_items: Dictionary
 var instanced_item: Node
 
 func _ready() -> void:
-	combat_items[load("res://main/items/combat/puffle/puffle.tres")] = 2
+	healing_items[load("res://main/items/healing/cream puff/cream puff.tres")] = 2
+	healing_items[load("res://main/items/healing/choco puff/choco puff.tres")] = 2
+
 
 func instance_item(item: PackedScene) -> Node:
 	if instanced_item:

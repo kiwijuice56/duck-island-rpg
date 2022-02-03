@@ -119,7 +119,7 @@ func switch_menu(input: String) -> void:
 			yield(transition_in(), "completed")
 			call_deferred("switch_menu", input)
 		else:
-			emit_signal("action_selected", {"action_type": input.substr(0, len(input)-1), "item_icon": action_data[1], "targets": targets, "action": action})
+			emit_signal("action_selected", {"action_type": input.substr(0, len(input)-1), "item": action_data[1], "targets": targets, "action": action})
 
 func center_selection() -> void:
 	for i in range($Buttons.get_child_count()):
