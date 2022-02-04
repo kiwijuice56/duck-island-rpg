@@ -5,6 +5,14 @@
 [resource]
 script = ExtResource( 1 )
 data = {
+"inventory": {
+"items": {
+"combat_items": null,
+"healing_items": {
+Resource( "res://main/items/healing/choco puff/choco puff.tres" ): 4
+}
+}
+},
 "overworld_nodes": {
 "overworld": {
 "location": "beach"

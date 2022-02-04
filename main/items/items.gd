@@ -1,13 +1,12 @@
 extends Node
 
-export var combat_items: Dictionary
-export var healing_items: Dictionary
+var combat_items
+var healing_items
+export var save_id := "items"
 var instanced_item: Node
 
 func _ready() -> void:
-	healing_items[load("res://main/items/healing/cream puff/cream puff.tres")] = 2
-	healing_items[load("res://main/items/healing/choco puff/choco puff.tres")] = 2
-
+	pass
 
 func instance_item(item: PackedScene) -> Node:
 	if instanced_item:
@@ -20,3 +19,12 @@ func deinstance_item() -> void:
 	remove_child(instanced_item)
 	instanced_item.queue_free()
 
+func load_data(data: Dictionary) -> void:
+	healing_items = data["healing_items"]
+	combat_items = data["combat_items"]
+
+func save_data() -> Dictionary:
+	var data := {}
+	data["healing_items"] = healing_items
+	data["combat_items"] = combat_items
+	return data

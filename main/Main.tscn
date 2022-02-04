@@ -180,7 +180,6 @@ visible = false
 
 [node name="SaveRoom" parent="ViewportContainer/Viewport/UI/SaveRoomUI" instance=ExtResource( 31 )]
 visible = false
-script = null
 
 [node name="StatusUI" type="CanvasLayer" parent="ViewportContainer/Viewport/UI"]
 
@@ -410,11 +409,13 @@ anims/shake = SubResource( 6 )
 
 [node name="SaveFileHandler" type="Node" parent="ViewportContainer/Viewport"]
 script = ExtResource( 24 )
-save_groups = [ "overworld_nodes" ]
+save_groups = [ "overworld_nodes", "inventory" ]
 developer_save_folder_path = "res://main/save_game/debug_save_files/"
 new_game_developer_path = "res://main/save_game/new_game.tres"
 
-[node name="Items" type="Node" parent="ViewportContainer/Viewport"]
+[node name="Items" type="Node" parent="ViewportContainer/Viewport" groups=[
+"inventory",
+]]
 script = ExtResource( 23 )
 
 [node name="Combat" type="Node" parent="ViewportContainer/Viewport/Items"]

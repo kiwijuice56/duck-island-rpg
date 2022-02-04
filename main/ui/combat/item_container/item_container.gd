@@ -30,6 +30,8 @@ func initialize() -> void:
 		child.queue_free()
 	var last_button = null
 	for inventory in [items.combat_items, items.healing_items]:
+		if not inventory:
+			continue
 		for item in inventory:
 			var new_button = item_button.instance()
 			new_button.connect("button_down", self, "button_down", [new_button])

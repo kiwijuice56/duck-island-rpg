@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://main/overworld/overworld_map/OverworldMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/overworld/overworld_map/_assets/water/Water.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://main/overworld/overworld_map/_assets/interactable/item/sprites/puffle1.png" type="Texture" id=19]
 [ext_resource path="res://main/items/healing/cream puff/cream puff.tres" type="Resource" id=20]
 [ext_resource path="res://main/items/healing/choco puff/choco puff.tres" type="Resource" id=21]
+[ext_resource path="res://main/overworld/overworld_map/_assets/interactable/npc/npc_saver/NpcSaver.tscn" type="PackedScene" id=22]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -46,7 +47,7 @@ void fragment() {
 //	COLOR = vec4(UV * aspect_ratio, vec2(0.0, 1.0));
 }"
 
-[sub_resource type="ShaderMaterial" id=16]
+[sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 shader_param/tile_factor = 124.92
 shader_param/aspect_ratio = 1.00064
@@ -194,7 +195,7 @@ music = "island"
 encounters = [ ExtResource( 14 ) ]
 
 [node name="Water" parent="." index="0" instance=ExtResource( 2 )]
-material = SubResource( 16 )
+material = SubResource( 2 )
 scale = Vector2( 249.84, 250 )
 
 [node name="WaterTiles" parent="." index="1"]
@@ -247,6 +248,9 @@ item = ExtResource( 21 )
 
 [node name="Sprite" parent="Items/Item3" index="0"]
 texture = ExtResource( 19 )
+
+[node name="NpcSaver" parent="." index="10" instance=ExtResource( 22 )]
+position = Vector2( 408, 2328 )
 
 [node name="PalmTree" parent="Decoration" index="0" instance=ExtResource( 4 )]
 position = Vector2( -184, 2392 )

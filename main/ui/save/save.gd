@@ -30,8 +30,13 @@ func _input(event) -> void:
 		last.enable()
 		last.call(last_func)
 
-func select_file() -> void:
+func load_file() -> void:
 	file_container.get_child(0).get_node("Button").grab_focus()
+	mode = "load"
+
+func save_file() -> void:
+	file_container.get_child(0).get_node("Button").grab_focus()
+	mode = "save"
 
 func initialize() -> void:
 	for child in file_container.get_children():
@@ -43,20 +48,31 @@ func initialize() -> void:
 		if i < len(files):
 			var loaded_file = ResourceLoader.load(files[i])
 			new_save_button.initialize(loaded_file)
-			new_save_button.get_node("Button").connect("pressed", self, "pressed", [new_save_button])
 		else:
 			new_save_button.initialize(null)
+		new_save_button.get_node("Button").connect("pressed", self, "pressed", [new_save_button])
 		file_container.add_child(new_save_button)
 
 func pressed(button):
-	get_focus_owner().release_focus()
 	if mode == "load":
+		if not save_file_handler.file_exists(button.get_index(), true):
+			return
+		get_focus_owner().release_focus()
 		disable()
 		yield(transition.transition_in(), "completed")
 		save_file_handler.call_deferred("load_file", button.get_index(), true)
 		visible = false
 		yield(save_file_handler, "file_managing_complete")
 		yield(transition.transition_out(), "completed")
+	if mode == "save":
+		var saved_index = button.get_index()
+		get_focus_owner().release_focus()
+		disable()
+		save_file_handler.call_deferred("save_file", saved_index, true)
+		yield(save_file_handler, "file_managing_complete")
+		initialize()
+		file_container.get_child(saved_index).get_node("Button").grab_focus()
+		enable()
 
 func enable() -> void:
 	set_process_input(true)

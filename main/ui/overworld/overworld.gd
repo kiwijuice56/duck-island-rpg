@@ -7,9 +7,9 @@ onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/
 
 func _input(event):
 	if event.is_action_pressed("menu", false):
+		hide_prompt()
 		if open: close()
 		else: open()
-		hide_prompt()
 	if open and (event.is_action_pressed("ui_up", false) or event.is_action_pressed("ui_down", false)) :
 		SoundPlayer.play_sound(SoundPlayer.action)
 	if open and event.is_action_pressed("ui_accept", false):
@@ -62,15 +62,18 @@ func close() -> void:
 	open = false
 	$Tween.interpolate_property($PopupMenu, "modulate", null, Color(1,1,1,0), 0.1)
 	$Tween.start()
-	get_tree().get_root().get_node("Main/Overworld/Player").enable()
+	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld/Player").enable()
 
 func display_prompt(text: String) -> void:
+	if open:
+		return
 	$Prompt/Label.text = text
 	$Tween.interpolate_property($Prompt, "modulate", null, Color(1,1,1,1), 0.1)
 	$Tween.start()
 	yield($Tween, "tween_completed")
 
 func hide_prompt() -> void:
+	$Tween.stop_all()
 	$Tween.interpolate_property($Prompt, "modulate", null, Color(1,1,1,0), 0.1)
 	$Tween.start()
 	yield($Tween, "tween_completed")

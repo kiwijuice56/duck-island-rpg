@@ -13,7 +13,7 @@ export var new_game_path: String = "user://"
 
 signal file_managing_complete
 
-var save_file_template_path: String = "res://addons/rpg_framework/custom_nodes/save_file/save_file_template.gd"
+var save_file_template_path: String = "res://main/save_game/save_file_template/save_file_template.gd"
 
 func get_files(developer_mode: bool) -> Array:
 	var dir = Directory.new()
@@ -77,3 +77,10 @@ func load_file(id: int, developer_mode: bool) -> void:
 		for node in get_tree().get_nodes_in_group(group):
 			node.load_data(file.data[group][node.save_id])
 	emit_signal("file_managing_complete")
+
+func file_exists(id: int, developer_mode: bool) -> bool:
+	var file = File.new()
+	if developer_mode:
+		return file.file_exists(developer_save_folder_path + "%02d.tres" % (id))
+	else:
+		return file.file_exists(save_folder_path + "%02d.tres" % (id))
