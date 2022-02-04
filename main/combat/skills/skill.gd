@@ -12,7 +12,7 @@ onready var item_node = get_tree().get_root().get_node("Main/ViewportContainer/V
 export var graphic_effect: PackedScene
 
 func action(user: Node, targets: Array, item: ItemData = null) -> void:
-	if cost_type != "":
+	if cost_type != "" and not item:
 		user.set(cost_type, user.get(cost_type) - cost)
 		user.emit_signal("update_points")
 	# Item pop up if item data is provided

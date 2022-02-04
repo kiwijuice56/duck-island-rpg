@@ -1,8 +1,8 @@
 extends PanelContainer
 
-func initialize(file: Resource):
+func initialize(index: int, file: Resource):
+	$MarginContainer/VBoxContainer/FileName.text = "File %02d" % index
 	if file == null:
-		$MarginContainer/VBoxContainer/FileName.text = "EMPTY"
 		$MarginContainer/VBoxContainer/Time.text = ""
 		$MarginContainer/VBoxContainer/Location.text = ""
 	else:

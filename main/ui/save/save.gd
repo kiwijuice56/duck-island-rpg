@@ -2,6 +2,7 @@ extends Control
 onready var save_file_handler := get_node("../../../SaveFileHandler")
 onready var file_container = get_node("MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer")
 onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
+onready var scroll_container = $MarginContainer/PanelContainer/VBoxContainer/ScrollContainer
 
 export var save_button = preload("res://main/ui/save/save_button/SaveButton.tscn")
 
@@ -45,16 +46,17 @@ func initialize() -> void:
 	var files = save_file_handler.get_files(true)
 	for i in range(99):
 		var new_save_button = save_button.instance()
-		if i < len(files):
+		if files[i]:
 			var loaded_file = ResourceLoader.load(files[i])
-			new_save_button.initialize(loaded_file)
+			new_save_button.initialize(i, loaded_file)
 		else:
-			new_save_button.initialize(null)
+			new_save_button.initialize(i, null)
 		new_save_button.get_node("Button").connect("pressed", self, "pressed", [new_save_button])
 		file_container.add_child(new_save_button)
 
 func pressed(button):
 	if mode == "load":
+		# using save_file_handler to check if file exists by index
 		if not save_file_handler.file_exists(button.get_index(), true):
 			return
 		get_focus_owner().release_focus()
@@ -66,12 +68,14 @@ func pressed(button):
 		yield(transition.transition_out(), "completed")
 	if mode == "save":
 		var saved_index = button.get_index()
+		var saved_scroll = scroll_container.scroll_vertical
 		get_focus_owner().release_focus()
 		disable()
 		save_file_handler.call_deferred("save_file", saved_index, true)
 		yield(save_file_handler, "file_managing_complete")
 		initialize()
 		file_container.get_child(saved_index).get_node("Button").grab_focus()
+		scroll_container.scroll_vertical = saved_scroll
 		enable()
 
 func enable() -> void:

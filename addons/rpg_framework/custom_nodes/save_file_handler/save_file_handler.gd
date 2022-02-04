@@ -20,13 +20,11 @@ func get_files(developer_mode: bool) -> Array:
 	dir.open(developer_save_folder_path if developer_mode else save_folder_path)
 	dir.list_dir_begin()
 	var files = []
-	while true:
-		var file = dir.get_next()
-		if file.begins_with("."):
-			continue
-		if file == "":
-			break
-		files.append((developer_save_folder_path if developer_mode else save_folder_path) + file)
+	for i in range(99):
+		if file_exists(i, developer_mode):
+			files.append((developer_save_folder_path if developer_mode else save_folder_path) + "%02d.tres" % i)
+		else:
+			files.append(null)
 	dir.list_dir_end()
 	return files
 

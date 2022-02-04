@@ -131,9 +131,6 @@ script = ExtResource( 3 )
 [node name="ParticleEffects" parent="." index="5"]
 position = Vector2( -2.64865, -72 )
 
-[node name="Panic" parent="ParticleEffects" index="1"]
-emitting = false
-
 [node name="SpriteAnimationPlayer" parent="." index="7"]
 anims/hold_magic = SubResource( 1 )
 anims/idle = SubResource( 2 )

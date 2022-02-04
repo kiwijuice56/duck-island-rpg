@@ -4,6 +4,8 @@ export var wait_time := 0.1
 export var impact_effect: PackedScene
 
 func animate(user: Node, targets: Array) -> void:
+	if not anim_name == "":
+		$AnimationPlayer.current_animation = anim_name
 	cam.toggle_cover(true)
 	cam.prioritize([user] + targets)
 	for i in range(len(targets)):

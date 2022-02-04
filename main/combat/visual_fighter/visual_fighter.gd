@@ -37,6 +37,7 @@ signal update_points
 var miss_color := Color("#ff0044")
 var crit_color := Color("#ffcc00")
 var panic_color := Color("#e0addd")
+var heal_color := Color("#7aff70")
 
 func _ready() -> void:
 	$ParticleEffects.global_position = $SelectIcon.global_position
@@ -60,6 +61,9 @@ func on_impact() -> void:
 			$SpriteAnimationPlayer.current_animation = "miss"
 		$CanvasLayer/DamageLabel.text = "miss!"
 		$CanvasLayer/DamageLabel.add_color_override("font_color", miss_color)
+	elif calculation_cache["contact"] == "heal":
+		damage_label.add_color_override("font_color", heal_color)
+		damage_label.text = "+" + str(calculation_cache["damage"])
 	else:
 		if status == "dead":
 			$BasicAnimationPlayer.current_animation = "dead"

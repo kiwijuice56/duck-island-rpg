@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
-[ext_resource path="res://main/combat/skills/damage_skill/attack/attack.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/combat/skills/damage_skill/heal/heal.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/items/healing/combat_item_data.gd" type="Script" id=2]
 [ext_resource path="res://main/items/healing/fruit puff/fruit puff.png" type="Texture" id=3]
 
