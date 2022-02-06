@@ -12,9 +12,12 @@ func _ready():
 	overworld_ui.connect("menu_opened", self, "body_exited", [null])
 
 func body_entered(body) -> void:
-	body.connect("disabled", self, "body_exited", body)
+	set_process_input(true)
+	self.body = body
+	disabled = false
 
 func body_exited(body) -> void:
 	self.body = null
+	set_process_input(false)
 	disabled = true
 	overworld_ui.hide_prompt()

@@ -11,8 +11,10 @@ signal menu_opened
 func _input(event):
 	if event.is_action_pressed("menu", false):
 		hide_prompt()
-		if open: close()
-		else: open()
+		if open:
+			close()
+		else: 
+			open()
 	if open and (event.is_action_pressed("ui_up", false) or event.is_action_pressed("ui_down", false)) :
 		SoundPlayer.play_sound(SoundPlayer.action)
 	if open and event.is_action_pressed("ui_accept", false):
@@ -63,23 +65,24 @@ func choose_button() -> void:
 func open() -> void:
 	SoundPlayer.play_sound(SoundPlayer.accept)
 	MusicPlayer.play_music(MusicPlayer.menu)
-	$MiniTransition.transition_in()
+	emit_signal("menu_opened")
 	# calling disable also disables this node due to needing to stop menu opening in other menus
 	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld/Player").disable()
+	yield($MiniTransition.transition_in(), "completed")
 	enable()
 	open = true
 	$Tween.interpolate_property($PopupMenu, "modulate", null, Color(1,1,1,1), 0.1)
 	$Tween.start()
 	choose_button()
-	emit_signal("menu_opened")
 
 func close() -> void:
 	SoundPlayer.play_sound(SoundPlayer.cancel)
 	MusicPlayer.play_music(MusicPlayer.island)
 	open = false
-	yield($MiniTransition.transition_out(), "completed")
+	get_focus_owner().release_focus()
 	$Tween.interpolate_property($PopupMenu, "modulate", null, Color(1,1,1,0), 0.1)
 	$Tween.start()
+	yield($MiniTransition.transition_out(), "completed")
 	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld/Player").enable()
 
 func display_prompt(text: String) -> void:

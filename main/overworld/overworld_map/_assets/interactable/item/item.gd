@@ -18,8 +18,7 @@ func _input(_event):
 		call_deferred("collect", body)
 
 func body_entered(body) -> void:
-	self.body = body
-	disabled = false
+	.body_entered(body)
 	overworld_ui.display_prompt("Pick up: Z")
 
 func shine_light():

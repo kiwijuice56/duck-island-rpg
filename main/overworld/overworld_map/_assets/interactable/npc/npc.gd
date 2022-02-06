@@ -8,8 +8,7 @@ func _input(event):
 		call_deferred("talk", body)
 
 func body_entered(body) -> void:
-	self.body = body
-	disabled = false
+	.body_entered(body)
 	overworld_ui.display_prompt("Talk: Z")
 
 func talk(player) -> void:
