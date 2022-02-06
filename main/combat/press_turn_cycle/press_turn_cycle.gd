@@ -60,7 +60,6 @@ func clean_cycle() -> void:
 	cycle = new_cycle
 
 func battle_end() -> void:
-	MusicPlayer.play_music(MusicPlayer.overworld)
 	yield(transition.transition_in(), "completed")
 	after_battle.visible = true
 	after_battle.last = self
@@ -73,6 +72,7 @@ func battle_end() -> void:
 func switch_to_overworld() -> void:
 	cam.current = false
 	after_battle.disable()
+	MusicPlayer.play_music(MusicPlayer.island)
 	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").visible = true
 	for child in get_children():
 		for fighter in child.get_children():
@@ -122,6 +122,7 @@ func battle() -> void:
 				clean_cycle()
 				for sub in cycle:
 					if len(sub) == 0:
+						MusicPlayer.play_music(MusicPlayer.victory)
 						yield(text_box.display_text("Battle end.", 0.02, 1.5), "completed")
 						battle_end()
 						return

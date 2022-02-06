@@ -13,7 +13,7 @@
 [ext_resource path="res://main/ui/overworld/encounter_meter/encounter_rate_meter.gd" type="Script" id=11]
 [ext_resource path="res://main/ui/overworld/mini_transition.gd" type="Script" id=13]
 
-[sub_resource type="Shader" id=7]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 uniform float strength = 0.2;
@@ -25,20 +25,18 @@ void fragment() {
 	vec2 pixel_fract = fract(UV * fragment_number);
 	float pixel_dist = UV.x*distance(pixel_fract, vec2(0.5, 0.5));
 	vec4 pixel = texture(SCREEN_TEXTURE, SCREEN_UV);
-	COLOR = pixel;
-    float avg = (COLOR.r + COLOR.g + COLOR.b) / 3.0;
-    COLOR.rgb = vec3(avg);
+	COLOR.rgb = vec3(dot(pixel.rgb, vec3(0.5, 0.5, 0.5)));
 	COLOR.a *= step(pixel_dist, dissolve_state);
 }"
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = SubResource( 7 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 shader_param/strength = 0.2
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/fragment_number = Vector2( 30, 20 )
 shader_param/dissolve_state = 1.0
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/dissolve_state")
 tracks/0/interp = 1
@@ -52,7 +50,7 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/dissolve_state")
 tracks/0/interp = 1
@@ -66,18 +64,18 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.231707, 0.628049, 1 )
 colors = PoolColorArray( 0.368042, 0.347656, 1, 1, 0.12085, 0.859375, 0.374718, 1, 0.905882, 1, 0, 1, 1, 0, 0, 1 )
 
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=6]
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 32, 32 )
 margin_left = 14.0
 margin_right = 14.0
 margin_top = 4.0
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=7]
 content_margin_left = 0.0
 content_margin_right = 0.0
 texture = ExtResource( 8 )
@@ -98,7 +96,7 @@ __meta__ = {
 
 [node name="MiniTransition" type="ColorRect" parent="."]
 modulate = Color( 0.760784, 0.760784, 0.760784, 1 )
-material = SubResource( 1 )
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
@@ -109,8 +107,8 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MiniTransition"]
 playback_speed = 3.0
-anims/transition_in = SubResource( 5 )
-anims/transition_out = SubResource( 6 )
+anims/transition_in = SubResource( 3 )
+anims/transition_out = SubResource( 4 )
 
 [node name="EncounterRate" type="Control" parent="."]
 anchor_left = 1.0
@@ -124,7 +122,7 @@ script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-color = SubResource( 2 )
+color = SubResource( 5 )
 
 [node name="Cover" type="TextureRect" parent="EncounterRate"]
 margin_left = -32.0
@@ -162,7 +160,7 @@ margin_left = -51.0
 margin_top = -70.0
 margin_right = 51.0
 margin_bottom = -30.0
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -207,7 +205,7 @@ margin_right = 250.0
 margin_bottom = 122.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 7 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PopupMenu/HBoxContainer/PanelContainer"]
 margin_top = 3.0

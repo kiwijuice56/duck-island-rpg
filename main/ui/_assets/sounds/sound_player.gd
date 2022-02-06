@@ -9,8 +9,6 @@ var woosh = preload("res://main/ui/_assets/sounds/woosh.wav")
 var crit = preload("res://main/ui/_assets/sounds/P4 Critical Cut-In.wav")
 
 func play_sound(sound) -> void:
-	if sound == accept:
-		print_stack()
 	var player = AudioStreamPlayer.new()
 	player.stream = sound
 	player.playing = true

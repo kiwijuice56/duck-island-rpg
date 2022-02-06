@@ -74,6 +74,9 @@ MusicPlayer="*res://main/music/music_player.gd"
 [debug]
 
 settings/fps/force_fps=120
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/variable_conflicts_function=false
 gdscript/warnings/return_value_discarded=false
 
 [importer_defaults]

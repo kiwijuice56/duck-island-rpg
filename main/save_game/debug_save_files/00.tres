@@ -9,8 +9,8 @@ data = {
 "items": {
 "combat_items": null,
 "healing_items": {
-Resource( "res://main/items/healing/choco puff/choco puff.tres" ): 4,
-Resource( "res://main/items/healing/cream puff/cream puff.tres" ): 1
+Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1,
+Resource( "res://main/items/healing/choco puff/choco puff.tres" ): 5
 }
 }
 },

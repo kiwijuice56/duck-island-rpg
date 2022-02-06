@@ -4,6 +4,7 @@ onready var player_party = get_tree().get_root().get_node("Main/ViewportContaine
 onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
 onready var save_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SaveUI/Save")
 onready var system_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SystemUI/System")
+onready var skill_container = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer
 onready var stat_container = $PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer
 onready var name_label = $PanelContainer/MarginContainer/VBoxContainer/NameLabelContainer/Label
 onready var exp_label = $PanelContainer/MarginContainer/VBoxContainer/ExpLabelContainer/Label
@@ -54,6 +55,7 @@ func initialize(fighter: Node) -> void:
 	var stats = ["strength", "magic", "vitality", "luck", "agility"]
 	for i in range(5):
 		stat_container.get_child(i).set_stat(stats[i], fighter.get(stats[i]))
+	skill_container.initialize(fighter)
 
 func enable():
 	set_process_input(true)

@@ -22,11 +22,6 @@ func body_entered(body) -> void:
 	disabled = false
 	overworld_ui.display_prompt("Pick up: Z")
 
-func body_exited(_body) -> void:
-	self.body = null
-	disabled = true
-	overworld_ui.hide_prompt()
-
 func shine_light():
 	if not emitting_light:
 		return

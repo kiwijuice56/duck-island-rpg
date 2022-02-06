@@ -9,9 +9,12 @@ onready var cam = get_tree().get_root().get_node("Main/ViewportContainer/Viewpor
 func _ready():
 	connect("body_entered", self, "body_entered")
 	connect("body_exited", self, "body_exited")
+	overworld_ui.connect("menu_opened", self, "body_exited", [null])
 
 func body_entered(body) -> void:
-	pass
+	body.connect("disabled", self, "body_exited", body)
 
 func body_exited(body) -> void:
-	pass
+	self.body = null
+	disabled = true
+	overworld_ui.hide_prompt()

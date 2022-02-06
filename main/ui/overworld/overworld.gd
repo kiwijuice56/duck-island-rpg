@@ -6,6 +6,8 @@ onready var system_ui = get_tree().get_root().get_node("Main/ViewportContainer/V
 onready var status_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/StatusUI/Status")
 onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
 
+signal menu_opened
+
 func _input(event):
 	if event.is_action_pressed("menu", false):
 		hide_prompt()
@@ -23,6 +25,8 @@ func _ready():
 	disable()
 
 func button_pressed(button_name: String) -> void:
+	if not open:
+		return
 	disable()
 	yield(transition.transition_in(), "completed")
 	visible = false
@@ -60,12 +64,14 @@ func open() -> void:
 	SoundPlayer.play_sound(SoundPlayer.accept)
 	MusicPlayer.play_music(MusicPlayer.menu)
 	$MiniTransition.transition_in()
+	# calling disable also disables this node due to needing to stop menu opening in other menus
 	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld/Player").disable()
 	enable()
 	open = true
 	$Tween.interpolate_property($PopupMenu, "modulate", null, Color(1,1,1,1), 0.1)
 	$Tween.start()
 	choose_button()
+	emit_signal("menu_opened")
 
 func close() -> void:
 	SoundPlayer.play_sound(SoundPlayer.cancel)
@@ -85,7 +91,7 @@ func display_prompt(text: String) -> void:
 	yield($Tween, "tween_completed")
 
 func hide_prompt() -> void:
-	$Tween.stop_all()
+	$Tween.stop($Prompt, "modulate")
 	$Tween.interpolate_property($Prompt, "modulate", null, Color(1,1,1,0), 0.1)
 	$Tween.start()
 	yield($Tween, "tween_completed")

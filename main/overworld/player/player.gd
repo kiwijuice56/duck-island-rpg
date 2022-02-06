@@ -10,37 +10,23 @@ onready var overworld_ui = get_tree().get_root().get_node("Main/ViewportContaine
 onready var cycle = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Combat/PressTurnCycle")
 onready var encounter_meter = overworld_ui.get_node("EncounterRate")
 
-var room
-var water_tiles
-var encounter_type_tiles
-var encounter_rate_tiles
-var encounter
+signal menu_opened
+
+var room: Node
+var water_tiles: TileMap
+var encounter_type_tiles: TileMap
+var encounter_rate_tiles: TileMap
+var encounter: Resource
 
 func _ready() -> void:
-	$Area2D.connect("area_entered", self, "area_entered")
 	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Combat/PressTurnCycle").connect("battle_ended", self, "battle_ended")
 	disable()
-
-func area_entered(area: Area2D) -> void:
-	pass
 
 func battle_started() -> void:
 	call_deferred("disable")
 	yield(transition.transition_in(), "completed")
-	
-	var enemies = []
-	for i in range(0, int(rand_range(encounter.enemy_count_min, encounter.enemy_count_max))):
-		var rand = rand_range(0,1)
-		var j = 0
-		while j != len(encounter.enemies)-1:
-			rand -= encounter.spawn_chances[j]
-			if rand > 0:
-				j += 1
-			else:
-				break
-		enemies.append(encounter.enemies[j])
-	cycle.set_enemies(enemies)
 	visible = false
+	cycle.set_enemies(room.get_enemies(encounter))
 	cycle.battle()
 
 func battle_ended() -> void:

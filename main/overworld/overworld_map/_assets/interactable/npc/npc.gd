@@ -12,11 +12,6 @@ func body_entered(body) -> void:
 	disabled = false
 	overworld_ui.display_prompt("Talk: Z")
 
-func body_exited(body) -> void:
-	body = null
-	disabled = true
-	overworld_ui.hide_prompt()
-
 func talk(player) -> void:
 	disabled = true
 	overworld_ui.hide_prompt()

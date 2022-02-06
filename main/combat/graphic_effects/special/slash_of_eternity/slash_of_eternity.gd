@@ -6,7 +6,7 @@ export var swoosh: PackedScene
 
 func animate(user: Node, targets: Array) -> void:
 	var angle = 0
-	yield(cam.pan(targets[0], .5, Vector2()), "completed")
+	yield(cam.pan(targets[0], .5, Vector2(0,-32)), "completed")
 	var old_speed1 = targets[0].get_node("BasicAnimationPlayer").playback_speed 
 	targets[0].get_node("BasicAnimationPlayer").playback_speed = 2
 	var old_speed2 = targets[0].get_node("SpriteAnimationPlayer").playback_speed 
@@ -16,7 +16,7 @@ func animate(user: Node, targets: Array) -> void:
 	cam.prioritize([user] + [targets[0]])
 	user.get_node("SpriteAnimationPlayer").current_animation = "hold_magic"
 	cam.toggle_shake(true)
-	for i in range(35):
+	for _i in range(35):
 		angle = rand_range(0, 360)
 		var new_slash = slash.instance()
 		new_slash.rotation_degrees = angle
