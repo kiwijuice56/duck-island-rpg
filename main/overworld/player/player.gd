@@ -29,7 +29,7 @@ func battle_started() -> void:
 	yield(transition.transition_in(), "completed")
 	
 	var enemies = []
-	for i in range(0, 1+int(rand_range(encounter.enemy_count_min, encounter.enemy_count_max))):
+	for i in range(0, int(rand_range(encounter.enemy_count_min, encounter.enemy_count_max))):
 		var rand = rand_range(0,1)
 		var j = 0
 		while j != len(encounter.enemies)-1:
@@ -45,7 +45,6 @@ func battle_started() -> void:
 
 func battle_ended() -> void:
 	steps = 255.0
-	global_position = Vector2(280, 1104)
 	visible = true
 	$Camera2D.current = true
 	call_deferred("enable")
@@ -137,7 +136,9 @@ func _physics_process(delta):
 	if steps <= 0:
 		battle_started()
 		steps =  0.0
-	encounter_meter.set_encounter_modulate(steps)
 	get_input()
 	set_anim()
 	move_and_slide(dir*speed)
+
+func _process(_delta):
+	encounter_meter.set_encounter_modulate(steps)

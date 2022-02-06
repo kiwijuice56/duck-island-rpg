@@ -8,6 +8,7 @@ var overworld = preload("res://main/music/overworld_demo.mp3")
 var water = preload("res://main/music/swimming_ducklings.mp3")
 var title = preload("res://main/music/title_theme.mp3")
 var island = preload("res://main/music/beach_theme_1.mp3")
+var menu = preload("res://main/music/menu.mp3")
 
 var stream_volume := 0.0
 
@@ -18,6 +19,7 @@ var volumes = {
 	water: -6.5,
 	title: -8,
 	island: -11,
+	menu: -11,
 }
 
 func set_volume(new_global_volume) -> void:

@@ -1,24 +1,29 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://main/ui/status/stat_bar/progress.png" type="Texture" id=1]
 [ext_resource path="res://main/ui/status/stat_bar/under.png" type="Texture" id=2]
+[ext_resource path="res://main/ui/status/stat_bar/stat_bar.gd" type="Script" id=3]
+[ext_resource path="res://main/ui/_assets/fonts/main_font.tres" type="DynamicFont" id=4]
 
 [node name="HBoxContainer" type="HBoxContainer"]
 margin_right = 1024.0
 margin_bottom = 32.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="."]
-margin_top = 9.0
-margin_right = 22.0
-margin_bottom = 23.0
-text = "STR"
+margin_top = 4.0
+margin_right = 50.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 50, 0 )
+custom_fonts/font = ExtResource( 4 )
+text = "MAG"
 
 [node name="TextureProgress" type="TextureProgress" parent="."]
-margin_left = 26.0
-margin_right = 386.0
+margin_left = 54.0
+margin_right = 414.0
 margin_bottom = 32.0
 value = 100.0
 texture_under = ExtResource( 2 )

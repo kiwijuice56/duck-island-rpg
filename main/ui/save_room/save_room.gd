@@ -39,6 +39,7 @@ func pressed(button_name: String) -> void:
 			yield(transition.transition_in(), "completed")
 			save_ui.visible = true
 			save_ui.last = self
+			save_ui.label.text = "Save what file?"
 			save_ui.last_func = "choose_button"
 			visible = false
 			yield(transition.transition_out(), "completed")
@@ -50,6 +51,7 @@ func pressed(button_name: String) -> void:
 			save_ui.visible = true
 			save_ui.last = self
 			save_ui.last_func = "choose_button"
+			save_ui.label.text = "Load what file?"
 			visible = false
 			yield(transition.transition_out(), "completed")
 			save_ui.enable()

@@ -6,6 +6,9 @@ onready var items := get_tree().get_root().get_node("Main/ViewportContainer/View
 
 signal action_selected(action)
 
+func _ready():
+	disable()
+
 func _input(event):
 	if event.is_action_pressed("ui_cancel", false):
 		disable()
@@ -20,7 +23,7 @@ func enable() -> void:
 	set_process_input(true)
 
 func disable() -> void:
-	if get_focus_owner():
+	if get_focus_owner() and get_focus_owner().get_parent() == $ScrollContainer/VBoxContainer:
 		get_focus_owner().release_focus()
 	set_process_input(false)
 
@@ -37,6 +40,8 @@ func initialize() -> void:
 			new_button.connect("button_down", self, "button_down", [new_button])
 			$ScrollContainer/VBoxContainer.add_child(new_button)
 			new_button.initialize(item, inventory[item])
+			new_button.set_focus_neighbour(MARGIN_LEFT, new_button.get_path())
+			new_button.set_focus_neighbour(MARGIN_RIGHT, new_button.get_path())
 			last_button = new_button
 	last_button.set_focus_neighbour(MARGIN_BOTTOM, last_button.get_path())
 

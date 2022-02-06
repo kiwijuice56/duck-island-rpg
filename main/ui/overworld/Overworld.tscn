@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://main/ui/_assets/text_box/TextBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/ui/_assets/themes/main.tres" type="Theme" id=2]
@@ -11,19 +11,73 @@
 [ext_resource path="res://main/ui/overworld/encounter_meter/encounter_progress.png" type="Texture" id=9]
 [ext_resource path="res://main/ui/overworld/encounter_meter/encounter_cover.png" type="Texture" id=10]
 [ext_resource path="res://main/ui/overworld/encounter_meter/encounter_rate_meter.gd" type="Script" id=11]
+[ext_resource path="res://main/ui/overworld/mini_transition.gd" type="Script" id=13]
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+
+uniform float strength = 0.2;
+uniform vec4 color : hint_color = vec4(0);
+uniform vec2 fragment_number = vec2(20,20);
+uniform float dissolve_state : hint_range(0,1) = 1;
+
+void fragment() {
+	vec2 pixel_fract = fract(UV * fragment_number);
+	float pixel_dist = UV.x*distance(pixel_fract, vec2(0.5, 0.5));
+	vec4 pixel = texture(SCREEN_TEXTURE, SCREEN_UV);
+	COLOR = pixel;
+    float avg = (COLOR.r + COLOR.g + COLOR.b) / 3.0;
+    COLOR.rgb = vec3(avg);
+	COLOR.a *= step(pixel_dist, dissolve_state);
+}"
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = SubResource( 7 )
+shader_param/strength = 0.2
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/fragment_number = Vector2( 30, 20 )
+shader_param/dissolve_state = 1.0
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/dissolve_state")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/dissolve_state")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.231707, 0.628049, 1 )
 colors = PoolColorArray( 0.368042, 0.347656, 1, 1, 0.12085, 0.859375, 0.374718, 1, 0.905882, 1, 0, 1, 1, 0, 0, 1 )
 
-[sub_resource type="StyleBoxTexture" id=1]
+[sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 32, 32 )
 margin_left = 14.0
 margin_right = 14.0
 margin_top = 4.0
 
-[sub_resource type="StyleBoxTexture" id=2]
+[sub_resource type="StyleBoxTexture" id=4]
 content_margin_left = 0.0
 content_margin_right = 0.0
 texture = ExtResource( 8 )
@@ -42,6 +96,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MiniTransition" type="ColorRect" parent="."]
+modulate = Color( 0.760784, 0.760784, 0.760784, 1 )
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MiniTransition"]
+playback_speed = 3.0
+anims/transition_in = SubResource( 5 )
+anims/transition_out = SubResource( 6 )
+
 [node name="EncounterRate" type="Control" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -54,7 +124,7 @@ script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-color = SubResource( 3 )
+color = SubResource( 2 )
 
 [node name="Cover" type="TextureRect" parent="EncounterRate"]
 margin_left = -32.0
@@ -92,7 +162,7 @@ margin_left = -51.0
 margin_top = -70.0
 margin_right = 51.0
 margin_bottom = -30.0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -134,27 +204,27 @@ margin_bottom = 595.0
 
 [node name="PanelContainer" type="PanelContainer" parent="PopupMenu/HBoxContainer"]
 margin_right = 250.0
-margin_bottom = 182.0
+margin_bottom = 122.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PopupMenu/HBoxContainer/PanelContainer"]
 margin_top = 3.0
 margin_right = 250.0
-margin_bottom = 179.0
+margin_bottom = 119.0
 rect_min_size = Vector2( 250, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="Skills" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
 margin_right = 250.0
 margin_bottom = 26.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Skills"
 
-[node name="Button2" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="Items" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
 margin_top = 30.0
 margin_right = 250.0
 margin_bottom = 56.0
@@ -162,37 +232,21 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Items"
 
-[node name="Button3" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="Check" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
 margin_top = 60.0
 margin_right = 250.0
 margin_bottom = 86.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Party"
+text = "Check"
 
-[node name="Button5" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="System" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
 margin_top = 90.0
 margin_right = 250.0
 margin_bottom = 116.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Quests"
-
-[node name="System" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 120.0
-margin_right = 250.0
-margin_bottom = 146.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 text = "System"
-
-[node name="Button6" type="Button" parent="PopupMenu/HBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 150.0
-margin_right = 250.0
-margin_bottom = 176.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Quit"
 
 [node name="FighterPanel" type="PanelContainer" parent="PopupMenu/HBoxContainer"]
 margin_left = 254.0

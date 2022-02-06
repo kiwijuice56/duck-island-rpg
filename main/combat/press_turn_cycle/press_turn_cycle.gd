@@ -1,6 +1,7 @@
 extends "res://addons/rpg_framework/custom_nodes/fighter_cycle/team_cycle/team_cycle.gd"
 
 onready var combat_ui := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/CombatUI/Combat")
+onready var after_battle := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/AfterBattleUI/AfterBattle")
 onready var text_box = combat_ui.get_node("VBoxContainer/TextBox")
 onready var press_turn_container := combat_ui.get_node("VBoxContainer/Top/PressTurnContainer")
 onready var cam := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/MainCamera")
@@ -61,14 +62,22 @@ func clean_cycle() -> void:
 func battle_end() -> void:
 	MusicPlayer.play_music(MusicPlayer.overworld)
 	yield(transition.transition_in(), "completed")
-	cam.current = false
-	emit_signal("battle_ended")
+	after_battle.visible = true
+	after_battle.last = self
+	after_battle.last_func = "switch_to_overworld"
+	after_battle.show_info(0, 0, [])
 	combat_ui.visible = false
-	
+	yield(transition.transition_out(), "completed")
+	after_battle.enable()
+
+func switch_to_overworld() -> void:
+	cam.current = false
+	after_battle.disable()
 	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").visible = true
 	for child in get_children():
 		for fighter in child.get_children():
 			fighter.get_node("Sprite").visible = false
+	emit_signal("battle_ended")
 	yield(transition.transition_out(), "completed")
 
 func battle() -> void:
@@ -115,7 +124,6 @@ func battle() -> void:
 					if len(sub) == 0:
 						yield(text_box.display_text("Battle end.", 0.02, 1.5), "completed")
 						battle_end()
-						
 						return
 				
 				match report["success"]:

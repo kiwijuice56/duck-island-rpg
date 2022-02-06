@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://main/overworld/overworld_map/OverworldMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/overworld/overworld_map/_assets/water/Water.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://main/items/healing/cream puff/cream puff.tres" type="Resource" id=20]
 [ext_resource path="res://main/items/healing/choco puff/choco puff.tres" type="Resource" id=21]
 [ext_resource path="res://main/overworld/overworld_map/_assets/interactable/npc/npc_saver/NpcSaver.tscn" type="PackedScene" id=22]
+[ext_resource path="res://main/overworld/overworld_map/_assets/interactable/npc/Npc.tscn" type="PackedScene" id=23]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -47,7 +48,7 @@ void fragment() {
 //	COLOR = vec4(UV * aspect_ratio, vec2(0.0, 1.0));
 }"
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=16]
 shader = SubResource( 1 )
 shader_param/tile_factor = 124.92
 shader_param/aspect_ratio = 1.00064
@@ -195,7 +196,7 @@ music = "island"
 encounters = [ ExtResource( 14 ) ]
 
 [node name="Water" parent="." index="0" instance=ExtResource( 2 )]
-material = SubResource( 2 )
+material = SubResource( 16 )
 scale = Vector2( 249.84, 250 )
 
 [node name="WaterTiles" parent="." index="1"]
@@ -251,6 +252,10 @@ texture = ExtResource( 19 )
 
 [node name="NpcSaver" parent="." index="10" instance=ExtResource( 22 )]
 position = Vector2( 408, 2328 )
+
+[node name="Npc" parent="." index="11" instance=ExtResource( 23 )]
+position = Vector2( 184, 2504 )
+convo = [ [ "yukid", ".02", "the idea is to start of with socialism and then eventually shift into communism, that was always the idea in marx's writings and the main conflict between the bolsheviks vs mensheviks was how to go about the process as how marx and engels wrote" ] ]
 
 [node name="PalmTree" parent="Decoration" index="0" instance=ExtResource( 4 )]
 position = Vector2( -184, 2392 )

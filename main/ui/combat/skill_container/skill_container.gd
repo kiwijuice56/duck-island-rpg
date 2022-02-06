@@ -1,9 +1,12 @@
-extends PanelContainer
+extends Container
 
 export var transition_time := 0.125
 export var skill_button = preload("res://main/ui/combat/circle_menu/skill_button/SkillButton.tscn")
 
 signal action_selected(action)
+
+func _ready():
+	disable()
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel", false):
@@ -19,7 +22,7 @@ func enable() -> void:
 	set_process_input(true)
 
 func disable() -> void:
-	if get_focus_owner():
+	if get_focus_owner() and get_focus_owner().get_parent() == $ScrollContainer/VBoxContainer:
 		get_focus_owner().release_focus()
 	set_process_input(false)
 
@@ -35,6 +38,8 @@ func initialize(fighter: Node) -> void:
 			new_button.disabled = true
 		$ScrollContainer/VBoxContainer.add_child(new_button)
 		new_button.initialize(skill)
+		new_button.set_focus_neighbour(MARGIN_LEFT, new_button.get_path())
+		new_button.set_focus_neighbour(MARGIN_RIGHT, new_button.get_path())
 		last_button = new_button
 	last_button.set_focus_neighbour(MARGIN_BOTTOM, last_button.get_path())
 

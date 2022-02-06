@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://main/ui/_assets/themes/main.tres" type="Theme" id=1]
 [ext_resource path="res://main/ui/status/affinity_panel_container/affinity_panel/AffinityPanel.tscn" type="PackedScene" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://main/ui/status/ref2.png" type="Texture" id=16]
 [ext_resource path="res://main/ui/status/ref3.png" type="Texture" id=17]
 [ext_resource path="res://main/ui/status/ref1.png" type="Texture" id=18]
+[ext_resource path="res://main/ui/status/status.gd" type="Script" id=20]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -55,6 +56,7 @@ shader_param/amplitude = Vector2( 0.05, 0.05 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+script = ExtResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -208,7 +210,7 @@ texture = ExtResource( 8 )
 
 [node name="StarBarContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 162.0
-margin_right = 410.0
+margin_right = 418.0
 margin_bottom = 302.0
 size_flags_horizontal = 0
 custom_styles/panel = ExtResource( 15 )
@@ -216,31 +218,31 @@ custom_styles/panel = ExtResource( 15 )
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer"]
 margin_left = 2.0
 margin_top = 2.0
-margin_right = 408.0
+margin_right = 416.0
 margin_bottom = 138.0
 
-[node name="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer" instance=ExtResource( 12 )]
-margin_right = 406.0
+[node name="STR" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer" instance=ExtResource( 12 )]
+margin_right = 414.0
 margin_bottom = 24.0
 
-[node name="HBoxContainer2" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer" instance=ExtResource( 12 )]
+[node name="MAG" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer" instance=ExtResource( 12 )]
 margin_top = 28.0
-margin_right = 406.0
+margin_right = 414.0
 margin_bottom = 52.0
 
-[node name="HBoxContainer3" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer" instance=ExtResource( 12 )]
+[node name="VIT" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer" instance=ExtResource( 12 )]
 margin_top = 56.0
-margin_right = 406.0
+margin_right = 414.0
 margin_bottom = 80.0
 
-[node name="HBoxContainer4" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer" instance=ExtResource( 12 )]
+[node name="AGI" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer" instance=ExtResource( 12 )]
 margin_top = 84.0
-margin_right = 406.0
+margin_right = 414.0
 margin_bottom = 108.0
 
-[node name="HBoxContainer5" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer" instance=ExtResource( 12 )]
+[node name="LUC" parent="PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer" instance=ExtResource( 12 )]
 margin_top = 112.0
-margin_right = 406.0
+margin_right = 414.0
 margin_bottom = 136.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -263,46 +265,55 @@ text = "Skills"
 margin_top = 24.0
 margin_right = 269.0
 margin_bottom = 268.0
+rect_min_size = Vector2( 265, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_styles/panel = ExtResource( 15 )
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer"]
 margin_left = 2.0
 margin_top = 2.0
 margin_right = 267.0
 margin_bottom = 242.0
-rect_min_size = Vector2( 260, 240 )
+rect_min_size = Vector2( 265, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/ScrollContainer"]
+margin_right = 265.0
+margin_bottom = 231.0
 size_flags_horizontal = 0
-custom_constants/vseparation = 0
+custom_constants/separation = 1
 
-[node name="SkillButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
+[node name="SkillButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
 
-[node name="SkillButton2" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
-margin_top = 28.0
-margin_bottom = 56.0
+[node name="SkillButton2" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 29.0
+margin_bottom = 57.0
 
-[node name="SkillButton3" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
-margin_top = 56.0
-margin_bottom = 84.0
+[node name="SkillButton3" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 58.0
+margin_bottom = 86.0
 
-[node name="SkillButton4" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
-margin_top = 84.0
-margin_bottom = 112.0
+[node name="SkillButton4" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 87.0
+margin_bottom = 115.0
 
-[node name="SkillButton5" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
-margin_top = 112.0
-margin_bottom = 140.0
+[node name="SkillButton5" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 116.0
+margin_bottom = 144.0
 
-[node name="SkillButton6" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
-margin_top = 140.0
-margin_bottom = 168.0
+[node name="SkillButton6" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 145.0
+margin_bottom = 173.0
 
-[node name="SkillButton7" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
-margin_top = 168.0
-margin_bottom = 196.0
+[node name="SkillButton7" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 174.0
+margin_bottom = 202.0
 
-[node name="SkillButton8" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/GridContainer" instance=ExtResource( 13 )]
-margin_top = 196.0
-margin_bottom = 224.0
+[node name="SkillButton8" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
+margin_top = 203.0
+margin_bottom = 231.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 275.0

@@ -25,27 +25,24 @@ func _input(event):
 		SoundPlayer.play_sound(SoundPlayer.accept)
 
 func pressed(button_name: String) -> void:
+	disable()
+	yield(transition.transition_in(), "completed")
 	match button_name:
 		"New Game":
-			disable()
-			yield(transition.transition_in(), "completed")
 			save_file_handler.call_deferred("load_file", -1, true)
 			visible = false
 			yield(save_file_handler, "file_managing_complete")
 			yield(transition.transition_out(), "completed")
 		"Load Game":
-			disable()
-			yield(transition.transition_in(), "completed")
 			save_ui.visible = true
 			save_ui.last = self
 			save_ui.last_func = "choose_button"
+			save_ui.label.text = "Load what file?"
 			visible = false
 			yield(transition.transition_out(), "completed")
 			save_ui.enable()
 			save_ui.load_file()
 		"System":
-			disable()
-			yield(transition.transition_in(), "completed")
 			system_ui.visible = true
 			system_ui.last = self
 			system_ui.last_func = "choose_button"

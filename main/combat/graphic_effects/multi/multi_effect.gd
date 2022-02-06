@@ -9,7 +9,7 @@ func animate(user: Node, targets: Array) -> void:
 	cam.toggle_cover(true)
 	cam.prioritize([user] + targets)
 	for i in range(len(targets)):
-		cam.pan(targets[i], .1, Vector2())
+		cam.pan(targets[i], 0.25, Vector2(0, -32))
 		var new_impact = impact_effect.instance()
 		add_child(new_impact)
 		new_impact.impact(targets[i])

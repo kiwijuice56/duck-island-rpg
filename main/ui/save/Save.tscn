@@ -30,7 +30,7 @@ void fragment() {
 //	COLOR = vec4(UV * aspect_ratio, vec2(0.0, 1.0));
 }"
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 shader_param/tile_factor = 27.5
 shader_param/aspect_ratio = 0.636364
@@ -82,7 +82,7 @@ __meta__ = {
 
 [node name="Water" parent="." instance=ExtResource( 1 )]
 modulate = Color( 0.623529, 0.627451, 0.772549, 1 )
-material = SubResource( 6 )
+material = SubResource( 2 )
 position = Vector2( 616, 344 )
 scale = Vector2( 55, 35 )
 texture = SubResource( 3 )

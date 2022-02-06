@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://main/ui/_assets/style_boxes/round_flat_panel.tres" type="StyleBox" id=1]
+[ext_resource path="res://main/ui/_assets/style_boxes/transparent_border.png" type="Texture" id=1]
 [ext_resource path="res://main/ui/_assets/themes/main.tres" type="Theme" id=2]
+[ext_resource path="res://main/ui/after_battle/after_battle.gd" type="Script" id=3]
 [ext_resource path="res://main/overworld/overworld_map/_assets/water/Water.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Shader" id=1]
@@ -36,10 +37,23 @@ shader_param/time_factor = Vector2( 2, 3 )
 shader_param/offset_factor = Vector2( 5, 2 )
 shader_param/amplitude = Vector2( 0.05, 0.05 )
 
+[sub_resource type="StyleBoxTexture" id=3]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 5, 7 )
+margin_left = 3.0
+margin_right = 3.0
+margin_top = 3.0
+margin_bottom = 3.0
+
 [node name="AfterBattle" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -77,63 +91,51 @@ margin_bottom = 595.0
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 margin_right = 1014.0
 margin_bottom = 24.0
-text = "Battle end"
+text = "Victory!"
 
 [node name="MoneyPanel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 28.0
 margin_right = 1014.0
-margin_bottom = 83.0
-custom_styles/panel = ExtResource( 1 )
+margin_bottom = 104.0
+custom_styles/panel = SubResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MoneyPanel"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 1012.0
-margin_bottom = 53.0
-
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MoneyPanel/VBoxContainer"]
+margin_left = 4.0
+margin_top = 12.0
 margin_right = 1010.0
-margin_bottom = 51.0
-text = "Money: $000
-Exp: 0000"
+margin_bottom = 64.0
+
+[node name="Money" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MoneyPanel/VBoxContainer"]
+margin_right = 1006.0
+margin_bottom = 24.0
+text = "Money: $000"
+
+[node name="Exp" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MoneyPanel/VBoxContainer"]
+margin_top = 28.0
+margin_right = 1006.0
+margin_bottom = 52.0
+text = "Exp: 0000"
 
 [node name="ItemPanel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 87.0
+margin_top = 108.0
 margin_right = 1014.0
-margin_bottom = 171.0
-custom_styles/panel = ExtResource( 1 )
+margin_bottom = 160.0
+custom_styles/panel = SubResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ItemPanel"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 1012.0
-margin_bottom = 82.0
+margin_left = 4.0
+margin_top = 12.0
+margin_right = 1010.0
+margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ItemPanel/VBoxContainer"]
-margin_right = 1010.0
+margin_right = 1006.0
 margin_bottom = 24.0
 text = "Items:"
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ItemPanel/VBoxContainer"]
 margin_top = 28.0
-margin_right = 1010.0
-margin_bottom = 80.0
+margin_right = 1006.0
+margin_bottom = 28.0
 size_flags_horizontal = 3
 columns = 2
-
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ItemPanel/VBoxContainer/GridContainer"]
-margin_right = 174.0
-margin_bottom = 24.0
-text = "Fire stone x 3"
-
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ItemPanel/VBoxContainer/GridContainer"]
-margin_left = 178.0
-margin_right = 352.0
-margin_bottom = 24.0
-text = "Bicorn horn x 1"
-
-[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ItemPanel/VBoxContainer/GridContainer"]
-margin_top = 28.0
-margin_right = 174.0
-margin_bottom = 52.0
-text = "Bicorn horn x 1"

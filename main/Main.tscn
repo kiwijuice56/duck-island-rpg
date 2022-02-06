@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://addons/rpg_framework/custom_nodes/party/party.gd" type="Script" id=1]
 [ext_resource path="res://main/ui/combat/Combat.tscn" type="PackedScene" id=2]
@@ -7,10 +7,9 @@
 [ext_resource path="res://main/combat/press_turn_cycle/press_turn_cycle.gd" type="Script" id=5]
 [ext_resource path="res://main/combat/player_party/player_party.gd" type="Script" id=6]
 [ext_resource path="res://main/main_camera/main_camera.gd" type="Script" id=7]
-[ext_resource path="res://main/ui/_assets/shaders/dissolve.shader" type="Shader" id=8]
+[ext_resource path="res://main/ui/transition/Transition.tscn" type="PackedScene" id=8]
 [ext_resource path="res://main/overworld/overworld.gd" type="Script" id=9]
 [ext_resource path="res://main/ui/save/Save.tscn" type="PackedScene" id=10]
-[ext_resource path="res://main/ui/transition/transition.gd" type="Script" id=11]
 [ext_resource path="res://main/combat/visual_fighter/yukid/yukid.tscn" type="PackedScene" id=12]
 [ext_resource path="res://main/main_camera/cover.png" type="Texture" id=13]
 [ext_resource path="res://main/combat/6.png" type="Texture" id=14]
@@ -34,40 +33,7 @@
 [ext_resource path="res://main/PixelPerfectViewportContainer.gd" type="Script" id=32]
 [ext_resource path="res://main/background.png" type="Texture" id=33]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 8 )
-shader_param/fragment_number = Vector2( 30, 20 )
-shader_param/dissolve_state = 0.0
-
-[sub_resource type="Animation" id=2]
-tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:material:shader_param/dissolve_state")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 1.0 ]
-}
-
-[sub_resource type="Animation" id=3]
-tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:material:shader_param/dissolve_state")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 1.0, 0.0 ]
-}
-
-[sub_resource type="Shader" id=4]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 uniform float tile_factor = 10.0;
@@ -91,15 +57,15 @@ void fragment() {
 //	COLOR = vec4(UV * aspect_ratio, vec2(0.0, 1.0));
 }"
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 shader_param/tile_factor = 102.0
 shader_param/aspect_ratio = 0.75
 shader_param/time_factor = Vector2( 2, 3 )
 shader_param/offset_factor = Vector2( 5, 2 )
 shader_param/amplitude = Vector2( 0.05, 0.05 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -188,27 +154,10 @@ visible = false
 
 [node name="AfterBattleUI" type="CanvasLayer" parent="ViewportContainer/Viewport/UI"]
 
-[node name="Status" parent="ViewportContainer/Viewport/UI/AfterBattleUI" instance=ExtResource( 19 )]
+[node name="AfterBattle" parent="ViewportContainer/Viewport/UI/AfterBattleUI" instance=ExtResource( 19 )]
 visible = false
 
-[node name="Transition" type="CanvasLayer" parent="ViewportContainer/Viewport/UI"]
-script = ExtResource( 11 )
-
-[node name="ColorRect" type="ColorRect" parent="ViewportContainer/Viewport/UI/Transition"]
-visible = false
-modulate = Color( 0, 0, 0, 1 )
-material = SubResource( 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ViewportContainer/Viewport/UI/Transition"]
-playback_speed = 1.85
-anims/transition_in = SubResource( 2 )
-anims/transition_out = SubResource( 3 )
+[node name="Transition" parent="ViewportContainer/Viewport/UI" instance=ExtResource( 8 )]
 
 [node name="Overworld" type="Node2D" parent="ViewportContainer/Viewport" groups=[
 "overworld_nodes",
@@ -239,7 +188,7 @@ position = Vector2( -480, -150 )
 motion_scale = Vector2( 0.85, 0.85 )
 
 [node name="Water" parent="ViewportContainer/Viewport/Combat/ParallaxBackground/ParallaxLayer3" instance=ExtResource( 17 )]
-material = SubResource( 5 )
+material = SubResource( 2 )
 position = Vector2( 224, 374 )
 scale = Vector2( 204, 25 )
 z_index = -3
@@ -405,7 +354,7 @@ texture = ExtResource( 13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ViewportContainer/Viewport/MainCamera"]
 playback_speed = 2.25
-anims/shake = SubResource( 6 )
+anims/shake = SubResource( 3 )
 
 [node name="SaveFileHandler" type="Node" parent="ViewportContainer/Viewport"]
 script = ExtResource( 24 )
