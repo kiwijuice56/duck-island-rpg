@@ -10,6 +10,7 @@ func talk(player) -> void:
 	disabled = true
 	overworld_ui.hide_prompt()
 	player.disable()
+	MusicPlayer.play_music(MusicPlayer.save_menu)
 	yield(transition.transition_in(), "completed")
 	save_room.visible = true
 	save_room.last = self

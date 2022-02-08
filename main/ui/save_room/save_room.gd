@@ -30,6 +30,8 @@ func _input(event):
 		yield(transition.transition_out(), "completed")
 		if last.has_method("enable"):
 			last.enable()
+		print("PLAYING BEACH at 33, SAVE_ROOM.gd")
+		MusicPlayer.play_music(MusicPlayer.island)
 		last.call(last_func)
 
 func pressed(button_name: String) -> void:

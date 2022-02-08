@@ -46,6 +46,9 @@ func initialize(fighter: Node) -> void:
 	mp_int = fighter.mp
 	$HP/Label.text = str(hp_int)
 	$MP/Label.text = str(mp_int)
+	if !$Tween.is_inside_tree():
+		yield($Tween, "tree_entered")
+	update_points(fighter)
 
 func update_points(fighter: Node) -> void:
 	hp_int = max(0, int($HP/Label.text))

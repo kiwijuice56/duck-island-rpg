@@ -115,7 +115,7 @@ func switch_menu(input: String) -> void:
 		var targets = yield(get_node("../TargetSelector"), "targets_selected")
 		
 		if len(targets) == 0:
-			SoundPlayer.play_sound(SoundPlayer.cancel)
+			
 			yield(transition_in(), "completed")
 			call_deferred("switch_menu", input)
 		else:

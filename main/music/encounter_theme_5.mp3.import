@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/encounter_theme_5.mp3-ecf2c6f423a83634d83c989e8c854fc9.mp3str"
+
+[deps]
+
+source_file="res://main/music/encounter_theme_5.mp3"
+dest_files=[ "res://.import/encounter_theme_5.mp3-ecf2c6f423a83634d83c989e8c854fc9.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

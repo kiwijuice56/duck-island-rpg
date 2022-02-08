@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/beach_theme_2.mp3-4d7afce6e5d350fed40c28953f350cb2.mp3str"
+
+[deps]
+
+source_file="res://main/music/beach_theme_2.mp3"
+dest_files=[ "res://.import/beach_theme_2.mp3-4d7afce6e5d350fed40c28953f350cb2.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -61,6 +61,9 @@ func clean_cycle() -> void:
 
 func battle_end() -> void:
 	yield(transition.transition_in(), "completed")
+	for sub in cycle:
+		for fighter in sub:
+			fighter.reset_buffs()
 	after_battle.visible = true
 	after_battle.last = self
 	after_battle.last_func = "switch_to_overworld"
@@ -93,9 +96,7 @@ func battle() -> void:
 			fighter.get_node("Sprite").modulate = Color(1,1,1,1)
 			if fighter.get_node("SpriteAnimationPlayer").has_animation("idle"):
 				fighter.get_node("SpriteAnimationPlayer").current_animation = "idle"
-			fighter.atk = 0
-			fighter.def = 0
-			fighter.hit_eva = 0
+			fighter.reset_buffs()
 			fighter.hp = fighter.max_hp
 			fighter.mp = fighter.max_mp
 			fighter.emit_signal("update_points")
@@ -121,9 +122,19 @@ func battle() -> void:
 				
 				clean_cycle()
 				for sub in cycle:
+					
 					if len(sub) == 0:
-						MusicPlayer.play_music(MusicPlayer.victory)
-						yield(text_box.display_text("Battle end.", 0.02, 1.5), "completed")
+						var timer = Timer.new()
+						add_child(timer)
+						
+						timer.start(0.5)
+						yield(timer, "timeout")
+						MusicPlayer.play_music(MusicPlayer.victory, 0.025)
+						yield(text_box.display_text("Victory!", 0.02, 1.5), "completed")
+						timer.start(0.5)
+						yield(timer, "timeout")
+						remove_child(timer)
+						timer.queue_free()
 						battle_end()
 						return
 				

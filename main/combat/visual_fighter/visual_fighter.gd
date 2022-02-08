@@ -20,7 +20,7 @@ var atk := 0
 var def := 0
 var hit_eva := 0
 
-var status := "okay"
+var status := "ok"
 
 onready var combat_ui := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/CombatUI/Combat")
 onready var text_box = combat_ui.get_node("VBoxContainer/TextBox")
@@ -123,6 +123,12 @@ func set_select_animation(enable: bool) -> void:
 		$SelectIcon/SelectAnim.current_animation = "[stop]"
 		$SelectIcon/SelectTween.interpolate_property($Sprite, "modulate", null, Color(1,1,1,1), .2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$SelectIcon/SelectTween.start()
+
+func reset_buffs() -> void:
+	self.atk = 0
+	self.def = 0
+	self.hit_eva = 0
+	emit_signal("update_points")
 
 func act(context: Dictionary) -> void:
 	$CurrentIcon/CurrentIconAnim.current_animation = "current"

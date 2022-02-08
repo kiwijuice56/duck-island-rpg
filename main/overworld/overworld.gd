@@ -5,6 +5,8 @@ export var location_folder = "res://main/overworld/overworld_map/"
 var current_location := ""
 
 func load_data(data: Dictionary) -> void:
+	if current_location:
+		get_child(0).queue_free()
 	var new_location = load(location_folder + data["location"] + "/" + data["location"] + ".tscn").instance()
 	current_location = data["location"]
 	add_child(new_location)
