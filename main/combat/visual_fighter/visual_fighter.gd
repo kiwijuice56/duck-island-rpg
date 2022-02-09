@@ -13,6 +13,7 @@ export var magic: int
 export var agility: int
 export var luck: int
 
+# affinities
 export var defense := {}
 export var offense := {}
 
@@ -35,6 +36,8 @@ var calculation_cache := {}
 signal update_points
 
 var miss_color := Color("#ff0044")
+var null_color := Color("#ff0033")
+var absorb_color := Color("#7aff70")
 var crit_color := Color("#ffcc00")
 var panic_color := Color("#e0addd")
 var heal_color := Color("#7aff70")
@@ -61,9 +64,14 @@ func on_impact() -> void:
 			$SpriteAnimationPlayer.current_animation = "miss"
 		$CanvasLayer/DamageLabel.text = "miss!"
 		$CanvasLayer/DamageLabel.add_color_override("font_color", miss_color)
-	elif calculation_cache["contact"] == "heal":
+	elif calculation_cache["contact"] == "heal" or calculation_cache["contact"] == "absorb":
+		SoundPlayer.play_sound(SoundPlayer.absorb)
 		damage_label.add_color_override("font_color", heal_color)
 		damage_label.text = "+" + str(calculation_cache["damage"])
+	elif calculation_cache["contact"] == "null":
+		SoundPlayer.play_sound(SoundPlayer.null_sound)
+		damage_label.add_color_override("font_color", null_color)
+		damage_label.text = "null"
 	else:
 		if status == "dead":
 			$BasicAnimationPlayer.current_animation = "dead"
@@ -73,13 +81,19 @@ func on_impact() -> void:
 			$BasicAnimationPlayer.current_animation = "hurt"
 			if $SpriteAnimationPlayer.has_animation("hurt"):
 				$SpriteAnimationPlayer.current_animation = "hurt"
-		if calculation_cache["contact"] == "critical":
+		
+		damage_label.text = str(calculation_cache["damage"])
+		damage_label.add_color_override("font_color", Color(1.0,1.0,1.0))
+		
+		if calculation_cache["contact"] == "weak" or "critical" in calculation_cache:
 			SoundPlayer.play_sound(SoundPlayer.crit)
 			damage_label.add_color_override("font_color", crit_color)
-			damage_label.text = "crit! " + str(calculation_cache["damage"])
-		else:
-			damage_label.add_color_override("font_color", Color(1.0,1.0,1.0))
-			damage_label.text = str(calculation_cache["damage"])
+			
+		if calculation_cache["contact"] == "weak":
+			damage_label.text = "weak! " + damage_label.text
+		if "critical" in calculation_cache:
+			damage_label.text = "crit! " + damage_label.text
+	
 	update_status()
 	
 	damage_label.get_node("DamageTween").interpolate_property(damage_label, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.1)

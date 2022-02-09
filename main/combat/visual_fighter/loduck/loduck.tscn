@@ -82,6 +82,7 @@ magic = 4
 agility = 3
 luck = 3
 defense = {
+"ghost": "weak",
 "water": "null"
 }
 offense = {

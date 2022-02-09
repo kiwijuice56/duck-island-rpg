@@ -139,6 +139,10 @@ func battle() -> void:
 						return
 				
 				match report["success"]:
+					-2:
+						SoundPlayer.play_sound(SoundPlayer.glass_break)
+						half_turns = 0
+						full_turns = 0
 					-1:
 						SoundPlayer.play_sound(SoundPlayer.glass_break)
 						for i in range(2):

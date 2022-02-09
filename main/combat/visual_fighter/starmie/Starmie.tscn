@@ -57,9 +57,9 @@ tracks/0/keys = {
 [node name="Starmie" instance=ExtResource( 1 )]
 save_id = "starmie"
 level = 7
-hp = 70
+hp = 999
 mp = 90
-max_hp = 70
+max_hp = 999
 max_mp = 90
 strength = 1
 vitality = 2
@@ -67,6 +67,9 @@ magic = 5
 agility = 5
 luck = 3
 defense = {
+"ghost": "null",
+"phys": "weak",
+"wind": "absorb"
 }
 offense = {
 }
