@@ -34,6 +34,7 @@ onready var damage_label = $CanvasLayer/DamageLabel
 var calculation_cache := {}
 
 signal update_points
+signal selected
 
 var miss_color := Color("#ff0044")
 var null_color := Color("#ff0033")
@@ -132,11 +133,13 @@ func set_select_animation(enable: bool) -> void:
 	if enable:
 		$SelectIcon.frame = 0
 		$SelectIcon/SelectAnim.current_animation = "select"
+		emit_signal("selected", true)
 	else:
 		$SelectIcon.frame = 1
 		$SelectIcon/SelectAnim.current_animation = "[stop]"
 		$SelectIcon/SelectTween.interpolate_property($Sprite, "modulate", null, Color(1,1,1,1), .2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$SelectIcon/SelectTween.start()
+		emit_signal("selected", false)
 
 func reset_buffs() -> void:
 	self.atk = 0

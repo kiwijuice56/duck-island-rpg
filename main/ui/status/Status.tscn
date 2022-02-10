@@ -74,7 +74,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 margin_right = 1024.0
-margin_bottom = 604.0
+margin_bottom = 600.0
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
@@ -87,7 +87,7 @@ __meta__ = {
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 1019.0
-margin_bottom = 599.0
+margin_bottom = 595.0
 custom_constants/separation = 14
 
 [node name="NameLabelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]

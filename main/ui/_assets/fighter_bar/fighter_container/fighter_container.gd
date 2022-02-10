@@ -1,5 +1,7 @@
-extends VBoxContainer
+extends Container
 
+export var regular_style: Resource
+export var select_style: Resource
 export var point_time := 0.125
 
 var hp_int: int setget set_hp_int
@@ -12,7 +14,7 @@ func set_hp_int(new_hp):
 func set_mp_int(new_mp):
 	mp_int = new_mp
 	$MP/Label.text = str(mp_int)
-	
+
 var buff_icons := {
 	"def1": preload("res://main/ui/_assets/fighter_bar/fighter_container/buff_icons/defense_buff_icon1.png"),
 	"def2": preload("res://main/ui/_assets/fighter_bar/fighter_container/buff_icons/defense_buff_icon2.png"),
@@ -35,9 +37,16 @@ var status_icons = {
 	"rot": preload("res://main/ui/_assets/fighter_bar/fighter_container/status_icons/status_icons2.png")
 	}
 
+func set_selected(selected: bool) -> void:
+	if selected:
+		$Select/SelectBackground.add_stylebox_override("panel", select_style)
+	else:
+		$Select/SelectBackground.add_stylebox_override("panel", regular_style)
+
 func initialize(fighter: Node) -> void:
 	$Name.text = fighter.save_id
 	fighter.connect("update_points", self, "update_points", [fighter])
+	fighter.connect("selected", self, "set_selected")
 	$HP/TextureProgress.max_value = fighter.max_hp
 	$MP/TextureProgress.max_value = fighter.max_mp
 	$HP/TextureProgress.value = fighter.hp

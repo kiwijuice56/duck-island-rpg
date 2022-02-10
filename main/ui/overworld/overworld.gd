@@ -1,7 +1,11 @@
 extends Control
 
 var open := false
+
+onready var skill_container := get_node("Control/Skills")
+onready var item_container := get_node("Control2/Items")
 onready var buttons := get_node("PopupMenu/HBoxContainer/PanelContainer/VBoxContainer")
+onready var party = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Combat/PressTurnCycle/PlayerParty")
 onready var system_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SystemUI/System")
 onready var status_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/StatusUI/Status")
 onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
@@ -29,11 +33,37 @@ func _ready():
 func button_pressed(button_name: String) -> void:
 	if not open:
 		return
-	disable()
-	yield(transition.transition_in(), "completed")
-	visible = false
 	match button_name:
+		"Items":
+			disable()
+			if get_focus_owner():
+				get_focus_owner().release_focus()
+			item_container.initialize()
+			yield(item_container.transition_in(), "completed")
+			item_container.enable()
+			var action_data: Array = yield(item_container, "action_selected")
+			var action = action_data[0]
+			
+			if not action:
+				item_container.disable()
+				SoundPlayer.play_sound(SoundPlayer.cancel)
+				yield(item_container.transition_out(), "completed")
+				enable()
+				return
+			
+			item_container.disable()
+			item_container.transition_out()
+			$TargetSelector.call_deferred("select_targets", party, action.target_count)
+			var targets = yield($TargetSelector, "targets_selected")
+			
+			if len(targets) == 0:
+				button_pressed("Items")
+			else:
+				pass
 		"System":
+			disable()
+			yield(transition.transition_in(), "completed")
+			visible = false
 			system_ui.visible = true
 			system_ui.last = self
 			system_ui.last_func = "choose_button"
@@ -41,6 +71,9 @@ func button_pressed(button_name: String) -> void:
 			system_ui.enable()
 			system_ui.edit_options()
 		"Check":
+			disable()
+			yield(transition.transition_in(), "completed")
+			visible = false
 			status_ui.visible = true
 			status_ui.last = self
 			status_ui.last_func = "choose_button"
