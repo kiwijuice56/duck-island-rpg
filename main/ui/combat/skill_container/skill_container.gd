@@ -1,6 +1,6 @@
 extends Container
 
-export var transition_time := 0.125
+export var transition_time := 0.0825
 export var skill_button = preload("res://main/ui/combat/circle_menu/skill_button/SkillButton.tscn")
 
 signal action_selected(action)

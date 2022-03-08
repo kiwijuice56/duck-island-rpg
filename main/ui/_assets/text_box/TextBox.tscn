@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://main/ui/_assets/text_box/text_box.gd" type="Script" id=1]
 [ext_resource path="res://main/ui/_assets/style_boxes/bottom_panel_container.tres" type="StyleBox" id=2]
 [ext_resource path="res://main/ui/_assets/text_box/icons/yukid.png" type="Texture" id=3]
 [ext_resource path="res://main/ui/_assets/text_box/voices/mii_duck.wav" type="AudioStream" id=4]
+[ext_resource path="res://main/ui/_assets/fonts/large_font.tres" type="DynamicFont" id=5]
 
 [node name="TextBox" type="PanelContainer"]
-margin_top = 462.0
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -158.0
 size_flags_vertical = 10
 custom_styles/panel = ExtResource( 2 )
 script = ExtResource( 1 )
@@ -20,29 +22,55 @@ __meta__ = {
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 1019.0
-margin_bottom = 133.0
+margin_bottom = 153.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 1019.0
-margin_bottom = 133.0
+margin_bottom = 153.0
+rect_min_size = Vector2( 0, 148 )
+
+[node name="Control3" type="Control" parent="HBoxContainer"]
+margin_right = 16.0
+margin_bottom = 148.0
+rect_min_size = Vector2( 16, 132 )
 
 [node name="Icon" type="TextureRect" parent="HBoxContainer"]
-margin_right = 128.0
-margin_bottom = 128.0
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 148.0
+margin_bottom = 138.0
 rect_min_size = Vector2( 128, 128 )
+size_flags_vertical = 4
 texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Control2" type="Control" parent="HBoxContainer"]
+margin_left = 152.0
+margin_right = 168.0
+margin_bottom = 148.0
+rect_min_size = Vector2( 16, 0 )
+
 [node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
-margin_left = 132.0
-margin_right = 1014.0
-margin_bottom = 128.0
-rect_min_size = Vector2( 0, 128 )
+margin_left = 172.0
+margin_top = 4.0
+margin_right = 882.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 0, 140 )
 size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/mono_font = ExtResource( 5 )
+custom_fonts/normal_font = ExtResource( 5 )
+text = "sdfsfsdfsdfsd!aaaa?????fsdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+margin_left = 886.0
+margin_right = 1014.0
+margin_bottom = 148.0
+rect_min_size = Vector2( 128, 0 )
 
 [node name="Tween" type="Tween" parent="."]
 

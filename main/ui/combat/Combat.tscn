@@ -333,6 +333,12 @@ margin_right = 572.0
 margin_bottom = 124.0
 
 [node name="TextBox" parent="VBoxContainer" instance=ExtResource( 1 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 442.0
+margin_right = 1024.0
+margin_bottom = 600.0
 
 [node name="CircleMenu" type="Control" parent="."]
 margin_left = 270.0

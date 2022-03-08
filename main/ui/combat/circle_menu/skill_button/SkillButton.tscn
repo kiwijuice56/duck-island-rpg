@@ -25,6 +25,7 @@ custom_styles/focus = SubResource( 1 )
 custom_styles/disabled = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
 custom_fonts/font = ExtResource( 1 )
+action_mode = 0
 align = 2
 script = ExtResource( 2 )
 __meta__ = {

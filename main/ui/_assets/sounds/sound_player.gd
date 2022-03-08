@@ -10,8 +10,11 @@ var crit = preload("res://main/ui/_assets/sounds/P4 Critical Cut-In.wav")
 var null_sound = preload("res://main/ui/_assets/sounds/null.wav")
 var absorb = preload("res://main/ui/_assets/sounds/absorb.wav")
 
+var global_volume = 0
+
 func play_sound(sound) -> void:
 	var player = AudioStreamPlayer.new()
+	player.volume_db = global_volume
 	player.stream = sound
 	player.playing = true
 	get_tree().get_root().get_node("Main/ViewportContainer/Viewport").add_child(player)

@@ -11,7 +11,7 @@ onready var item_node = get_tree().get_root().get_node("Main/ViewportContainer/V
 
 export var graphic_effect: PackedScene
 
-func action(user: Node, targets: Array, item: ItemData = null) -> void:
+func action(user: Node, targets: Array, item: ItemData = null, anim: bool = true) -> void:
 	if cost_type != "" and not item:
 		user.set(cost_type, user.get(cost_type) - cost)
 		user.emit_signal("update_points")
@@ -24,17 +24,23 @@ func action(user: Node, targets: Array, item: ItemData = null) -> void:
 		inventory[item] -= 1
 		if inventory[item] == 0:
 			inventory.erase(item)
-		yield(item_anim_in(item, item_sprite, tween, user.get_node("SelectIcon").global_position), "completed")
+		if anim:
+			yield(item_anim_in(item, item_sprite, tween, user.get_node("SelectIcon").global_position), "completed")
 	
-	var result = calculation(user, targets)
-	var new_effect = graphic_effect.instance()
-	add_child(new_effect)
-	yield(text_box.display_text(user.save_id + " used " + save_id.capitalize() + "!", 0.02, 0.5), "completed")
-	new_effect.animate(user, targets)
-	yield(new_effect, "effect_complete")
-	new_effect.queue_free()
+	var result: Dictionary = calculation(user, targets)
+	if anim:
+		var new_effect = graphic_effect.instance()
+		add_child(new_effect)
+		yield(text_box.display_text(user.save_id + " used " + save_id.capitalize() + "!", 0.02, 0.5), "completed")
+		new_effect.animate(user, targets)
+		yield(new_effect, "effect_complete")
+		new_effect.queue_free()
+	else:
+		for target in targets:
+			target.on_impact()
+	print(1)
 	# Item fade out
-	if item:
+	if item and anim:
 		yield(item_anim_out(item, item_sprite, tween), "completed")
 	tween.queue_free()
 	item_sprite.queue_free()

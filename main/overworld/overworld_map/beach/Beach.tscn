@@ -255,7 +255,7 @@ position = Vector2( 408, 2328 )
 
 [node name="Npc" parent="." index="11" instance=ExtResource( 23 )]
 position = Vector2( 184, 2504 )
-convo = [ [ "yukid", ".02", "the idea is to start of with socialism and then eventually shift into communism, that was always the idea in marx's writings and the main conflict between the bolsheviks vs mensheviks was how to go about the process as how marx and engels wrote" ] ]
+convo = [ [ "yukid", ".02", "the idea is to start of with socialism and then eventually shift into communism, that was always the idea in marx's writings and the main conflict between " ] ]
 
 [node name="PalmTree" parent="Decoration" index="0" instance=ExtResource( 4 )]
 position = Vector2( -184, 2392 )

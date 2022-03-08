@@ -12,6 +12,10 @@ func on_impact() -> void:
 func impact(target: Node) -> void:
 	self.target = target
 	global_position = target.get_node("SelectIcon").global_position 
+	
+	# silence all impact sounds
+	$ImpactSound.stream_paused = target.calculation_cache["contact"] in ["absorb", "miss", "null", "repel"]
+	
 	$AnimationPlayer.current_animation = anim_name
 	yield($AnimationPlayer, "animation_finished")
 	emit_signal("complete")

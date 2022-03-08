@@ -58,16 +58,8 @@ func pressed(button_name: String) -> void:
 			yield(transition.transition_out(), "completed")
 			save_ui.enable()
 			save_ui.load_file()
-		"System":
-			disable()
-			yield(transition.transition_in(), "completed")
-			system_ui.visible = true
-			system_ui.last = self
-			system_ui.last_func = "choose_button"
-			visible = false
-			yield(transition.transition_out(), "completed")
-			system_ui.enable()
-			system_ui.edit_options()
+		"Quit":
+			get_tree().quit()
 
 func choose_button() -> void:
 	buttons.get_child(0).grab_focus()

@@ -6,7 +6,7 @@
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/fragment_number = Vector2( 30, 20 )
-shader_param/dissolve_state = 0.0
+shader_param/dissolve_state = 0.7
 
 [sub_resource type="Animation" id=2]
 tracks/0/type = "value"
@@ -51,6 +51,6 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 2.25
+playback_speed = 3.0
 anims/transition_in = SubResource( 2 )
 anims/transition_out = SubResource( 3 )

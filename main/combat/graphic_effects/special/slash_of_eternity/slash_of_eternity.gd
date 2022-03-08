@@ -8,9 +8,11 @@ func animate(user: Node, targets: Array) -> void:
 	var angle = 0
 	yield(cam.pan(targets[0], .5, Vector2(0,-32)), "completed")
 	var old_speed1 = targets[0].get_node("BasicAnimationPlayer").playback_speed 
-	targets[0].get_node("BasicAnimationPlayer").playback_speed = 2
 	var old_speed2 = targets[0].get_node("SpriteAnimationPlayer").playback_speed 
-	targets[0].get_node("SpriteAnimationPlayer").playback_speed = 2
+	
+	if not targets[0].calculation_cache["contact"] in ["absorb", "miss", "null", "repel"]:
+		targets[0].get_node("SpriteAnimationPlayer").playback_speed = 2
+		targets[0].get_node("BasicAnimationPlayer").playback_speed = 2
 	
 	cam.toggle_cover(true)
 	cam.prioritize([user] + [targets[0]])
@@ -35,8 +37,9 @@ func animate(user: Node, targets: Array) -> void:
 		new_swoosh.global_position = targets[0].get_node("SelectIcon").global_position
 		$Timer.start(.13 + rand_range(-.05, .05))
 		
-		targets[0].get_node("BasicAnimationPlayer").current_animation = "hurt"
-		targets[0].get_node("SpriteAnimationPlayer").current_animation = "hurt"
+		if not targets[0].calculation_cache["contact"] in ["absorb", "miss", "null", "repel"]:
+			targets[0].get_node("BasicAnimationPlayer").current_animation = "hurt"
+			targets[0].get_node("SpriteAnimationPlayer").current_animation = "hurt"
 		yield($Timer, "timeout")
 	targets[0].get_node("BasicAnimationPlayer").playback_speed = old_speed1
 	targets[0].get_node("SpriteAnimationPlayer").playback_speed = old_speed2

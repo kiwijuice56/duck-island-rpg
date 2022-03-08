@@ -126,24 +126,28 @@ margin_bottom = 171.0
 [node name="New Game" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 margin_right = 328.0
 margin_bottom = 26.0
+action_mode = 0
 text = "New Game"
 
 [node name="Load Game" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 30.0
 margin_right = 328.0
 margin_bottom = 56.0
+action_mode = 0
 text = "Load Game"
 
 [node name="System" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 60.0
 margin_right = 328.0
 margin_bottom = 86.0
+action_mode = 0
 text = "System"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 90.0
 margin_right = 328.0
 margin_bottom = 116.0
+action_mode = 0
 text = "Quit"
 
 [node name="Label" type="Label" parent="MarginContainer"]

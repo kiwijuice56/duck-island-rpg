@@ -2,8 +2,8 @@ extends Control
 
 var open := false
 
-onready var skill_container := get_node("Control/Skills")
-onready var item_container := get_node("Control2/Items")
+onready var skill_container := get_node("SkillControl/Skills")
+onready var item_container := get_node("ItemControl/Items")
 onready var buttons := get_node("PopupMenu/HBoxContainer/PanelContainer/VBoxContainer")
 onready var party = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Combat/PressTurnCycle/PlayerParty")
 onready var system_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SystemUI/System")
@@ -59,7 +59,8 @@ func button_pressed(button_name: String) -> void:
 			if len(targets) == 0:
 				button_pressed("Items")
 			else:
-				pass
+				# may change later, but user should not matter for items outside of battle
+				action.action(party.get_child(0), targets, action_data[1], false)
 		"System":
 			disable()
 			yield(transition.transition_in(), "completed")

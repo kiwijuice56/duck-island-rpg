@@ -60,16 +60,16 @@ tracks/3/keys = {
 "values": [ 0.0, 2.0, 0.0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("AudioStreamPlayer:playing")
+tracks/4/path = NodePath("ImpactSound:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.3, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ false, true, false ]
 }
 
 [sub_resource type="Gradient" id=2]
@@ -79,6 +79,7 @@ colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 0.641338, 0.347656, 1, 0 )
 [node name="Heart" instance=ExtResource( 1 )]
 texture = ExtResource( 2 )
 hframes = 14
+frame = 13
 anim_name = "heart"
 
 [node name="AnimationPlayer" parent="." index="0"]
@@ -112,3 +113,7 @@ energy = 0.0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="." index="3"]
 stream = ExtResource( 5 )
 volume_db = -5.0
+
+[node name="ImpactSound" parent="." index="4"]
+stream = ExtResource( 5 )
+volume_db = -4.0
