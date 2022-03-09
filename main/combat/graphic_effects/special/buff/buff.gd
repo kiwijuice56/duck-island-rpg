@@ -24,7 +24,7 @@ func animate(user: Node, targets: Array) -> void:
 	
 	for target in targets:
 		
-		yield(cam.pan(target, .3, Vector2()), "completed")
+		yield(cam.pan(target.get_node("SelectIcon"), .3, Vector2()), "completed")
 		for _j in range(16):
 				var new_flicker = flicker.instance()
 				add_child(new_flicker)

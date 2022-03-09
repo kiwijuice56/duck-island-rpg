@@ -2,7 +2,7 @@ extends AudioStreamPlayer
 
 var global_volume := 0 setget set_volume
 
-var battle = preload("res://main/music/boss_theme_2.mp3")
+var battle = preload("res://main/music/encounter_theme_4.mp3")
 var boss = preload("res://main/music/boss_theme_1.mp3")
 var overworld = preload("res://main/music/overworld_demo.mp3")
 var water = preload("res://main/music/swimming_ducklings.mp3")
@@ -15,7 +15,7 @@ var victory = preload("res://main/music/victory.mp3")
 var stream_volume := 0.0
 
 var volumes = {
-	battle: -15,
+	battle: -12,
 	overworld: -10.0,
 	boss: -7.0,
 	water: -6.5,

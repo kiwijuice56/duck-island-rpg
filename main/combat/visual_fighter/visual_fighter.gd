@@ -29,7 +29,8 @@ onready var cam := get_tree().get_root().get_node("Main/ViewportContainer/Viewpo
 
 onready var blood = $ParticleEffects/Blood
 onready var panic = $ParticleEffects/Panic
-onready var damage_label = $CanvasLayer/DamageLabel
+onready var damage_label = $DamageLabel
+onready var extra_label = $ExtraLabel
 
 var calculation_cache := {}
 
@@ -50,12 +51,14 @@ func _ready() -> void:
 	$Sprite.position = Vector2(0, -128)
 	$CurrentIcon.modulate = Color(1,1,1,0)
 	$SelectIcon.modulate = Color(1,1,1,0)
-	$CanvasLayer/DamageLabel.modulate = Color(1,1,1,0)
+	$DamageLabel.modulate = Color(1,1,1,0)
 	$Sprite.visible = false
 
 func on_impact() -> void:
-	$CanvasLayer/DamageLabel.rect_position = $SelectIcon.get_global_transform_with_canvas().get_origin()-Vector2(32,0)
 	emit_signal("update_points")
+	
+	extra_label.text = ""
+	
 	if calculation_cache["contact"] == "none":
 		return
 	elif calculation_cache["contact"] == "miss":
@@ -63,16 +66,16 @@ func on_impact() -> void:
 		$BasicAnimationPlayer.current_animation = "miss"
 		if $SpriteAnimationPlayer.has_animation("miss"):
 			$SpriteAnimationPlayer.current_animation = "miss"
-		$CanvasLayer/DamageLabel.text = "miss!"
-		$CanvasLayer/DamageLabel.add_color_override("font_color", miss_color)
+		damage_label.text = "miss!"
+		damage_label.add_color_override("font_color", miss_color)
 	elif calculation_cache["contact"] == "heal" or calculation_cache["contact"] == "absorb":
 		SoundPlayer.play_sound(SoundPlayer.absorb)
 		damage_label.add_color_override("font_color", heal_color)
 		damage_label.text = "+" + str(calculation_cache["damage"])
 	elif calculation_cache["contact"] == "null":
 		SoundPlayer.play_sound(SoundPlayer.null_sound)
-		damage_label.add_color_override("font_color", null_color)
-		damage_label.text = "null"
+		extra_label.add_color_override("font_color", null_color)
+		extra_label.text = "null!"
 	else:
 		if status == "dead":
 			$BasicAnimationPlayer.current_animation = "dead"
@@ -88,24 +91,50 @@ func on_impact() -> void:
 		
 		if calculation_cache["contact"] == "weak" or "critical" in calculation_cache:
 			SoundPlayer.play_sound(SoundPlayer.crit)
+			extra_label.add_color_override("font_color", crit_color)
 			damage_label.add_color_override("font_color", crit_color)
-			
 		if calculation_cache["contact"] == "weak":
-			damage_label.text = "weak! " + damage_label.text
+			extra_label.text = "weak!"
 		if "critical" in calculation_cache:
-			damage_label.text = "crit! " + damage_label.text
+			extra_label.text += " crit!"
 	
 	update_status()
 	
+	# reset size to minimum
+	damage_label.rect_size = Vector2()
+	extra_label.rect_size = Vector2()
+	
+	extra_label.get_node("ExtraTween").interpolate_property(extra_label, "percent_visible", 0.0, 1.0, 0.2)
+	extra_label.get_node("ExtraTween").start()
+	extra_label.modulate = Color(1,1,1,1)
+	
+	damage_label.rect_position = $SelectIcon.position 
+	extra_label.rect_position = $SelectIcon.position - extra_label.rect_size / 2.0
+	
 	damage_label.get_node("DamageTween").interpolate_property(damage_label, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.1)
-	damage_label.get_node("DamageTween").interpolate_property(damage_label, "rect_position", null, damage_label.rect_position + Vector2(0,-5), 0.4)
+	
+	damage_label.get_node("DamageTween").interpolate_property(damage_label, "rect_position:y", null, 
+		damage_label.rect_position.y - 48, 0.4, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	damage_label.get_node("DamageTween").interpolate_property(damage_label, "rect_position:x", null, 
+		damage_label.rect_position.x + rand_range(-48,48), 1.4)
+	
 	damage_label.get_node("DamageTween").start()
 	
+	# wait until fade tween
+	yield(damage_label.get_node("DamageTween"), "tween_completed")
+	# wait unil jump tween
 	yield(damage_label.get_node("DamageTween"), "tween_completed")
 	
 	damage_label.get_node("DamageTween").interpolate_property(damage_label, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1.0)
-	damage_label.get_node("DamageTween").interpolate_property(damage_label, "rect_position", null, damage_label.rect_position + Vector2(0,-40), 1.2)
+	
+	damage_label.get_node("DamageTween").interpolate_property(damage_label, "rect_position:y", null, 
+		damage_label.rect_position.y + 78, 1.0, Tween.TRANS_QUAD, Tween.EASE_IN)
+	
 	damage_label.get_node("DamageTween").start()
+	
+	extra_label.get_node("ExtraTween").interpolate_property(extra_label, "modulate", null, Color(1,1,1,0), 0.3)
+	extra_label.get_node("ExtraTween").start()
+	
 	if $SpriteAnimationPlayer.is_playing() and not $SpriteAnimationPlayer.current_animation == "idle":
 		yield($SpriteAnimationPlayer, "animation_finished")
 	if not status == "dead":
