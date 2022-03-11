@@ -14,7 +14,8 @@ func impact(target: Node) -> void:
 	global_position = target.get_node("SelectIcon").global_position 
 	
 	# silence all impact sounds
-	$ImpactSound.stream_paused = target.calculation_cache["contact"] in ["absorb", "miss", "null", "repel"]
+	if target.calculation_cache["contact"] in ["absorb", "miss", "null", "repel"]:
+		$ImpactSound.volume_db = -100
 	
 	$AnimationPlayer.current_animation = anim_name
 	yield($AnimationPlayer, "animation_finished")

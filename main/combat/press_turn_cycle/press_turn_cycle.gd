@@ -123,12 +123,14 @@ func battle() -> void:
 				clean_cycle()
 				for sub in cycle:
 					
+					# battle ended code
 					if len(sub) == 0:
 						var timer = Timer.new()
 						add_child(timer)
-						
 						timer.start(0.5)
 						yield(timer, "timeout")
+						if sub_cycle[0].get_parent() != $PlayerParty:
+							get_tree().quit()
 						MusicPlayer.play_music(MusicPlayer.victory, 0.025)
 						yield(text_box.display_text("Victory!", 0.02, 1.5), "completed")
 						timer.start(0.5)

@@ -9,6 +9,7 @@ var woosh = preload("res://main/ui/_assets/sounds/woosh.wav")
 var crit = preload("res://main/ui/_assets/sounds/P4 Critical Cut-In.wav")
 var null_sound = preload("res://main/ui/_assets/sounds/null.wav")
 var absorb = preload("res://main/ui/_assets/sounds/absorb.wav")
+var battle_woosh = preload("res://main/ui/_assets/sounds/EnemyEncounter.wav")
 
 var global_volume = 0
 

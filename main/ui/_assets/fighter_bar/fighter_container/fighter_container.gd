@@ -34,7 +34,8 @@ var buff_icons := {
 
 var status_icons = {
 	"panic": preload("res://main/ui/_assets/fighter_bar/fighter_container/status_icons/status_icons3.png"),
-	"rot": preload("res://main/ui/_assets/fighter_bar/fighter_container/status_icons/status_icons2.png")
+	"rot": preload("res://main/ui/_assets/fighter_bar/fighter_container/status_icons/status_icons2.png"),
+	"dead": preload("res://main/ui/_assets/fighter_bar/fighter_container/status_icons/status_icons4.png")
 	}
 
 func set_selected(selected: bool) -> void:

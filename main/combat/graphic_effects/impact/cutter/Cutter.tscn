@@ -19,5 +19,5 @@ anims/cutter = ExtResource( 2 )
 
 [node name="ImpactSound" parent="." index="1"]
 stream = ExtResource( 4 )
-volume_db = 6.0
+volume_db = 7.576
 pitch_scale = 1.73

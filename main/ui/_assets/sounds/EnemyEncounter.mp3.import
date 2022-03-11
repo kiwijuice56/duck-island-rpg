@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/EnemyEncounter.mp3-7b17738d486616c0201812ccb1242628.mp3str"
+
+[deps]
+
+source_file="res://main/ui/_assets/sounds/EnemyEncounter.mp3"
+dest_files=[ "res://.import/EnemyEncounter.mp3-7b17738d486616c0201812ccb1242628.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

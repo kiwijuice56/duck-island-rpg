@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/EnemyEncounter.wav-23f932019f7a50e146191aa7a073790d.sample"
+
+[deps]
+
+source_file="res://main/ui/_assets/sounds/EnemyEncounter.wav"
+dest_files=[ "res://.import/EnemyEncounter.wav-23f932019f7a50e146191aa7a073790d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

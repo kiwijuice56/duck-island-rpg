@@ -507,9 +507,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -20.0
-margin_top = -20.0
+margin_top = -55.2508
 margin_right = 20.0
-margin_bottom = 20.0
+margin_bottom = -15.2508
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -520,7 +520,7 @@ anims/enemy_turn = SubResource( 8 )
 anims/player_turn = SubResource( 9 )
 
 [node name="TextureRect" type="TextureRect" parent="TurnLabel"]
-modulate = Color( 2, 1, 1.5, 1 )
+modulate = Color( 0.937255, 0.196078, 0.682353, 0.560784 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -529,7 +529,7 @@ margin_left = -64.0
 margin_top = -64.0
 margin_right = 64.0
 margin_bottom = 64.0
-rect_scale = Vector2( 1.7, 0.5 )
+rect_scale = Vector2( 2, 0.5 )
 rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 20 )
 __meta__ = {
@@ -551,6 +551,7 @@ rect_pivot_offset = Vector2( 44, 4 )
 custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 1, 0.486275, 0.701961, 1 )
 custom_colors/font_outline_modulate = Color( 0.592157, 0.0705882, 0.0705882, 1 )
+custom_constants/shadow_offset_x = 0
 text = "Enemy Turn"
 align = 1
 valign = 1

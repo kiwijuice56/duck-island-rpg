@@ -24,6 +24,11 @@ func _ready() -> void:
 
 func battle_started() -> void:
 	call_deferred("disable")
+	$Timer.start(.35)
+	$Tween.interpolate_property($Camera2D, "zoom", null, Vector2(.25, .25), .45, Tween.TRANS_QUAD, Tween.EASE_IN)
+	$Tween.start()
+	SoundPlayer.play_sound(SoundPlayer.battle_woosh)
+	yield($Timer, "timeout")
 	yield(transition.transition_in(), "completed")
 	visible = false
 	cycle.set_enemies(room.get_enemies(encounter))
