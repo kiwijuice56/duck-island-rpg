@@ -69,7 +69,7 @@ luck = 3
 defense = {
 "ghost": "null",
 "phys": "weak",
-"wind": "absorb"
+"wind": "weak"
 }
 offense = {
 }
@@ -93,6 +93,3 @@ position = Vector2( 0, -96 )
 anims/dead = SubResource( 1 )
 anims/hurt = SubResource( 2 )
 anims/idle = SubResource( 3 )
-
-[node name="DamageLabel" parent="CanvasLayer" index="0"]
-text = "999"

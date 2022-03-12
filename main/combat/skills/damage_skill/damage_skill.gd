@@ -10,7 +10,7 @@ func calculation(user: Node, targets: Array) -> Dictionary:
 	
 	for target in targets:
 		var affinity := "" if not type in target.defense else target.defense[type] 
-		
+		target.calculation_cache = {}
 		# check for misses
 		if rand_range(0, 1.0) > accuracy:
 			success = min(success, -1)
@@ -63,5 +63,4 @@ func calculation(user: Node, targets: Array) -> Dictionary:
 			target.calculation_cache["contact"] = "heal"
 		if damage < 0:
 			target.calculation_cache["damage"] = abs(damage)
-	
 	return {"success": success}

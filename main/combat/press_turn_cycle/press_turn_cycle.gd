@@ -9,6 +9,8 @@ onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/
 
 signal battle_ended
 
+var experience := 0
+
 func set_enemies(enemies: Array) -> void:
 	for child in $EnemyParty.get_children():
 		$EnemyParty.remove_child(child)
@@ -56,10 +58,31 @@ func clean_cycle() -> void:
 		for fighter in sub:
 			if fighter.status != "dead":
 				new_sub_cycle.append(fighter)
+			elif fighter.get_parent() == $EnemyParty:
+				experience += fighter.get_experience()
 		new_cycle.append(new_sub_cycle)
 	cycle = new_cycle
 
 func battle_end() -> void:
+	var timer = Timer.new()
+	add_child(timer)
+	timer.start(0.5)
+	yield(timer, "timeout")
+	# quit if the player's party is dead
+	if sub_cycle[0].get_parent() != $PlayerParty:
+		get_tree().quit()
+	# otherwise, play victory sequence and break
+	MusicPlayer.play_music(MusicPlayer.victory, 0.025)
+	yield(text_box.display_text("Victory!", 0.02, 1.5), "completed")
+	timer.start(0.5)
+	yield(timer, "timeout")
+	remove_child(timer)
+	timer.queue_free()
+	
+	# give fighters experience
+	for fighter in $PlayerParty.get_children():
+		fighter.experience += experience
+	
 	yield(transition.transition_in(), "completed")
 	for sub in cycle:
 		for fighter in sub:
@@ -67,10 +90,10 @@ func battle_end() -> void:
 	after_battle.visible = true
 	after_battle.last = self
 	after_battle.last_func = "switch_to_overworld"
-	after_battle.show_info(0, 0, [])
+	after_battle.show_info(0, experience, [])
 	combat_ui.visible = false
 	yield(transition.transition_out(), "completed")
-	after_battle.enable()
+	after_battle.check_level_up()
 
 func switch_to_overworld() -> void:
 	cam.current = false
@@ -83,11 +106,7 @@ func switch_to_overworld() -> void:
 	emit_signal("battle_ended")
 	yield(transition.transition_out(), "completed")
 
-func battle() -> void:
-	MusicPlayer.play_music(MusicPlayer.battle)
-	combat_ui.visible = true
-	cam.current = true
-	position_fighters()
+func heal_fighters() -> void:
 	for child in get_children():
 		for fighter in child.get_children():
 			fighter.status = "ok"
@@ -101,13 +120,26 @@ func battle() -> void:
 			fighter.mp = fighter.max_mp
 			fighter.emit_signal("update_points")
 			fighter.get_node("Sprite").visible = true
+
+# cycles through parties and handles press turns in combat
+func battle() -> void:
+	# initialize fight
+	position_fighters()
+	heal_fighters()
+	experience = 0
+	
+	MusicPlayer.play_music(MusicPlayer.battle)
+	combat_ui.visible = true
+	cam.current = true
 	cam.fit($EnemyParty.get_children(), 0, -125)
 	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").visible = false
-	text_box.display_text("", 0, 0)
+	text_box.clear_text()
 	press_turn_container.update_turns(0, 0)
 	yield(transition.transition_out(), "completed")
 	text_box.display_text("Enemies approach!", 0.02, .7)
 	yield(cam.fit($EnemyParty.get_children(), 2, -175), "completed")
+	
+	# begin battle cycle
 	while true:
 		update_cycle()
 		switch_sub_cycle()
@@ -117,29 +149,20 @@ func battle() -> void:
 			var half_turns := 0
 			
 			yield(press_turn_container.update_turns(full_turns, half_turns), "completed")
-			while full_turns + half_turns > 0: 
+			# loop through party members while turns exist
+			while full_turns + half_turns > 0:
+				# run next fighter's act() function and await for results
 				var report: Dictionary = yield(start_next_fighter(), "completed")
 				
+				# remove any dead party members from cycle
 				clean_cycle()
 				for sub in cycle:
-					
-					# battle ended code
+					# check if battle ended
 					if len(sub) == 0:
-						var timer = Timer.new()
-						add_child(timer)
-						timer.start(0.5)
-						yield(timer, "timeout")
-						if sub_cycle[0].get_parent() != $PlayerParty:
-							get_tree().quit()
-						MusicPlayer.play_music(MusicPlayer.victory, 0.025)
-						yield(text_box.display_text("Victory!", 0.02, 1.5), "completed")
-						timer.start(0.5)
-						yield(timer, "timeout")
-						remove_child(timer)
-						timer.queue_free()
 						battle_end()
 						return
 				
+				# update press turns 
 				match report["success"]:
 					-2:
 						SoundPlayer.play_sound(SoundPlayer.glass_break)

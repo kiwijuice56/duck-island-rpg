@@ -23,6 +23,9 @@ var hit_eva := 0
 
 var status := "ok"
 
+var experience := 0
+var experience_to_level := 0
+
 onready var combat_ui := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/CombatUI/Combat")
 onready var text_box = combat_ui.get_node("VBoxContainer/TextBox")
 onready var cam := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/MainCamera")
@@ -53,6 +56,18 @@ func _ready() -> void:
 	$SelectIcon.modulate = Color(1,1,1,0)
 	$DamageLabel.modulate = Color(1,1,1,0)
 	$Sprite.visible = false
+
+func get_experience() -> int:
+	return int(max_hp)
+
+func level_up() -> int:
+	var stat_count := 0
+	while experience >= experience_to_level:
+		stat_count += 1
+		level += 1
+		experience -= experience_to_level
+		experience_to_level = 15 * level * log(level + 1)
+	return stat_count
 
 func on_impact() -> void:
 	emit_signal("update_points")

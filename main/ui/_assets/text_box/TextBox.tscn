@@ -31,15 +31,16 @@ margin_right = 1019.0
 margin_bottom = 153.0
 rect_min_size = Vector2( 0, 148 )
 
-[node name="Control3" type="Control" parent="HBoxContainer"]
-margin_right = 16.0
+[node name="Spacing1" type="Control" parent="HBoxContainer"]
+margin_right = 32.0
 margin_bottom = 148.0
-rect_min_size = Vector2( 16, 132 )
+rect_min_size = Vector2( 32, 132 )
 
 [node name="Icon" type="TextureRect" parent="HBoxContainer"]
-margin_left = 20.0
+visible = false
+margin_left = 36.0
 margin_top = 10.0
-margin_right = 148.0
+margin_right = 164.0
 margin_bottom = 138.0
 rect_min_size = Vector2( 128, 128 )
 size_flags_vertical = 4
@@ -48,14 +49,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control2" type="Control" parent="HBoxContainer"]
-margin_left = 152.0
-margin_right = 168.0
+[node name="Spacing2" type="Control" parent="HBoxContainer"]
+margin_left = 36.0
+margin_right = 60.0
 margin_bottom = 148.0
-rect_min_size = Vector2( 16, 0 )
+rect_min_size = Vector2( 24, 0 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
-margin_left = 172.0
+margin_left = 64.0
 margin_top = 4.0
 margin_right = 882.0
 margin_bottom = 144.0
@@ -64,13 +65,28 @@ size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/mono_font = ExtResource( 5 )
 custom_fonts/normal_font = ExtResource( 5 )
-text = "sdfsfsdfsdfsd!aaaa?????fsdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+text = "Give them the puffle?"
 
-[node name="Control" type="Control" parent="HBoxContainer"]
+[node name="Spacing3" type="Control" parent="HBoxContainer"]
 margin_left = 886.0
 margin_right = 1014.0
 margin_bottom = 148.0
 rect_min_size = Vector2( 128, 0 )
+
+[node name="ChoiceContainer" type="HBoxContainer" parent="."]
+visible = false
+margin_left = 5.0
+margin_top = 13.0
+margin_right = 143.0
+margin_bottom = 145.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+custom_constants/separation = 36
+
+[node name="Spacing1" type="Control" parent="ChoiceContainer"]
+margin_right = 32.0
+margin_bottom = 132.0
+rect_min_size = Vector2( 32, 132 )
 
 [node name="Tween" type="Tween" parent="."]
 

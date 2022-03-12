@@ -163,14 +163,14 @@ visible = false
 [node name="SaveRoom" parent="ViewportContainer/Viewport/UI/SaveRoomUI" instance=ExtResource( 31 )]
 visible = false
 
-[node name="StatusUI" type="CanvasLayer" parent="ViewportContainer/Viewport/UI"]
-
-[node name="Status" parent="ViewportContainer/Viewport/UI/StatusUI" instance=ExtResource( 3 )]
-visible = false
-
 [node name="AfterBattleUI" type="CanvasLayer" parent="ViewportContainer/Viewport/UI"]
 
 [node name="AfterBattle" parent="ViewportContainer/Viewport/UI/AfterBattleUI" instance=ExtResource( 19 )]
+visible = false
+
+[node name="StatusUI" type="CanvasLayer" parent="ViewportContainer/Viewport/UI"]
+
+[node name="Status" parent="ViewportContainer/Viewport/UI/StatusUI" instance=ExtResource( 3 )]
 visible = false
 
 [node name="Transition" parent="ViewportContainer/Viewport/UI" instance=ExtResource( 8 )]
@@ -291,8 +291,16 @@ script = ExtResource( 1 )
 script = ExtResource( 6 )
 
 [node name="MiiDuck" parent="ViewportContainer/Viewport/Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 25 )]
-hp = 5
-max_hp = 5
+level = 99
+hp = 999
+mp = 999
+max_hp = 999
+max_mp = 999
+strength = 30
+vitality = 30
+magic = 999
+agility = 30
+luck = 30
 defense = {
 }
 offense = {

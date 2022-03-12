@@ -89,7 +89,6 @@ offense = {
 }
 
 [node name="Sprite" parent="." index="0"]
-hframes = 6
 frame = 5
 
 [node name="ActionDecider" parent="." index="3"]

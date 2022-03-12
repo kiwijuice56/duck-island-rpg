@@ -110,6 +110,7 @@ func open() -> void:
 	choose_button()
 
 func close() -> void:
+	disable()
 	SoundPlayer.play_sound(SoundPlayer.cancel)
 	MusicPlayer.play_music(MusicPlayer.island)
 	open = false

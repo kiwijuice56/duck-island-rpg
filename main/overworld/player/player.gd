@@ -30,6 +30,7 @@ func battle_started() -> void:
 	SoundPlayer.play_sound(SoundPlayer.battle_woosh)
 	yield($Timer, "timeout")
 	yield(transition.transition_in(), "completed")
+	$Camera2D.zoom = Vector2(1, 1)
 	visible = false
 	cycle.set_enemies(room.get_enemies(encounter))
 	cycle.battle()
@@ -126,6 +127,7 @@ func _physics_process(delta):
 	
 	if steps <= 0:
 		battle_started()
+		set_physics_process(false)
 		steps =  0.0
 	get_input()
 	set_anim()
