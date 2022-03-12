@@ -104,7 +104,19 @@ func show_level_up(fighter: Node, stat_count: int) -> void:
 			for j in range(len(stat_increases)):
 				fighter.set(STATS[j], fighter.get(STATS[j]) - stat_increases[j])
 		initialize(fighter)
-	
+	if fighter.get_node("UnlearnedSkills").has_learnable_skills(fighter.level):
+		var skills = fighter.get_node("UnlearnedSkills").get_learnable_skills(fighter.level)
+		for skill in skills:
+			fighter.get_node("ActionDecider").add_child(skill.instance())
+		initialize(fighter)
+		tween.interpolate_property($TextBox, "modulate", Color(1,1,1,0), Color(1,1,1,1), .25)
+		tween.start()
+		yield(tween, "tween_completed")
+		yield($TextBox.display_text("%s learned a new skill!" % (fighter.save_id.capitalize()), 0.02, 0, true), "completed")
+		tween.interpolate_property($TextBox, "modulate", Color(1,1,1,1), Color(1,1,1,0), .25)
+		tween.start()
+		yield(tween, "tween_completed")
+
 func initialize(fighter: Node) -> void:
 	name_label.text = fighter.save_id.capitalize()
 	exp_label.text = ""

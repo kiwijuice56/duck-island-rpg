@@ -15,6 +15,8 @@ signal file_managing_complete
 
 var save_file_template_path: String = "res://main/save_game/save_file_template/save_file_template.gd"
 
+
+
 func get_files(developer_mode: bool) -> Array:
 	var dir = Directory.new()
 	dir.open(developer_save_folder_path if developer_mode else save_folder_path)

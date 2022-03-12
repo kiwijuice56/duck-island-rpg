@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://main/combat/custom_action_deciders/player_action_decider/player_action_decider.gd" type="Script" id=1]
 [ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main/combat/skills/damage_skill/tornado/tornado.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/combat/skills/damage_skill/heal/heal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main/combat/skills/buff_skill/defense up/defense up.tscn" type="PackedScene" id=5]
 [ext_resource path="res://main/combat/skills/buff_skill/attack up/attack up.tscn" type="PackedScene" id=6]
 
@@ -71,7 +72,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 1 ]
 }
 
-[node name="MiiDuck" instance=ExtResource( 2 )]
+[node name="duckling" instance=ExtResource( 2 )]
 save_id = "duckling"
 level = 25
 hp = 175
@@ -93,6 +94,7 @@ frame = 5
 
 [node name="ActionDecider" parent="." index="3"]
 script = ExtResource( 1 )
+action_scene_path = "res://main/combat/skills/"
 
 [node name="tornado" parent="ActionDecider" index="0" instance=ExtResource( 3 )]
 
@@ -100,7 +102,11 @@ script = ExtResource( 1 )
 
 [node name="AttackUp" parent="ActionDecider" index="2" instance=ExtResource( 6 )]
 
-[node name="SpriteAnimationPlayer" parent="." index="7"]
+[node name="UnlearnedSkills" parent="." index="4"]
+skill_levels = [ 2 ]
+skills = [ ExtResource( 4 ) ]
+
+[node name="SpriteAnimationPlayer" parent="." index="8"]
 playback_speed = 0.55
 anims/dead = SubResource( 1 )
 anims/hold_magic = SubResource( 2 )

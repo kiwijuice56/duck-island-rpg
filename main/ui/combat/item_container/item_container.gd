@@ -19,7 +19,10 @@ func _input(event):
 		SoundPlayer.play_sound(SoundPlayer.action)
 
 func enable() -> void:
-	get_node("ScrollContainer").get_child(0).get_child(0).grab_focus()
+	if get_node("ScrollContainer").get_child(0).get_children():
+		get_node("ScrollContainer").get_child(0).get_child(0).grab_focus()
+	elif get_focus_owner():
+		get_focus_owner().release_focus()
 	set_process_input(true)
 
 func disable() -> void:
@@ -43,7 +46,8 @@ func initialize() -> void:
 			new_button.set_focus_neighbour(MARGIN_LEFT, new_button.get_path())
 			new_button.set_focus_neighbour(MARGIN_RIGHT, new_button.get_path())
 			last_button = new_button
-	last_button.set_focus_neighbour(MARGIN_BOTTOM, last_button.get_path())
+	if last_button:
+		last_button.set_focus_neighbour(MARGIN_BOTTOM, last_button.get_path())
 
 func button_down(button: Button) -> void:
 	SoundPlayer.play_sound(SoundPlayer.accept)

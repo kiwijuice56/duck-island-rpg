@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mii_duck_sprite.png-be00eb9d0476f2747b5b39b5622a9f8b.stex"
+path="res://.import/mii_duck_sprite.png-8fa969c5a020ad1ef2e5de684445c226.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/combat/visual_fighter/mii duck/mii_duck_sprite.png"
-dest_files=[ "res://.import/mii_duck_sprite.png-be00eb9d0476f2747b5b39b5622a9f8b.stex" ]
+source_file="res://main/combat/visual_fighter/duckling/mii_duck_sprite.png"
+dest_files=[ "res://.import/mii_duck_sprite.png-8fa969c5a020ad1ef2e5de684445c226.stex" ]
 
 [params]
 

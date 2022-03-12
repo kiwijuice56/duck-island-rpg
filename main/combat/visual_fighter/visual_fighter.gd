@@ -1,6 +1,8 @@
 tool
 extends "res://addons/rpg_framework/custom_nodes/fighter/fighter.gd"
 
+const STATS = ["level", "hp", "max_hp", "mp", "max_mp", "experience", "status", "experience_to_level", "strength", "magic", "vitality", "luck", "agility"]
+
 export var level: int
 export var hp: int
 export var mp: int
@@ -220,3 +222,16 @@ func act(context: Dictionary) -> void:
 	$CurrentIcon/CurrentIconTween.interpolate_property($CurrentIcon, "modulate", null, Color(1,1,1,0), .4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$CurrentIcon/CurrentIconTween.start()
 	yield($CurrentIcon/CurrentIconTween, "tween_completed")
+
+func save_data() -> Dictionary:
+	var data := .save_data()
+	var saved_stats := {}
+	for stat in STATS:
+		saved_stats[stat] = get(stat)
+	data["Stats"] = saved_stats
+	return data
+
+func load_data(data: Dictionary) -> void:
+	.load_data(data)
+	for stat in data["Stats"]:
+		set(stat, data["Stats"][stat])

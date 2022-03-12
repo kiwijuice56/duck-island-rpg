@@ -7,7 +7,6 @@ onready var enemy_party = get_tree().get_root().get_node("Main/ViewportContainer
 
 var index := 0 setget set_index
 
-
 signal action_selected(selection)
 
 func _ready() -> void:
@@ -33,6 +32,8 @@ func _input(event):
 		if button_name in ["Switch", "Run"]:
 			SoundPlayer.play_sound(SoundPlayer.cancel)
 			return
+			
+		set_process_input(false)
 		SoundPlayer.play_sound(SoundPlayer.accept)
 		yield(center_selection(), "completed")
 		if button_name in ["Pass", "Defend", "Flee"]:
@@ -91,8 +92,7 @@ func switch_menu(input: String) -> void:
 	disable()
 	yield(menu.transition_in(), "completed")
 	menu.enable()
-	
-	#[action node, item icon (null for skills)
+	#[action node, item icon (null for skills)]
 	var action_data: Array = yield(menu, "action_selected")
 	var action = action_data[0]
 	
@@ -149,3 +149,4 @@ func rotate(dir: int) -> void:
 		$Tween.interpolate_property(button, "rect_position", null, rot+Vector2(48,48), transition_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		rot = rot.rotated(rad_rot)
 	$Tween.start()
+	yield($Tween, "tween_completed")

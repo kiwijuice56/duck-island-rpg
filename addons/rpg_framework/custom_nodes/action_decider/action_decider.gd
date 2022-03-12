@@ -27,5 +27,10 @@ func load_data(save_ids: Array) -> void:
 		remove_child(child)
 		child.queue_free()
 	for save_id in save_ids:
-		var new_action = load(action_scene_path + "%s/%s" % [save_id, save_id] + ".tscn").instance()
+		var f = File.new()
+		var skill_folder = ""
+		for folder in ["buff_skill", "damage_skill", "status_skill"]:
+			if f.file_exists(action_scene_path + folder +"/%s/%s" % [save_id, save_id] + ".tscn"):
+				skill_folder = folder
+		var new_action = load(action_scene_path + skill_folder + "/%s/%s" % [save_id, save_id] + ".tscn").instance()
 		add_child(new_action)
