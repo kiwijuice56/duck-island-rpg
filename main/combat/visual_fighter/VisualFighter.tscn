@@ -194,6 +194,7 @@ anims/select = SubResource( 2 )
 
 [node name="ActionDecider" type="Node" parent="."]
 script = ExtResource( 2 )
+action_scene_path = "res://main/combat/skills/"
 
 [node name="UnlearnedSkills" type="Node" parent="."]
 script = ExtResource( 9 )

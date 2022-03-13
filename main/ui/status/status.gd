@@ -20,6 +20,11 @@ var idx := 0
 
 const STATS = ["strength", "magic", "vitality", "luck", "agility"]
 
+var portraits = {
+	"yukid": preload("res://main/ui/status/portraits/yukid.png"),
+	"duckling": preload("res://main/ui/status/portraits/duckling.png"),
+}
+
 signal pressed
 
 func _ready():
@@ -69,12 +74,12 @@ func show_level_up(fighter: Node, stat_count: int) -> void:
 	$TextBox.clear_text()
 	var tween = Tween.new()
 	add_child(tween)
-	tween.interpolate_property($TextBox, "modulate", Color(1,1,1,0), Color(1,1,1,1), .45)
+	tween.interpolate_property($TextBox, "modulate", Color(1,1,1,0), Color(1,1,1,1), .25)
 	tween.start()
 	$TextBox.visible = true
 	yield(tween, "tween_completed")
-	yield($TextBox.display_text("%s leveled up! Distribute their stats." %  (fighter.save_id.capitalize()), 0.02, .5, true), "completed")
-	tween.interpolate_property($TextBox, "modulate", Color(1,1,1,1), Color(1,1,1,0), .45)
+	yield($TextBox.display_text("%s leveled up! Distribute their stats." %  (fighter.save_id.capitalize()), 0.01, .25, true), "completed")
+	tween.interpolate_property($TextBox, "modulate", Color(1,1,1,1), Color(1,1,1,0), .25)
 	tween.start()
 	yield(tween, "tween_completed")
 	$TextBox.clear_text()
@@ -94,7 +99,7 @@ func show_level_up(fighter: Node, stat_count: int) -> void:
 		tween.interpolate_property($TextBox, "modulate", Color(1,1,1,0), Color(1,1,1,1), .25)
 		tween.start()
 		yield(tween, "tween_completed")
-		var choice : String = yield($TextBox.display_choices("Are you sure that you want to increase these stats?", ["> Yes", "> No"], 0.02, 0), "completed")
+		var choice : String = yield($TextBox.display_choices("Are you sure that you want to increase these stats?", ["> Yes", "> No"], 0.01, 0), "completed")
 		tween.interpolate_property($TextBox, "modulate", Color(1,1,1,1), Color(1,1,1,0), .25)
 		tween.start()
 		yield(tween, "tween_completed")
@@ -120,6 +125,7 @@ func show_level_up(fighter: Node, stat_count: int) -> void:
 func initialize(fighter: Node) -> void:
 	name_label.text = fighter.save_id.capitalize()
 	exp_label.text = ""
+	$PanelContainer/Portrait.texture = portraits[fighter.save_id]
 	for i in range(5):
 		stat_container.get_child(i).get_child(0).set_stat(STATS[i], fighter.get(STATS[i]))
 	skill_container.initialize(fighter)

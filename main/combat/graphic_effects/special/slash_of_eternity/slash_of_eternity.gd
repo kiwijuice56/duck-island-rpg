@@ -6,7 +6,7 @@ export var swoosh: PackedScene
 
 func animate(user: Node, targets: Array) -> void:
 	var angle = 0
-	yield(cam.pan(targets[0], .5, Vector2(0,-32)), "completed")
+	yield(cam.pan(targets[0].get_node("SelectIcon"), .5, Vector2(0,-32)), "completed")
 	var old_speed1 = targets[0].get_node("BasicAnimationPlayer").playback_speed 
 	var old_speed2 = targets[0].get_node("SpriteAnimationPlayer").playback_speed 
 	

@@ -93,6 +93,7 @@ func on_impact() -> void:
 		SoundPlayer.play_sound(SoundPlayer.null_sound)
 		extra_label.add_color_override("font_color", null_color)
 		extra_label.text = "null!"
+		damage_label.text = ""
 	else:
 		if status == "dead":
 			$BasicAnimationPlayer.current_animation = "dead"

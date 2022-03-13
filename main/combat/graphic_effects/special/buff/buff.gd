@@ -5,7 +5,7 @@ export var ghost_swoosh: PackedScene
 
 func animate(user: Node, targets: Array) -> void:
 	var angle = 0
-	yield(cam.pan(targets[0], .5, Vector2()), "completed")
+	yield(cam.pan(targets[0].get_node("SelectIcon"), .5, Vector2()), "completed")
 	$AudioStreamPlayer2.playing = true
 	cam.toggle_cover(true)
 	cam.prioritize([user] +targets)

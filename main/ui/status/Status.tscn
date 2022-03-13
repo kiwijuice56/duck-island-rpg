@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://main/ui/_assets/themes/main.tres" type="Theme" id=1]
 [ext_resource path="res://main/ui/status/affinity_panel_container/affinity_panel/AffinityPanel.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://main/ui/_assets/style_boxes/round_flat_panel.tres" type="StyleBox" id=15]
 [ext_resource path="res://main/ui/combat/skill_container/skill_container.gd" type="Script" id=16]
 [ext_resource path="res://main/ui/_assets/text_box/TextBox.tscn" type="PackedScene" id=17]
+[ext_resource path="res://main/ui/status/portraits/duckling.png" type="Texture" id=18]
 [ext_resource path="res://main/ui/status/status.gd" type="Script" id=20]
 
 [sub_resource type="Shader" id=1]
@@ -43,7 +44,7 @@ void fragment() {
 //	COLOR = vec4(UV * aspect_ratio, vec2(0.0, 1.0));
 }"
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 shader_param/tile_factor = 27.52
 shader_param/aspect_ratio = 0.599564
@@ -70,13 +71,23 @@ __meta__ = {
 
 [node name="Water" parent="." instance=ExtResource( 14 )]
 modulate = Color( 0.623529, 0.627451, 0.772549, 1 )
-material = SubResource( 4 )
+material = SubResource( 2 )
 position = Vector2( 400, 224 )
 scale = Vector2( 55.04, 33 )
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Portrait" type="TextureRect" parent="PanelContainer"]
+margin_left = 424.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 8
+texture = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

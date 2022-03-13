@@ -7,10 +7,10 @@ script = ExtResource( 1 )
 data = {
 "inventory": {
 "items": {
-"combat_items": null,
+"combat_items": {
+},
 "healing_items": {
-Resource( "res://main/items/healing/cream puff/cream puff.tres" ): 1,
-Resource( "res://main/items/healing/choco puff/choco puff.tres" ): 5
+Resource( "res://main/items/healing/cream puff/cream puff.tres" ): 1
 }
 }
 },
@@ -18,6 +18,9 @@ Resource( "res://main/items/healing/choco puff/choco puff.tres" ): 5
 "overworld": {
 "location": "beach"
 }
+},
+"party": {
+"player_party": [  ]
 }
 }
 time = 0

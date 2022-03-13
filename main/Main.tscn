@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://addons/rpg_framework/custom_nodes/party/party.gd" type="Script" id=1]
 [ext_resource path="res://main/ui/combat/Combat.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://main/ui/transition/Transition.tscn" type="PackedScene" id=8]
 [ext_resource path="res://main/overworld/overworld.gd" type="Script" id=9]
 [ext_resource path="res://main/ui/save/Save.tscn" type="PackedScene" id=10]
+[ext_resource path="res://main/combat/visual_fighter/yukid/yukid.tscn" type="PackedScene" id=11]
 [ext_resource path="res://main/main_camera/cover.png" type="Texture" id=13]
 [ext_resource path="res://main/combat/6.png" type="Texture" id=14]
 [ext_resource path="res://main/overworld/overworld_map/_assets/decoration/palm_tree/PalmTree2.tscn" type="PackedScene" id=15]
@@ -22,6 +23,7 @@
 [ext_resource path="res://main/ui/title/Title.tscn" type="PackedScene" id=22]
 [ext_resource path="res://main/items/items.gd" type="Script" id=23]
 [ext_resource path="res://addons/rpg_framework/custom_nodes/save_file_handler/save_file_handler.gd" type="Script" id=24]
+[ext_resource path="res://main/combat/visual_fighter/duckling/duckling.tscn" type="PackedScene" id=25]
 [ext_resource path="res://main/overworld/overworld_map/_assets/decoration/palm_tree/PalmTree.tscn" type="PackedScene" id=26]
 [ext_resource path="res://main/overworld/overworld_map/_assets/water/distanced_water.png" type="Texture" id=27]
 [ext_resource path="res://main/overworld/overworld_map/_assets/decoration/beach_junk/shell.png" type="Texture" id=28]
@@ -292,6 +294,18 @@ script = ExtResource( 1 )
 script = ExtResource( 6 )
 fighter_scene_path = "res://main/combat/visual_fighter/"
 save_id = "player_party"
+
+[node name="duckling" parent="ViewportContainer/Viewport/Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 25 )]
+defense = {
+}
+offense = {
+}
+
+[node name="Yukid" parent="ViewportContainer/Viewport/Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 11 )]
+defense = {
+}
+offense = {
+}
 
 [node name="Positions" type="Node" parent="ViewportContainer/Viewport/Combat"]
 

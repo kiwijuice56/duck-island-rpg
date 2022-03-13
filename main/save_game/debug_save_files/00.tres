@@ -7,8 +7,10 @@ script = ExtResource( 1 )
 data = {
 "inventory": {
 "items": {
-"combat_items": null,
-"healing_items": null
+"combat_items": {
+},
+"healing_items": {
+}
 }
 },
 "overworld_nodes": {
@@ -18,22 +20,40 @@ data = {
 },
 "party": {
 "player_party": [ [ "duckling", {
-"Actions": [ "tornado", "heal", "attack up" ],
+"Actions": [ "tornado", "defense up", "attack up" ],
 "Attributes": [  ],
 "Stats": {
-"agility": 37,
+"agility": 3,
 "experience": 0,
 "experience_to_level": 0,
-"hp": 989,
-"level": 99,
-"luck": 30,
-"magic": 999,
-"max_hp": 999,
-"max_mp": 999,
-"mp": 999,
+"hp": 175,
+"level": 25,
+"luck": 7,
+"magic": 9,
+"max_hp": 175,
+"max_mp": 80,
+"mp": 80,
 "status": "ok",
-"strength": 30,
-"vitality": 30
+"strength": 5,
+"vitality": 7
+}
+} ], [ "yukid", {
+"Actions": [ "eternity slash", "defense down", "panic caster" ],
+"Attributes": [  ],
+"Stats": {
+"agility": 7,
+"experience": 0,
+"experience_to_level": 0,
+"hp": 135,
+"level": 25,
+"luck": 2,
+"magic": 7,
+"max_hp": 135,
+"max_mp": 135,
+"mp": 135,
+"status": "ok",
+"strength": 7,
+"vitality": 3
 }
 } ] ]
 }

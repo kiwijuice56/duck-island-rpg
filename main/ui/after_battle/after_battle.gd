@@ -42,8 +42,8 @@ func check_level_up() -> void:
 			status_ui.enable()
 			yield(status_ui.show_level_up(fighter, stat_count), "completed")
 			status_ui.disable()
-			status_ui.visible = false
 	yield(transition.transition_in(), "completed")
+	status_ui.visible = false
 	visible = false
 	if last.has_method("enable"):
 		last.enable()

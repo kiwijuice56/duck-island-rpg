@@ -1,7 +1,7 @@
 extends Node
 
-var combat_items
-var healing_items
+var combat_items := {}
+var healing_items := {}
 export var save_id := "items"
 var instanced_item: Node
 
