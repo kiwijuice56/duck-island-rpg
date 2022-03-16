@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background_cover.png-39880515692852a859c28820548bbaa1.stex"
+path="res://.import/sphynx.png-1d5280ed8f740d3fbee20ce7d55d5a5d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/ui/overworld/background_cover.png"
-dest_files=[ "res://.import/background_cover.png-39880515692852a859c28820548bbaa1.stex" ]
+source_file="res://main/ui/title/sprites/sphynx.png"
+dest_files=[ "res://.import/sphynx.png-1d5280ed8f740d3fbee20ce7d55d5a5d.stex" ]
 
 [params]
 
@@ -23,7 +23,7 @@ flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false

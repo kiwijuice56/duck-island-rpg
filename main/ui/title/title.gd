@@ -1,7 +1,7 @@
 extends Control
 
 onready var save_file_handler := get_node("../../../SaveFileHandler")
-onready var buttons = $MarginContainer/VBoxContainer/VBoxContainer
+onready var buttons = $MarginContainer/VBoxContainer/PanelContainer/VBoxContainer
 onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
 onready var save_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SaveUI/Save")
 onready var system_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SystemUI/System")
@@ -50,6 +50,8 @@ func pressed(button_name: String) -> void:
 			yield(transition.transition_out(), "completed")
 			system_ui.enable()
 			system_ui.edit_options()
+		"Quit":
+			get_tree().quit()
 
 func choose_button() -> void:
 	buttons.get_child(0).grab_focus()

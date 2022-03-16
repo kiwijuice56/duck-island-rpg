@@ -12,7 +12,7 @@ var menu = preload("res://main/music/menu.mp3")
 var save_menu = preload("res://main/music/save_menu_theme.mp3")
 var victory = preload("res://main/music/victory.mp3")
 
-var stream_volume := 0.0
+var stream_volume := -80
 
 var volumes = {
 	battle: -12,

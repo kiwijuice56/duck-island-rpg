@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://main/ui/overworld/ocean_segment.gd" type="Script" id=1]
-[ext_resource path="res://main/ui/overworld/background-sheet.png" type="Texture" id=2]
+[ext_resource path="res://main/ui/_assets/ocean_background/background-sheet.png" type="Texture" id=1]
+[ext_resource path="res://main/ui/_assets/ocean_background/ocean_segment.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "floop"
@@ -22,10 +22,10 @@ tracks/0/keys = {
 
 [node name="OceanSegment" type="Sprite"]
 scale = Vector2( 2, 2 )
-texture = ExtResource( 2 )
+texture = ExtResource( 1 )
 centered = false
 hframes = 10
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/floop = SubResource( 1 )

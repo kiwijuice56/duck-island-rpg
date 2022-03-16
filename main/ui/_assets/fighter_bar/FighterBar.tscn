@@ -15,4 +15,3 @@ __meta__ = {
 }
 
 [node name="FighterContainer" parent="." instance=ExtResource( 1 )]
-margin_bottom = 54.0

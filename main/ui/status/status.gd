@@ -7,7 +7,6 @@ onready var system_ui = get_tree().get_root().get_node("Main/ViewportContainer/V
 onready var skill_container = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer
 onready var stat_container = $PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer
 onready var name_label = $PanelContainer/MarginContainer/VBoxContainer/NameLabelContainer/Label
-onready var exp_label = $PanelContainer/MarginContainer/VBoxContainer/ExpLabelContainer/Label
 
 # the node that opened this menu
 var last = null
@@ -124,8 +123,9 @@ func show_level_up(fighter: Node, stat_count: int) -> void:
 
 func initialize(fighter: Node) -> void:
 	name_label.text = fighter.save_id.capitalize()
-	exp_label.text = ""
 	$PanelContainer/Portrait.texture = portraits[fighter.save_id]
+	$PanelContainer/MarginContainer/VBoxContainer/ExpLabelContainer/HBoxContainer/Level.text = "LVL " + str(fighter.level)
+	$PanelContainer/MarginContainer/VBoxContainer/ExpLabelContainer/HBoxContainer/Exp.text = "Next: " + str(fighter.experience_to_level)
 	for i in range(5):
 		stat_container.get_child(i).get_child(0).set_stat(STATS[i], fighter.get(STATS[i]))
 	skill_container.initialize(fighter)

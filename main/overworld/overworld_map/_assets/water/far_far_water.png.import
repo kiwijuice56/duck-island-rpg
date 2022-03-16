@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background.png-f8c3cddb67a7e2fe14b732423d2f64bc.stex"
+path="res://.import/far_far_water.png-972cc25ce085fddd61caa7bb0285a664.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/ui/overworld/background.png"
-dest_files=[ "res://.import/background.png-f8c3cddb67a7e2fe14b732423d2f64bc.stex" ]
+source_file="res://main/overworld/overworld_map/_assets/water/far_far_water.png"
+dest_files=[ "res://.import/far_far_water.png-972cc25ce085fddd61caa7bb0285a664.stex" ]
 
 [params]
 
@@ -23,7 +23,7 @@ flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
