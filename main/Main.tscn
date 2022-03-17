@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://addons/rpg_framework/custom_nodes/party/party.gd" type="Script" id=1]
 [ext_resource path="res://main/ui/combat/Combat.tscn" type="PackedScene" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://main/ui/transition/Transition.tscn" type="PackedScene" id=8]
 [ext_resource path="res://main/overworld/overworld.gd" type="Script" id=9]
 [ext_resource path="res://main/ui/save/Save.tscn" type="PackedScene" id=10]
-[ext_resource path="res://main/combat/visual_fighter/yukid/yukid.tscn" type="PackedScene" id=11]
 [ext_resource path="res://main/ui/title/sprites/Sky.tscn" type="PackedScene" id=12]
 [ext_resource path="res://main/main_camera/cover.png" type="Texture" id=13]
 [ext_resource path="res://main/overworld/overworld_map/_assets/decoration/palm_tree/PalmTree2.tscn" type="PackedScene" id=15]
@@ -270,12 +269,6 @@ fighter_scene_path = "res://main/combat/visual_fighter/"
 save_id = "player_party"
 
 [node name="duckling" parent="ViewportContainer/Viewport/Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 25 )]
-defense = {
-}
-offense = {
-}
-
-[node name="Yukid" parent="ViewportContainer/Viewport/Combat/PressTurnCycle/PlayerParty" instance=ExtResource( 11 )]
 defense = {
 }
 offense = {

@@ -20,7 +20,7 @@ data = {
 },
 "party": {
 "player_party": [ [ "duckling", {
-"Actions": [ "tornado", "defense up", "attack up" ],
+"Actions": [ "attack up" ],
 "Attributes": [  ],
 "Stats": {
 "agility": 3,
@@ -36,24 +36,6 @@ data = {
 "status": "ok",
 "strength": 5,
 "vitality": 7
-}
-} ], [ "yukid", {
-"Actions": [ "eternity slash", "defense down", "panic caster" ],
-"Attributes": [  ],
-"Stats": {
-"agility": 7,
-"experience": 0,
-"experience_to_level": 0,
-"hp": 135,
-"level": 25,
-"luck": 2,
-"magic": 7,
-"max_hp": 135,
-"max_mp": 135,
-"mp": 135,
-"status": "ok",
-"strength": 7,
-"vitality": 3
 }
 } ] ]
 }

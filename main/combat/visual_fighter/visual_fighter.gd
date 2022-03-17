@@ -10,10 +10,17 @@ export var max_hp: int
 export var max_mp: int
 
 export var strength: int
-export var vitality: int
-export var magic: int
+export var vitality: int setget set_vitality
+export var magic: int setget set_magic
 export var agility: int
 export var luck: int
+
+func set_vitality(v) -> void:
+	vitality = v
+	set_max_points()
+func set_magic(m) -> void:
+	magic = m
+	set_max_points()
 
 # affinities
 export var defense := {}
@@ -58,6 +65,7 @@ func _ready() -> void:
 	$SelectIcon.modulate = Color(1,1,1,0)
 	$DamageLabel.modulate = Color(1,1,1,0)
 	$Sprite.visible = false
+	experience_to_level = 15 * level * log(level + 1)
 
 func get_experience() -> int:
 	return int(max_hp)
@@ -69,7 +77,13 @@ func level_up() -> int:
 		level += 1
 		experience -= experience_to_level
 		experience_to_level = 15 * level * log(level + 1)
+	set_max_points()
 	return stat_count
+
+func set_max_points() -> void:
+	max_hp = int((level/2 + vitality*1.25) * 9)
+	max_mp = int((level/3 + magic) * 8)
+	emit_signal("update_points")
 
 func on_impact() -> void:
 	emit_signal("update_points")
@@ -230,9 +244,11 @@ func save_data() -> Dictionary:
 	for stat in STATS:
 		saved_stats[stat] = get(stat)
 	data["Stats"] = saved_stats
+	data["Unlearned"] = $UnlearnedSkills.get_data()
 	return data
 
 func load_data(data: Dictionary) -> void:
 	.load_data(data)
+	$UnlearnedSkills.load_data(data["Unlearned"])
 	for stat in data["Stats"]:
 		set(stat, data["Stats"][stat])

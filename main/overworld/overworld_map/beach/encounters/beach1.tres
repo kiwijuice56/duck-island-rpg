@@ -1,12 +1,13 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://main/overworld/overworld_map/_assets/encounter/encounter_data.gd" type="Script" id=1]
 [ext_resource path="res://main/combat/visual_fighter/starmie/Starmie.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main/combat/visual_fighter/loduck/loduck.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/combat/visual_fighter/crabsly/crabsly.tscn" type="PackedScene" id=4]
 
 [resource]
 script = ExtResource( 1 )
-enemies = [ ExtResource( 3 ), ExtResource( 2 ) ]
-spawn_chances = [ 0.6, 0.4 ]
-enemy_count_min = 3
-enemy_count_max = 3
+enemies = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ]
+spawn_chances = [ 0.4, 0.3, 0.3 ]
+enemy_count_min = 1
+enemy_count_max = 1

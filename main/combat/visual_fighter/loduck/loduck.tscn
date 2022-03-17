@@ -74,8 +74,8 @@ save_id = "loduck"
 level = 5
 hp = 55
 mp = 35
-max_hp = 55
-max_mp = 35
+max_hp = 40
+max_mp = 40
 strength = 3
 vitality = 2
 magic = 4
@@ -90,11 +90,10 @@ offense = {
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
-hframes = 6
 
 [node name="panic caster" parent="ActionDecider" index="0" instance=ExtResource( 3 )]
 
-[node name="SpriteAnimationPlayer" parent="." index="7"]
+[node name="SpriteAnimationPlayer" parent="." index="8"]
 anims/dead = SubResource( 1 )
 anims/hold_magic = SubResource( 2 )
 anims/hurt = SubResource( 3 )

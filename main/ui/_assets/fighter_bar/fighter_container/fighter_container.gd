@@ -63,6 +63,10 @@ func initialize(fighter: Node) -> void:
 func update_points(fighter: Node) -> void:
 	hp_int = max(0, int($HP/Label.text))
 	mp_int = max(0, int($MP/Label.text))
+	
+	$HP/TextureProgress.max_value = fighter.max_hp
+	$MP/TextureProgress.max_value = fighter.max_mp
+	
 	$Tween.interpolate_property($HP/TextureProgress, "value", null, fighter.hp, point_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.interpolate_property($MP/TextureProgress, "value", null, fighter.mp, point_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	

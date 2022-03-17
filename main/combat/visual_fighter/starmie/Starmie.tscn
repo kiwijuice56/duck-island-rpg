@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/combat/visual_fighter/starmie/starmie.png" type="Texture" id=2]
@@ -22,7 +22,21 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=2]
-resource_name = "hurt"
+resource_name = "hold_magic"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+
+[sub_resource type="Animation" id=3]
 length = 0.55
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -37,7 +51,7 @@ tracks/0/keys = {
 "values": [ 7 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.6
 loop = true
 step = 0.05
@@ -59,8 +73,8 @@ save_id = "starmie"
 level = 7
 hp = 125
 mp = 90
-max_hp = 125
-max_mp = 90
+max_hp = 49
+max_mp = 56
 strength = 1
 vitality = 2
 magic = 5
@@ -75,9 +89,10 @@ offense = {
 }
 
 [node name="Sprite" parent="." index="0"]
+scale = Vector2( 2, 2.2 )
 texture = ExtResource( 2 )
-hframes = 9
-frame = 1
+hframes = 10
+frame = 9
 
 [node name="SelectIcon" parent="." index="2"]
 position = Vector2( 0, -72 )
@@ -91,5 +106,6 @@ position = Vector2( 0, -96 )
 
 [node name="SpriteAnimationPlayer" parent="." index="8"]
 anims/dead = SubResource( 1 )
-anims/hurt = SubResource( 2 )
-anims/idle = SubResource( 3 )
+anims/hold_magic = SubResource( 2 )
+anims/hurt = SubResource( 3 )
+anims/idle = SubResource( 4 )

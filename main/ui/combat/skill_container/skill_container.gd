@@ -1,5 +1,6 @@
 extends Container
 
+export var unlearned := false
 export var transition_time := 0.0825
 export var skill_button = preload("res://main/ui/combat/circle_menu/skill_button/SkillButton.tscn")
 
@@ -31,7 +32,8 @@ func initialize(fighter: Node) -> void:
 		$ScrollContainer/VBoxContainer.remove_child(child)
 		child.queue_free()
 	var last_button = null
-	for skill in [fighter.get_node("Attack")] + fighter.get_action_decider().get_children():
+	var skills = [fighter.get_node("Attack")] + fighter.get_action_decider().get_children() if not unlearned else fighter.get_node("UnlearnedSkills").get_skill_scenes()
+	for skill in skills:
 		var new_button = skill_button.instance()
 		new_button.connect("button_down", self, "button_down", [new_button])
 		if skill.cost_type != "" and skill.cost > fighter.get(skill.cost_type):

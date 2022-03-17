@@ -74,37 +74,32 @@ tracks/0/keys = {
 
 [node name="duckling" instance=ExtResource( 2 )]
 save_id = "duckling"
-level = 25
-hp = 175
-mp = 80
-max_hp = 175
-max_mp = 80
-strength = 5
-vitality = 7
-magic = 9
+level = 5
+hp = 78
+mp = 45
+max_hp = 74
+max_mp = 40
+strength = 4
+vitality = 5
+magic = 4
 agility = 3
-luck = 7
+luck = 3
 defense = {
 }
 offense = {
 }
 
 [node name="Sprite" parent="." index="0"]
-frame = 5
+modulate = Color( 8, 8, 8, 1 )
+position = Vector2( -48, -118 )
+frame = 3
 
 [node name="ActionDecider" parent="." index="3"]
 script = ExtResource( 1 )
-action_scene_path = "res://main/combat/skills/"
-
-[node name="tornado" parent="ActionDecider" index="0" instance=ExtResource( 3 )]
-
-[node name="DefenseUp" parent="ActionDecider" index="1" instance=ExtResource( 5 )]
-
-[node name="AttackUp" parent="ActionDecider" index="2" instance=ExtResource( 6 )]
 
 [node name="UnlearnedSkills" parent="." index="4"]
-skill_levels = [ 2 ]
-skills = [ ExtResource( 4 ) ]
+skill_levels = [ 6, 7, 9, 11 ]
+skills = [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ) ]
 
 [node name="SpriteAnimationPlayer" parent="." index="8"]
 playback_speed = 0.55

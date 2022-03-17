@@ -198,6 +198,7 @@ action_scene_path = "res://main/combat/skills/"
 
 [node name="UnlearnedSkills" type="Node" parent="."]
 script = ExtResource( 9 )
+action_scene_path = "res://main/combat/skills/"
 
 [node name="Attack" parent="." instance=ExtResource( 7 )]
 

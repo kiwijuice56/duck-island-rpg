@@ -71,6 +71,11 @@ func battle_end() -> void:
 	# quit if the player's party is dead
 	if sub_cycle[0].get_parent() != $PlayerParty:
 		get_tree().quit()
+	for child in get_children():
+		for fighter in child.get_children():
+			if not fighter.status == "dead":
+				fighter.status = "ok"
+				fighter.update_status()
 	# otherwise, play victory sequence and break
 	MusicPlayer.play_music(MusicPlayer.victory, 0.025)
 	yield(text_box.display_text("Victory!", 0.02, 1.5), "completed")
@@ -106,26 +111,21 @@ func switch_to_overworld() -> void:
 	emit_signal("battle_ended")
 	yield(transition.transition_out(), "completed")
 
-func heal_fighters() -> void:
+func reset_fighters() -> void:
 	for child in get_children():
 		for fighter in child.get_children():
-			fighter.status = "ok"
-			fighter.update_status()
 			fighter.get_node("Sprite").frame = 0
 			fighter.get_node("Sprite").modulate = Color(1,1,1,1)
 			if fighter.get_node("SpriteAnimationPlayer").has_animation("idle"):
 				fighter.get_node("SpriteAnimationPlayer").current_animation = "idle"
 			fighter.reset_buffs()
-			fighter.hp = fighter.max_hp
-			fighter.mp = fighter.max_mp
-			fighter.emit_signal("update_points")
 			fighter.get_node("Sprite").visible = true
 
 # cycles through parties and handles press turns in combat
 func battle() -> void:
 	# initialize fight
 	position_fighters()
-	heal_fighters()
+	reset_fighters()
 	experience = 0
 	
 	MusicPlayer.play_music(MusicPlayer.battle)

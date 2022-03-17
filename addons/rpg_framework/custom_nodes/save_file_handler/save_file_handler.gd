@@ -15,7 +15,8 @@ signal file_managing_complete
 
 var save_file_template_path: String = "res://main/save_game/save_file_template/save_file_template.gd"
 
-#func _ready() -> void:
+func _ready() -> void:
+	pass
 #	save_file(0, true)
 
 func get_files(developer_mode: bool) -> Array:

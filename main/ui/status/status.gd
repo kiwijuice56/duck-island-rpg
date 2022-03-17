@@ -5,6 +5,7 @@ onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/
 onready var save_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SaveUI/Save")
 onready var system_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SystemUI/System")
 onready var skill_container = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SkillContainer
+onready var unlearned_skill_container = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/UnlearnedSkillContainer
 onready var stat_container = $PanelContainer/MarginContainer/VBoxContainer/StarBarContainer/VBoxContainer
 onready var name_label = $PanelContainer/MarginContainer/VBoxContainer/NameLabelContainer/Label
 
@@ -129,6 +130,7 @@ func initialize(fighter: Node) -> void:
 	for i in range(5):
 		stat_container.get_child(i).get_child(0).set_stat(STATS[i], fighter.get(STATS[i]))
 	skill_container.initialize(fighter)
+	unlearned_skill_container.initialize(fighter)
 
 func enable():
 	set_process_input(true)
