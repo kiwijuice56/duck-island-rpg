@@ -5,6 +5,8 @@ onready var buttons = $MarginContainer/VBoxContainer/PanelContainer/VBoxContaine
 onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
 onready var save_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SaveUI/Save")
 onready var system_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SystemUI/System")
+onready var player := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld/Player")
+onready var overworld := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld")
 
 # the node that opened this menu
 var last = null
@@ -26,14 +28,19 @@ func _input(event):
 
 func pressed(button_name: String) -> void:
 	disable()
-	yield(transition.transition_in(), "completed")
+	get_focus_owner().release_focus()
 	match button_name:
 		"New Game":
+			yield(transition.heavy_transition_in(), "completed")
 			save_file_handler.call_deferred("load_file", -1, true)
-			visible = false
 			yield(save_file_handler, "file_managing_complete")
-			yield(transition.transition_out(), "completed")
+			MusicPlayer.stop()
+			visible = false
+			player.disable()
+			yield($Cutscene.play([player]), "completed")
+			overworld.enable()
 		"Load Game":
+			yield(transition.transition_in(), "completed")
 			save_ui.visible = true
 			save_ui.last = self
 			save_ui.last_func = "choose_button"
@@ -43,6 +50,7 @@ func pressed(button_name: String) -> void:
 			save_ui.enable()
 			save_ui.load_file()
 		"System":
+			yield(transition.transition_in(), "completed")
 			system_ui.visible = true
 			system_ui.last = self
 			system_ui.last_func = "choose_button"
@@ -51,6 +59,7 @@ func pressed(button_name: String) -> void:
 			system_ui.enable()
 			system_ui.edit_options()
 		"Quit":
+			yield(transition.transition_in(), "completed")
 			get_tree().quit()
 
 func choose_button() -> void:

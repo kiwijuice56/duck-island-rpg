@@ -11,3 +11,11 @@ func transition_in() -> void:
 func transition_out() -> void:
 	$AnimationPlayer.current_animation = "transition_out"
 	yield($AnimationPlayer, "animation_finished")
+
+func heavy_transition_in() -> void:
+	$AnimationPlayer.current_animation = "h_transition_in"
+	yield($AnimationPlayer, "animation_finished")
+
+func heavy_transition_out() -> void:
+	$AnimationPlayer.current_animation = "h_transition_out"
+	yield($AnimationPlayer, "animation_finished")

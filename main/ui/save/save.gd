@@ -4,6 +4,7 @@ onready var file_container = get_node("MarginContainer/PanelContainer/VBoxContai
 onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
 onready var scroll_container = $MarginContainer/PanelContainer/VBoxContainer/ScrollContainer
 onready var label = $MarginContainer/PanelContainer/VBoxContainer/Label
+onready var overworld := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld")
 
 export var save_button = preload("res://main/ui/save/save_button/SaveButton.tscn")
 
@@ -67,6 +68,7 @@ func pressed(button):
 		visible = false
 		yield(save_file_handler, "file_managing_complete")
 		yield(transition.transition_out(), "completed")
+		overworld.enable()
 	if mode == "save":
 		var saved_index = button.get_index()
 		var saved_scroll = scroll_container.scroll_vertical

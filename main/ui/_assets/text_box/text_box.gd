@@ -6,12 +6,12 @@ var choice_button := preload("res://main/ui/_assets/text_box/choice_button/Choic
 signal pressed
 
 var icons := {
-	"mii_duck" : preload("res://main/ui/_assets/text_box/icons/mii_duck.png"),
+	"mii duck" : preload("res://main/ui/_assets/text_box/icons/mii_duck.png"),
 	"yukid" : preload("res://main/ui/_assets/text_box/icons/yukid.png")
 }
 
 var voices := {
-	"mii_duck" : preload("res://main/ui/_assets/text_box/voices/mii_duck.wav"),
+	"mii duck" : preload("res://main/ui/_assets/text_box/voices/mii_duck.wav"),
 	"yukid" : preload("res://main/ui/_assets/text_box/voices/yukid.wav")
 }
 
@@ -54,15 +54,24 @@ func display_choices(text: String, choices: Array, sec_per_char: float, after_de
 	$ChoiceContainer.visible = false
 	return choices[index]
 
-func display_text(text: String, sec_per_char: float, after_delay: float, require_press := false) -> void:
+func display_text(text: String, sec_per_char: float, after_delay: float, require_press := false, speaker := "") -> void:
+	if len(speaker) > 0:
+		sound_on = true
+		$AudioStreamPlayer.stream = voices[speaker]
+		$HBoxContainer/Icon.texture = icons[speaker]
+		$HBoxContainer/Icon.visible = true
+	else:
+		sound_on = false
+		$HBoxContainer/Icon.visible = false
 	self.visible_characters = 0
-	$HBoxContainer/Icon.visible = false
+	
 	label.text = text
 	$Tween.interpolate_property(self, "visible_characters", 0,  len(text), len(text) * sec_per_char, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
 	yield($Tween, "tween_completed")
-	$Timer.start(after_delay)
-	yield($Timer, "timeout")
+	if (after_delay > 0):
+		$Timer.start(after_delay)
+		yield($Timer, "timeout")
 	if require_press:
 		yield(self, "pressed")
 

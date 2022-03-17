@@ -11,7 +11,9 @@ func load_data(data: Dictionary) -> void:
 	current_location = data["location"]
 	add_child(new_location)
 	move_child(new_location, 0)
-	MusicPlayer.play_music(MusicPlayer.get(new_location.music))
+
+func enable() -> void:
+	MusicPlayer.play_music(MusicPlayer.get(get_child(0).music))
 	$Player.enable()
 	$Player.room_loaded()
 

@@ -7,7 +7,7 @@ export var swoosh: PackedScene
 
 func animate(user: Node, targets: Array) -> void:
 	var angle = 0
-	yield(cam.pan(targets[0], .5, Vector2()), "completed")
+	yield(cam.pan(targets[0].get_node("SelectIcon"), .5, Vector2()), "completed")
 
 	
 	cam.toggle_cover(true)
@@ -24,7 +24,7 @@ func animate(user: Node, targets: Array) -> void:
 	$Timer.start(.05)
 	yield($Timer, "timeout")
 	for i in range(len(targets)):
-		cam.pan(targets[i], .1, Vector2())
+		cam.pan(targets[i].get_node("SelectIcon"), .1, Vector2())
 		var new_impact = impact_effect.instance()
 		add_child(new_impact)
 		new_impact.impact(targets[i])

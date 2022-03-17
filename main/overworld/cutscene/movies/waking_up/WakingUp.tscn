@@ -1,0 +1,165 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://main/overworld/cutscene/movies/Movie.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/overworld/cutscene/movies/waking_up/blur.shader" type="Shader" id=2]
+[ext_resource path="res://main/overworld/cutscene/movies/waking_up/sky.png" type="Texture" id=3]
+[ext_resource path="res://main/overworld/cutscene/movies/waking_up/sun.png" type="Texture" id=4]
+[ext_resource path="res://main/overworld/cutscene/movies/waking_up/waking_up.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=5]
+resource_name = "waking_up"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/Top:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 3.6, 3.8, 4.7, 4.8, 6.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -296, -296 ), Vector2( -296, -296 ), Vector2( -296, -450 ), Vector2( -296, -300 ), Vector2( -296, -450 ), Vector2( -296, -300 ), Vector2( -296, -600 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control/Bot:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 3.6, 3.8, 4.7, 4.8, 6.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -296, 304 ), Vector2( -296, 304 ), Vector2( -296, 450 ), Vector2( -296, 300 ), Vector2( -296, 450 ), Vector2( -296, 300 ), Vector2( -296, 600 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Blur:material:shader_param/blur_amount")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2, 3.6, 3.8, 4.7, 4.8, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 5.0, 5.0, 4.0, 3.0, 2.0, 1.5, 1.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "finish"
+} ]
+}
+
+[sub_resource type="Shader" id=1]
+code = "// https://kidscancode.org/godot_recipes/shaders/blur/
+shader_type canvas_item;
+
+uniform float blur_amount : hint_range(0, 5);
+
+void fragment() {
+	COLOR = textureLod(SCREEN_TEXTURE, SCREEN_UV, blur_amount);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/blur_amount = null
+
+[sub_resource type="Animation" id=6]
+resource_name = "waver"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.3, 0.0 ]
+}
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 2 )
+shader_param/blur_amount = 5.0
+
+[node name="WakingUp" instance=ExtResource( 1 )]
+script = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+autoplay = "waking_up"
+playback_speed = 0.75
+anims/waking_up = SubResource( 5 )
+
+[node name="Control" type="Control" parent="." index="1"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Control" index="0"]
+margin_right = 1040.0
+margin_bottom = 600.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control" index="1"]
+position = Vector2( 584, 328 )
+rotation = 3.14159
+scale = Vector2( 2, -2 )
+texture = ExtResource( 4 )
+
+[node name="Light2D" type="Light2D" parent="Control/Sprite" index="0"]
+texture = ExtResource( 4 )
+energy = 0.0393767
+range_layer_min = 1
+range_layer_max = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Sprite" index="1"]
+autoplay = "waver"
+playback_speed = 0.1
+anims/waver = SubResource( 6 )
+
+[node name="Top" type="ColorRect" parent="Control" index="2"]
+margin_left = -296.0
+margin_top = -296.0
+margin_right = 1704.0
+margin_bottom = 304.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bot" type="ColorRect" parent="Control" index="3"]
+margin_left = -296.0
+margin_top = 304.0
+margin_right = 1704.0
+margin_bottom = 903.999
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blur" type="ColorRect" parent="." index="2"]
+light_mask = 32769
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,14 +1,41 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://main/overworld/player/player.gd" type="Script" id=1]
-[ext_resource path="res://main/overworld/player/mii_duck_spritesheet.png" type="Texture" id=2]
+[ext_resource path="res://main/overworld/player/mii_duck.png" type="Texture" id=2]
 [ext_resource path="res://main/overworld/player/shadow.png" type="Texture" id=3]
 [ext_resource path="res://main/overworld/player/water_hider.png" type="Texture" id=4]
 [ext_resource path="res://main/overworld/player/190080__tran5ient__splash7.wav" type="AudioStream" id=5]
 [ext_resource path="res://main/overworld/player/398038__swordofkings128__water-splash-1.mp3" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=1]
-resource_name = "walk_down"
+resource_name = "wake_up"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.9, 3.9, 5, 5.4, 5.8, 6.2, 6.6, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1.03526, 1, 1 ),
+"update": 1,
+"values": [ 28, 29, 28, 29, 28, 29, 28, 29, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Shadow:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 2, 23 ), Vector2( 2, 22 ) ]
+}
+
+[sub_resource type="Animation" id=2]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -24,8 +51,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "walk_left"
+[sub_resource type="Animation" id=3]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -41,8 +67,7 @@ tracks/0/keys = {
 "values": [ 22, 23, 24, 25, 26, 27 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "walk_right"
+[sub_resource type="Animation" id=4]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -58,7 +83,7 @@ tracks/0/keys = {
 "values": [ 16, 17, 18, 19, 20, 21 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -74,13 +99,13 @@ tracks/0/keys = {
 "values": [ 8, 9, 10, 11, 12, 13, 14, 15 ]
 }
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 18, 20 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 24, 24 )
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=8]
 offsets = PoolRealArray( 0, 0.273973, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 0.480469, 0.817352, 1, 1, 0.18126, 0.136505, 0.492188, 0 )
 
@@ -92,10 +117,11 @@ speed = 164
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "walk_up"
 playback_speed = 2.0
-anims/walk_down = SubResource( 1 )
-anims/walk_left = SubResource( 2 )
-anims/walk_right = SubResource( 3 )
-anims/walk_up = SubResource( 4 )
+anims/wake_up = SubResource( 1 )
+anims/walk_down = SubResource( 2 )
+anims/walk_left = SubResource( 3 )
+anims/walk_right = SubResource( 4 )
+anims/walk_up = SubResource( 5 )
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 2, 22 )
@@ -105,23 +131,23 @@ texture = ExtResource( 3 )
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
-hframes = 28
+hframes = 30
 region_enabled = true
-region_rect = Rect2( 0, 0, 1680, 20 )
+region_rect = Rect2( 0, 0, 1800, 40 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 7.5 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 22
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="Light2D" type="Light2D" parent="."]
 visible = false
@@ -152,7 +178,7 @@ initial_velocity = 125.0
 initial_velocity_random = 0.78
 scale_amount = 3.0
 scale_amount_random = 0.63
-color_ramp = SubResource( 7 )
+color_ramp = SubResource( 8 )
 
 [node name="SmallSplash" type="CPUParticles2D" parent="."]
 position = Vector2( -0.749161, 23.2408 )
@@ -171,7 +197,7 @@ initial_velocity = 100.0
 initial_velocity_random = 0.78
 scale_amount = 3.0
 scale_amount_random = 0.63
-color_ramp = SubResource( 7 )
+color_ramp = SubResource( 8 )
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

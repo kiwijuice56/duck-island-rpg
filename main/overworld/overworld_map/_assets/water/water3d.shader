@@ -34,7 +34,7 @@ void fragment() {
 	vec4 t;
 	if (vertexToCam > 2.5)
 		t = texture(water_far_far_text, tiled_uvs + wave_uv_offset * amplitude);
-	else if (vertexToCam > 1.7)
+	else if (vertexToCam > 1.3)
 		t = texture(water_far_text, tiled_uvs + wave_uv_offset * amplitude);
 	else
 		t = texture(water_text, tiled_uvs + wave_uv_offset * amplitude);

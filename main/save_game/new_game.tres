@@ -7,9 +7,9 @@ script = ExtResource( 1 )
 data = {
 "inventory": {
 "items": {
-"combat_items": null,
+"combat_items": {
+},
 "healing_items": {
-Resource( "res://main/items/healing/choco puff/choco puff.tres" ): 4
 }
 }
 },
@@ -17,7 +17,46 @@ Resource( "res://main/items/healing/choco puff/choco puff.tres" ): 4
 "overworld": {
 "location": "beach"
 }
+},
+"party": {
+"player_party": [ [ "duckling", {
+"Actions": [ "tornado", "defense up", "attack up" ],
+"Attributes": [  ],
+"Stats": {
+"agility": 3,
+"experience": 0,
+"experience_to_level": 0,
+"hp": 175,
+"level": 25,
+"luck": 7,
+"magic": 9,
+"max_hp": 175,
+"max_mp": 80,
+"mp": 80,
+"status": "ok",
+"strength": 5,
+"vitality": 7
+}
+} ], [ "yukid", {
+"Actions": [ "eternity slash", "defense down", "panic caster" ],
+"Attributes": [  ],
+"Stats": {
+"agility": 7,
+"experience": 0,
+"experience_to_level": 0,
+"hp": 135,
+"level": 25,
+"luck": 2,
+"magic": 7,
+"max_hp": 135,
+"max_mp": 135,
+"mp": 135,
+"status": "ok",
+"strength": 7,
+"vitality": 3
+}
+} ] ]
 }
 }
-time = 15
-location = "beach"
+time = 0
+location = ""

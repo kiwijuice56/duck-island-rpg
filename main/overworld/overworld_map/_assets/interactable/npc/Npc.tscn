@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://main/overworld/overworld_map/_assets/interactable/Interactable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/overworld/overworld_map/_assets/interactable/npc/npc.gd" type="Script" id=2]
 [ext_resource path="res://main/overworld/overworld_map/_assets/interactable/npc/sprite.png" type="Texture" id=3]
+[ext_resource path="res://main/overworld/cutscene/Cutscene.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 49.5
@@ -34,9 +35,11 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )
 
-[node name="Tween" type="Tween" parent="." index="2"]
+[node name="Cutscene" parent="." index="2" instance=ExtResource( 4 )]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+[node name="Tween" type="Tween" parent="." index="3"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 autoplay = "flicker"
 playback_speed = 0.25
 anims/flicker = SubResource( 2 )

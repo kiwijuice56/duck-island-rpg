@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://main/overworld/overworld_map/_assets/water/water.png" type="Texture" id=1]
 [ext_resource path="res://main/ui/title/sprites/title.png" type="Texture" id=2]
@@ -25,6 +25,13 @@
 [ext_resource path="res://main/ui/title/sprites/sphynx.png" type="Texture" id=23]
 [ext_resource path="res://main/ui/title/sprites/pyramid.png" type="Texture" id=24]
 [ext_resource path="res://main/ui/_assets/style_boxes/round_flat_panel.tres" type="StyleBox" id=25]
+[ext_resource path="res://main/ui/title/sprites/flower.png" type="Texture" id=26]
+[ext_resource path="res://main/ui/title/sprites/flower4.png" type="Texture" id=27]
+[ext_resource path="res://main/ui/title/sprites/flower2.png" type="Texture" id=28]
+[ext_resource path="res://main/ui/title/sprites/flower3.png" type="Texture" id=29]
+[ext_resource path="res://main/ui/title/sprites/tree3.png" type="Texture" id=30]
+[ext_resource path="res://main/ui/title/sprites/snowman.png" type="Texture" id=31]
+[ext_resource path="res://main/overworld/cutscene/Cutscene.tscn" type="PackedScene" id=32]
 
 [sub_resource type="Animation" id=1]
 resource_name = "move_title"
@@ -105,7 +112,7 @@ tracks/0/keys = {
 [sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 7 )
 shader_param/tile_factor = 325.0
-shader_param/aspect_ratio = 0.5
+shader_param/aspect_ratio = 1.0
 shader_param/time_factor = Vector2( 2, 3 )
 shader_param/offset_factor = Vector2( 5, 2 )
 shader_param/amplitude = Vector2( 0.05, 0.05 )
@@ -136,6 +143,9 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Cutscene" parent="." instance=ExtResource( 32 )]
+events = [ [ "movie", "1", "res://main/overworld/cutscene/movies/waking_up/WakingUp.tscn" ], [ "anim", "1", "0", "wake_up" ], [ "talk", "1", "mii duck", "where the hell am i . . . what happened?", "0.045" ] ]
 
 [node name="Sprite" parent="." instance=ExtResource( 12 )]
 position = Vector2( 0, 135 )
@@ -408,40 +418,40 @@ alpha_cut = 2
 texture = ExtResource( 16 )
 
 [node name="Tree66" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Trees"]
-transform = Transform( 0.2, 2.33993e-21, 0, 0, 0.2, 0, 0, -2.32934e-21, 0.2, -0.344811, 0.0264326, 0.0434536 )
+transform = Transform( 0.2, -8.47033e-22, 0, 3.38813e-21, 0.2, 0, 0, -3.81165e-21, 0.2, -0.344811, 0.0264326, 0.0434536 )
 billboard = 1
 alpha_cut = 2
-texture = ExtResource( 16 )
+texture = ExtResource( 30 )
 
 [node name="Tree67" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Trees"]
-transform = Transform( 0.2, 2.33993e-21, 0, 0, 0.2, 0, 0, -2.32934e-21, 0.2, -0.339812, 0.0264326, 0.0177261 )
+transform = Transform( 0.2, 1.69407e-21, 0, 8.47033e-22, 0.2, 0, 0, -2.5411e-21, 0.2, -0.339812, 0.0264326, 0.0177261 )
 billboard = 1
 alpha_cut = 2
-texture = ExtResource( 16 )
+texture = ExtResource( 30 )
 
 [node name="Tree68" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Trees"]
-transform = Transform( 0.2, 2.44581e-21, 0, 0, 0.2, 0, 0, -2.43522e-21, 0.2, -0.369957, 0.0264326, 0.0169866 )
+transform = Transform( 0.2, 1.69407e-21, 0, 8.47033e-22, 0.2, 0, 0, -2.96462e-21, 0.2, -0.369957, 0.0264326, 0.0169866 )
 billboard = 1
 alpha_cut = 2
-texture = ExtResource( 16 )
+texture = ExtResource( 30 )
 
 [node name="Tree69" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Trees"]
-transform = Transform( 0.2, 2.9752e-21, 0, 0, 0.2, 0, 0, -2.96462e-21, 0.2, -0.309655, 0.0264326, 0.10424 )
+transform = Transform( 0.2, 8.47033e-22, 0, 2.5411e-21, 0.2, 0, 0, -4.23516e-21, 0.2, -0.309655, 0.0264326, 0.10424 )
 billboard = 1
 alpha_cut = 2
-texture = ExtResource( 16 )
+texture = ExtResource( 30 )
 
 [node name="Tree70" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Trees"]
-transform = Transform( 0.2, 2.9752e-21, 0, 0, 0.2, 0, 0, -2.96462e-21, 0.2, -0.304656, 0.0264326, 0.0785124 )
+transform = Transform( 0.2, 8.47033e-22, 0, 2.5411e-21, 0.2, 0, 0, -4.23516e-21, 0.2, -0.304656, 0.0264326, 0.0785124 )
 billboard = 1
 alpha_cut = 2
-texture = ExtResource( 16 )
+texture = ExtResource( 30 )
 
 [node name="Tree71" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Trees"]
-transform = Transform( 0.2, 3.08108e-21, 0, 0, 0.2, 0, 0, -3.07049e-21, 0.2, -0.334801, 0.0264326, 0.0777729 )
+transform = Transform( 0.2, 8.47033e-22, 0, 2.5411e-21, 0.2, 0, 0, -4.23516e-21, 0.2, -0.334801, 0.0264326, 0.0777729 )
 billboard = 1
 alpha_cut = 2
-texture = ExtResource( 16 )
+texture = ExtResource( 30 )
 
 [node name="Tree72" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Trees"]
 transform = Transform( 0.2, 3.18696e-21, 0, 0, 0.2, 0, 0, -3.17637e-21, 0.2, -0.0281499, 0.0264326, 0.10424 )
@@ -627,19 +637,19 @@ alpha_cut = 2
 texture = ExtResource( 14 )
 
 [node name="Tower2" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Objects"]
-transform = Transform( 0.2, -1.05879e-23, 0, 0, 0.2, 0, 0, 0, 0.2, -0.250567, 0.0830883, -0.0373345 )
+transform = Transform( 0.2, -2.85525e-30, 0, 1.69407e-21, 0.2, 0, 0, 0, 0.2, -0.262594, 0.0830883, -0.0373345 )
 billboard = 1
 alpha_cut = 2
 texture = ExtResource( 21 )
 
 [node name="Tower3" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Objects"]
-transform = Transform( 0.2, -1.05879e-23, 0, 0, 0.2, 0, 0, 0, 0.2, -0.180394, 0.0333645, 0.0933764 )
+transform = Transform( 0.2, -2.85525e-30, 0, 4.23516e-21, 0.2, 0, 0, 0, 0.2, -0.155786, 0.0333645, 0.0635768 )
 billboard = 1
 alpha_cut = 2
 texture = ExtResource( 22 )
 
 [node name="Tower4" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Objects"]
-transform = Transform( 0.2, -1.05879e-23, 0, 0, 0.2, 0, 0, 0, 0.2, -0.261735, 0.0333645, 0.053852 )
+transform = Transform( 0.2, -2.85525e-30, 0, 5.92923e-21, 0.2, 0, 0, 0, 0.2, -0.232636, 0.0333645, 0.0140407 )
 billboard = 1
 alpha_cut = 2
 texture = ExtResource( 22 )
@@ -655,6 +665,12 @@ transform = Transform( 0.2, -1.05879e-23, 0, 0, 0.2, 0, 0, 0, 0.2, 0.307676, 0.0
 billboard = 1
 alpha_cut = 2
 texture = ExtResource( 24 )
+
+[node name="Tower11" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Objects"]
+transform = Transform( 0.2, -2.85525e-30, 0, 5.0822e-21, 0.2, 0, 0, 0, 0.2, 0.0201444, 0.0145416, 0.262767 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 31 )
 
 [node name="Tower7" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Objects"]
 transform = Transform( 0.2, -1.05879e-23, 0, 0, 0.2, 0, 0, 0, 0.2, 0.321779, 0.0111649, -0.242279 )
@@ -773,6 +789,164 @@ billboard = 1
 alpha_cut = 2
 texture = ExtResource( 15 )
 
+[node name="Flowers" type="Spatial" parent="ViewportContainer/Viewport/Island"]
+
+[node name="Flower" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( -0.084344, -1.85607e-15, 0.181345, 0.181345, -8.7423e-09, 0.084344, 7.92686e-09, 0.2, 3.6868e-09, 0.286894, -0.205497, 0.0052719 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 27 )
+
+[node name="Flower2" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( -0.084344, -1.85607e-15, 0.181345, 0.181345, -8.7423e-09, 0.084344, 7.92686e-09, 0.2, 3.6868e-09, 0.281467, -0.222752, 0.00527189 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 28 )
+
+[node name="Flower3" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( -0.084344, -1.85607e-15, 0.181345, 0.181345, -8.7423e-09, 0.084344, 7.92686e-09, 0.2, 3.6868e-09, 0.308121, -0.20238, 0.0052719 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 29 )
+
+[node name="Flower4" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( -0.084344, -1.85607e-15, 0.181345, 0.181345, -8.7423e-09, 0.084344, 7.92686e-09, 0.2, 3.6868e-09, 0.299475, -0.239025, 0.00527189 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 26 )
+
+[node name="Flower5" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542806, -7.95689e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542806, 8.41415e-09, 0.2, -2.37267e-09, 0.341852, -0.181689, 0.0052719 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 27 )
+
+[node name="Flower6" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542806, -7.95689e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542806, 8.41415e-09, 0.2, -2.37267e-09, 0.326488, -0.191234, 0.0052719 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 29 )
+
+[node name="Flower7" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542806, -7.95689e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542806, 8.41415e-09, 0.2, -2.37267e-09, 0.35998, -0.193164, 0.0052719 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 28 )
+
+[node name="Flower8" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542806, -7.95689e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542806, 8.41415e-09, 0.2, -2.37267e-09, 0.329532, -0.215314, 0.0052719 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 27 )
+
+[node name="Flower9" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542807, -6.2011e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542807, 8.41416e-09, 0.2, -2.37268e-09, 0.0443708, 0.215081, 0.00527191 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 27 )
+
+[node name="Flower10" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542807, -5.99976e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542807, 8.41416e-09, 0.2, -2.37268e-09, 0.0188456, 0.227382, 0.00527191 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 29 )
+
+[node name="Flower11" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542807, -6.2011e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542807, 8.41416e-09, 0.2, -2.37268e-09, 0.0624982, 0.203605, 0.00527191 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 26 )
+
+[node name="Flower12" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542807, -6.2011e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542807, 8.41416e-09, 0.2, -2.37268e-09, 0.0320506, 0.181455, 0.00527191 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 27 )
+
+[node name="Flower13" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542807, -5.99976e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542807, 8.41415e-09, 0.2, -2.37268e-09, -0.0551451, 0.0249074, 0.0052719 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 29 )
+
+[node name="Flower14" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542807, -5.99976e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542807, 8.41415e-09, 0.2, -2.37268e-09, -0.0675361, 0.0103502, 0.0052719 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 28 )
+
+[node name="Flower17" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542807, -5.99976e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542807, 8.41415e-09, 0.2, -2.37268e-09, -0.11806, 0.0899378, 0.00527191 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 27 )
+
+[node name="Flower18" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542807, -5.99976e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542807, 8.41415e-09, 0.2, -2.37268e-09, -0.0542832, 0.246094, 0.00465735 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 28 )
+
+[node name="Flower19" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542807, -5.99976e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542807, 8.41415e-09, 0.2, -2.37268e-09, -0.225652, -0.293258, 0.00610682 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 27 )
+
+[node name="Flower20" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542807, -5.99976e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542807, 8.41415e-09, 0.2, -2.37268e-09, -0.252195, -0.273249, 0.00610682 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 29 )
+
+[node name="Flower21" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0834885, -4.08454e-15, -0.181741, -0.181741, -8.74228e-09, -0.0834885, -7.94414e-09, 0.2, -3.64939e-09, -0.279965, -0.295615, 0.00610682 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 27 )
+
+[node name="Flower22" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0834885, -4.08454e-15, -0.181741, -0.181741, -8.74228e-09, -0.0834885, -7.94414e-09, 0.2, -3.64939e-09, -0.246784, -0.293637, 0.00610682 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 27 )
+
+[node name="Flower23" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( -0.131147, 4.5304e-15, 0.150999, 0.150999, -8.7423e-09, 0.131147, 6.60038e-09, 0.2, 5.73261e-09, -0.271063, -0.244658, 0.00610682 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 29 )
+
+[node name="Flower24" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( -0.131147, 4.5304e-15, 0.150999, 0.150999, -8.7423e-09, 0.131147, 6.60038e-09, 0.2, 5.73261e-09, -0.302355, -0.25587, 0.00610682 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 27 )
+
+[node name="Flower25" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.197749, -7.76016e-15, -0.0299202, -0.0299202, -8.74229e-09, -0.197749, -1.30785e-09, 0.2, -8.6439e-09, -0.298894, -0.291358, 0.00610682 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 26 )
+
+[node name="Flower26" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.197749, -7.76016e-15, -0.0299202, -0.0299202, -8.74229e-09, -0.197749, -1.30785e-09, 0.2, -8.6439e-09, -0.282341, -0.262532, 0.00610682 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 28 )
+
+[node name="Flower15" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542807, -5.99976e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542807, 8.41415e-09, 0.2, -2.37268e-09, -0.0370176, 0.0134315, 0.0052719 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 27 )
+
+[node name="Flower16" type="Sprite3D" parent="ViewportContainer/Viewport/Island/Flowers"]
+transform = Transform( 0.0542807, -5.99976e-15, 0.192493, 0.192493, -8.7423e-09, -0.0542807, 8.41415e-09, 0.2, -2.37268e-09, -0.0674653, -0.00871802, 0.0052719 )
+billboard = 1
+alpha_cut = 2
+texture = ExtResource( 29 )
+
 [node name="Water" type="MeshInstance" parent="ViewportContainer/Viewport"]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.0344248, -0.000999523, -0.0140824 )
 cast_shadow = 0
@@ -789,17 +963,11 @@ anims/start = SubResource( 9 )
 [node name="Spatial" type="Spatial" parent="ViewportContainer/Viewport"]
 
 [node name="Camera" type="Camera" parent="ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, 0.985217, 0.17131, 0, -0.17131, 0.985217, 0, 0.205418, 0.808004 )
+transform = Transform( 1, 0, 0, 0, 0.964709, 0.263317, 0, -0.263317, 0.964709, 0, 0.249476, 0.808004 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -256.0
-margin_top = -84.0
-margin_right = 244.0
-margin_bottom = 178.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 6
 size_flags_vertical = 4
 theme = ExtResource( 3 )
@@ -813,23 +981,38 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 10.0
 margin_top = -50.0
-margin_right = 490.0
-margin_bottom = 262.0
+margin_right = 1014.0
+margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 64
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
-margin_right = 480.0
-margin_bottom = 52.0
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+margin_right = 1004.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 0, 350 )
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = -13.0
+margin_right = 744.0
+margin_bottom = 387.0
+rect_scale = Vector2( 2, 2 )
 size_flags_horizontal = 6
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
-margin_left = 120.0
-margin_top = 116.0
-margin_right = 360.0
-margin_bottom = 312.0
+margin_left = 382.0
+margin_top = 414.0
+margin_right = 622.0
+margin_bottom = 610.0
 rect_min_size = Vector2( 240, 0 )
 size_flags_horizontal = 4
 custom_styles/panel = ExtResource( 25 )
@@ -874,9 +1057,9 @@ text = "Quit"
 
 [node name="Label" type="Label" parent="MarginContainer"]
 margin_left = 10.0
-margin_top = 94.0
-margin_right = 490.0
-margin_bottom = 118.0
+margin_top = 263.0
+margin_right = 1014.0
+margin_bottom = 287.0
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 1.0
