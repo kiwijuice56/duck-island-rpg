@@ -56,11 +56,10 @@ func button_pressed(button_name: String) -> void:
 			$TargetSelector.call_deferred("select_targets", party, action.target_count)
 			var targets = yield($TargetSelector, "targets_selected")
 			
-			if len(targets) == 0:
-				button_pressed("Items")
-			else:
+			if len(targets) != 0:
 				# may change later, but user should not matter for items outside of battle
 				action.action(party.get_child(0), targets, action_data[1], false)
+			button_pressed("Items")
 		"System":
 			disable()
 			yield(transition.transition_in(), "completed")

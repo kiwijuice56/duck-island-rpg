@@ -10,33 +10,44 @@ data = {
 "combat_items": {
 },
 "healing_items": {
+Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1,
+Resource( "res://main/items/healing/cream puff/cream puff.tres" ): 1
 }
 }
 },
 "overworld_nodes": {
 "overworld": {
-"location": "beach"
+"items": {
+"beach": {
+"Item": true,
+"Item2": true,
+"Item3": false
+}
+},
+"location": "beach",
+"save_location": 1
 }
 },
 "party": {
 "player_party": [ [ "duckling", {
-"Actions": [ "attack up" ],
+"Actions": [  ],
 "Attributes": [  ],
 "Stats": {
 "agility": 3,
 "experience": 0,
-"experience_to_level": 0,
-"hp": 175,
-"level": 25,
-"luck": 7,
-"magic": 9,
-"max_hp": 175,
-"max_mp": 80,
-"mp": 80,
+"experience_to_level": 134,
+"hp": 78,
+"level": 5,
+"luck": 3,
+"magic": 4,
+"max_hp": 74,
+"max_mp": 40,
+"mp": 45,
 "status": "ok",
-"strength": 5,
-"vitality": 7
-}
+"strength": 4,
+"vitality": 5
+},
+"Unlearned": [ [ "attack up", "heal", "defense up", "tornado" ], [ 6, 7, 9, 11 ] ]
 } ] ]
 }
 }

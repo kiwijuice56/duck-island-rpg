@@ -29,7 +29,7 @@
 [ext_resource path="res://main/overworld/overworld_map/_assets/decoration/beach_junk/shell2.png" type="Texture" id=29]
 [ext_resource path="res://main/main.gd" type="Script" id=30]
 [ext_resource path="res://main/ui/save_room/SaveRoom.tscn" type="PackedScene" id=31]
-[ext_resource path="res://main/PixelPerfectViewportContainer.gd" type="Script" id=32]
+[ext_resource path="res://main/pixel_scale_container.gd" type="Script" id=32]
 [ext_resource path="res://main/background.png" type="Texture" id=33]
 
 [sub_resource type="Shader" id=1]
@@ -206,12 +206,15 @@ region_rect = Rect2( 0, 0, 1960, 276 )
 
 [node name="PalmTree" parent="ViewportContainer/Viewport/Combat/ParallaxBackground/ParallaxLayer6" instance=ExtResource( 26 )]
 position = Vector2( -208, -72 )
+collision_layer = 0
 
 [node name="PalmTree2" parent="ViewportContainer/Viewport/Combat/ParallaxBackground/ParallaxLayer6" instance=ExtResource( 26 )]
 position = Vector2( 688, -80 )
+collision_layer = 0
 
 [node name="PalmTree3" parent="ViewportContainer/Viewport/Combat/ParallaxBackground/ParallaxLayer6" instance=ExtResource( 15 )]
 position = Vector2( 760, -56 )
+collision_layer = 0
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ViewportContainer/Viewport/Combat/ParallaxBackground"]
 position = Vector2( -480, 80 )

@@ -2,12 +2,14 @@ extends Npc
 
 onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
 onready var save_room = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SaveRoomUI/SaveRoom")
+onready var overworld = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld")
 
 func close_save_room() -> void:
 	body.enable()
 
 func talk(player) -> void:
 	disabled = true
+	overworld.save_location = get_index()
 	overworld_ui.hide_prompt()
 	player.disable()
 	MusicPlayer.play_music(MusicPlayer.save_menu)

@@ -1,4 +1,3 @@
-tool
 extends "res://addons/rpg_framework/custom_nodes/fighter/fighter.gd"
 
 const STATS = ["level", "hp", "max_hp", "mp", "max_mp", "experience", "status", "experience_to_level", "strength", "magic", "vitality", "luck", "agility"]

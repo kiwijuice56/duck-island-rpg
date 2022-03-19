@@ -5,3 +5,6 @@
 
 [node name="NpcSaver" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="Spawn" type="Position2D" parent="." index="5"]
+position = Vector2( 128, 0 )

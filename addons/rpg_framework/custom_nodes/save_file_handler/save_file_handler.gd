@@ -17,7 +17,7 @@ var save_file_template_path: String = "res://main/save_game/save_file_template/s
 
 func _ready() -> void:
 	pass
-#	save_file(0, true)
+	#save_file(0, true)
 
 func get_files(developer_mode: bool) -> Array:
 	var dir = Directory.new()

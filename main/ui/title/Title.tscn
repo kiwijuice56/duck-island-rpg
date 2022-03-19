@@ -136,7 +136,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
-[sub_resource type="Shader" id=11]
+[sub_resource type="Shader" id=10]
 code = "shader_type canvas_item;
 
 uniform float shimmer_pos;
@@ -150,14 +150,13 @@ void fragment() {
 		COLOR = texture(TEXTURE, UV);
 }"
 
-[sub_resource type="ShaderMaterial" id=12]
-shader = SubResource( 11 )
+[sub_resource type="ShaderMaterial" id=11]
+shader = SubResource( 10 )
 shader_param/shimmer_pos = 0.0
 shader_param/shimmer_width = 0.075
 shader_param/shimmer_magnitude = 0.075
 
-[sub_resource type="Animation" id=10]
-resource_name = "bob"
+[sub_resource type="Animation" id=12]
 length = 2.4
 loop = true
 tracks/0/type = "value"
@@ -194,7 +193,7 @@ __meta__ = {
 }
 
 [node name="Cutscene" parent="." instance=ExtResource( 32 )]
-events = [ [ "movie", "1", "res://main/overworld/cutscene/movies/waking_up/WakingUp.tscn" ], [ "anim", "1", "0", "wake_up" ], [ "talk", "1", "mii duck", "where the hell am i . . . what happened?", "0.045" ] ]
+events = [ [ "movie", "1", "res://main/overworld/cutscene/movies/waking_up/WakingUp.tscn" ], [ "anim", "1", "0", "wake_up" ], [ "talk", "1", "mii duck", "what happened... where am i?", "0.06" ] ]
 
 [node name="Sprite" parent="." instance=ExtResource( 12 )]
 position = Vector2( 0, 135 )
@@ -1042,7 +1041,7 @@ margin_bottom = 350.0
 rect_min_size = Vector2( 0, 350 )
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Control"]
-material = SubResource( 12 )
+material = SubResource( 11 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1061,7 +1060,7 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Control/TextureRect"]
 autoplay = "bob"
 playback_speed = 0.6
-anims/bob = SubResource( 10 )
+anims/bob = SubResource( 12 )
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 margin_left = 382.0

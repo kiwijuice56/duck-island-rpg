@@ -21,10 +21,9 @@ func calculation(user: Node, targets: Array) -> Dictionary:
 		var damage := 0
 		
 		if power < 0:
-			damage = ceil((power/1.5) - (user.get(power_stat) * 1.75))
+			damage = ceil((power/1.5) - (user.get(power_stat) * 1.75)) - (randi() % (2*user.luck))
 		else:
-			damage = ceil(  (1 + (user.atk * .21) - (user.def * .21)) * (power/1.5) + (user.get(power_stat) * 1.75) )
-		
+			damage = ceil((1 + (user.atk * .21) - (user.def * .21)) * (power/1.5) + (user.get(power_stat) * 1.75)) + (randi() % (2*user.luck))
 		match affinity:
 			"":
 				target.calculation_cache["contact"] = "normal"

@@ -6,7 +6,7 @@
 [ext_resource path="res://main/overworld/cutscene/movies/waking_up/sun.png" type="Texture" id=4]
 [ext_resource path="res://main/overworld/cutscene/movies/waking_up/waking_up.gd" type="Script" id=5]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=1]
 resource_name = "waking_up"
 length = 8.0
 tracks/0/type = "value"
@@ -60,7 +60,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=2]
 code = "// https://kidscancode.org/godot_recipes/shaders/blur/
 shader_type canvas_item;
 
@@ -70,11 +70,11 @@ void fragment() {
 	COLOR = textureLod(SCREEN_TEXTURE, SCREEN_UV, blur_amount);
 }"
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
 shader_param/blur_amount = null
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "waver"
 loop = true
 tracks/0/type = "value"
@@ -90,7 +90,7 @@ tracks/0/keys = {
 "values": [ 0.0, 0.3, 0.0 ]
 }
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 2 )
 shader_param/blur_amount = 5.0
 
@@ -100,10 +100,10 @@ script = ExtResource( 5 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
 autoplay = "waking_up"
 playback_speed = 0.75
-anims/waking_up = SubResource( 5 )
+anims/waking_up = SubResource( 1 )
 
 [node name="Control" type="Control" parent="." index="1"]
-material = SubResource( 2 )
+material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -133,7 +133,7 @@ range_layer_max = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Sprite" index="1"]
 autoplay = "waver"
 playback_speed = 0.1
-anims/waver = SubResource( 6 )
+anims/waver = SubResource( 4 )
 
 [node name="Top" type="ColorRect" parent="Control" index="2"]
 margin_left = -296.0
@@ -157,7 +157,7 @@ __meta__ = {
 
 [node name="Blur" type="ColorRect" parent="." index="2"]
 light_mask = 32769
-material = SubResource( 4 )
+material = SubResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {

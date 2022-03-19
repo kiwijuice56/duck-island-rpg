@@ -9,6 +9,8 @@ onready var item_node = get_tree().get_root().get_node("Main/ViewportContainer/V
 
 var emitting_light := false
 
+signal collected
+
 func _ready() -> void:
 	set_process(false)
 	$Timer.connect("timeout", self, "shine_light")
@@ -31,6 +33,8 @@ func shine_light():
 	$Timer.start(rand_range(.2, .45))
 
 func collect(player) -> void:
+	emit_signal("collected")
+	
 	disabled = true
 	overworld_ui.hide_prompt()
 	player.disable()

@@ -9,7 +9,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "wake_up"
-length = 8.0
+length = 12.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -17,10 +17,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2.9, 3.9, 5, 5.4, 5.8, 6.2, 6.6, 8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1.03526, 1, 1 ),
+"times": PoolRealArray( 0, 2.9, 3.9, 5, 5.4, 5.8, 6.2, 6.6, 8, 9.2, 10.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1.03526, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 28, 29, 28, 29, 28, 29, 28, 29, 0 ]
+"values": [ 28, 29, 28, 29, 28, 29, 28, 29, 0, 16, 22 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Shadow:position")
@@ -132,6 +132,7 @@ texture = ExtResource( 3 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 30
+frame = 22
 region_enabled = true
 region_rect = Rect2( 0, 0, 1800, 40 )
 

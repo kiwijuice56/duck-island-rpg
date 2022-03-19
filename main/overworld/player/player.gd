@@ -122,7 +122,7 @@ func _physics_process(delta):
 		if encounter_rate_tiles.get_cell(snapped.x, snapped.y) == 0:
 			steps = 255.0
 		else:
-			steps -=10* room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
+			steps -= room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
 		encounter = room.encounters[encounter_type_tiles.get_cell(snapped.x, snapped.y)]
 	
 	if steps <= 0:

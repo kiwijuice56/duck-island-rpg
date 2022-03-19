@@ -10,12 +10,22 @@ data = {
 "combat_items": {
 },
 "healing_items": {
+Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1,
+Resource( "res://main/items/healing/cream puff/cream puff.tres" ): 1
 }
 }
 },
 "overworld_nodes": {
 "overworld": {
-"location": "beach"
+"items": {
+"beach": {
+"Item": true,
+"Item2": true,
+"Item3": false
+}
+},
+"location": "beach",
+"save_location": 1
 }
 },
 "party": {

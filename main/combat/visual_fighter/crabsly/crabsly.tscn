@@ -56,7 +56,7 @@ tracks/0/keys = {
 }
 
 [node name="crabsly" instance=ExtResource( 1 )]
-save_id = "crabsy"
+save_id = "crabsly"
 level = 6
 hp = 75
 mp = 25
