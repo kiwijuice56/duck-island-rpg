@@ -3,7 +3,7 @@
 [ext_resource path="res://main/overworld/overworld_map/_assets/interactable/npc/Npc.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/overworld/overworld_map/_assets/interactable/npc/yukid/yukid-overworld.png" type="Texture" id=2]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "meet_duck"
 length = 0.2
 step = 0.05
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "meet_duck2"
 length = 0.2
 step = 0.05
@@ -37,7 +37,7 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "meet_duck3"
 length = 0.2
 step = 0.05
@@ -54,8 +54,7 @@ tracks/0/keys = {
 "values": [ 5 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "wake_up"
+[sub_resource type="Animation" id=4]
 length = 0.6
 loop = true
 step = 0.05
@@ -77,14 +76,15 @@ tracks/0/keys = {
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
 hframes = 6
-frame = 5
+frame = 2
 
 [node name="Cutscene" parent="." index="2"]
 events = [ [ "talk", "1", "" ], [  ] ]
 
 [node name="AnimationPlayer" parent="." index="4"]
-playback_speed = 0.5
-anims/meet_duck = SubResource( 2 )
-anims/meet_duck2 = SubResource( 3 )
-anims/meet_duck3 = SubResource( 4 )
-anims/wake_up = SubResource( 1 )
+autoplay = "wake_up"
+playback_speed = 0.65
+anims/meet_duck = SubResource( 1 )
+anims/meet_duck2 = SubResource( 2 )
+anims/meet_duck3 = SubResource( 3 )
+anims/wake_up = SubResource( 4 )
