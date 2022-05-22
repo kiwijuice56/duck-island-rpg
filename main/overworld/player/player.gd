@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var sand_step_sounds := []
+
 export var speed := 128
 var dir := Vector2()
 var steps := 255.0
@@ -16,12 +18,24 @@ var room: Node
 var water_tiles: TileMap
 var encounter_type_tiles: TileMap
 var encounter_rate_tiles: TileMap
+var floor_style_tiles: TileMap
 var encounter: Resource
 
 func _ready() -> void:
 	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Combat/PressTurnCycle").connect("battle_ended", self, "battle_ended")
 	disable()
+	
+	var sand_step_dir = Directory.new()
+	var sand_path = "res://main/overworld/overworld_map/_assets/floor_style/step_sounds/sand/"
+	if sand_step_dir.open(sand_path) == OK:
+		sand_step_dir.list_dir_begin()
+		var file_name = sand_step_dir.get_next()
+		while file_name != "":
+			if file_name.ends_with(".wav"):
+				sand_step_sounds.append(load(sand_path + file_name))
+			file_name = sand_step_dir.get_next()
 
+# update transition's camera and start the actual battle
 func battle_started() -> void:
 	call_deferred("disable")
 	$Timer.start(.35)
@@ -80,7 +94,7 @@ func jump(pos: Vector2) -> void:
 	overworld_ui.disable()
 	$Tween.interpolate_property(self, "global_position", null, pos, .45)
 	$Tween.interpolate_property($Sprite, "position", null, $Sprite.position - Vector2(0, 64), 0.25, Tween.TRANS_QUAD, Tween.EASE_IN)
-	
+	# ugly code, but animates jump into water with tweens
 	$Tween.start()
 	$Timer.start(0.15)
 	yield($Timer, "timeout")
@@ -102,27 +116,24 @@ func jump(pos: Vector2) -> void:
 	enable()
 	overworld_ui.enable()
 
+# update instance variables to have access to room 
 func room_loaded() -> void:
 	water_tiles = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0).get_node("WaterTiles") 
 	encounter_rate_tiles = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0).get_node("EncounterRate") 
 	encounter_type_tiles = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0).get_node("EncounterType") 
+	floor_style_tiles = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0).get_node("FloorStyleType") 
 	room = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0)
 
 func _physics_process(delta):
+	# get cell position to see relations to world
 	var snapped = (Vector2(-16,-16)+global_position).snapped(Vector2(64,64))/64
-	if water_tiles and not water_tiles.get_cell( snapped.x, snapped.y)  == -1:
-		if not (dir == Vector2() or $SmallSplash.emitting):
-			$SmallSplash.emitting = true
-			$Splash2.playing = true
-		$Sprite.set_region_rect(Rect2(0,0,$Sprite.hframes * 60, 25))
-	else:
-		$Sprite.set_region_rect(Rect2(0,0,$Sprite.hframes * 60, 40))
+	handle_floor(snapped)
 	
 	if dir != Vector2() and encounter_rate_tiles and room:
 		if encounter_rate_tiles.get_cell(snapped.x, snapped.y) == 0:
 			steps = 255.0
 		else:
-			steps -= room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
+			steps -= 10*room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
 		encounter = room.encounters[encounter_type_tiles.get_cell(snapped.x, snapped.y)]
 	
 	if steps <= 0:
@@ -132,6 +143,21 @@ func _physics_process(delta):
 	get_input()
 	set_anim()
 	move_and_slide(dir*speed)
+
+func handle_floor(snapped: Vector2) -> void:
+	if water_tiles and not water_tiles.get_cell( snapped.x, snapped.y) == -1:
+		if not (dir == Vector2() or $FloorStyling/SmallSplash.emitting):
+			$FloorStyling/SmallSplash.emitting = true
+			$Splash2.playing = true
+		$Sprite.set_region_rect(Rect2(0,0,$Sprite.hframes * 60, 25))
+	else:
+		$Sprite.set_region_rect(Rect2(0,0,$Sprite.hframes * 60, 40))
+	
+	if dir != Vector2() and floor_style_tiles and floor_style_tiles.get_cell(snapped.x, snapped.y) == 0:
+		if not $FloorStyling/Sand.playing:
+			$FloorStyling/Sand.stream = sand_step_sounds[randi() % len(sand_step_sounds)]
+			$FloorStyling/Sand.playing = true
+
 
 func _process(_delta):
 	encounter_meter.set_encounter_modulate(steps)

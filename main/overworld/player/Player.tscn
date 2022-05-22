@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://main/overworld/player/player.gd" type="Script" id=1]
 [ext_resource path="res://main/overworld/player/mii_duck.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://main/overworld/player/water_hider.png" type="Texture" id=4]
 [ext_resource path="res://main/overworld/player/190080__tran5ient__splash7.wav" type="AudioStream" id=5]
 [ext_resource path="res://main/overworld/player/398038__swordofkings128__water-splash-1.mp3" type="AudioStream" id=6]
+[ext_resource path="res://main/overworld/overworld_map/_assets/floor_style/step_sounds/sand/sand_step1.wav" type="AudioStream" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "wake_up"
@@ -112,7 +113,7 @@ colors = PoolColorArray( 1, 1, 1, 1, 0.480469, 0.817352, 1, 1, 0.18126, 0.136505
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 8
 script = ExtResource( 1 )
-speed = 164
+speed = 180
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "walk_up"
@@ -161,7 +162,12 @@ mode = 3
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="BigSplash" type="CPUParticles2D" parent="."]
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FloorStyling" type="Node2D" parent="."]
+
+[node name="BigSplash" type="CPUParticles2D" parent="FloorStyling"]
 position = Vector2( -0.749161, 23.2408 )
 scale = Vector2( 1, 0.881644 )
 emitting = false
@@ -181,7 +187,7 @@ scale_amount = 3.0
 scale_amount_random = 0.63
 color_ramp = SubResource( 8 )
 
-[node name="SmallSplash" type="CPUParticles2D" parent="."]
+[node name="SmallSplash" type="CPUParticles2D" parent="FloorStyling"]
 position = Vector2( -0.749161, 23.2408 )
 emitting = false
 amount = 64
@@ -200,14 +206,15 @@ scale_amount = 3.0
 scale_amount_random = 0.63
 color_ramp = SubResource( 8 )
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
-[node name="Splash1" type="AudioStreamPlayer" parent="."]
+[node name="Splash1" type="AudioStreamPlayer" parent="FloorStyling"]
 stream = ExtResource( 5 )
 volume_db = 12.356
 
-[node name="Splash2" type="AudioStreamPlayer" parent="."]
+[node name="Splash2" type="AudioStreamPlayer" parent="FloorStyling"]
 stream = ExtResource( 6 )
 volume_db = -9.267
 pitch_scale = 1.59
+
+[node name="Sand" type="AudioStreamPlayer" parent="FloorStyling"]
+stream = ExtResource( 7 )
+volume_db = -7.0

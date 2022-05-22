@@ -84,6 +84,9 @@ func set_max_points() -> void:
 	max_mp = int((level/3 + magic) * 8)
 	emit_signal("update_points")
 
+func screen_shake():
+	cam.impact_shake()
+
 func on_impact() -> void:
 	emit_signal("update_points")
 	

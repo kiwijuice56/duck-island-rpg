@@ -14,6 +14,12 @@ func deprioritize(nodes: Array):
 	for node in nodes:
 		node.z_index = 0
 
+func impact_shake() -> void:
+	$Timer.start(0.25)
+	toggle_shake(true)
+	yield($Timer, "timeout")
+	toggle_shake(false)
+
 func toggle_shake(shake: bool) -> void:
 	if shake:
 		$AnimationPlayer.current_animation = "shake"
