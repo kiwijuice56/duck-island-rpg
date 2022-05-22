@@ -1,6 +1,6 @@
 extends AudioStreamPlayer
 
-var global_volume := 0 setget set_volume
+var global_volume := -80 setget set_volume
 
 var battle = preload("res://main/music/encounter.mp3")
 var boss = preload("res://main/music/boss_theme_1.mp3")

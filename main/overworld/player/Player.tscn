@@ -51,10 +51,28 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "step"
+}, {
+"args": [  ],
+"method": "step"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
-length = 0.6
+length = 0.4
 loop = true
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -62,15 +80,31 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28, 0.35 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 22, 23, 24, 25, 26, 27 ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.01 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "step"
+} ]
+}
 
-[sub_resource type="Animation" id=4]
-length = 0.6
+[sub_resource type="Animation" id=9]
+resource_name = "walk_right"
+length = 0.4
 loop = true
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -78,10 +112,24 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28, 0.35 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 16, 17, 18, 19, 20, 21 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "step"
+} ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -99,6 +147,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 8, 9, 10, 11, 12, 13, 14, 15 ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "step"
+}, {
+"args": [  ],
+"method": "step"
+} ]
+}
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 18, 20 )
@@ -108,7 +173,7 @@ extents = Vector2( 24, 24 )
 
 [sub_resource type="Gradient" id=8]
 offsets = PoolRealArray( 0, 0.273973, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 0.480469, 0.817352, 1, 1, 0.18126, 0.136505, 0.492188, 0 )
+colors = PoolColorArray( 1, 0.944028, 0.559113, 1, 1, 0.748352, 0.480469, 1, 0.18126, 0.136505, 0.492188, 0 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 8
@@ -116,16 +181,15 @@ script = ExtResource( 1 )
 speed = 180
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "walk_up"
-playback_speed = 2.0
+playback_speed = 1.8
 anims/wake_up = SubResource( 1 )
 anims/walk_down = SubResource( 2 )
 anims/walk_left = SubResource( 3 )
-anims/walk_right = SubResource( 4 )
+anims/walk_right = SubResource( 9 )
 anims/walk_up = SubResource( 5 )
 
 [node name="Shadow" type="Sprite" parent="."]
-position = Vector2( 2, 22 )
+position = Vector2( 2, 23 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
@@ -133,7 +197,7 @@ texture = ExtResource( 3 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 30
-frame = 22
+frame = 8
 region_enabled = true
 region_rect = Rect2( 0, 0, 1800, 40 )
 
@@ -206,6 +270,25 @@ scale_amount = 3.0
 scale_amount_random = 0.63
 color_ramp = SubResource( 8 )
 
+[node name="SandSplash" type="CPUParticles2D" parent="FloorStyling"]
+position = Vector2( -0.749161, 23.2408 )
+emitting = false
+amount = 4
+lifetime = 0.6
+one_shot = true
+speed_scale = 1.5
+explosiveness = 0.4
+randomness = 1.0
+emission_shape = 2
+emission_rect_extents = Vector2( 15, 1 )
+direction = Vector2( 0, -1 )
+spread = 90.0
+initial_velocity = 100.0
+initial_velocity_random = 0.78
+scale_amount = 3.0
+scale_amount_random = 0.63
+color_ramp = SubResource( 8 )
+
 [node name="Splash1" type="AudioStreamPlayer" parent="FloorStyling"]
 stream = ExtResource( 5 )
 volume_db = 12.356
@@ -217,4 +300,4 @@ pitch_scale = 1.59
 
 [node name="Sand" type="AudioStreamPlayer" parent="FloorStyling"]
 stream = ExtResource( 7 )
-volume_db = -7.0
+volume_db = -5.0
