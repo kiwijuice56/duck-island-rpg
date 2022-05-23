@@ -101,10 +101,8 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "walk_right"
-length = 0.4
+length = 0.6
 loop = true
-step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -112,24 +110,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28, 0.35 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 16, 17, 18, 19, 20, 21 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "step"
-} ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -172,8 +156,8 @@ extents = Vector2( 18, 20 )
 extents = Vector2( 24, 24 )
 
 [sub_resource type="Gradient" id=8]
-offsets = PoolRealArray( 0.00793651, 0.404762, 0.984127 )
-colors = PoolColorArray( 0.992188, 0.894325, 0.600739, 1, 1, 0.607243, 0.417969, 1, 0.766113, 0.0329189, 0.0329189, 0 )
+offsets = PoolRealArray( 0, 0.273973, 1 )
+colors = PoolColorArray( 1, 0.944028, 0.559113, 1, 1, 0.748352, 0.480469, 1, 0.18126, 0.136505, 0.492188, 0 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 8
