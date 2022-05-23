@@ -156,10 +156,10 @@ func step() -> void:
 		$FloorStyling/SmallSplash.emitting = true
 		$Splash2.playing = true
 	
-	if floor_style_tiles and floor_style_tiles.get_cell(snapped.x, snapped.y) == 0:
+	if not $FloorStyling/Sand.playing and floor_style_tiles and floor_style_tiles.get_cell(snapped.x, snapped.y) == 0:
 		$FloorStyling/Sand.stream = sand_step_sounds[randi() % len(sand_step_sounds)]
 		$FloorStyling/Sand.playing = true
-		if randf() > 0.55:
+		if randf() > 0.33:
 			$FloorStyling/SandSplash.emitting = true
 
 func _process(_delta):

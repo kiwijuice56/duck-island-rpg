@@ -100,7 +100,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=4]
 resource_name = "walk_right"
 length = 0.4
 loop = true
@@ -172,8 +172,8 @@ extents = Vector2( 18, 20 )
 extents = Vector2( 24, 24 )
 
 [sub_resource type="Gradient" id=8]
-offsets = PoolRealArray( 0, 0.273973, 1 )
-colors = PoolColorArray( 1, 0.944028, 0.559113, 1, 1, 0.748352, 0.480469, 1, 0.18126, 0.136505, 0.492188, 0 )
+offsets = PoolRealArray( 0.00793651, 0.404762, 0.984127 )
+colors = PoolColorArray( 0.992188, 0.894325, 0.600739, 1, 1, 0.607243, 0.417969, 1, 0.766113, 0.0329189, 0.0329189, 0 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 8
@@ -185,7 +185,7 @@ playback_speed = 1.8
 anims/wake_up = SubResource( 1 )
 anims/walk_down = SubResource( 2 )
 anims/walk_left = SubResource( 3 )
-anims/walk_right = SubResource( 9 )
+anims/walk_right = SubResource( 4 )
 anims/walk_up = SubResource( 5 )
 
 [node name="Shadow" type="Sprite" parent="."]
@@ -197,7 +197,7 @@ texture = ExtResource( 3 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 30
-frame = 8
+frame = 28
 region_enabled = true
 region_rect = Rect2( 0, 0, 1800, 40 )
 
@@ -273,20 +273,19 @@ color_ramp = SubResource( 8 )
 [node name="SandSplash" type="CPUParticles2D" parent="FloorStyling"]
 position = Vector2( -0.749161, 23.2408 )
 emitting = false
-amount = 4
-lifetime = 0.6
+lifetime = 0.2
 one_shot = true
-speed_scale = 1.5
+speed_scale = 1.25
 explosiveness = 0.4
 randomness = 1.0
+local_coords = false
 emission_shape = 2
 emission_rect_extents = Vector2( 15, 1 )
 direction = Vector2( 0, -1 )
 spread = 90.0
 initial_velocity = 100.0
 initial_velocity_random = 0.78
-scale_amount = 3.0
-scale_amount_random = 0.63
+scale_amount = 2.0
 color_ramp = SubResource( 8 )
 
 [node name="Splash1" type="AudioStreamPlayer" parent="FloorStyling"]
@@ -301,3 +300,4 @@ pitch_scale = 1.59
 [node name="Sand" type="AudioStreamPlayer" parent="FloorStyling"]
 stream = ExtResource( 7 )
 volume_db = -5.0
+pitch_scale = 1.2
