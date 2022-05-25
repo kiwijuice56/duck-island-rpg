@@ -143,7 +143,7 @@ func handle_floor(delta: float) -> void:
 		if encounter_rate_tiles.get_cell(snapped.x, snapped.y) == 0:
 			steps = 255.0
 		else:
-			steps -= 10*room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
+			steps -= 5*room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
 		encounter = room.encounters[encounter_type_tiles.get_cell(snapped.x, snapped.y)]
 	if water_tiles and not water_tiles.get_cell( snapped.x, snapped.y) == -1:
 		$Sprite.set_region_rect(Rect2(0,0,$Sprite.hframes * 60, 25))

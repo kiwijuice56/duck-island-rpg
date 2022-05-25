@@ -11,7 +11,6 @@ func _ready():
 
 func on_vp_size_change():
 	var scale_vector = get_viewport().size / resolution
-	print(scale_vector)
 	var new_scaling_factor = max(floor(min(scale_vector[0], scale_vector[1])), 1)
 	if new_scaling_factor != scaling_factor:
 		scaling_factor = new_scaling_factor
