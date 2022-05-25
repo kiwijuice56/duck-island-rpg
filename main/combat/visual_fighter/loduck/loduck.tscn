@@ -90,6 +90,7 @@ offense = {
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
+frame = 5
 
 [node name="panic caster" parent="ActionDecider" index="0" instance=ExtResource( 3 )]
 

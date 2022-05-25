@@ -15,8 +15,9 @@ func action(user: Node, targets: Array, item: ItemData = null, anim: bool = true
 	if cost_type != "" and not item:
 		user.set(cost_type, user.get(cost_type) - cost)
 		user.emit_signal("update_points")
-	# Item pop up if item data is provided
+	# item pop up if item data is provided
 	var tween = Tween.new()
+	add_child(tween)
 	var item_sprite = Sprite.new()
 	if item:
 		# gets inventory specific to this category of nodes and removes one of this item
@@ -29,16 +30,29 @@ func action(user: Node, targets: Array, item: ItemData = null, anim: bool = true
 	
 	var result: Dictionary = calculation(user, targets)
 	if anim:
+		var init_pos: Vector2 = user.position
 		var new_effect = graphic_effect.instance()
 		add_child(new_effect)
-		yield(text_box.display_text(user.save_id + " used " + save_id.capitalize() + "!", 0.02, 0.5), "completed")
+		yield(text_box.display_text(user.save_id + " used " + save_id.capitalize() + "!", 0.02, 0.35), "completed")
+		if party_target == "enemy":
+			# assuming that user is a node2d (which it should for this game)
+			# sloppy but uses parenting to flip position moved
+			tween.interpolate_property(user, "position:x", init_pos.x, init_pos.x + 200 * (-1 if user.get_parent().name == "EnemyParty" else 1), 0.25, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+			tween.interpolate_property(user, "position:y", init_pos.y, 0, 0.5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+			tween.start()
+			yield(tween, "tween_completed")
 		new_effect.animate(user, targets)
 		yield(new_effect, "effect_complete")
+		if party_target == "enemy":
+			# assuming that user is a node2d (which it should for this game)
+			tween.interpolate_property(user, "position:x", null, init_pos.x, 0.35, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+			tween.interpolate_property(user, "position:y", null, init_pos.y, 0.35, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+			tween.start()
+			yield(tween, "tween_completed")
 		new_effect.queue_free()
 	else:
 		for target in targets:
 			target.on_impact()
-	print(1)
 	# Item fade out
 	if item and anim:
 		yield(item_anim_out(item, item_sprite, tween), "completed")
@@ -47,7 +61,6 @@ func action(user: Node, targets: Array, item: ItemData = null, anim: bool = true
 	emit_signal("action_completed", result)
 
 func item_anim_in(item: ItemData, item_sprite: Sprite, tween: Tween, target: Vector2) -> void:
-	add_child(tween)
 	item_sprite.scale = Vector2(2,2)
 	item_sprite.texture = item.texture
 	add_child(item_sprite)

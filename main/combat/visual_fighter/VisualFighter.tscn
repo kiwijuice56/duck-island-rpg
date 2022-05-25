@@ -192,7 +192,7 @@ offense = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -128 )
+position = Vector2( 64, -135 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 hframes = 6
