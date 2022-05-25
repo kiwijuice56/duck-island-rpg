@@ -1,12 +1,12 @@
 extends AudioStreamPlayer
 
-var global_volume := -80 setget set_volume
+var global_volume := 0 setget set_volume
 
 var battle = preload("res://main/music/encounter.mp3")
 var boss = preload("res://main/music/boss_theme_1.mp3")
 var overworld = preload("res://main/music/overworld_demo.mp3")
 var water = preload("res://main/music/swimming_ducklings.mp3")
-var title = preload("res://main/music/title_theme.mp3")
+var title = preload("res://main/music/mysterious_duck_island.mp3")
 var island = preload("res://main/music/beach_theme_1.mp3")
 var menu = preload("res://main/music/menu.mp3")
 var save_menu = preload("res://main/music/save_menu_theme.mp3")

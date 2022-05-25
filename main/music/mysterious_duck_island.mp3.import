@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mysterious_duck_island.mp3-3fb4c40c3583f9af4d2e0d9a38336980.mp3str"
+
+[deps]
+
+source_file="res://main/music/mysterious_duck_island.mp3"
+dest_files=[ "res://.import/mysterious_duck_island.mp3-3fb4c40c3583f9af4d2e0d9a38336980.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

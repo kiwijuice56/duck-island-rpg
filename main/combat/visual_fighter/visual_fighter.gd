@@ -142,10 +142,12 @@ func on_impact() -> void:
 	extra_label.get_node("ExtraTween").start()
 	extra_label.modulate = Color(1,1,1,1)
 	
+	damage_label.rect_pivot_offset = damage_label.rect_size/2
 	damage_label.rect_position = $SelectIcon.position 
 	extra_label.rect_position = $SelectIcon.position - extra_label.rect_size / 2.0
 	
-	damage_label.get_node("DamageTween").interpolate_property(damage_label, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.1)
+	damage_label.get_node("AnimationPlayer").current_animation = "wobble"
+	damage_label.get_node("DamageTween").interpolate_property(damage_label, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.05)
 	
 	damage_label.get_node("DamageTween").interpolate_property(damage_label, "rect_position:y", null, 
 		damage_label.rect_position.y - 48, 0.4, Tween.TRANS_QUAD, Tween.EASE_OUT)

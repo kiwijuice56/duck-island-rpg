@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://addons/rpg_framework/custom_nodes/party/party.gd" type="Script" id=1]
 [ext_resource path="res://main/ui/combat/Combat.tscn" type="PackedScene" id=2]
@@ -6,12 +6,11 @@
 [ext_resource path="res://main/overworld/player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main/combat/press_turn_cycle/press_turn_cycle.gd" type="Script" id=5]
 [ext_resource path="res://main/combat/player_party/player_party.gd" type="Script" id=6]
-[ext_resource path="res://main/main_camera/main_camera.gd" type="Script" id=7]
+[ext_resource path="res://main/main_camera/MainCamera.tscn" type="PackedScene" id=7]
 [ext_resource path="res://main/ui/transition/Transition.tscn" type="PackedScene" id=8]
 [ext_resource path="res://main/overworld/overworld.gd" type="Script" id=9]
 [ext_resource path="res://main/ui/save/Save.tscn" type="PackedScene" id=10]
 [ext_resource path="res://main/ui/title/sprites/Sky.tscn" type="PackedScene" id=12]
-[ext_resource path="res://main/main_camera/cover.png" type="Texture" id=13]
 [ext_resource path="res://main/overworld/overworld_map/_assets/decoration/palm_tree/PalmTree2.tscn" type="PackedScene" id=15]
 [ext_resource path="res://main/combat/2.png" type="Texture" id=16]
 [ext_resource path="res://main/overworld/overworld_map/_assets/water/Water.tscn" type="PackedScene" id=17]
@@ -63,22 +62,6 @@ shader_param/aspect_ratio = 0.75
 shader_param/time_factor = Vector2( 2, 3 )
 shader_param/offset_factor = Vector2( 5, 2 )
 shader_param/amplitude = Vector2( 0.05, 0.05 )
-
-[sub_resource type="Animation" id=3]
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( -8, -8 ), Vector2( 6, 6 ), Vector2( -6, 6 ), Vector2( 8, 0 ) ]
-}
 
 [node name="Main" type="Node"]
 script = ExtResource( 30 )
@@ -334,24 +317,7 @@ position = Vector2( 224, 56 )
 [node name="4" type="Position2D" parent="ViewportContainer/Viewport/Combat/Positions/5"]
 position = Vector2( 304, 56 )
 
-[node name="MainCamera" type="Camera2D" parent="ViewportContainer/Viewport"]
-scale = Vector2( 0.72963, 0.881725 )
-offset = Vector2( 6, 6 )
-current = true
-script = ExtResource( 7 )
-
-[node name="Tween" type="Tween" parent="ViewportContainer/Viewport/MainCamera"]
-
-[node name="Timer" type="Timer" parent="ViewportContainer/Viewport/MainCamera"]
-
-[node name="Cover" type="Sprite" parent="ViewportContainer/Viewport/MainCamera"]
-modulate = Color( 1, 1, 1, 0 )
-z_index = 5
-texture = ExtResource( 13 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ViewportContainer/Viewport/MainCamera"]
-playback_speed = 2.25
-anims/shake = SubResource( 3 )
+[node name="MainCamera" parent="ViewportContainer/Viewport" instance=ExtResource( 7 )]
 
 [node name="SaveFileHandler" type="Node" parent="ViewportContainer/Viewport"]
 script = ExtResource( 24 )

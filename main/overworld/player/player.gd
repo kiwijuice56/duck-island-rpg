@@ -38,6 +38,7 @@ func _ready() -> void:
 # update transition's camera and start the actual battle
 func battle_started() -> void:
 	call_deferred("disable")
+	$AnimationPlayer.call_deferred("set_current_animation", "[stop]")
 	$Timer.start(.35)
 	$Tween.interpolate_property($Camera2D, "zoom", null, Vector2(.25, .25), .45, Tween.TRANS_QUAD, Tween.EASE_IN)
 	$Tween.start()

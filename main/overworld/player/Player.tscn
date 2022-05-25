@@ -197,7 +197,7 @@ texture = ExtResource( 3 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 30
-frame = 22
+frame = 16
 region_enabled = true
 region_rect = Rect2( 0, 0, 1800, 40 )
 
