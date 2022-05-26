@@ -10,7 +10,6 @@ modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 3 )
 offset = Vector2( 1, -6 )
 hframes = 12
-frame = 11
 anim_name = "cutter"
 
 [node name="AnimationPlayer" parent="." index="0"]

@@ -47,6 +47,7 @@ var calculation_cache := {}
 
 signal update_points
 signal selected
+signal animation_impact
 
 var miss_color := Color("#ff0044")
 var null_color := Color("#ff0033")

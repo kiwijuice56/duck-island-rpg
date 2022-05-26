@@ -9,7 +9,8 @@ func animate(user: Node, targets: Array) -> void:
 	cam.toggle_cover(true)
 	cam.prioritize([user] + targets)
 	for i in range(len(targets)):
-		cam.pan(targets[i].get_node("SelectIcon"), 0.25, Vector2(-64 if targets[i].global_position.x > cam.global_position.x else 64, 0))
+		cam.pan(targets[i].get_node("SelectIcon"), 0.25, Vector2(-100 if targets[i].global_position.x > cam.global_position.x else 100, 0))
+		yield(animate_user(user), "completed") # pause until ready to add effects mid attack animation
 		var new_impact = impact_effect.instance()
 		add_child(new_impact)
 		new_impact.impact(targets[i])
@@ -17,6 +18,7 @@ func animate(user: Node, targets: Array) -> void:
 			yield(new_impact, "complete")
 		$Timer.start(wait_time)
 		yield($Timer, "timeout")
+	reset_user_animation(user)
 	cam.deprioritize([user] + targets)
 	cam.toggle_cover(false)
 	emit_signal("effect_complete")

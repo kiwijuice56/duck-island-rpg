@@ -30,7 +30,7 @@ Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1
 },
 "party": {
 "player_party": [ [ "duckling", {
-"Actions": [  ],
+"Actions": [ "hades blast" ],
 "Attributes": [  ],
 "Stats": {
 "agility": 3,
