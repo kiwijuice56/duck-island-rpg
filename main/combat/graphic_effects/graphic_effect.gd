@@ -9,7 +9,6 @@ signal effect_complete
 signal animation_impact_complete
 onready var cam := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/MainCamera")
 
-
 func animate(user: Node, targets: Array) -> void:
 	if not anim_name == "":
 		$AnimationPlayer.current_animation = anim_name

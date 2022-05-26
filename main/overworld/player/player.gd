@@ -25,8 +25,6 @@ var encounter: Resource
 func _ready() -> void:
 	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Combat/PressTurnCycle").connect("battle_ended", self, "battle_ended")
 	disable()
-	
-	
 	sand_step_sounds = get_wav_files("res://main/overworld/overworld_map/_assets/floor_style/step_sounds/sand/")
 	wood_step_sounds = get_wav_files("res://main/overworld/overworld_map/_assets/floor_style/step_sounds/wood/")
 
@@ -150,7 +148,7 @@ func handle_floor(delta: float) -> void:
 		if encounter_rate_tiles.get_cell(snapped.x, snapped.y) == 0:
 			steps = 255.0
 		else:
-			steps -= 5*room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
+			steps -= 4*room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
 		encounter = room.encounters[encounter_type_tiles.get_cell(snapped.x, snapped.y)]
 	if water_tiles and not water_tiles.get_cell( snapped.x, snapped.y) == -1:
 		$Sprite.set_region_rect(Rect2(0,0,$Sprite.hframes * 60, 25))

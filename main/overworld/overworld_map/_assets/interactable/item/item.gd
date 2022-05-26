@@ -34,7 +34,7 @@ func shine_light():
 
 func collect(player) -> void:
 	emit_signal("collected")
-	
+	player.get_node("AnimationPlayer").current_animation = "[stop]"
 	disabled = true
 	overworld_ui.hide_prompt()
 	player.disable()

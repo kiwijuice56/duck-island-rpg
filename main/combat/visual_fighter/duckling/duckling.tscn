@@ -85,7 +85,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.125, 0.225, 0.325, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 6, 8, 9, 10, 0 ]
+"values": [ 6, 8, 9, 10, 10 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -121,6 +121,7 @@ offense = {
 
 [node name="Sprite" parent="." index="0"]
 hframes = 12
+frame = 10
 
 [node name="ActionDecider" parent="." index="3"]
 script = ExtResource( 1 )
