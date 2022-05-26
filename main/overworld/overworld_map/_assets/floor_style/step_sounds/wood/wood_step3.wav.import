@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/wood_step3.wav-655596468eadf4667513ede74564204b.sample"
+
+[deps]
+
+source_file="res://main/overworld/overworld_map/_assets/floor_style/step_sounds/wood/wood_step3.wav"
+dest_files=[ "res://.import/wood_step3.wav-655596468eadf4667513ede74564204b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

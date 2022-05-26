@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 var sand_step_sounds := []
+var wood_step_sounds := []
 
 export var speed := 128
 var dir := Vector2()
@@ -25,15 +26,21 @@ func _ready() -> void:
 	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Combat/PressTurnCycle").connect("battle_ended", self, "battle_ended")
 	disable()
 	
-	var sand_step_dir = Directory.new()
-	var sand_path = "res://main/overworld/overworld_map/_assets/floor_style/step_sounds/sand/"
-	if sand_step_dir.open(sand_path) == OK:
-		sand_step_dir.list_dir_begin()
-		var file_name = sand_step_dir.get_next()
+	
+	sand_step_sounds = get_wav_files("res://main/overworld/overworld_map/_assets/floor_style/step_sounds/sand/")
+	wood_step_sounds = get_wav_files("res://main/overworld/overworld_map/_assets/floor_style/step_sounds/wood/")
+
+func get_wav_files(path: String) -> Array:
+	var arr := []
+	var dir = Directory.new()
+	if dir.open(path) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
 		while file_name != "":
 			if file_name.ends_with(".wav"):
-				sand_step_sounds.append(load(sand_path + file_name))
-			file_name = sand_step_dir.get_next()
+				arr.append(load(path + file_name))
+			file_name = dir.get_next()
+	return arr
 
 # update transition's camera and start the actual battle
 func battle_started() -> void:
@@ -143,7 +150,7 @@ func handle_floor(delta: float) -> void:
 		if encounter_rate_tiles.get_cell(snapped.x, snapped.y) == 0:
 			steps = 255.0
 		else:
-			steps -= 5*room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
+			steps -= 0*room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
 		encounter = room.encounters[encounter_type_tiles.get_cell(snapped.x, snapped.y)]
 	if water_tiles and not water_tiles.get_cell( snapped.x, snapped.y) == -1:
 		$Sprite.set_region_rect(Rect2(0,0,$Sprite.hframes * 60, 25))
@@ -162,6 +169,9 @@ func step() -> void:
 		$FloorStyling/Sand.playing = true
 		if randf() > 0.33:
 			$FloorStyling/SandSplash.emitting = true
+	elif not $FloorStyling/Wood.playing and floor_style_tiles and floor_style_tiles.get_cell(snapped.x, snapped.y) == 1:
+		$FloorStyling/Wood.stream = wood_step_sounds[randi() % len(wood_step_sounds)]
+		$FloorStyling/Wood.playing = true
 
 func _process(_delta):
 	encounter_meter.set_encounter_modulate(steps)

@@ -15,4 +15,3 @@ func next_frame() -> void:
 	var rect = get_tileset().tile_get_region(0)
 	rect.position = offset
 	get_tileset().tile_set_region(0, rect)
-	
