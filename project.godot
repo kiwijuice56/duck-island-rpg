@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://main/overworld/overworld_map/_assets/encounter/encounter_data.gd"
 }, {
+"base": "Node2D",
+"class": "GraphicEffect",
+"language": "GDScript",
+"path": "res://main/combat/graphic_effects/graphic_effect.gd"
+}, {
 "base": "Area2D",
 "class": "Interactable",
 "language": "GDScript",
@@ -39,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://main/items/item_data.gd"
 }, {
+"base": "GraphicEffect",
+"class": "MultiEffect",
+"language": "GDScript",
+"path": "res://main/combat/graphic_effects/multi/multi_effect.gd"
+}, {
 "base": "Interactable",
 "class": "Npc",
 "language": "GDScript",
@@ -53,9 +63,11 @@ _global_script_class_icons={
 "ActionDecider": "",
 "CombatItemData": "",
 "EncounterData": "",
+"GraphicEffect": "",
 "Interactable": "",
 "Item": "",
 "ItemData": "",
+"MultiEffect": "",
 "Npc": "",
 "SaveFile": ""
 }

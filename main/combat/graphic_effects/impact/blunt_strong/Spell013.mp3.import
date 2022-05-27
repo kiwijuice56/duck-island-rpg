@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Spell013.mp3-3cacb3e26246360ff8d8d5a9edd29b8d.mp3str"
+
+[deps]
+
+source_file="res://main/combat/graphic_effects/impact/blunt_strong/Spell013.mp3"
+dest_files=[ "res://.import/Spell013.mp3-3cacb3e26246360ff8d8d5a9edd29b8d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

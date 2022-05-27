@@ -1,4 +1,5 @@
-extends "res://main/combat/graphic_effects/graphic_effect.gd"
+extends GraphicEffect
+class_name MultiEffect
 
 export var wait_time := 0.1
 export var impact_effect: PackedScene
@@ -21,4 +22,7 @@ func animate(user: Node, targets: Array) -> void:
 	reset_user_animation(user)
 	cam.deprioritize([user] + targets)
 	cam.toggle_cover(false)
-	emit_signal("effect_complete")
+	if not has_extension:
+		emit_signal("effect_complete")
+	else:
+		emit_signal("extension_effect")

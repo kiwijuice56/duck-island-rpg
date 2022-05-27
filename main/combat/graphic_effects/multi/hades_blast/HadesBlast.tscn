@@ -1,15 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://main/combat/graphic_effects/multi/MultiEffect.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/combat/graphic_effects/multi/hades_blast/hades_blast.gd" type="Script" id=2]
 [ext_resource path="res://main/combat/graphic_effects/multi/hades_blast/skull_emitter/SkullEmitter.tscn" type="PackedScene" id=3]
-[ext_resource path="res://main/combat/graphic_effects/impact/blunt/Blunt.tscn" type="PackedScene" id=4]
+[ext_resource path="res://main/combat/graphic_effects/impact/blunt_strong/BluntStrong.tscn" type="PackedScene" id=4]
+[ext_resource path="res://main/combat/graphic_effects/multi/hades_blast/earthquake.mp3" type="AudioStream" id=5]
 
 [node name="HadesBlast" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-particle_skulls = ExtResource( 3 )
-impact_effect = ExtResource( 4 )
+has_extension = true
 wait_time = 0.4
+impact_effect = ExtResource( 4 )
+particle_skulls = ExtResource( 3 )
 
 [node name="Tween" type="Tween" parent="." index="3"]
 
@@ -23,3 +25,8 @@ color = Color( 1, 0, 0, 0.188235 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="EarthquakeSound" type="AudioStreamPlayer" parent="." index="5"]
+stream = ExtResource( 5 )
+volume_db = 4.0
+pitch_scale = 0.82

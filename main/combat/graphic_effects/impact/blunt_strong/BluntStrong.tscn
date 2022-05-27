@@ -2,10 +2,10 @@
 
 [ext_resource path="res://main/combat/graphic_effects/impact/Impact.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/combat/graphic_effects/impact/blunt/blunt.png" type="Texture" id=2]
-[ext_resource path="res://main/combat/graphic_effects/impact/cutter/hit_1.wav" type="AudioStream" id=4]
+[ext_resource path="res://main/combat/graphic_effects/impact/blunt_strong/Spell013.mp3" type="AudioStream" id=3]
 
-[sub_resource type="Animation" id=1]
-resource_name = "blunt"
+[sub_resource type="Animation" id=2]
+resource_name = "blunt_strong"
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -55,7 +55,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.7, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0.8, 0.8 ), Vector2( 1.5, 1.5 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 1.1, 1.1 ), Vector2( 1.8, 1.8 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Light2D:energy")
@@ -67,7 +67,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.7, 1.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 4.0, 0.66, 0.0 ]
+"values": [ 5.0, 0.75, 0.0 ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath(".:visible")
@@ -82,21 +82,22 @@ tracks/5/keys = {
 "values": [ true, false ]
 }
 
-[node name="Blunt" instance=ExtResource( 1 )]
-anim_name = "blunt"
+[node name="BluntStrong" instance=ExtResource( 1 )]
+anim_name = "blunt_strong"
 
 [node name="AnimationPlayer" parent="." index="0"]
 playback_speed = 2.5
-anims/blunt = SubResource( 1 )
+anims/blunt_strong = SubResource( 2 )
 
 [node name="ImpactSound" parent="." index="1"]
-stream = ExtResource( 4 )
-volume_db = 8.0
+stream = ExtResource( 3 )
+volume_db = -2.0
 pitch_scale = 2.0
 
 [node name="Light2D" type="Light2D" parent="." index="2"]
+modulate = Color( 0.901961, 0.768627, 0.972549, 1 )
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 2 )
-energy = 4.0
+energy = 5.0
 range_layer_min = -15
 range_layer_max = 16
