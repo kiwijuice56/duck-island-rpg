@@ -25,6 +25,7 @@ func animate_user(user: Node) -> void:
 	else:
 		user.get_node("SpriteAnimationPlayer").current_animation = "phys"
 		yield(user, "animation_impact")
+		
 	# other methods still need to reset user idle animation
 
 func reset_user_animation(user: Node) -> void:

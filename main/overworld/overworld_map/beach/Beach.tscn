@@ -660,7 +660,7 @@ position = Vector2( 3448, 3120 )
 position = Vector2( 280, -16 )
 
 [node name="NpcSaver2" parent="SaveLocations" index="1" instance=ExtResource( 22 )]
-position = Vector2( 288, 3824 )
+position = Vector2( 856, 3400 )
 
 [node name="YukidNPC" parent="NPCs" index="0" instance=ExtResource( 5 )]
 position = Vector2( 1968, 2688 )

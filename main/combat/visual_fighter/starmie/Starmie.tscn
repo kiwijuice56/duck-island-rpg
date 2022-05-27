@@ -92,7 +92,7 @@ offense = {
 scale = Vector2( 2, 2.2 )
 texture = ExtResource( 2 )
 hframes = 10
-frame = 9
+frame = 7
 
 [node name="SelectIcon" parent="." index="2"]
 position = Vector2( 0, -72 )
