@@ -193,7 +193,26 @@ __meta__ = {
 }
 
 [node name="Cutscene" parent="." instance=ExtResource( 32 )]
-events = [ [ "movie", "1", "res://main/overworld/cutscene/movies/waking_up/WakingUp.tscn" ], [ "anim", "1", "0", "wake_up" ], [ "talk", "1", "mii duck", "what happened... where am i?", "0.06" ] ]
+event_text = "#movie
+1
+res://main/overworld/cutscene/movies/waking_up/WakingUp.tscn
+
+#anim
+1
+0
+wake_up
+
+#talk
+1
+mii duck
+Where am I..? Is this the island?
+0.06
+
+#talk
+1
+mii duck
+I guess I should look around for others.
+"
 
 [node name="Sprite" parent="." instance=ExtResource( 12 )]
 position = Vector2( 0, 135 )

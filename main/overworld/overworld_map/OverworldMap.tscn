@@ -111,14 +111,6 @@
 script = ExtResource( 1 )
 encounters = [ null ]
 
-[node name="WaterTiles" type="TileMap" parent="."]
-scale = Vector2( 2, 2 )
-cell_size = Vector2( 32, 32 )
-collision_layer = 8
-collision_mask = 0
-format = 1
-script = ExtResource( 2 )
-
 [node name="Layer1" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
 cell_size = Vector2( 32, 32 )
@@ -174,4 +166,6 @@ script = ExtResource( 2 )
 
 [node name="SaveLocations" type="Node2D" parent="."]
 
-[node name="NPCs" type="Node2D" parent="."]
+[node name="Interactable" type="Node2D" parent="."]
+
+[node name="NPCs" type="Node2D" parent="Interactable"]

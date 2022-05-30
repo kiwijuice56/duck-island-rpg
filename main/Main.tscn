@@ -318,6 +318,7 @@ position = Vector2( 224, 56 )
 position = Vector2( 304, 56 )
 
 [node name="MainCamera" parent="ViewportContainer/Viewport" instance=ExtResource( 7 )]
+offset = Vector2( 0, 0 )
 
 [node name="SaveFileHandler" type="Node" parent="ViewportContainer/Viewport"]
 script = ExtResource( 24 )

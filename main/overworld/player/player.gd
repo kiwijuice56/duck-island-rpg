@@ -3,6 +3,7 @@ extends KinematicBody2D
 var sand_step_sounds := []
 var wood_step_sounds := []
 
+export var encounters_enabled := false
 export var speed := 128
 var dir := Vector2()
 var steps := 255.0
@@ -16,7 +17,6 @@ onready var encounter_meter = overworld_ui.get_node("EncounterRate")
 signal menu_opened
 
 var room: Node
-var water_tiles: TileMap
 var encounter_type_tiles: TileMap
 var encounter_rate_tiles: TileMap
 var floor_style_tiles: TileMap
@@ -110,8 +110,8 @@ func jump(pos: Vector2) -> void:
 	yield($Tween, "tween_all_completed")
 	$Tween.interpolate_property($Sprite, "region_rect", null, Rect2(0,0,$Sprite.hframes * 60, 0), 0.09)
 	$Tween.start()
-	$BigSplash.emitting = true
-	$Splash1.playing = true
+	$FloorStyling/BigSplash.emitting = true
+	$FloorStyling/Splash1.playing = true
 	MusicPlayer.play_music(MusicPlayer.water)
 	yield($Tween, "tween_completed")
 	$Timer.start(0.15)
@@ -124,7 +124,6 @@ func jump(pos: Vector2) -> void:
 
 # update instance variables to have access to room 
 func room_loaded() -> void:
-	water_tiles = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0).get_node("WaterTiles") 
 	encounter_rate_tiles = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0).get_node("EncounterRate") 
 	encounter_type_tiles = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0).get_node("EncounterType") 
 	floor_style_tiles = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0).get_node("FloorStyleType") 
@@ -147,29 +146,32 @@ func handle_floor(delta: float) -> void:
 	if dir != Vector2() and encounter_rate_tiles and room:
 		if encounter_rate_tiles.get_cell(snapped.x, snapped.y) == 0:
 			steps = 255.0
-		else:
-			steps -= 40*room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
-		encounter = room.encounters[encounter_type_tiles.get_cell(snapped.x, snapped.y)]
-	if water_tiles and not water_tiles.get_cell( snapped.x, snapped.y) == -1:
+		elif encounters_enabled:
+			steps -= 4*room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
+			encounter = room.encounters[encounter_type_tiles.get_cell(snapped.x, snapped.y)]
+	# this can be reworked once there is jumpers to outside of the water
+	if floor_style_tiles and floor_style_tiles.get_cell(snapped.x, snapped.y) == 2:
 		$Sprite.set_region_rect(Rect2(0,0,$Sprite.hframes * 60, 25))
 	else:
 		$Sprite.set_region_rect(Rect2(0,0,$Sprite.hframes * 60, 40))
 
 # called during animation to have timed step sounds and particles
 func step() -> void:
+	if not floor_style_tiles:
+		return
 	var snapped := (Vector2(-16,-16)+global_position).snapped(Vector2(64,64))/64
-	if water_tiles and not water_tiles.get_cell(snapped.x, snapped.y) == -1:
-		$FloorStyling/SmallSplash.emitting = true
-		$Splash2.playing = true
 	
-	if not $FloorStyling/Sand.playing and floor_style_tiles and floor_style_tiles.get_cell(snapped.x, snapped.y) == 0:
+	if not $FloorStyling/Sand.playing and floor_style_tiles.get_cell(snapped.x, snapped.y) == 0:
 		$FloorStyling/Sand.stream = sand_step_sounds[randi() % len(sand_step_sounds)]
 		$FloorStyling/Sand.playing = true
 		if randf() > 0.33:
 			$FloorStyling/SandSplash.emitting = true
-	elif not $FloorStyling/Wood.playing and floor_style_tiles and floor_style_tiles.get_cell(snapped.x, snapped.y) == 1:
+	elif not $FloorStyling/Wood.playing and floor_style_tiles.get_cell(snapped.x, snapped.y) == 1:
 		$FloorStyling/Wood.stream = wood_step_sounds[randi() % len(wood_step_sounds)]
 		$FloorStyling/Wood.playing = true
+	elif not $FloorStyling/Splash2.playing and floor_style_tiles.get_cell(snapped.x, snapped.y) == 2:
+		$FloorStyling/SmallSplash.emitting = true
+		$FloorStyling/Splash2.playing = true
 
 func _process(_delta):
 	encounter_meter.set_encounter_modulate(steps)

@@ -19,7 +19,6 @@ func deprioritize(nodes: Array):
 		node.z_index = 0
 
 func toggle_shake(shake: bool) -> void:
-	print_stack()
 	if shake:
 		$AnimationPlayer.current_animation = "shake"
 	else:

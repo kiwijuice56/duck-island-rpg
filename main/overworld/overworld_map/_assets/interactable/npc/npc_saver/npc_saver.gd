@@ -1,6 +1,5 @@
 extends Npc
 
-onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
 onready var save_room = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SaveRoomUI/SaveRoom")
 onready var overworld = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld")
 
