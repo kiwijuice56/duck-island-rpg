@@ -95,7 +95,7 @@ func parse_cutscene_text(s: String) -> Array:
 			events.append(last_event)
 			last_event = []
 		elif line.begins_with("#"):
-			last_event = [line.substr(1)]
+			last_event = [line.substr(1).strip_edges()]
 		else:
-			last_event.append(line)
+			last_event.append(line.strip_edges())
 	return events
