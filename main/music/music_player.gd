@@ -23,7 +23,7 @@ const volumes = {
 	water: -6.5,
 	title: -8,
 	island: -15,
-	cave: 3,
+	cave: 1,
 	menu: -11,
 	save_menu: -6,
 	victory: -10,

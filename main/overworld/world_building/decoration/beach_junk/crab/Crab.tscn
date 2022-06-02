@@ -3,7 +3,7 @@
 [ext_resource path="res://main/overworld/overworld_map/beach/crab_decoration.gd" type="Script" id=1]
 [ext_resource path="res://main/overworld/world_building/decoration/beach_junk/crab/crab_sheet.png" type="Texture" id=2]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "enter_sand"
 length = 3.0
 tracks/0/type = "value"
@@ -31,7 +31,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "leave_sand"
 length = 3.0
 tracks/0/type = "value"
@@ -59,7 +59,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "walk"
 length = 0.4
 loop = true
@@ -82,6 +82,7 @@ position = Vector2( 704, 3928 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 7
+frame = 4
 script = ExtResource( 1 )
 time_max = 19
 
@@ -94,8 +95,8 @@ wait_time = 15.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.5
-anims/enter_sand = SubResource( 3 )
-anims/leave_sand = SubResource( 4 )
-anims/walk = SubResource( 5 )
+anims/enter_sand = SubResource( 1 )
+anims/leave_sand = SubResource( 2 )
+anims/walk = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="."]

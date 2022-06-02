@@ -9,6 +9,7 @@ onready var party = get_tree().get_root().get_node("Main/ViewportContainer/Viewp
 onready var system_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SystemUI/System")
 onready var status_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/StatusUI/Status")
 onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
+onready var overworld := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld")
 
 signal menu_opened
 
@@ -111,7 +112,7 @@ func open() -> void:
 func close() -> void:
 	disable()
 	SoundPlayer.play_sound(SoundPlayer.cancel)
-	MusicPlayer.play_music(MusicPlayer.island)
+	overworld.play_room_music()
 	open = false
 	get_focus_owner().release_focus()
 	$Tween.interpolate_property($PopupMenu, "modulate", null, Color(1,1,1,0), 0.1)

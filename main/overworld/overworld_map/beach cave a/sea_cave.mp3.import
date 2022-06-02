@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sea_cave.mp3-7365350d4b9af4b2ef9d5f8f3da490b7.mp3str"
+
+[deps]
+
+source_file="res://main/overworld/overworld_map/beach cave a/sea_cave.mp3"
+dest_files=[ "res://.import/sea_cave.mp3-7365350d4b9af4b2ef9d5f8f3da490b7.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -186,7 +186,8 @@ colors = PoolColorArray( 1, 0.944028, 0.559113, 1, 1, 0.748352, 0.480469, 1, 0.1
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 8
 script = ExtResource( 1 )
-speed = 200
+speed = 189
+inertia_change = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.8
@@ -303,8 +304,8 @@ volume_db = 12.356
 
 [node name="Splash2" type="AudioStreamPlayer" parent="FloorStyling"]
 stream = ExtResource( 6 )
-volume_db = -9.267
-pitch_scale = 1.59
+volume_db = -18.0
+pitch_scale = 1.6
 
 [node name="Sand" type="AudioStreamPlayer" parent="FloorStyling"]
 stream = ExtResource( 7 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://main/overworld/world_building/interactable/door/cave_door/cave_door.png" type="Texture" id=1]
 [ext_resource path="res://main/overworld/world_building/interactable/door/Door.tscn" type="PackedScene" id=2]
@@ -6,11 +6,30 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 64.0
 
+[sub_resource type="Animation" id=2]
+resource_name = "splash_idle"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+
 [node name="CaveDoor" instance=ExtResource( 2 )]
 collision_layer = 0
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )
+hframes = 5
+frame = 3
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2( -3.3739, 54.5071 )
@@ -25,3 +44,8 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
 polygon = PoolVector2Array( 114.203, -0.680939, 102.019, -45.7081, 53.8136, -98.6813, 15.1432, -109.806, -42.0678, -101.33, -90.8031, -55.773, -126.825, 8.85423, -130.762, 77.5452, -68.5635, 73.1091, -15.6468, 50.4306, 36.01, 50.4306, 68.7679, 66.8095, 122.56, 67.1807 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+autoplay = "splash_idle"
+playback_speed = 1.2
+anims/splash_idle = SubResource( 2 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://main/overworld/overworld_map/OverworldMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/overworld/world_building/water/Water.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://main/overworld/world_building/decoration/beach_junk/shell.png" type="Texture" id=7]
 [ext_resource path="res://main/overworld/world_building/decoration/beach_junk/shell2.png" type="Texture" id=8]
 [ext_resource path="res://main/overworld/world_building/decoration/palm_tree/PalmTree2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://main/overworld/world_building/decoration/beach_junk/shell5.png" type="Texture" id=10]
 [ext_resource path="res://main/overworld/overworld_map/beach/encounters/beach2.tres" type="Resource" id=11]
 [ext_resource path="res://main/overworld/overworld_map/beach/beach_ambience.wav" type="AudioStream" id=12]
 [ext_resource path="res://main/overworld/world_building/interactable/jumper/Jumper.tscn" type="PackedScene" id=13]
@@ -727,122 +728,142 @@ position = Vector2( 664, 3208 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
 
-[node name="Shell9" type="Sprite" parent="Decoration/Shells" index="6"]
+[node name="Shell31" type="Sprite" parent="Decoration/Shells" index="6"]
+position = Vector2( 1040, 3384 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 16 )
+
+[node name="Shell9" type="Sprite" parent="Decoration/Shells" index="7"]
 position = Vector2( 584, 3344 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
 
-[node name="Shell6" type="Sprite" parent="Decoration/Shells" index="7"]
+[node name="Shell6" type="Sprite" parent="Decoration/Shells" index="8"]
 position = Vector2( 568, 3256 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
-[node name="Shell10" type="Sprite" parent="Decoration/Shells" index="8"]
+[node name="Shell10" type="Sprite" parent="Decoration/Shells" index="9"]
 position = Vector2( 704, 3360 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
-[node name="Shell12" type="Sprite" parent="Decoration/Shells" index="9"]
+[node name="Shell12" type="Sprite" parent="Decoration/Shells" index="10"]
 position = Vector2( 1048, 2480 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
-[node name="Shell14" type="Sprite" parent="Decoration/Shells" index="10"]
+[node name="Shell14" type="Sprite" parent="Decoration/Shells" index="11"]
 position = Vector2( 1072, 2856 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
-[node name="Shell7" type="Sprite" parent="Decoration/Shells" index="11"]
-position = Vector2( 1080, 3368 )
+[node name="Shell7" type="Sprite" parent="Decoration/Shells" index="12"]
+position = Vector2( 1112, 3344 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 17 )
 
-[node name="Shell8" type="Sprite" parent="Decoration/Shells" index="12"]
+[node name="Shell32" type="Sprite" parent="Decoration/Shells" index="13"]
+position = Vector2( 1592, 2536 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 10 )
+
+[node name="Shell33" type="Sprite" parent="Decoration/Shells" index="14"]
+position = Vector2( 4336, 2856 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 10 )
+
+[node name="Shell34" type="Sprite" parent="Decoration/Shells" index="15"]
+position = Vector2( 4728, 3416 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 17 )
+
+[node name="Shell8" type="Sprite" parent="Decoration/Shells" index="16"]
 position = Vector2( 232, 3472 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 8 )
 
-[node name="Shell11" type="Sprite" parent="Decoration/Shells" index="13"]
+[node name="Shell11" type="Sprite" parent="Decoration/Shells" index="17"]
 position = Vector2( 760, 2648 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 8 )
 
-[node name="Shell15" type="Sprite" parent="Decoration/Shells" index="14"]
+[node name="Shell15" type="Sprite" parent="Decoration/Shells" index="18"]
 position = Vector2( 3360, 3224 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 8 )
 
-[node name="Shell28" type="Sprite" parent="Decoration/Shells" index="15"]
+[node name="Shell28" type="Sprite" parent="Decoration/Shells" index="19"]
 position = Vector2( 4196.27, 2928.17 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 8 )
 
-[node name="Shell22" type="Sprite" parent="Decoration/Shells" index="16"]
+[node name="Shell22" type="Sprite" parent="Decoration/Shells" index="20"]
 position = Vector2( 4592, 4096 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 8 )
 
-[node name="Shell25" type="Sprite" parent="Decoration/Shells" index="17"]
+[node name="Shell25" type="Sprite" parent="Decoration/Shells" index="21"]
 position = Vector2( 4712, 3904 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 8 )
 
-[node name="Shell16" type="Sprite" parent="Decoration/Shells" index="18"]
+[node name="Shell16" type="Sprite" parent="Decoration/Shells" index="22"]
 position = Vector2( 3312, 3120 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
 
-[node name="Shell27" type="Sprite" parent="Decoration/Shells" index="19"]
+[node name="Shell27" type="Sprite" parent="Decoration/Shells" index="23"]
 position = Vector2( 3854.53, 2880.71 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
 
-[node name="Shell30" type="Sprite" parent="Decoration/Shells" index="20"]
+[node name="Shell30" type="Sprite" parent="Decoration/Shells" index="24"]
 position = Vector2( 4790.44, 2783.31 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
 
-[node name="Shell19" type="Sprite" parent="Decoration/Shells" index="21"]
+[node name="Shell19" type="Sprite" parent="Decoration/Shells" index="25"]
 position = Vector2( 4520, 4040 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
 
-[node name="Shell20" type="Sprite" parent="Decoration/Shells" index="22"]
+[node name="Shell20" type="Sprite" parent="Decoration/Shells" index="26"]
 position = Vector2( 4768, 4056 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
 
-[node name="Shell26" type="Sprite" parent="Decoration/Shells" index="23"]
+[node name="Shell26" type="Sprite" parent="Decoration/Shells" index="27"]
 position = Vector2( 4600, 3896 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
 
-[node name="Shell21" type="Sprite" parent="Decoration/Shells" index="24"]
+[node name="Shell21" type="Sprite" parent="Decoration/Shells" index="28"]
 position = Vector2( 4704, 3960 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
 
-[node name="Shell17" type="Sprite" parent="Decoration/Shells" index="25"]
+[node name="Shell17" type="Sprite" parent="Decoration/Shells" index="29"]
 position = Vector2( 3600, 3176 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
-[node name="Shell18" type="Sprite" parent="Decoration/Shells" index="26"]
+[node name="Shell18" type="Sprite" parent="Decoration/Shells" index="30"]
 position = Vector2( 4608, 3328 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
-[node name="Shell29" type="Sprite" parent="Decoration/Shells" index="27"]
+[node name="Shell29" type="Sprite" parent="Decoration/Shells" index="31"]
 position = Vector2( 4546.65, 2793.07 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
-[node name="Shell23" type="Sprite" parent="Decoration/Shells" index="28"]
+[node name="Shell23" type="Sprite" parent="Decoration/Shells" index="32"]
 position = Vector2( 4680, 4096 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
-[node name="Shell24" type="Sprite" parent="Decoration/Shells" index="29"]
+[node name="Shell24" type="Sprite" parent="Decoration/Shells" index="33"]
 position = Vector2( 4600, 3960 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
@@ -932,7 +953,6 @@ anims/leave_sand = SubResource( 19 )
 anims/walk = SubResource( 20 )
 
 [node name="Crab8" parent="Decoration/Living" index="7" instance=ExtResource( 6 )]
-visible = true
 position = Vector2( 4896.51, 3485.75 )
 time_min = 10
 time_max = 15
@@ -952,7 +972,7 @@ position = Vector2( 4687.61, 2826.28 )
 position = Vector2( 328.588, 3809.81 )
 
 [node name="CaveDoor" parent="Doors" index="0" instance=ExtResource( 23 )]
-position = Vector2( 4112, 3424 )
+position = Vector2( 4248, 3304 )
 room_to_save_id = "beach cave a"
 door_to_id = "entrance1"
 id = "cave1"

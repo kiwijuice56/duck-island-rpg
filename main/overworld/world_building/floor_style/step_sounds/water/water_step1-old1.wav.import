@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/water_step1-old1.wav-4ce5d83fd353f9013a2303867a5f7d07.sample"
+
+[deps]
+
+source_file="res://main/overworld/world_building/floor_style/step_sounds/water/water_step1-old1.wav"
+dest_files=[ "res://.import/water_step1-old1.wav-4ce5d83fd353f9013a2303867a5f7d07.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

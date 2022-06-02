@@ -10,6 +10,8 @@ data = {
 "combat_items": {
 },
 "healing_items": {
+Resource( "res://main/items/healing/cream puff/cream puff.tres" ): 1,
+Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1
 }
 }
 },
@@ -20,15 +22,17 @@ data = {
 "Item": false,
 "Item2": false,
 "Item3": false
+},
+"beach cave a": {
 }
 },
-"location": "beach",
-"save_location": 1
+"location": "beach cave a",
+"save_location": 0
 }
 },
 "party": {
 "player_party": [ [ "duckling", {
-"Actions": [  ],
+"Actions": [ "hades blast" ],
 "Attributes": [  ],
 "Stats": {
 "agility": 3,

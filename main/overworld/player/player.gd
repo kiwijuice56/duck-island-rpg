@@ -4,8 +4,12 @@ var sand_step_sounds := []
 var wood_step_sounds := []
 
 export var encounters_enabled := false
-export var speed := 128
+export var speed := 105
+export var max_inertia := 16.0
+export var inertia_change := 2.0
 var dir := Vector2()
+var last_dir := Vector2()
+var inertia := 0.0
 var steps := 255.0
 
 onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
@@ -63,6 +67,7 @@ func battle_ended() -> void:
 
 func disable() -> void:
 	set_physics_process(false)
+	$AnimationPlayer.current_animation = "[stop]"
 	$Area2D/CollisionShape2D.set_disabled(true)
 	overworld_ui.disable()
 
@@ -183,6 +188,8 @@ func step() -> void:
 	elif not $FloorStyling/Splash2.playing and floor_style_tiles.get_cell(snapped.x, snapped.y) == 2:
 		$FloorStyling/SmallSplash.emitting = true
 		$FloorStyling/Splash2.playing = true
+		if randf() > 0.33:
+			$FloorStyling/SmallSplash.emitting = true
 
 func _physics_process(delta: float) -> void:
 	handle_floor(delta)
@@ -193,7 +200,14 @@ func _physics_process(delta: float) -> void:
 	get_input()
 	set_anim()
 	
-	var vel := dir * speed
+	if not dir:
+		inertia -= inertia_change
+	else:
+		last_dir = dir
+		inertia += inertia_change
+	
+	inertia = max(0, min(max_inertia, inertia))
+	var vel := (last_dir if not dir and inertia > 0 else dir) * (speed + inertia)
 	move_and_slide(vel)
 	position.x = round(position.x)
 	position.y = round(position.y)
