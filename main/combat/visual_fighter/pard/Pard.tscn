@@ -141,10 +141,7 @@ position = Vector2( 0, -80 )
 [node name="ActionDecider" parent="." index="3"]
 script = ExtResource( 5 )
 
-[node name="ParticleEmitter" parent="." index="5"]
-position = Vector2( 0, -80 )
-
-[node name="SpriteAnimationPlayer" parent="." index="7"]
+[node name="SpriteAnimationPlayer" parent="." index="8"]
 anims/idle = SubResource( 1 )
 
 [node name="Book" type="Sprite" parent="." index="9"]

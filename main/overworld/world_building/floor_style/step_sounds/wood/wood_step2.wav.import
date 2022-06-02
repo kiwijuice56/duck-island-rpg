@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/wood_step2.wav-dfc99dd1ac7eec512fca2e72b0cee08b.sample"
+
+[deps]
+
+source_file="res://main/overworld/world_building/floor_style/step_sounds/wood/wood_step2.wav"
+dest_files=[ "res://.import/wood_step2.wav-dfc99dd1ac7eec512fca2e72b0cee08b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

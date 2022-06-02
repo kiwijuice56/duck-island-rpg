@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/item_get.mp3-3f9986e7e4a7ea96f5be912fc5ce26b8.mp3str"
+
+[deps]
+
+source_file="res://main/overworld/world_building/interactable/item_get.mp3"
+dest_files=[ "res://.import/item_get.mp3-3f9986e7e4a7ea96f5be912fc5ce26b8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

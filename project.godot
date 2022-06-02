@@ -19,10 +19,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://main/items/healing/combat_item_data.gd"
 }, {
+"base": "Interactable",
+"class": "Door",
+"language": "GDScript",
+"path": "res://main/overworld/world_building/interactable/door/door.gd"
+}, {
 "base": "Resource",
 "class": "EncounterData",
 "language": "GDScript",
-"path": "res://main/overworld/overworld_map/_assets/encounter/encounter_data.gd"
+"path": "res://main/overworld/world_building/encounter/encounter_data.gd"
 }, {
 "base": "Node2D",
 "class": "GraphicEffect",
@@ -32,12 +37,12 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Interactable",
 "language": "GDScript",
-"path": "res://main/overworld/overworld_map/_assets/interactable/interactable.gd"
+"path": "res://main/overworld/world_building/interactable/interactable.gd"
 }, {
 "base": "Interactable",
 "class": "Item",
 "language": "GDScript",
-"path": "res://main/overworld/overworld_map/_assets/interactable/item/item.gd"
+"path": "res://main/overworld/world_building/interactable/item/item.gd"
 }, {
 "base": "Resource",
 "class": "ItemData",
@@ -52,7 +57,7 @@ _global_script_classes=[ {
 "base": "Interactable",
 "class": "Npc",
 "language": "GDScript",
-"path": "res://main/overworld/overworld_map/_assets/interactable/npc/npc.gd"
+"path": "res://main/overworld/world_building/interactable/npc/npc.gd"
 }, {
 "base": "Resource",
 "class": "SaveFile",
@@ -62,11 +67,12 @@ _global_script_classes=[ {
 "base": "Interactable",
 "class": "Telescope",
 "language": "GDScript",
-"path": "res://main/overworld/overworld_map/_assets/interactable/telescope/telescope.gd"
+"path": "res://main/overworld/world_building/interactable/telescope/telescope.gd"
 } ]
 _global_script_class_icons={
 "ActionDecider": "",
 "CombatItemData": "",
+"Door": "",
 "EncounterData": "",
 "GraphicEffect": "",
 "Interactable": "",
@@ -94,8 +100,10 @@ MusicPlayer="*res://main/music/music_player.gd"
 settings/fps/force_fps=120
 gdscript/warnings/unused_variable=false
 gdscript/warnings/unused_argument=false
+gdscript/warnings/narrowing_conversion=false
 gdscript/warnings/variable_conflicts_function=false
 gdscript/warnings/return_value_discarded=false
+gdscript/warnings/integer_division=false
 
 [importer_defaults]
 

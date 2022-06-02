@@ -1,32 +1,35 @@
 extends AudioStreamPlayer
 
-var global_volume := 0 setget set_volume
-
-var battle = preload("res://main/music/encounter.mp3")
-var boss = preload("res://main/music/boss_theme_1.mp3")
-var overworld = preload("res://main/music/overworld_demo.mp3")
-var water = preload("res://main/music/swimming_ducklings.mp3")
-var title = preload("res://main/music/mysterious_duck_island.mp3")
-var island = preload("res://main/music/beach_theme_1.mp3")
-var menu = preload("res://main/music/menu.mp3")
-var save_menu = preload("res://main/music/save_menu_theme.mp3")
-var victory = preload("res://main/music/victory.mp3")
+const battle = preload("res://main/music/encounter.mp3")
+const boss = preload("res://main/music/boss_theme_1.mp3")
+const overworld = preload("res://main/music/overworld_demo.mp3")
+const water = preload("res://main/music/swimming_ducklings.mp3")
+const title = preload("res://main/music/mysterious_duck_island.mp3")
+const island = preload("res://main/music/beach_theme_1.mp3")
+const cave = preload("res://main/music/cave_theme_1.mp3")
+const menu = preload("res://main/music/menu.mp3")
+const save_menu = preload("res://main/music/save_menu_theme.mp3")
+const victory = preload("res://main/music/victory.mp3")
 
 var stream_volume := -80
+var global_volume := 0 setget set_volume
+var current_music: Resource
+var tween: Tween
 
-var volumes = {
+const volumes = {
 	battle: -12,
 	overworld: -10.0,
 	boss: -7.0,
 	water: -6.5,
 	title: -8,
-	island: -13,
+	island: -15,
+	cave: 3,
 	menu: -11,
 	save_menu: -6,
 	victory: -10,
 }
 
-var tween: Tween
+
 
 func _ready() -> void:
 	tween = Tween.new()
@@ -37,7 +40,7 @@ func set_volume(new_global_volume) -> void:
 	volume_db = stream_volume + global_volume
 
 func play_music(sound, transition_time=0.35) -> void:
-	tween.interpolate_property(self, "volume_db", volumes[sound]+global_volume, -50, transition_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property(self, "volume_db", (-80 if not current_music else volumes[current_music])+global_volume, -50, transition_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	yield(tween, "tween_completed")
 	stream = sound
@@ -46,6 +49,7 @@ func play_music(sound, transition_time=0.35) -> void:
 	tween.start()
 	playing = true
 	yield(tween, "tween_completed")
+	current_music = sound
 
 func stop() -> void:
 	tween.stop_all()

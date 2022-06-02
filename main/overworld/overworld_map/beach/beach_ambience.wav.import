@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/beach_ambience.wav-70575b91ff20c6d314e3e3b34a7b05ac.sample"
+
+[deps]
+
+source_file="res://main/overworld/overworld_map/beach/beach_ambience.wav"
+dest_files=[ "res://.import/beach_ambience.wav-70575b91ff20c6d314e3e3b34a7b05ac.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

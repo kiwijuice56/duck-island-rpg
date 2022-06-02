@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://addons/rpg_framework/custom_nodes/party/party.gd" type="Script" id=1]
 [ext_resource path="res://main/ui/combat/Combat.tscn" type="PackedScene" id=2]
@@ -10,10 +10,11 @@
 [ext_resource path="res://main/ui/transition/Transition.tscn" type="PackedScene" id=8]
 [ext_resource path="res://main/overworld/overworld.gd" type="Script" id=9]
 [ext_resource path="res://main/ui/save/Save.tscn" type="PackedScene" id=10]
+[ext_resource path="res://main/ui/shop/Shop.tscn" type="PackedScene" id=11]
 [ext_resource path="res://main/ui/title/sprites/Sky.tscn" type="PackedScene" id=12]
-[ext_resource path="res://main/overworld/overworld_map/_assets/decoration/palm_tree/PalmTree2.tscn" type="PackedScene" id=15]
+[ext_resource path="res://main/overworld/world_building/decoration/palm_tree/PalmTree2.tscn" type="PackedScene" id=15]
 [ext_resource path="res://main/combat/2.png" type="Texture" id=16]
-[ext_resource path="res://main/overworld/overworld_map/_assets/water/Water.tscn" type="PackedScene" id=17]
+[ext_resource path="res://main/overworld/world_building/water/Water.tscn" type="PackedScene" id=17]
 [ext_resource path="res://main/combat/1.png" type="Texture" id=18]
 [ext_resource path="res://main/ui/after_battle/AfterBattle.tscn" type="PackedScene" id=19]
 [ext_resource path="res://main/ui/overworld/Overworld.tscn" type="PackedScene" id=20]
@@ -22,10 +23,10 @@
 [ext_resource path="res://main/items/items.gd" type="Script" id=23]
 [ext_resource path="res://addons/rpg_framework/custom_nodes/save_file_handler/save_file_handler.gd" type="Script" id=24]
 [ext_resource path="res://main/combat/visual_fighter/duckling/duckling.tscn" type="PackedScene" id=25]
-[ext_resource path="res://main/overworld/overworld_map/_assets/decoration/palm_tree/PalmTree.tscn" type="PackedScene" id=26]
-[ext_resource path="res://main/overworld/overworld_map/_assets/water/distanced_water.png" type="Texture" id=27]
-[ext_resource path="res://main/overworld/overworld_map/_assets/decoration/beach_junk/shell.png" type="Texture" id=28]
-[ext_resource path="res://main/overworld/overworld_map/_assets/decoration/beach_junk/shell2.png" type="Texture" id=29]
+[ext_resource path="res://main/overworld/world_building/decoration/palm_tree/PalmTree.tscn" type="PackedScene" id=26]
+[ext_resource path="res://main/overworld/world_building/water/distanced_water.png" type="Texture" id=27]
+[ext_resource path="res://main/overworld/world_building/decoration/beach_junk/shell.png" type="Texture" id=28]
+[ext_resource path="res://main/overworld/world_building/decoration/beach_junk/shell2.png" type="Texture" id=29]
 [ext_resource path="res://main/main.gd" type="Script" id=30]
 [ext_resource path="res://main/ui/save_room/SaveRoom.tscn" type="PackedScene" id=31]
 [ext_resource path="res://main/pixel_scale_container.gd" type="Script" id=32]
@@ -139,6 +140,11 @@ visible = false
 [node name="Status" parent="ViewportContainer/Viewport/UI/StatusUI" instance=ExtResource( 3 )]
 visible = false
 
+[node name="ShopUI" type="CanvasLayer" parent="ViewportContainer/Viewport/UI"]
+
+[node name="Shop" parent="ViewportContainer/Viewport/UI/ShopUI" instance=ExtResource( 11 )]
+visible = false
+
 [node name="Transition" parent="ViewportContainer/Viewport/UI" instance=ExtResource( 8 )]
 
 [node name="Overworld" type="Node2D" parent="ViewportContainer/Viewport" groups=[
@@ -148,7 +154,6 @@ script = ExtResource( 9 )
 
 [node name="Player" parent="ViewportContainer/Viewport/Overworld" instance=ExtResource( 4 )]
 position = Vector2( 392, 3896 )
-encounters_enabled = true
 
 [node name="Combat" type="Node" parent="ViewportContainer/Viewport"]
 

@@ -5,6 +5,7 @@ onready var buttons = $MarginContainer/PanelContainer/VBoxContainer
 onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
 onready var save_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SaveUI/Save")
 onready var system_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SystemUI/System")
+onready var overworld = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld")
 
 # the node that opened this menu
 var last = null
@@ -30,8 +31,7 @@ func _input(event):
 		yield(transition.transition_out(), "completed")
 		if last.has_method("enable"):
 			last.enable()
-		print("PLAYING BEACH at 33, SAVE_ROOM.gd")
-		MusicPlayer.play_music(MusicPlayer.island)
+		overworld.play_room_music()
 		last.call(last_func)
 
 func pressed(button_name: String) -> void:
@@ -42,6 +42,7 @@ func pressed(button_name: String) -> void:
 			save_ui.visible = true
 			save_ui.last = self
 			save_ui.label.text = "Save what file?"
+			save_ui.file_container.get_parent().scroll_vertical = 0
 			save_ui.last_func = "choose_button"
 			visible = false
 			yield(transition.transition_out(), "completed")
@@ -54,6 +55,7 @@ func pressed(button_name: String) -> void:
 			save_ui.last = self
 			save_ui.last_func = "choose_button"
 			save_ui.label.text = "Load what file?"
+			save_ui.file_container.get_parent().scroll_vertical = 0
 			visible = false
 			yield(transition.transition_out(), "completed")
 			save_ui.enable()

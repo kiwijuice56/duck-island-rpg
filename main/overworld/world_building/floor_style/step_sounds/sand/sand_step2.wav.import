@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sand_step2.wav-f42f2d5018017cd47b42ab23699e4cfb.sample"
+
+[deps]
+
+source_file="res://main/overworld/world_building/floor_style/step_sounds/sand/sand_step2.wav"
+dest_files=[ "res://.import/sand_step2.wav-f42f2d5018017cd47b42ab23699e4cfb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

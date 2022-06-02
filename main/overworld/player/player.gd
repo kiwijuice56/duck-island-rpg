@@ -25,8 +25,8 @@ var encounter: Resource
 func _ready() -> void:
 	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Combat/PressTurnCycle").connect("battle_ended", self, "battle_ended")
 	disable()
-	sand_step_sounds = get_wav_files("res://main/overworld/overworld_map/_assets/floor_style/step_sounds/sand/")
-	wood_step_sounds = get_wav_files("res://main/overworld/overworld_map/_assets/floor_style/step_sounds/wood/")
+	sand_step_sounds = get_wav_files("res://main/overworld/world_building/floor_style/step_sounds/sand/")
+	wood_step_sounds = get_wav_files("res://main/overworld/world_building/floor_style/step_sounds/wood/")
 
 func get_wav_files(path: String) -> Array:
 	var arr := []
@@ -95,30 +95,51 @@ func set_anim() -> void:
 	else:
 		$AnimationPlayer.current_animation = "[stop]"
 
-func jump(pos: Vector2) -> void:
+func jump(pos: Vector2, in_water: bool) -> void:
+	$AnimationPlayer.current_animation = "[stop]"
 	disable()
 	overworld_ui.disable()
+	
+	# change sprite rect to out of water
+	if not in_water:
+		$Tween.interpolate_property($Sprite, "region_rect", null, Rect2(0,0,$Sprite.hframes * 60, 40), 0.015)
+	
+	# jump out
 	$Tween.interpolate_property(self, "global_position", null, pos, .45)
 	$Tween.interpolate_property($Sprite, "position", null, $Sprite.position - Vector2(0, 64), 0.25, Tween.TRANS_QUAD, Tween.EASE_IN)
-	# ugly code, but animates jump into water with tweens
 	$Tween.start()
 	$Timer.start(0.15)
 	yield($Timer, "timeout")
 	yield($Tween, "tween_completed")
+	
+	# jump in
 	$Tween.interpolate_property($Sprite, "position", null, $Sprite.position + Vector2(0, 64), 0.25, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Tween.start()
 	yield($Tween, "tween_all_completed")
-	$Tween.interpolate_property($Sprite, "region_rect", null, Rect2(0,0,$Sprite.hframes * 60, 0), 0.09)
-	$Tween.start()
-	$FloorStyling/BigSplash.emitting = true
-	$FloorStyling/Splash1.playing = true
-	MusicPlayer.play_music(MusicPlayer.water)
-	yield($Tween, "tween_completed")
-	$Timer.start(0.15)
+	
+	
+	# change music
+	if in_water:
+		
+		MusicPlayer.play_music(MusicPlayer.water)
+	else:
+		room.get_parent().play_room_music() # overworld_map
+	
+	# create splashing inside of water animation
+	if in_water:
+		$Tween.interpolate_property($Sprite, "region_rect", null, Rect2(0,0,$Sprite.hframes * 60, 0), 0.09)
+		$Tween.start()
+		yield($Tween, "tween_completed")
+		$FloorStyling/BigSplash.emitting = true
+		$FloorStyling/Splash1.playing = true
+		$Timer.start(0.15)
+		yield($Timer, "timeout")
+		$Tween.interpolate_property($Sprite, "region_rect", null, Rect2(0,0,$Sprite.hframes * 60, 25), 0.015)
+		$Tween.start()
+		yield($Tween, "tween_completed")
+	
+	$Timer.start(0.5)
 	yield($Timer, "timeout")
-	$Tween.interpolate_property($Sprite, "region_rect", null, Rect2(0,0,$Sprite.hframes * 60, 25), 0.015)
-	$Tween.start()
-	yield($Tween, "tween_completed")
 	enable()
 	overworld_ui.enable()
 
@@ -128,16 +149,6 @@ func room_loaded() -> void:
 	encounter_type_tiles = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0).get_node("EncounterType") 
 	floor_style_tiles = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0).get_node("FloorStyleType") 
 	room = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").get_child(0)
-
-func _physics_process(delta: float) -> void:
-	handle_floor(delta)
-	if steps <= 0:
-		battle_started()
-		set_physics_process(false)
-		steps =  0.0
-	get_input()
-	set_anim()
-	move_and_slide(dir*speed)
 
 # handles contant floor code, sprite and other visuals on different tiles
 func handle_floor(delta: float) -> void:
@@ -172,6 +183,20 @@ func step() -> void:
 	elif not $FloorStyling/Splash2.playing and floor_style_tiles.get_cell(snapped.x, snapped.y) == 2:
 		$FloorStyling/SmallSplash.emitting = true
 		$FloorStyling/Splash2.playing = true
+
+func _physics_process(delta: float) -> void:
+	handle_floor(delta)
+	if steps <= 0:
+		battle_started()
+		set_physics_process(false)
+		steps =  0.0
+	get_input()
+	set_anim()
+	
+	var vel := dir * speed
+	move_and_slide(vel)
+	position.x = round(position.x)
+	position.y = round(position.y)
 
 func _process(_delta):
 	encounter_meter.set_encounter_modulate(steps)

@@ -1,4 +1,4 @@
-extends "res://main/combat/graphic_effects/graphic_effect.gd"
+extends GraphicEffect
 
 export var flicker: PackedScene
 export var ghost_swoosh: PackedScene
@@ -14,8 +14,6 @@ func animate(user: Node, targets: Array) -> void:
 	
 	for target in targets:
 		for _i in range(7):
-			
-			
 			var new_swoosh = ghost_swoosh.instance()
 			add_child(new_swoosh)
 			new_swoosh.global_position = target.get_node("SelectIcon").global_position + Vector2(randi() % 64 - 32, randi() % 64 - 32)

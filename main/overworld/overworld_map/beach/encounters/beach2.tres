@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
-[ext_resource path="res://main/overworld/overworld_map/_assets/encounter/encounter_data.gd" type="Script" id=1]
+[ext_resource path="res://main/overworld/world_building/encounter/encounter_data.gd" type="Script" id=1]
 [ext_resource path="res://main/combat/visual_fighter/starmie/Starmie.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main/combat/visual_fighter/loduck/loduck.tscn" type="PackedScene" id=3]
 [ext_resource path="res://main/combat/visual_fighter/crabsly/crabsly.tscn" type="PackedScene" id=4]

@@ -1,0 +1,57 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://main/save_game/save_file_template/save_file_template.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+data = {
+"inventory": {
+"items": {
+"combat_items": {
+},
+"healing_items": {
+Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1,
+Resource( "res://main/items/healing/cream puff/cream puff.tres" ): 1
+}
+}
+},
+"overworld_nodes": {
+"overworld": {
+"items": {
+"beach": {
+"Item": false,
+"Item2": false,
+"Item3": false
+},
+"beach cave a": {
+}
+},
+"location": "beach cave a",
+"save_location": 0
+}
+},
+"party": {
+"player_party": [ [ "duckling", {
+"Actions": [ "hades blast" ],
+"Attributes": [  ],
+"Stats": {
+"agility": 3,
+"experience": 0,
+"experience_to_level": 134,
+"hp": 78,
+"level": 5,
+"luck": 3,
+"magic": 4,
+"max_hp": 74,
+"max_mp": 40,
+"mp": 45,
+"status": "ok",
+"strength": 4,
+"vitality": 5
+},
+"Unlearned": [ [ "attack up", "heal", "defense up", "tornado" ], [ 6, 7, 9, 11 ] ]
+} ] ]
+}
+}
+time = 0
+location = ""

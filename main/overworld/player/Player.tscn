@@ -4,9 +4,9 @@
 [ext_resource path="res://main/overworld/player/mii_duck.png" type="Texture" id=2]
 [ext_resource path="res://main/overworld/player/shadow.png" type="Texture" id=3]
 [ext_resource path="res://main/overworld/player/water_hider.png" type="Texture" id=4]
-[ext_resource path="res://main/overworld/player/190080__tran5ient__splash7.wav" type="AudioStream" id=5]
-[ext_resource path="res://main/overworld/player/398038__swordofkings128__water-splash-1.mp3" type="AudioStream" id=6]
-[ext_resource path="res://main/overworld/overworld_map/_assets/floor_style/step_sounds/sand/sand_step1.wav" type="AudioStream" id=7]
+[ext_resource path="res://main/overworld/player/large_splash.wav" type="AudioStream" id=5]
+[ext_resource path="res://main/overworld/world_building/floor_style/step_sounds/water/water_step1.wav" type="AudioStream" id=6]
+[ext_resource path="res://main/overworld/world_building/floor_style/step_sounds/sand/sand_step1.wav" type="AudioStream" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "wake_up"
@@ -186,7 +186,7 @@ colors = PoolColorArray( 1, 0.944028, 0.559113, 1, 1, 0.748352, 0.480469, 1, 0.1
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 8
 script = ExtResource( 1 )
-speed = 180
+speed = 200
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.8
@@ -243,7 +243,7 @@ one_shot = true
 position = Vector2( -0.749161, 23.2408 )
 scale = Vector2( 1, 0.881644 )
 emitting = false
-amount = 255
+amount = 128
 lifetime = 1.76
 one_shot = true
 speed_scale = 2.71
@@ -262,12 +262,13 @@ color_ramp = SubResource( 8 )
 [node name="SmallSplash" type="CPUParticles2D" parent="FloorStyling"]
 position = Vector2( -0.749161, 23.2408 )
 emitting = false
-amount = 64
-lifetime = 0.8
+amount = 16
+lifetime = 0.2
 one_shot = true
-speed_scale = 2.71
+speed_scale = 1.4
 explosiveness = 0.85
 randomness = 1.0
+local_coords = false
 emission_shape = 2
 emission_rect_extents = Vector2( 15, 1 )
 direction = Vector2( 0, -1 )

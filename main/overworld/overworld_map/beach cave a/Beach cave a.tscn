@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://main/overworld/world_building/interactable/door/Door.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/overworld/overworld_map/OverworldMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://main/overworld/world_building/interactable/npc/npc_saver/NpcSaver.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/overworld/overworld_map/beach/encounters/beach2.tres" type="Resource" id=4]
+[ext_resource path="res://main/overworld/overworld_map/beach cave a/cave_tileset.tres" type="TileSet" id=5]
+[ext_resource path="res://main/overworld/overworld_map/beach cave a/cave_wall_edges.png" type="Texture" id=6]
+[ext_resource path="res://main/overworld/world_building/water/Water.tscn" type="PackedScene" id=7]
+[ext_resource path="res://main/overworld/world_building/water/cave_water.png" type="Texture" id=8]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float tile_factor = 10.0;
+uniform float aspect_ratio = 0.5;
+
+uniform vec2 time_factor = vec2(2.0, 3.0);
+uniform vec2 offset_factor = vec2(5.0, 2.0);
+uniform vec2 amplitude = vec2(0.05, 0.05);
+
+void fragment() {
+	vec2 tiled_uvs = UV * tile_factor;
+	tiled_uvs.y *= aspect_ratio;
+	
+	vec2 wave_uv_offset;
+	wave_uv_offset.x += sin(TIME * time_factor.x + (tiled_uvs.x + tiled_uvs.y) * offset_factor.x);
+	wave_uv_offset.y += cos(TIME * time_factor.y + (tiled_uvs.x + tiled_uvs.y) * offset_factor.y);
+	
+	COLOR = texture(TEXTURE, tiled_uvs + wave_uv_offset * amplitude);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/tile_factor = 150.0
+shader_param/aspect_ratio = 1.0
+shader_param/time_factor = Vector2( 2, 3 )
+shader_param/offset_factor = Vector2( 5, 2 )
+shader_param/amplitude = Vector2( 0.05, 0.05 )
+
+[sub_resource type="TileSet" id=3]
+0/name = "cave_wall_edges.png 0"
+0/texture = ExtResource( 6 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 128, 128 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 0
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 64, Vector2( 0, 1 ), 257, Vector2( 0, 2 ), 4, Vector2( 1, 0 ), 260, Vector2( 1, 1 ), 324, Vector2( 1, 2 ), 5, Vector2( 1, 3 ), 256, Vector2( 2, 0 ), 321, Vector2( 2, 1 ), 325, Vector2( 2, 2 ), 261, Vector2( 2, 3 ), 68, Vector2( 3, 0 ), 320, Vector2( 3, 1 ), 69, Vector2( 3, 2 ), 65, Vector2( 3, 3 ), 1 ]
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 32, 32 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="Beach cave a" instance=ExtResource( 2 )]
+save_id = "beach cave a"
+music = "cave"
+encounters = [ ExtResource( 4 ) ]
+
+[node name="Water" parent="." index="0" instance=ExtResource( 7 )]
+material = SubResource( 4 )
+position = Vector2( 1000, 1000 )
+scale = Vector2( 300, 300 )
+texture = ExtResource( 8 )
+
+[node name="Layer1" parent="." index="1"]
+tile_set = ExtResource( 5 )
+tile_data = PoolIntArray( 327696, 0, 196609, 327697, 0, 3, 327698, 0, 3, 327699, 0, 3, 327700, 0, 3, 327701, 0, 0, 393232, 0, 1, 393233, 0, 65538, 393234, 0, 65538, 393235, 0, 65538, 393236, 0, 65538, 393237, 0, 131075, 393243, 0, 196609, 393244, 0, 3, 393245, 0, 3, 393246, 0, 3, 393247, 0, 0, 458768, 0, 1, 458769, 0, 65538, 458770, 0, 65538, 458771, 0, 65538, 458772, 0, 65538, 458773, 0, 131075, 458779, 0, 1, 458780, 0, 65538, 458781, 0, 65538, 458782, 0, 65538, 458783, 0, 131075, 524304, 0, 1, 524305, 0, 65538, 524306, 0, 65538, 524307, 0, 65538, 524308, 0, 65538, 524309, 0, 131075, 524315, 0, 1, 524316, 0, 65538, 524317, 0, 65538, 524318, 0, 65538, 524319, 0, 131075, 589840, 0, 1, 589841, 0, 65538, 589842, 0, 65538, 589843, 0, 65538, 589844, 0, 65538, 589845, 0, 131075, 589851, 0, 1, 589852, 0, 65538, 589853, 0, 65538, 589854, 0, 65538, 589855, 0, 131075, 655376, 0, 1, 655377, 0, 65538, 655378, 0, 65538, 655379, 0, 65538, 655380, 0, 65538, 655381, 0, 131075, 655387, 0, 1, 655388, 0, 65538, 655389, 0, 65538, 655390, 0, 65538, 655391, 0, 131075, 720912, 0, 131072, 720913, 0, 131073, 720914, 0, 131073, 720915, 0, 131073, 720916, 0, 131073, 720917, 0, 196611, 720923, 0, 131072, 720924, 0, 131073, 720925, 0, 131073, 720926, 0, 131073, 720927, 0, 196611 )
+
+[node name="Layer2" parent="." index="2"]
+tile_set = SubResource( 3 )
+tile_data = PoolIntArray( 131102, 0, 0, 131103, 0, 0, 196622, 0, 196609, 196623, 0, 3, 196624, 0, 3, 196625, 0, 3, 196626, 0, 3, 196627, 0, 3, 196628, 0, 3, 196629, 0, 0, 196635, 0, 196609, 196636, 0, 3, 196637, 0, 3, 196638, 0, 0, 262158, 0, 1, 262159, 0, 65538, 262160, 0, 65538, 262161, 0, 65538, 262162, 0, 65538, 262163, 0, 65538, 262164, 0, 65538, 262165, 0, 131075, 262171, 0, 1, 262172, 0, 65538, 262173, 0, 65538, 262174, 0, 2, 262175, 0, 3, 262176, 0, 0, 327694, 0, 1, 327695, 0, 65538, 327696, 0, 65538, 327697, 0, 65538, 327698, 0, 65538, 327699, 0, 65538, 327700, 0, 65538, 327701, 0, 131075, 327707, 0, 1, 327708, 0, 65538, 327709, 0, 65538, 327710, 0, 65538, 327711, 0, 65538, 327712, 0, 131075, 393230, 0, 1, 393231, 0, 65538, 393232, 0, 65539, 393233, 0, 131073, 393234, 0, 131073, 393235, 0, 131073, 393236, 0, 131073, 393237, 0, 196611, 393243, 0, 131072, 393244, 0, 131073, 393245, 0, 131073, 393246, 0, 131073, 393247, 0, 131074, 393248, 0, 131075, 458766, 0, 1, 458767, 0, 65538, 458768, 0, 131075, 458783, 0, 1, 458784, 0, 131075, 524302, 0, 1, 524303, 0, 65538, 524304, 0, 131075, 524319, 0, 1, 524320, 0, 131075, 589838, 0, 1, 589839, 0, 65538, 589840, 0, 131075, 589855, 0, 1, 589856, 0, 131075, 655374, 0, 1, 655375, 0, 65538, 655376, 0, 131075, 655391, 0, 1, 655392, 0, 131075, 720910, 0, 1, 720911, 0, 65538, 720912, 0, 131075, 720927, 0, 1, 720928, 0, 131075, 786446, 0, 1, 786447, 0, 65538, 786448, 0, 131075, 786463, 0, 1, 786464, 0, 131075, 851982, 0, 1, 851983, 0, 65538, 851984, 0, 131075, 851999, 0, 1, 852000, 0, 131075, 917518, 0, 1, 917519, 0, 65538, 917520, 0, 131075, 917535, 0, 1, 917536, 0, 131075, 983054, 0, 131072, 983055, 0, 131073, 983056, 0, 196611, 983071, 0, 131072, 983072, 0, 196611 )
+
+[node name="FloorStyleType" parent="." index="4"]
+tile_data = PoolIntArray( 458773, 2, 0, 458774, 2, 0, 458775, 2, 0, 458776, 2, 0, 458777, 2, 0, 458778, 2, 0, 524307, 2, 0, 524308, 2, 0, 524309, 2, 0, 524310, 2, 0, 524311, 2, 0, 524312, 2, 0, 524313, 2, 0, 524314, 2, 0, 524315, 2, 0, 524316, 2, 0, 589842, 2, 0, 589843, 2, 0, 589844, 2, 0, 589845, 2, 0, 589846, 2, 0, 589847, 2, 0, 589848, 2, 0, 589849, 2, 0, 589850, 2, 0, 589851, 2, 0, 589852, 2, 0, 589853, 2, 0, 655377, 2, 0, 655378, 2, 0, 655379, 2, 0, 655380, 2, 0, 655381, 2, 0, 655382, 2, 0, 655383, 2, 0, 655384, 2, 0, 655385, 2, 0, 655386, 2, 0, 655387, 2, 0, 655388, 2, 0, 655389, 2, 0, 655390, 2, 0, 720913, 2, 0, 720914, 2, 0, 720915, 2, 0, 720916, 2, 0, 720917, 2, 0, 720918, 2, 0, 720919, 2, 0, 720920, 2, 0, 720921, 2, 0, 720922, 2, 0, 720923, 2, 0, 720924, 2, 0, 720925, 2, 0, 720926, 2, 0, 786449, 2, 0, 786450, 2, 0, 786451, 2, 0, 786452, 2, 0, 786453, 2, 0, 786454, 2, 0, 786455, 2, 0, 786456, 2, 0, 786457, 2, 0, 786458, 2, 0, 786459, 2, 0, 786460, 2, 0, 786461, 2, 0, 786462, 2, 0, 786463, 2, 0, 851984, 2, 0, 851985, 2, 0, 851986, 2, 0, 851987, 2, 0, 851988, 2, 0, 851989, 2, 0, 851990, 2, 0, 851991, 2, 0, 851992, 2, 0, 851993, 2, 0, 851994, 2, 0, 851995, 2, 0, 851996, 2, 0, 851997, 2, 0, 851998, 2, 0, 851999, 2, 0, 917521, 2, 0, 917522, 2, 0, 917523, 2, 0, 917524, 2, 0, 917525, 2, 0, 917526, 2, 0, 917527, 2, 0, 917528, 2, 0, 917529, 2, 0, 917530, 2, 0, 917531, 2, 0, 917532, 2, 0, 917533, 2, 0, 917534, 2, 0, 917535, 2, 0, 983057, 2, 0, 983058, 2, 0, 983059, 2, 0, 983060, 2, 0, 983061, 2, 0, 983062, 2, 0, 983063, 2, 0, 983064, 2, 0, 983065, 2, 0, 983066, 2, 0, 983067, 2, 0, 983068, 2, 0, 983069, 2, 0, 983070, 2, 0, 983071, 2, 0, 1048594, 2, 0, 1048595, 2, 0, 1048596, 2, 0, 1048597, 2, 0, 1048598, 2, 0, 1048599, 2, 0, 1048600, 2, 0, 1048601, 2, 0, 1048602, 2, 0, 1048603, 2, 0, 1048604, 2, 0, 1048605, 2, 0, 1048606, 2, 0, 1048607, 2, 0, 1114130, 2, 0, 1114131, 2, 0, 1114132, 2, 0, 1114133, 2, 0, 1114134, 2, 0, 1114135, 2, 0, 1114136, 2, 0, 1114137, 2, 0, 1114138, 2, 0, 1114139, 2, 0, 1114140, 2, 0, 1114141, 2, 0, 1114142, 2, 0, 1179667, 2, 0, 1179668, 2, 0, 1179669, 2, 0, 1179670, 2, 0, 1179671, 2, 0, 1179672, 2, 0, 1179673, 2, 0, 1179674, 2, 0, 1179675, 2, 0, 1179676, 2, 0, 1245204, 2, 0, 1245205, 2, 0, 1245206, 2, 0, 1245207, 2, 0, 1245208, 2, 0, 1245209, 2, 0, 1245210, 2, 0, 1245211, 2, 0 )
+
+[node name="NpcSaver" parent="SaveLocations" index="0" instance=ExtResource( 3 )]
+position = Vector2( 1416.3, 840.085 )
+
+[node name="Door" parent="Doors" index="0" instance=ExtResource( 1 )]
+position = Vector2( 1574.16, 1029.26 )
+room_to_save_id = "beach"
+door_to_id = "cave1"
+id = "entrance1"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." index="12"]
+color = Color( 0.654902, 0.615686, 0.74902, 1 )

@@ -45,6 +45,7 @@ func pressed(button_name: String) -> void:
 			save_ui.last = self
 			save_ui.last_func = "choose_button"
 			save_ui.label.text = "Load what file?"
+			save_ui.file_container.get_parent().scroll_vertical = 0
 			visible = false
 			yield(transition.transition_out(), "completed")
 			save_ui.enable()
