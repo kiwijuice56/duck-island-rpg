@@ -6,11 +6,7 @@ var current_location := ""
 var save_location := 0
 
 var items := {}
-
-func load_data(data: Dictionary) -> void:
-	var room := load_room(data["location"])
-	$Player.global_position = room.get_node("SaveLocations").get_child(data["save_location"]).get_node("Spawn").global_position
-	items = data["items"]
+var flags := {}
 
 func load_room(location: String) -> Node:
 	if current_location:
@@ -36,4 +32,11 @@ func save_data() -> Dictionary:
 	data["location"] = current_location
 	data["items"] = items
 	data["save_location"] = save_location
+	data["flags"] = flags
 	return data
+
+func load_data(data: Dictionary) -> void:
+	items = data["items"] if "items" in data else {}
+	flags = data["flags"] if "flags" in data else {}
+	var room := load_room(data["location"])
+	$Player.global_position = room.get_node("SaveLocations").get_child(data["save_location"]).get_node("Spawn").global_position

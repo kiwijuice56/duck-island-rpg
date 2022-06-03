@@ -6,6 +6,7 @@ var disabled := true
 onready var overworld_ui = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/OverworldUI/Overworld")
 onready var cam = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/MainCamera")
 onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
+onready var overworld = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld")
 
 func _ready():
 	connect("body_entered", self, "body_entered")

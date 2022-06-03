@@ -57,7 +57,7 @@ func display_choices(text: String, choices: Array, sec_per_char: float, after_de
 	return choices[index]
 
 func display_text(text: String, sec_per_char: float, after_delay: float, require_press := false, speaker := "") -> void:
-	if len(speaker) > 0:
+	if speaker != "none" and len(speaker) > 0:
 		sound_on = true
 		$AudioStreamPlayer.stream = voices[speaker]
 		$HBoxContainer/Icon.texture = icons[speaker]

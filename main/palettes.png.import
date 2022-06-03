@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/yukid-overworld.png-b80a284a48db2893fbadb97ad9b52512.stex"
+path="res://.import/palettes.png-0d7160fe178d064f12413ca0fc75e6cc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/overworld/world_building/interactable/npc/yukid/yukid-overworld.png"
-dest_files=[ "res://.import/yukid-overworld.png-b80a284a48db2893fbadb97ad9b52512.stex" ]
+source_file="res://main/palettes.png"
+dest_files=[ "res://.import/palettes.png-0d7160fe178d064f12413ca0fc75e6cc.stex" ]
 
 [params]
 

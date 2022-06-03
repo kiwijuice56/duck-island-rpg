@@ -11,32 +11,35 @@ data = {
 },
 "healing_items": {
 Resource( "res://main/items/healing/cream puff/cream puff.tres" ): 1,
-Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1
+Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 2
 }
 }
 },
 "overworld_nodes": {
 "overworld": {
+"flags": {
+"yukid": true
+},
 "items": {
 "beach": {
-"Item": false,
+"Item": true,
 "Item2": false,
 "Item3": false
 }
 },
 "location": "beach",
-"save_location": 0
+"save_location": 1
 }
 },
 "party": {
 "player_party": [ [ "duckling", {
-"Actions": [ "hades blast" ],
+"Actions": [  ],
 "Attributes": [  ],
 "Stats": {
 "agility": 3,
-"experience": 0,
+"experience": 98,
 "experience_to_level": 134,
-"hp": 78,
+"hp": 33,
 "level": 5,
 "luck": 3,
 "magic": 4,
@@ -48,6 +51,25 @@ Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1
 "vitality": 5
 },
 "Unlearned": [ [ "attack up", "heal", "defense up", "tornado" ], [ 6, 7, 9, 11 ] ]
+} ], [ "yukid", {
+"Actions": [ "eternity slash", "defense down", "panic caster" ],
+"Attributes": [  ],
+"Stats": {
+"agility": 7,
+"experience": 49,
+"experience_to_level": 1221,
+"hp": 135,
+"level": 25,
+"luck": 2,
+"magic": 7,
+"max_hp": 141,
+"max_mp": 120,
+"mp": 135,
+"status": "ok",
+"strength": 7,
+"vitality": 3
+},
+"Unlearned": [ [  ], [  ] ]
 } ] ]
 }
 }

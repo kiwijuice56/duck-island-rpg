@@ -25,12 +25,12 @@ Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1
 }
 },
 "location": "beach",
-"save_location": 0
+"save_location": 1
 }
 },
 "party": {
 "player_party": [ [ "duckling", {
-"Actions": [ "hades blast" ],
+"Actions": [  ],
 "Attributes": [  ],
 "Stats": {
 "agility": 3,

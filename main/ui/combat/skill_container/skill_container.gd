@@ -43,7 +43,8 @@ func initialize(fighter: Node) -> void:
 		new_button.set_focus_neighbour(MARGIN_LEFT, new_button.get_path())
 		new_button.set_focus_neighbour(MARGIN_RIGHT, new_button.get_path())
 		last_button = new_button
-	last_button.set_focus_neighbour(MARGIN_BOTTOM, last_button.get_path())
+	if last_button:
+		last_button.set_focus_neighbour(MARGIN_BOTTOM, last_button.get_path())
 
 func button_down(button: Button) -> void:
 	SoundPlayer.play_sound(SoundPlayer.accept)

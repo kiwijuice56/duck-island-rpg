@@ -29,8 +29,6 @@ const volumes = {
 	victory: -10,
 }
 
-
-
 func _ready() -> void:
 	tween = Tween.new()
 	add_child(tween)

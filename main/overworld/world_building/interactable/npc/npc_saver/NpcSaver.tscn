@@ -4,13 +4,14 @@
 [ext_resource path="res://main/overworld/world_building/interactable/npc/npc_saver/npc_saver.gd" type="Script" id=2]
 [ext_resource path="res://main/overworld/world_building/interactable/npc/npc_saver/save_statue.png" type="Texture" id=3]
 [ext_resource path="res://main/overworld/world_building/interactable/npc/npc_saver/sparkle.png" type="Texture" id=4]
-[ext_resource path="res://main/combat/graphic_effects/extra/slash/light.png" type="Texture" id=5]
 
-[sub_resource type="Animation" id=1]
-resource_name = "idle"
+[sub_resource type="CircleShape2D" id=1]
+radius = 48.0
+
+[sub_resource type="Animation" id=2]
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Light2D:energy")
+tracks/0/path = NodePath("Sprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -19,26 +20,30 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, 0.6, 0.0 ]
+"values": [ Color( 0.784314, 0.784314, 0.784314, 1 ), Color( 1, 1, 1, 1 ), Color( 0.784314, 0.784314, 0.784314, 1 ) ]
 }
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.176707, 0.730924, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 1, 0.85098, 0.776471, 0.709804, 1, 1, 1, 0.0862745, 1, 1, 1, 0 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 36, 32 )
 
 [node name="NpcSaver" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]
+modulate = Color( 0.927459, 0.927459, 0.927459, 1 )
 texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" parent="." index="4"]
 autoplay = "idle"
 playback_speed = 0.2
-anims/idle = SubResource( 1 )
+anims/idle = SubResource( 2 )
 
 [node name="Spawn" type="Position2D" parent="." index="5"]
 position = Vector2( 128, 0 )
@@ -53,19 +58,14 @@ emission_shape = 1
 emission_sphere_radius = 20.0
 gravity = Vector2( 0, -98 )
 angle_random = 1.0
-color_ramp = SubResource( 2 )
+color_ramp = SubResource( 3 )
 hue_variation = 0.03
 hue_variation_random = 1.0
 
-[node name="Light2D" type="Light2D" parent="." index="7"]
-position = Vector2( 0, -24 )
-texture = ExtResource( 5 )
-energy = 0.257808
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="8"]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="7"]
 collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
 position = Vector2( 0, -8 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )

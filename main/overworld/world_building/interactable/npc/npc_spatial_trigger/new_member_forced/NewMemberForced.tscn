@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://main/overworld/world_building/interactable/npc/npc_spatial_trigger/NpcSpatialTrigger.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/overworld/world_building/interactable/npc/npc_spatial_trigger/new_member_forced/new_member_forced.gd" type="Script" id=2]
+
+[node name="NewMemberForced" instance=ExtResource( 1 )]
+script = ExtResource( 2 )

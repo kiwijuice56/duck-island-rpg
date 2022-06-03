@@ -37,7 +37,7 @@ func action(user: Node, targets: Array, item: ItemData = null, anim: bool = true
 		if party_target == "enemy":
 			# assuming that user is a node2d (which it should for this game)
 			# sloppy but uses parenting to flip position moved
-			tween.interpolate_property(user, "position:x", init_pos.x, init_pos.x + 200 * (-1 if user.get_parent().name == "EnemyParty" else 1), 0.25, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+			tween.interpolate_property(user, "global_position:x", null, 256, 0.25, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 			tween.interpolate_property(user, "position:y", init_pos.y, 0, 0.5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 			tween.start()
 			yield(tween, "tween_completed")

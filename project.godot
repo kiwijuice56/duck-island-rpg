@@ -59,6 +59,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://main/overworld/world_building/interactable/npc/npc.gd"
 }, {
+"base": "NpcSpatialTrigger",
+"class": "NpcNewMemberForced",
+"language": "GDScript",
+"path": "res://main/overworld/world_building/interactable/npc/npc_spatial_trigger/new_member_forced/new_member_forced.gd"
+}, {
+"base": "Npc",
+"class": "NpcSpatialTrigger",
+"language": "GDScript",
+"path": "res://main/overworld/world_building/interactable/npc/npc_spatial_trigger/npc_spatial_trigger.gd"
+}, {
 "base": "Resource",
 "class": "SaveFile",
 "language": "GDScript",
@@ -80,6 +90,8 @@ _global_script_class_icons={
 "ItemData": "",
 "MultiEffect": "",
 "Npc": "",
+"NpcNewMemberForced": "",
+"NpcSpatialTrigger": "",
 "SaveFile": "",
 "Telescope": ""
 }

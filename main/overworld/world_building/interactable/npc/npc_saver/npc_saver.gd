@@ -1,7 +1,6 @@
 extends Npc
 
 onready var save_room = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/SaveRoomUI/SaveRoom")
-onready var overworld = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld")
 
 func close_save_room() -> void:
 	body.enable()

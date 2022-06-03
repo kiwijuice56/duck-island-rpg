@@ -205,13 +205,13 @@ wake_up
 #talk
 1
 mii duck
-Where am I..? Is this the island?
+Where am I..? Who was that ..thing?
 0.06
 
 #talk
 1
 mii duck
-I guess I should look around for others.
+I guess I should look around this area.
 "
 
 [node name="Sprite" parent="." instance=ExtResource( 12 )]

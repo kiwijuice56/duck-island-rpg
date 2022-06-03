@@ -141,7 +141,6 @@ offense = {
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
 hframes = 7
-frame = 4
 
 [node name="SelectIcon" parent="." index="2"]
 position = Vector2( 0, -72 )
@@ -165,7 +164,6 @@ scale = Vector2( 2, 2 )
 z_index = 15
 texture = ExtResource( 7 )
 script = ExtResource( 6 )
-on = true
 
 [node name="Light2D" type="Light2D" parent="Orb" index="0"]
 scale = Vector2( 2, 2 )
