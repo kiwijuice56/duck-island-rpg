@@ -5,11 +5,13 @@ onready var after_battle := get_tree().get_root().get_node("Main/ViewportContain
 onready var text_box = combat_ui.get_node("VBoxContainer/TextBox")
 onready var press_turn_container := combat_ui.get_node("VBoxContainer/Top/PressTurnContainer")
 onready var cam := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/MainCamera")
-onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
+onready var transition := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
+onready var overworld := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld")
 
 signal battle_ended
 
 var experience := 0
+var has_background := false
 
 func set_enemies(enemies: Array) -> void:
 	for child in $EnemyParty.get_children():
@@ -89,6 +91,10 @@ func battle_end() -> void:
 		fighter.experience += experience
 	
 	yield(transition.transition_in(), "completed")
+	if has_background:
+		get_parent().get_child(0).queue_free()
+	
+	
 	for sub in cycle:
 		for fighter in sub:
 			fighter.reset_buffs()
@@ -124,6 +130,14 @@ func reset_fighters() -> void:
 # cycles through parties and handles press turns in combat
 func battle() -> void:
 	# initialize fight
+	var map = overworld.get_child(0)
+	if map is OverworldMap:
+		has_background = true
+		var new_background: ParallaxBackground = map.combat_background.instance()
+		get_parent().add_child(new_background)
+		get_parent().move_child(new_background, 0)
+	else:
+		has_background = false
 	position_fighters()
 	reset_fighters()
 	experience = 0
@@ -132,7 +146,7 @@ func battle() -> void:
 	combat_ui.visible = true
 	cam.current = true
 	cam.fit($EnemyParty.get_children(), 0, -125)
-	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld").visible = false
+	overworld.visible = false
 	text_box.clear_text()
 	press_turn_container.update_turns(0, 0)
 	yield(transition.transition_out(), "completed")

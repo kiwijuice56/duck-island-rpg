@@ -1,7 +1,9 @@
 extends Node2D
+class_name OverworldMap
 
 export var save_id:= ""
 export var music := ""
+export var combat_background: PackedScene
 
 export var encounter_steps := [0,3,6,9,11,24,48]
 export(Array, Resource) var encounters := []

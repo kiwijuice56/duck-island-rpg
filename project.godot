@@ -69,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://main/overworld/world_building/interactable/npc/npc_spatial_trigger/npc_spatial_trigger.gd"
 }, {
+"base": "Node2D",
+"class": "OverworldMap",
+"language": "GDScript",
+"path": "res://main/overworld/overworld_map/overworld_map.gd"
+}, {
 "base": "Resource",
 "class": "SaveFile",
 "language": "GDScript",
@@ -92,6 +97,7 @@ _global_script_class_icons={
 "Npc": "",
 "NpcNewMemberForced": "",
 "NpcSpatialTrigger": "",
+"OverworldMap": "",
 "SaveFile": "",
 "Telescope": ""
 }

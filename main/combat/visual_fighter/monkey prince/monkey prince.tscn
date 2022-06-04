@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/combat/visual_fighter/monkey prince/monkey_prince1.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+length = 0.75
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.17, 0.28, 0.39, 0.57, 0.67 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 2, 1 ]
+}
+
+[node name="monkey prince" instance=ExtResource( 1 )]
+defense = {
+}
+offense = {
+}
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+hframes = 5
+frame = 2
+
+[node name="SpriteAnimationPlayer" parent="." index="8"]
+anims/idle = SubResource( 1 )

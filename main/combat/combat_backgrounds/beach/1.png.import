@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1.png-d80ec90af9f075d3dd7cbc7edd9d1011.stex"
+path="res://.import/1.png-90413388c325b563a5aaaf312930eca0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/combat/1.png"
-dest_files=[ "res://.import/1.png-d80ec90af9f075d3dd7cbc7edd9d1011.stex" ]
+source_file="res://main/combat/combat_backgrounds/beach/1.png"
+dest_files=[ "res://.import/1.png-90413388c325b563a5aaaf312930eca0.stex" ]
 
 [params]
 

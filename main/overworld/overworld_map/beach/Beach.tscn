@@ -48,7 +48,7 @@ void fragment() {
 //	COLOR = vec4(UV * aspect_ratio, vec2(0.0, 1.0));
 }"
 
-[sub_resource type="ShaderMaterial" id=27]
+[sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 shader_param/tile_factor = 125.0
 shader_param/aspect_ratio = 1.0
@@ -592,10 +592,11 @@ tracks/0/keys = {
 [node name="Beach" instance=ExtResource( 1 )]
 save_id = "beach"
 music = "island"
+combat_background = null
 encounters = [ ExtResource( 14 ), ExtResource( 11 ) ]
 
 [node name="Water" parent="." index="0" instance=ExtResource( 2 )]
-material = SubResource( 27 )
+material = SubResource( 2 )
 position = Vector2( 2368, 1108 )
 scale = Vector2( 250, 250 )
 
@@ -957,7 +958,7 @@ position = Vector2( 4687.61, 2826.28 )
 position = Vector2( 328.588, 3809.81 )
 
 [node name="CaveDoor" parent="Doors" index="0" instance=ExtResource( 23 )]
-position = Vector2( 4248, 3304 )
+position = Vector2( 4555.44, 2974.7 )
 room_to_save_id = "beach cave a"
 door_to_id = "entrance1"
 id = "cave1"

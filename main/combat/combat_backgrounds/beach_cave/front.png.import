@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/6.png-1bdc74883485d60013c809079214b533.stex"
+path="res://.import/front.png-cae5edf229805a2cb4d820c7e3616b47.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/combat/6.png"
-dest_files=[ "res://.import/6.png-1bdc74883485d60013c809079214b533.stex" ]
+source_file="res://main/combat/combat_backgrounds/beach_cave/front.png"
+dest_files=[ "res://.import/front.png-cae5edf229805a2cb4d820c7e3616b47.stex" ]
 
 [params]
 
@@ -23,7 +23,7 @@ flags/repeat=1
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=1
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false

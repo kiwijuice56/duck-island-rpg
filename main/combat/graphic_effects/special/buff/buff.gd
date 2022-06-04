@@ -9,8 +9,10 @@ func animate(user: Node, targets: Array) -> void:
 	$AudioStreamPlayer2.playing = true
 	cam.toggle_cover(true)
 	cam.prioritize([user] +targets)
-	if user.get_node("SpriteAnimationPlayer").has_animation("hold_magic"):
-		user.get_node("SpriteAnimationPlayer").current_animation = "hold_magic"
+	if user.get_node("SpriteAnimationPlayer").has_animation("buff"):
+		user.get_node("SpriteAnimationPlayer").current_animation = "buff"
+	elif user.get_node("SpriteAnimationPlayer").has_animation("magic"):
+		user.get_node("SpriteAnimationPlayer").current_animation = "magic"
 	
 	for target in targets:
 		for _i in range(7):

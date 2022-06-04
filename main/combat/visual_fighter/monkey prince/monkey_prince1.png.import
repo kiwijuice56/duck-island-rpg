@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3.png-d03544c214a8fe0bdc100577aa0bd909.stex"
+path="res://.import/monkey_prince1.png-221c76d12bbbad040182a3ace9dd54ae.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/combat/3.png"
-dest_files=[ "res://.import/3.png-d03544c214a8fe0bdc100577aa0bd909.stex" ]
+source_file="res://main/combat/visual_fighter/monkey prince/monkey_prince1.png"
+dest_files=[ "res://.import/monkey_prince1.png-221c76d12bbbad040182a3ace9dd54ae.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false

@@ -17,6 +17,8 @@ Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1
 },
 "overworld_nodes": {
 "overworld": {
+"flags": {
+},
 "items": {
 "beach": {
 "Item": false,

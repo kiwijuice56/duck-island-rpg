@@ -1,0 +1,152 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://main/overworld/world_building/decoration/palm_tree/PalmTree.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/ui/title/sprites/Sky.tscn" type="PackedScene" id=2]
+[ext_resource path="res://main/overworld/world_building/decoration/palm_tree/PalmTree2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/overworld/world_building/water/Water.tscn" type="PackedScene" id=4]
+[ext_resource path="res://main/overworld/world_building/water/distanced_water.png" type="Texture" id=5]
+[ext_resource path="res://main/overworld/world_building/decoration/beach_junk/shell2.png" type="Texture" id=6]
+[ext_resource path="res://main/overworld/world_building/decoration/beach_junk/shell.png" type="Texture" id=7]
+[ext_resource path="res://main/combat/combat_backgrounds/beach/1.png" type="Texture" id=8]
+[ext_resource path="res://main/combat/combat_backgrounds/beach/2.png" type="Texture" id=9]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float tile_factor = 10.0;
+uniform float aspect_ratio = 0.5;
+
+uniform vec2 time_factor = vec2(2.0, 3.0);
+uniform vec2 offset_factor = vec2(5.0, 2.0);
+uniform vec2 amplitude = vec2(0.05, 0.05);
+
+void fragment() {
+	vec2 tiled_uvs = UV * tile_factor;
+	tiled_uvs.y *= aspect_ratio;
+	
+	vec2 wave_uv_offset;
+	wave_uv_offset.x += sin(TIME * time_factor.x + (tiled_uvs.x + tiled_uvs.y) * offset_factor.x);
+	wave_uv_offset.y += cos(TIME * time_factor.y + (tiled_uvs.x + tiled_uvs.y) * offset_factor.y);
+	
+//	COLOR = texture(TEXTURE, tiled_uvs);
+	COLOR = texture(TEXTURE, tiled_uvs + wave_uv_offset * amplitude);
+//	COLOR = vec4(wave_uv_offset, vec2(0.0, 1.0));
+//	COLOR = vec4(UV * aspect_ratio, vec2(0.0, 1.0));
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/tile_factor = 102.0
+shader_param/aspect_ratio = 0.75
+shader_param/time_factor = Vector2( 2, 3 )
+shader_param/offset_factor = Vector2( 5, 2 )
+shader_param/amplitude = Vector2( 0.05, 0.05 )
+
+[sub_resource type="GDScript" id=3]
+script/source = "tool
+extends Sprite
+
+export var enable_resize := true
+
+func _ready() -> void:
+	
+	connect(\"item_rect_changed\", self, \"calculate_aspect_ratio\")
+	calculate_aspect_ratio()
+
+func calculate_aspect_ratio():
+	if enable_resize:
+		set_material( get_material().duplicate() )
+		material.set_shader_param(\"aspect_ratio\", scale.y / scale.x)
+		material.set_shader_param(\"tile_factor\", scale.x/2)
+"
+
+[node name="BeachCombatBackground" type="ParallaxBackground"]
+layer = -1
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="."]
+position = Vector2( -480, -180 )
+motion_scale = Vector2( 0.6, 0.6 )
+motion_mirroring = Vector2( 1960, 0 )
+
+[node name="Sprite" parent="ParallaxLayer5" instance=ExtResource( 2 )]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+position = Vector2( -480, -150 )
+motion_scale = Vector2( 0.85, 0.85 )
+
+[node name="Water" parent="ParallaxLayer3" instance=ExtResource( 4 )]
+material = SubResource( 2 )
+position = Vector2( 224, 374 )
+scale = Vector2( 204, 25 )
+z_index = -3
+texture = ExtResource( 5 )
+script = SubResource( 3 )
+enable_resize = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+position = Vector2( -480, -180 )
+motion_scale = Vector2( 0.9, 0.9 )
+motion_mirroring = Vector2( 980, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( -200, 125 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 9 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1960, 276 )
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="."]
+
+[node name="PalmTree" parent="ParallaxLayer6" instance=ExtResource( 1 )]
+position = Vector2( -208, -72 )
+collision_layer = 0
+
+[node name="PalmTree2" parent="ParallaxLayer6" instance=ExtResource( 1 )]
+position = Vector2( 688, -80 )
+collision_layer = 0
+
+[node name="PalmTree3" parent="ParallaxLayer6" instance=ExtResource( 3 )]
+position = Vector2( 760, -56 )
+collision_layer = 0
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+position = Vector2( -480, 80 )
+motion_mirroring = Vector2( 980, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxLayer"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1960, 276 )
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+
+[node name="Sprite2" type="Sprite" parent="ParallaxLayer4"]
+position = Vector2( -24, 140 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 7 )
+
+[node name="Sprite3" type="Sprite" parent="ParallaxLayer4"]
+position = Vector2( 592, 148 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 7 )
+
+[node name="shell2" type="Sprite" parent="ParallaxLayer4"]
+position = Vector2( 491.135, 176.238 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="shell3" type="Sprite" parent="ParallaxLayer4"]
+position = Vector2( -128, 108 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="shell4" type="Sprite" parent="ParallaxLayer4"]
+position = Vector2( -64.7999, 87.7621 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="Sprite4" type="Sprite" parent="ParallaxLayer4"]
+position = Vector2( 536, 104 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 7 )

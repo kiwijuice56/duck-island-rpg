@@ -1,9 +1,27 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/combat/visual_fighter/starmie/starmie.png" type="Texture" id=2]
 [ext_resource path="res://main/combat/skills/buff_skill/attack up/attack up.tscn" type="PackedScene" id=3]
 [ext_resource path="res://main/combat/skills/buff_skill/defense down/defense down.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Animation" id=2]
+resource_name = "buff"
+length = 0.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11 ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "dead"
@@ -18,42 +36,43 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 8 ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "hold_magic"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 9 ]
-}
-
-[sub_resource type="Animation" id=3]
-length = 0.55
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
 "values": [ 7 ]
 }
 
+[sub_resource type="Animation" id=3]
+length = 0.65
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+
 [sub_resource type="Animation" id=4]
-length = 0.6
+length = 1.1
 loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 0.933033, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 5, 4, 3, 2, 1 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "phys"
+length = 0.81
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -62,10 +81,34 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 2, 3, 4, 5, 6 ]
+"values": [ 8, 9, 10, 11, 8, 9, 10, 11, 8, 9, 10, 11, 8, 9, 10, 11, 12 ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Sprite:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.121657, -1, 48, -0.124765, 1, 0.143688, -50.7692, -64, -0.145859, 72.1613, 0.0974544, 7.46496, 0, -0.181358, 7.18409, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4, 0.6, 0.8 )
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "animation_impact" ],
+"method": "emit_signal"
+} ]
 }
 
 [node name="Starmie" instance=ExtResource( 1 )]
@@ -89,13 +132,15 @@ offense = {
 }
 
 [node name="Sprite" parent="." index="0"]
+modulate = Color( 1, 1, 1, 1 )
+position = Vector2( 0, -128 )
 scale = Vector2( 2, 2.2 )
 texture = ExtResource( 2 )
-hframes = 10
-frame = 7
+hframes = 13
+frame = 6
 
 [node name="SelectIcon" parent="." index="2"]
-position = Vector2( 0, -72 )
+position = Vector2( -0.237381, -56 )
 
 [node name="AttackUp" parent="ActionDecider" index="0" instance=ExtResource( 3 )]
 
@@ -105,7 +150,8 @@ position = Vector2( 0, -72 )
 position = Vector2( 0, -96 )
 
 [node name="SpriteAnimationPlayer" parent="." index="8"]
+anims/buff = SubResource( 2 )
 anims/dead = SubResource( 1 )
-anims/hold_magic = SubResource( 2 )
 anims/hurt = SubResource( 3 )
 anims/idle = SubResource( 4 )
+anims/phys = SubResource( 5 )

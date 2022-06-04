@@ -120,6 +120,8 @@ offense = {
 }
 
 [node name="Sprite" parent="." index="0"]
+modulate = Color( 1, 1, 1, 1 )
+position = Vector2( 64, -135 )
 hframes = 12
 frame = 10
 

@@ -12,7 +12,7 @@ const save_menu = preload("res://main/music/save_menu_theme.mp3")
 const victory = preload("res://main/music/victory.mp3")
 
 var stream_volume := -80
-var global_volume := 0 setget set_volume
+var global_volume := -80 setget set_volume
 var current_music: Resource
 var tween: Tween
 

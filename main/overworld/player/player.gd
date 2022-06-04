@@ -163,7 +163,7 @@ func handle_floor(delta: float) -> void:
 		if encounter_rate_tiles.get_cell(snapped.x, snapped.y) == 0:
 			steps = 255.0
 		elif encounters_enabled:
-			steps -= 4*room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
+			steps -= 12*room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
 			encounter = room.encounters[encounter_type_tiles.get_cell(snapped.x, snapped.y)]
 	# this can be reworked once there is jumpers to outside of the water
 	if floor_style_tiles and floor_style_tiles.get_cell(snapped.x, snapped.y) == 2:
