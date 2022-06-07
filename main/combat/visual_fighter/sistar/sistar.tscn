@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=1]
-[ext_resource path="res://main/combat/visual_fighter/starmie/starmie.png" type="Texture" id=2]
-[ext_resource path="res://main/combat/skills/buff_skill/attack up/attack up.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/combat/visual_fighter/sistar/starmie.png" type="Texture" id=2]
+[ext_resource path="res://main/combat/skills/buff_skill/defense up/defense up.tscn" type="PackedScene" id=3]
 [ext_resource path="res://main/combat/skills/buff_skill/defense down/defense down.tscn" type="PackedScene" id=4]
+[ext_resource path="res://main/combat/skills/damage_skill/heal/heal.tscn" type="PackedScene" id=5]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "buff"
 length = 0.2
 loop = true
@@ -23,8 +24,7 @@ tracks/0/keys = {
 "values": [ 8, 9, 10, 11 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "dead"
+[sub_resource type="Animation" id=2]
 length = 0.55
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -111,10 +111,10 @@ tracks/2/keys = {
 } ]
 }
 
-[node name="Starmie" instance=ExtResource( 1 )]
-save_id = "starmie"
+[node name="sistar" instance=ExtResource( 1 )]
+save_id = "sistar"
 level = 7
-hp = 125
+hp = 65
 mp = 90
 max_hp = 49
 max_mp = 56
@@ -124,9 +124,9 @@ magic = 5
 agility = 5
 luck = 3
 defense = {
-"ghost": "null",
-"phys": "weak",
-"wind": "weak"
+"fire": "weak",
+"ghost": "weak",
+"phys": "resist"
 }
 offense = {
 }
@@ -142,16 +142,18 @@ frame = 6
 [node name="SelectIcon" parent="." index="2"]
 position = Vector2( -0.237381, -56 )
 
-[node name="AttackUp" parent="ActionDecider" index="0" instance=ExtResource( 3 )]
+[node name="heal" parent="ActionDecider" index="0" instance=ExtResource( 5 )]
 
-[node name="defense down" parent="ActionDecider" index="1" instance=ExtResource( 4 )]
+[node name="defense up" parent="ActionDecider" index="1" instance=ExtResource( 3 )]
+
+[node name="defense down" parent="ActionDecider" index="2" instance=ExtResource( 4 )]
 
 [node name="ParticleEffects" parent="." index="6"]
 position = Vector2( 0, -96 )
 
 [node name="SpriteAnimationPlayer" parent="." index="8"]
-anims/buff = SubResource( 2 )
-anims/dead = SubResource( 1 )
+anims/buff = SubResource( 1 )
+anims/dead = SubResource( 2 )
 anims/hurt = SubResource( 3 )
 anims/idle = SubResource( 4 )
 anims/phys = SubResource( 5 )

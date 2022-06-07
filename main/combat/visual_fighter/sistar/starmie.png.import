@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/back_cave.png-cfb94c650355c156e1534c83b491d7c5.stex"
+path="res://.import/starmie.png-4243ab0605dbb10e1730c2ce1e2ffe35.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/combat/combat_backgrounds/beach_cave/back_cave.png"
-dest_files=[ "res://.import/back_cave.png-cfb94c650355c156e1534c83b491d7c5.stex" ]
+source_file="res://main/combat/visual_fighter/sistar/starmie.png"
+dest_files=[ "res://.import/starmie.png-4243ab0605dbb10e1730c2ce1e2ffe35.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false

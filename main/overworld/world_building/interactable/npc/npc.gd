@@ -3,7 +3,7 @@ class_name Npc
 
 func _input(event):
 	if not disabled and not overworld_ui.open and Input.is_action_just_pressed("ui_accept"):
-		call_deferred("talk", body)
+		talk(body)
 
 func body_entered(body) -> void:
 	.body_entered(body)
@@ -11,7 +11,6 @@ func body_entered(body) -> void:
 
 func talk(player) -> void:
 	disabled = true
-	overworld_ui.hide_prompt()
 	player.disable()
 	yield($Cutscene.play([player, self]), "completed")
 	player.enable()

@@ -4,13 +4,52 @@
 [ext_resource path="res://main/combat/visual_fighter/yukid/yukid.tscn" type="PackedScene" id=2]
 
 [node name="YukidInitialEncounter" instance=ExtResource( 1 )]
+collision_layer = 4
 member = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+visible = false
 
 [node name="Cutscene" parent="." index="2"]
 event_text = "# talk
 1
 yukid
-hi
+Damn...
+
+# talk
+1
+none
+*demon/ghost transformation scene*
+
+# talk
+1
+yukid
+What the hell happened... I feel ... stronger...
+
+# talk
+1
+yukid
+Huh?! A duck? Don't scare me like that!
+
+# talk
+1
+mii duck
+Hi there! Who are you?
+
+#talk
+1
+yukid
+.. A talking duck ... ? I need to get out of here.
+
+#talk
+1
+mii duck
+Wait! I have no idea where we are either and these creatures keep whooping me. Why don't you explore with me?
+
+#talk
+1
+yukid
+I guess it'll be safer... Nice to meet you magical duck.
 
 #talk
 1

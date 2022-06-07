@@ -16,7 +16,7 @@ func action(user: Node, targets: Array, item: ItemData = null, anim: bool = true
 		user.set(cost_type, user.get(cost_type) - cost)
 		user.emit_signal("update_points")
 	# item pop up if item data is provided
-	var tween = Tween.new()
+	var tween := Tween.new()
 	add_child(tween)
 	var item_sprite = Sprite.new()
 	if item:

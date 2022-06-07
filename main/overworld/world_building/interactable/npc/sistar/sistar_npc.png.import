@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/starmie.png-f823a072dc445f1942c3da253c9c3437.stex"
+path="res://.import/sistar_npc.png-74a98bba32f78c0685e69b6940f04f37.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/combat/visual_fighter/starmie/starmie.png"
-dest_files=[ "res://.import/starmie.png-f823a072dc445f1942c3da253c9c3437.stex" ]
+source_file="res://main/overworld/world_building/interactable/npc/sistar/sistar_npc.png"
+dest_files=[ "res://.import/sistar_npc.png-74a98bba32f78c0685e69b6940f04f37.stex" ]
 
 [params]
 

@@ -1,15 +1,23 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://main/overworld/world_building/interactable/door/Door.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/overworld/overworld_map/OverworldMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main/overworld/world_building/interactable/npc/npc_saver/NpcSaver.tscn" type="PackedScene" id=3]
-[ext_resource path="res://main/overworld/overworld_map/beach/encounters/beach2.tres" type="Resource" id=4]
+[ext_resource path="res://main/combat/visual_fighter/monkey prince/monkey prince.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main/overworld/overworld_map/beach cave a/cave_tileset.tres" type="TileSet" id=5]
 [ext_resource path="res://main/overworld/overworld_map/beach cave a/cave_edge_tileset.tres" type="TileSet" id=6]
 [ext_resource path="res://main/overworld/world_building/water/Water.tscn" type="PackedScene" id=7]
 [ext_resource path="res://main/overworld/world_building/water/cave_water.png" type="Texture" id=8]
 [ext_resource path="res://main/overworld/overworld_map/beach cave a/sea_cave.mp3" type="AudioStream" id=9]
 [ext_resource path="res://main/combat/combat_backgrounds/beach_cave/BeachCaveBackground.tscn" type="PackedScene" id=10]
+[ext_resource path="res://main/overworld/world_building/encounter/encounter_data.gd" type="Script" id=11]
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 11 )
+enemies = [ ExtResource( 4 ) ]
+spawn_chances = [ 1.0 ]
+enemy_count_min = 1
+enemy_count_max = 1
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -44,7 +52,7 @@ shader_param/amplitude = Vector2( 0.05, 0.05 )
 save_id = "beach cave a"
 music = "cave"
 combat_background = ExtResource( 10 )
-encounters = [ ExtResource( 4 ) ]
+encounters = [ SubResource( 3 ) ]
 
 [node name="Water" parent="." index="0" instance=ExtResource( 7 )]
 material = SubResource( 2 )

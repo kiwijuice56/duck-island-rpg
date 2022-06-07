@@ -1,12 +1,13 @@
 extends "res://addons/rpg_framework/custom_nodes/action_decider/action_decider.gd"
 
+export(float, 0, 1) var attack_rate := 0.35
 onready var cam := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/MainCamera")
 
 func decide(context: Dictionary) -> void:
 	yield(cam.pan(get_parent().get_node("Sprite"), 0.35, Vector2(-200,64)), "completed")
 	var targets := []
 	var action: Node
-	if get_child_count() == 0 or rand_range(0, 1.0) > .35:
+	if get_child_count() == 0 or rand_range(0, 1.0) > (1 - attack_rate):
 		targets.append(context["fighters"][1][randi() % len(context["fighters"][1])])
 		action = get_node("../Attack")
 	else:

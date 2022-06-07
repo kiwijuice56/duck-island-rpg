@@ -1,13 +1,12 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://main/overworld/world_building/encounter/encounter_data.gd" type="Script" id=1]
 [ext_resource path="res://main/combat/visual_fighter/tofun/tofun.tscn" type="PackedScene" id=2]
-[ext_resource path="res://main/combat/visual_fighter/loduck/loduck.tscn" type="PackedScene" id=3]
 [ext_resource path="res://main/combat/visual_fighter/sistar/sistar.tscn" type="PackedScene" id=4]
 
 [resource]
 script = ExtResource( 1 )
-enemies = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ]
-spawn_chances = [ 0.5, 0.25, 0.25 ]
+enemies = [ ExtResource( 4 ), ExtResource( 2 ) ]
+spawn_chances = [ 0.5, 0.5 ]
 enemy_count_min = 2
-enemy_count_max = 5
+enemy_count_max = 4

@@ -14,12 +14,19 @@ func _ready():
 	overworld_ui.connect("menu_opened", self, "body_exited", [null])
 
 func body_entered(body) -> void:
+	body.connect("battle_started", self, "battle_started")
 	set_process_input(true)
 	self.body = body
 	disabled = false
 
-func body_exited(body) -> void:
+func body_exited(_body) -> void:
+	if body and body.is_connected("battle_started", self, "battle_started"):
+		body.disconnect("battle_started", self, "battle_started")
 	self.body = null
 	set_process_input(false)
 	disabled = true
 	overworld_ui.hide_prompt()
+
+# prevent interactions when battles interrupt prompts
+func battle_started() -> void:
+	body_exited(null)

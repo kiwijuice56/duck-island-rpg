@@ -6,9 +6,9 @@ var icon_path = "res://main/ui/_assets/affinity_icons/"
 var action: PackedScene
 var item: ItemData
 
-func initialize(item: ItemData, count: int) -> void:
+func initialize(new_item: ItemData, count: int) -> void:
+	item = new_item
 	action = item.attached_skill
-	self.item = item
 	$HBoxContainer/TextureRect.texture = load(icon_path + item.type + ".png")
 	$HBoxContainer/RichTextLabel.clear()
 	if disabled:

@@ -12,6 +12,7 @@ onready var transition = get_tree().get_root().get_node("Main/ViewportContainer/
 onready var overworld := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld")
 
 signal menu_opened
+signal menu_closed
 
 func _input(event):
 	if event.is_action_pressed("menu", false):
@@ -100,11 +101,11 @@ func open() -> void:
 	SoundPlayer.play_sound(SoundPlayer.accept)
 	MusicPlayer.play_music(MusicPlayer.menu)
 	emit_signal("menu_opened")
+	open = true
 	# calling disable also disables this node due to needing to stop menu opening in other menus
 	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld/Player").disable()
 	yield($MiniTransition.transition_in(), "completed")
 	enable()
-	open = true
 	$Tween.interpolate_property($PopupMenu, "modulate", null, Color(1,1,1,1), 0.1)
 	$Tween.start()
 	choose_button()
@@ -119,6 +120,7 @@ func close() -> void:
 	$Tween.start()
 	yield($MiniTransition.transition_out(), "completed")
 	get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld/Player").enable()
+	emit_signal("menu_closed")
 
 func display_prompt(text: String) -> void:
 	if open:

@@ -9,12 +9,14 @@ var icons := {
 	"mii duck" : preload("res://main/ui/_assets/text_box/icons/mii_duck.png"),
 	"yukid" : preload("res://main/ui/_assets/text_box/icons/yukid.png"),
 	"lotad" : preload("res://main/ui/_assets/text_box/icons/lotad.png"),
+	"sistar" : preload("res://main/ui/_assets/text_box/icons/lotad.png"),
 }
 
 var voices := {
 	"mii duck" : preload("res://main/ui/_assets/text_box/voices/mii_duck.wav"),
 	"yukid" : preload("res://main/ui/_assets/text_box/voices/yukid.wav"),
 	"lotad" : preload("res://main/ui/_assets/text_box/voices/mii_duck.wav"),
+	"sistar" : preload("res://main/ui/_assets/text_box/voices/yukid.wav"),
 }
 
 var selecting_choice := false

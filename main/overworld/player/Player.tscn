@@ -166,10 +166,10 @@ tracks/1/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 18, 20 )
+extents = Vector2( 22, 20 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 24, 24 )
+extents = Vector2( 28, 24 )
 
 [sub_resource type="Gradient" id=8]
 offsets = PoolRealArray( 0, 0.273973, 1 )

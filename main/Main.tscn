@@ -113,7 +113,6 @@ script = ExtResource( 9 )
 
 [node name="Player" parent="ViewportContainer/Viewport/Overworld" instance=ExtResource( 4 )]
 position = Vector2( 392, 3896 )
-encounters_enabled = true
 
 [node name="Combat" type="Node" parent="ViewportContainer/Viewport"]
 

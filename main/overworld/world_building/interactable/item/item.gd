@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func _input(_event):
 	if not disabled and not overworld_ui.open and Input.is_action_just_pressed("ui_accept"):
-		call_deferred("collect", body)
+		collect(body)
 
 func body_entered(body) -> void:
 	.body_entered(body)
@@ -34,10 +34,10 @@ func shine_light():
 
 func collect(player) -> void:
 	emit_signal("collected")
+	player.disable()
 	player.get_node("AnimationPlayer").current_animation = "[stop]"
 	disabled = true
 	overworld_ui.hide_prompt()
-	player.disable()
 	overworld_ui.get_node("TextBox").label.text = ""
 	overworld_ui.get_node("TextBox/HBoxContainer/Icon").visible = false
 	# align both cameras to prevent jitter

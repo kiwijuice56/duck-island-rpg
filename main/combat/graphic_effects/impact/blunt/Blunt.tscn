@@ -83,6 +83,7 @@ tracks/5/keys = {
 }
 
 [node name="Blunt" instance=ExtResource( 1 )]
+z_index = 0
 anim_name = "blunt"
 
 [node name="AnimationPlayer" parent="." index="0"]
@@ -98,5 +99,5 @@ pitch_scale = 2.0
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 2 )
 energy = 2.5
-range_layer_min = -15
+range_layer_min = -16
 range_layer_max = 16

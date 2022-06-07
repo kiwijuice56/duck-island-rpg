@@ -1,0 +1,123 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main/combat/visual_fighter/tofun/tofun.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "dead"
+length = 0.65
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "hurt"
+length = 0.65
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "phys"
+length = 0.9
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.375, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.775, 0.875 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6 ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Sprite:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 64, -0.25, 0, 0.25, 0, -64, -0.0548511, 73, 0.161296, 19, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.325, 0.65, 0.9 )
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.65 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "animation_impact" ],
+"method": "emit_signal"
+} ]
+}
+
+[node name="tofun" instance=ExtResource( 1 )]
+save_id = "tofun"
+level = 7
+hp = 125
+mp = 125
+max_hp = 125
+max_mp = 125
+strength = 2
+vitality = 3
+magic = 4
+agility = 3
+luck = 3
+defense = {
+}
+offense = {
+}
+
+[node name="Sprite" parent="." index="0"]
+modulate = Color( 1, 1, 1, 1 )
+position = Vector2( -64, -135 )
+texture = ExtResource( 2 )
+hframes = 9
+frame = 6
+
+[node name="SpriteAnimationPlayer" parent="." index="8"]
+anims/dead = SubResource( 1 )
+anims/hurt = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/phys = SubResource( 4 )

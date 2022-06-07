@@ -19,6 +19,7 @@ onready var cycle = get_tree().get_root().get_node("Main/ViewportContainer/Viewp
 onready var encounter_meter = overworld_ui.get_node("EncounterRate")
 
 signal menu_opened
+signal battle_started
 
 var room: Node
 var encounter_type_tiles: TileMap
@@ -34,18 +35,22 @@ func _ready() -> void:
 
 func get_wav_files(path: String) -> Array:
 	var arr := []
-	var dir = Directory.new()
-	if dir.open(path) == OK:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
+	var directory = Directory.new()
+	if directory.open(path) == OK:
+		directory.list_dir_begin()
+		var file_name = directory.get_next()
 		while file_name != "":
 			if file_name.ends_with(".wav"):
 				arr.append(load(path + file_name))
-			file_name = dir.get_next()
+			file_name = directory.get_next()
 	return arr
 
 # update transition's camera and start the actual battle
 func battle_started() -> void:
+	emit_signal("battle_started")
+	# ui needs to be disabled asap
+	overworld_ui.hide_prompt()
+	overworld_ui.disable()
 	call_deferred("disable")
 	$AnimationPlayer.call_deferred("set_current_animation", "[stop]")
 	$Timer.start(.35)
@@ -67,13 +72,13 @@ func battle_ended() -> void:
 
 func disable() -> void:
 	set_physics_process(false)
-	$AnimationPlayer.current_animation = "[stop]"
-	$Area2D/CollisionShape2D.set_disabled(true)
 	overworld_ui.disable()
+	$AnimationPlayer.current_animation = "[stop]"
+	$Area2D/CollisionShape2D.call_deferred("set_disabled", true)
 
 func enable() -> void:
 	set_physics_process(true)
-	$Area2D/CollisionShape2D.set_disabled(false)
+	$Area2D/CollisionShape2D.call_deferred("set_disabled", false)
 	overworld_ui.enable()
 
 func get_input() -> void:
@@ -122,10 +127,8 @@ func jump(pos: Vector2, in_water: bool) -> void:
 	$Tween.start()
 	yield($Tween, "tween_all_completed")
 	
-	
 	# change music
 	if in_water:
-		
 		MusicPlayer.play_music(MusicPlayer.water)
 	else:
 		room.get_parent().play_room_music() # overworld_map
@@ -163,7 +166,7 @@ func handle_floor(delta: float) -> void:
 		if encounter_rate_tiles.get_cell(snapped.x, snapped.y) == 0:
 			steps = 255.0
 		elif encounters_enabled:
-			steps -= 12*room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
+			steps -= 4*room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
 			encounter = room.encounters[encounter_type_tiles.get_cell(snapped.x, snapped.y)]
 	# this can be reworked once there is jumpers to outside of the water
 	if floor_style_tiles and floor_style_tiles.get_cell(snapped.x, snapped.y) == 2:
@@ -196,7 +199,8 @@ func _physics_process(delta: float) -> void:
 	if steps <= 0:
 		battle_started()
 		set_physics_process(false)
-		steps =  0.0
+		steps = 0
+		return
 	get_input()
 	set_anim()
 	

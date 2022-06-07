@@ -22,15 +22,31 @@ tracks/0/keys = {
 }
 
 [node name="monkey prince" instance=ExtResource( 1 )]
+save_id = "monkey prince"
+level = 15
+hp = 300
+mp = 300
+max_hp = 300
+max_mp = 300
+strength = 12
+vitality = 7
+magic = 5
+agility = 7
+luck = 5
 defense = {
 }
 offense = {
 }
 
 [node name="Sprite" parent="." index="0"]
+position = Vector2( 0, -128 )
 texture = ExtResource( 2 )
+offset = Vector2( 0, 8 )
 hframes = 5
 frame = 2
+
+[node name="SelectIcon" parent="." index="2"]
+position = Vector2( 8, -72 )
 
 [node name="SpriteAnimationPlayer" parent="." index="8"]
 anims/idle = SubResource( 1 )

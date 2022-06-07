@@ -7,5 +7,7 @@ var triggered := false
 func body_entered(body) -> void:
 	if triggered and one_shot:
 		return
+	if overworld_ui.open:
+		yield(overworld_ui, "menu_closed")
 	triggered = true
-	call_deferred("talk", body)
+	talk(body)
