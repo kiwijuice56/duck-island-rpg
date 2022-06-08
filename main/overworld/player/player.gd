@@ -4,6 +4,7 @@ var sand_step_sounds := []
 var wood_step_sounds := []
 
 export var encounters_enabled := false
+export var extreme_combat_rate := true
 export var speed := 105
 export var max_inertia := 16.0
 export var inertia_change := 2.0
@@ -166,7 +167,7 @@ func handle_floor(delta: float) -> void:
 		if encounter_rate_tiles.get_cell(snapped.x, snapped.y) == 0:
 			steps = 255.0
 		elif encounters_enabled:
-			steps -= 4*room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
+			steps -= (16 if extreme_combat_rate else 4) * room.encounter_steps[encounter_rate_tiles.get_cell(snapped.x, snapped.y)] * delta
 			encounter = room.encounters[encounter_type_tiles.get_cell(snapped.x, snapped.y)]
 	# this can be reworked once there is jumpers to outside of the water
 	if floor_style_tiles and floor_style_tiles.get_cell(snapped.x, snapped.y) == 2:

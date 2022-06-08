@@ -19,3 +19,5 @@ func _process(delta) -> void:
 	position += vel
 	if position.length() >= cam_radius:
 		position = cam_radius * position.normalized()
+	position.x = round(position.x)
+	position.y = round(position.y)

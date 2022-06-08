@@ -20,14 +20,16 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.7 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.87451 ), Color( 1, 1, 1, 0.87451 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=2]
+length = 0.8
 loop = true
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprite:modulate")
 tracks/0/interp = 1
@@ -35,10 +37,22 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1.25, 1.25, 1.25, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1.25, 1.25, 1.25, 1 ), Color( 1.45, 1.45, 1.45, 1 ), Color( 1.25, 1.25, 1.25, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 0 ]
 }
 
 [sub_resource type="Gradient" id=3]
@@ -178,8 +192,8 @@ offense = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 10, 10, 10, 1 )
-position = Vector2( 64, -128 )
+modulate = Color( 1, 1, 1, 0.298039 )
+position = Vector2( 0, -128 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 hframes = 6
@@ -200,8 +214,7 @@ position = Vector2( 0, -32 )
 scale = Vector2( 2, 2 )
 z_index = 1
 texture = ExtResource( 5 )
-hframes = 2
-frame = 1
+hframes = 5
 
 [node name="SelectAnim" type="AnimationPlayer" parent="SelectIcon"]
 playback_speed = 1.4

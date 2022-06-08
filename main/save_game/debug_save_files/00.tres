@@ -10,14 +10,15 @@ data = {
 "combat_items": {
 },
 "healing_items": {
-Resource( "res://main/items/healing/cream puff/cream puff.tres" ): 1,
-Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1
+Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1,
+Resource( "res://main/items/healing/cream puff/cream puff.tres" ): 1
 }
 }
 },
 "overworld_nodes": {
 "overworld": {
 "flags": {
+"yukid": true
 },
 "items": {
 "beach": {
@@ -27,7 +28,7 @@ Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1
 }
 },
 "location": "beach",
-"save_location": 1
+"save_location": 0
 }
 },
 "party": {
@@ -50,6 +51,25 @@ Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1
 "vitality": 5
 },
 "Unlearned": [ [ "attack up", "heal", "defense up", "tornado" ], [ 6, 7, 9, 11 ] ]
+} ], [ "yukid", {
+"Actions": [ "defense down", "panic caster" ],
+"Attributes": [  ],
+"Stats": {
+"agility": 7,
+"experience": 0,
+"experience_to_level": 218,
+"hp": 135,
+"level": 7,
+"luck": 2,
+"magic": 7,
+"max_hp": 60,
+"max_mp": 72,
+"mp": 135,
+"status": "ok",
+"strength": 7,
+"vitality": 3
+},
+"Unlearned": [ [  ], [  ] ]
 } ] ]
 }
 }

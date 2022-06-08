@@ -1,0 +1,50 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm8.png" type="Texture" id=1]
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm2.png" type="Texture" id=2]
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm3.png" type="Texture" id=3]
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm4.png" type="Texture" id=4]
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm5.png" type="Texture" id=5]
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm6.png" type="Texture" id=6]
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm7.png" type="Texture" id=7]
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm13.png" type="Texture" id=8]
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm16.png" type="Texture" id=9]
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm10.png" type="Texture" id=10]
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm15.png" type="Texture" id=11]
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm11.png" type="Texture" id=12]
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm1.png" type="Texture" id=13]
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm9.png" type="Texture" id=14]
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm14.png" type="Texture" id=15]
+[ext_resource path="res://main/ui/_assets/style_rim/frames/norm12.png" type="Texture" id=16]
+
+[sub_resource type="Animation" id=1]
+resource_name = "norm_wave"
+length = 1.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5 ),
+"transitions": PoolRealArray( 0.90125, 1, 1, 0.965936, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 13 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 1 ), ExtResource( 14 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 16 ), ExtResource( 8 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 9 ) ]
+}
+
+[node name="StyleRim" type="TextureRect"]
+margin_right = 32.0
+margin_bottom = 16.0
+rect_pivot_offset = Vector2( 0, -16 )
+texture = ExtResource( 13 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RimAnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "norm_wave"
+playback_speed = 1.5
+anims/norm_wave = SubResource( 1 )

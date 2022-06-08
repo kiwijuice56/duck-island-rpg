@@ -6,9 +6,9 @@ func _ready() -> void:
 
 func _input(event) -> void:
 	if not disabled and  not $Camera2D.current and not overworld_ui.open and Input.is_action_just_pressed("ui_accept"):
-		call_deferred("look", body)
+		look(body)
 	if $Camera2D.current and Input.is_action_just_pressed("ui_accept"):
-		call_deferred("exit", body)
+		exit(body)
 
 func body_entered(body) -> void:
 	.body_entered(body)
@@ -28,7 +28,6 @@ func look(player) -> void:
 	yield(transition.transition_out(), "completed")
 	$Camera2D.set_process(true)
 	overworld_ui.display_prompt("Exit: Z")
-	
 
 func exit(player) -> void:
 	set_process_input(false)
@@ -42,4 +41,3 @@ func exit(player) -> void:
 	player.get_node("Camera2D").current = true
 	yield(transition.transition_out(), "completed")
 	player.enable()
-	

@@ -8,5 +8,5 @@ save_id = "topsy turvy"
 cost_type = ""
 accuracy = 0.8
 graphic_effect = ExtResource( 2 )
-power = 10
+power = 8
 critical = 0.55

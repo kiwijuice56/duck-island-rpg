@@ -58,7 +58,7 @@ var heal_color := Color("#7aff70")
 
 func _ready() -> void:
 	$ParticleEffects.global_position = $SelectIcon.global_position
-	$Sprite.frame = 0
+	$Sprite.frame = 4
 	$Sprite.modulate = Color(1,1,1,1)
 	$Sprite.position = Vector2(0, -128)
 	$CurrentIcon.modulate = Color(1,1,1,0)
@@ -187,18 +187,17 @@ func set_select_eligible(enable: bool) -> void:
 	if enable:
 		$SelectIcon/TransitionTween.interpolate_property($SelectIcon, "modulate", null, Color(1,1,1,1), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$SelectIcon/TransitionTween.start()
-		$SelectIcon.frame = 1
+		$SelectIcon.frame = 4
 	else:
 		$SelectIcon/TransitionTween.interpolate_property($SelectIcon, "modulate", null, Color(1,1,1,0), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$SelectIcon/TransitionTween.start()
 
 func set_select_animation(enable: bool) -> void:
 	if enable:
-		$SelectIcon.frame = 0
 		$SelectIcon/SelectAnim.current_animation = "select"
 		emit_signal("selected", true)
 	else:
-		$SelectIcon.frame = 1
+		$SelectIcon.frame = 4
 		$SelectIcon/SelectAnim.current_animation = "[stop]"
 		$SelectIcon/SelectTween.interpolate_property($Sprite, "modulate", null, Color(1,1,1,1), .2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$SelectIcon/SelectTween.start()

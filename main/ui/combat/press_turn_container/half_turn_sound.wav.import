@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/half_turn_sound.wav-293cbcd2ea0701a8a996e093828fe528.sample"
+
+[deps]
+
+source_file="res://main/ui/combat/press_turn_container/half_turn_sound.wav"
+dest_files=[ "res://.import/half_turn_sound.wav-293cbcd2ea0701a8a996e093828fe528.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

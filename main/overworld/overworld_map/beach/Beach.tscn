@@ -1008,7 +1008,6 @@ Thee prating knaves art annoying me.  Leaveth me in peace!
 
 [node name="YukidInitialEncounter" parent="Interactable/NPCs" index="1" instance=ExtResource( 26 )]
 position = Vector2( 1952, 2776 )
-collision_layer = 4
 
 [node name="TelescopeLotad" parent="Interactable/NPCs" index="2" instance=ExtResource( 25 )]
 position = Vector2( 4774.13, 3073.06 )

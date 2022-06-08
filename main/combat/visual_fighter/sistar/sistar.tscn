@@ -93,7 +93,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.121657, -1, 48, -0.124765, 1, 0.143688, -50.7692, -64, -0.145859, 72.1613, 0.0974544, 7.46496, 0, -0.181358, 7.18409, 0.25, 0 ),
+"points": PoolRealArray( 0, -0.25, 0, 0.121657, -1, 48, -0.124765, 1, 0.200939, -10.072, -64, -0.0968626, 71.928, 0.0974544, 7.46496, 0, -0.181358, 7.18409, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.4, 0.6, 0.8 )
 }
 tracks/2/type = "method"
@@ -113,8 +113,8 @@ tracks/2/keys = {
 
 [node name="sistar" instance=ExtResource( 1 )]
 save_id = "sistar"
-level = 7
-hp = 65
+level = 6
+hp = 50
 mp = 90
 max_hp = 49
 max_mp = 56
@@ -133,11 +133,11 @@ offense = {
 
 [node name="Sprite" parent="." index="0"]
 modulate = Color( 1, 1, 1, 1 )
-position = Vector2( 0, -128 )
+position = Vector2( 24.2063, -128 )
 scale = Vector2( 2, 2.2 )
 texture = ExtResource( 2 )
 hframes = 13
-frame = 6
+frame = 8
 
 [node name="SelectIcon" parent="." index="2"]
 position = Vector2( -0.237381, -56 )

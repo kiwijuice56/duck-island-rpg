@@ -1,42 +1,55 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://main/ui/_assets/text_box/text_box.gd" type="Script" id=1]
-[ext_resource path="res://main/ui/_assets/style_boxes/bottom_panel_container.tres" type="StyleBox" id=2]
+[ext_resource path="res://main/ui/_assets/style_rim/StyleRim.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main/ui/_assets/text_box/icons/yukid.png" type="Texture" id=3]
 [ext_resource path="res://main/ui/_assets/text_box/voices/mii_duck.wav" type="AudioStream" id=4]
 [ext_resource path="res://main/ui/_assets/fonts/large_font.tres" type="DynamicFont" id=5]
 
-[node name="TextBox" type="PanelContainer"]
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
+
+[node name="TextBox" type="MarginContainer"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -158.0
+margin_top = -200.0
 size_flags_vertical = 10
-custom_styles/panel = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="Control" parent="."]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 1019.0
-margin_bottom = 153.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 200.0
+custom_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 1019.0
-margin_bottom = 153.0
-rect_min_size = Vector2( 0, 148 )
+[node name="StyleRim" parent="VBoxContainer" instance=ExtResource( 2 )]
+margin_right = 1024.0
+rect_pivot_offset = Vector2( 0, 0 )
 
-[node name="Spacing1" type="Control" parent="HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 16.0
+margin_right = 1024.0
+margin_bottom = 184.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Control" type="Control" parent="VBoxContainer/PanelContainer"]
+margin_right = 1024.0
+margin_bottom = 168.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
+margin_right = 1024.0
+margin_bottom = 168.0
+rect_min_size = Vector2( 0, 168 )
+
+[node name="Spacing1" type="Control" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 margin_right = 32.0
-margin_bottom = 148.0
+margin_bottom = 168.0
 rect_min_size = Vector2( 32, 132 )
 
-[node name="Icon" type="TextureRect" parent="HBoxContainer"]
+[node name="Icon" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 visible = false
 margin_left = 36.0
 margin_top = 10.0
@@ -49,17 +62,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacing2" type="Control" parent="HBoxContainer"]
+[node name="Spacing2" type="Control" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 margin_left = 36.0
 margin_right = 60.0
-margin_bottom = 148.0
+margin_bottom = 168.0
 rect_min_size = Vector2( 24, 0 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 margin_left = 64.0
-margin_top = 4.0
-margin_right = 882.0
-margin_bottom = 144.0
+margin_top = 14.0
+margin_right = 892.0
+margin_bottom = 154.0
 rect_min_size = Vector2( 0, 140 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -67,23 +80,22 @@ custom_fonts/mono_font = ExtResource( 5 )
 custom_fonts/normal_font = ExtResource( 5 )
 text = "Give them the puffle?"
 
-[node name="Spacing3" type="Control" parent="HBoxContainer"]
-margin_left = 886.0
-margin_right = 1014.0
-margin_bottom = 148.0
+[node name="Spacing3" type="Control" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+margin_left = 896.0
+margin_right = 1024.0
+margin_bottom = 168.0
 rect_min_size = Vector2( 128, 0 )
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="."]
+[node name="ChoiceContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
 visible = false
-margin_left = 5.0
-margin_top = 13.0
-margin_right = 143.0
-margin_bottom = 145.0
+margin_top = -178.0
+margin_right = 32.0
+margin_bottom = -46.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 custom_constants/separation = 36
 
-[node name="Spacing1" type="Control" parent="ChoiceContainer"]
+[node name="Spacing1" type="Control" parent="VBoxContainer/PanelContainer/ChoiceContainer"]
 margin_right = 32.0
 margin_bottom = 132.0
 rect_min_size = Vector2( 32, 132 )

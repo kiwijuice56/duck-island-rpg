@@ -3,7 +3,7 @@ extends "res://addons/rpg_framework/custom_nodes/fighter_cycle/team_cycle/team_c
 onready var combat_ui := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/CombatUI/Combat")
 onready var after_battle := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/AfterBattleUI/AfterBattle")
 onready var text_box = combat_ui.get_node("VBoxContainer/TextBox")
-onready var press_turn_container := combat_ui.get_node("VBoxContainer/Top/PressTurnContainer")
+onready var press_turn_container := combat_ui.get_node("VBoxContainer/Top/VBoxContainer/PressTurnContainer")
 onready var cam := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/MainCamera")
 onready var transition := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/Transition")
 onready var overworld := get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Overworld")
@@ -52,7 +52,7 @@ func update_cycle() -> Array:
 		cycle.append(party_cycle)
 	return cycle
 
-# doesn't resort, just pops dead members
+# doesn't re-sort, just pops dead members
 func clean_cycle() -> void:
 	var new_cycle := []
 	for sub in cycle:
@@ -94,7 +94,6 @@ func battle_end() -> void:
 	if has_background:
 		get_parent().get_child(0).queue_free()
 	
-	
 	for sub in cycle:
 		for fighter in sub:
 			fighter.reset_buffs()
@@ -120,10 +119,11 @@ func switch_to_overworld() -> void:
 func reset_fighters() -> void:
 	for child in get_children():
 		for fighter in child.get_children():
-			fighter.get_node("Sprite").frame = 0
-			fighter.get_node("Sprite").modulate = Color(1,1,1,1)
-			if fighter.get_node("SpriteAnimationPlayer").has_animation("idle"):
-				fighter.get_node("SpriteAnimationPlayer").current_animation = "idle"
+			if fighter.status != "dead":
+				fighter.get_node("Sprite").frame = 0
+				fighter.get_node("Sprite").modulate = Color(1,1,1,1)
+				if fighter.get_node("SpriteAnimationPlayer").has_animation("idle"):
+					fighter.get_node("SpriteAnimationPlayer").current_animation = "idle"
 			fighter.reset_buffs()
 			fighter.get_node("Sprite").visible = true
 
@@ -148,7 +148,7 @@ func battle() -> void:
 	cam.fit($EnemyParty.get_children(), 0, -125)
 	overworld.visible = false
 	text_box.clear_text()
-	press_turn_container.update_turns(0, 0)
+	press_turn_container.update_turns(0, 0, true)
 	yield(transition.transition_out(), "completed")
 	text_box.display_text("Enemies approach!", 0.02, .7)
 	yield(cam.fit($EnemyParty.get_children(), 2, -175), "completed")
@@ -162,7 +162,7 @@ func battle() -> void:
 			var full_turns := len(sub_cycle)
 			var half_turns := 0
 			
-			yield(press_turn_container.update_turns(full_turns, half_turns), "completed")
+			yield(press_turn_container.update_turns(full_turns, half_turns, sub_cycle[0].get_parent() == $PlayerParty), "completed")
 			# loop through party members while turns exist
 			while full_turns + half_turns > 0:
 				# run next fighter's act() function and await for results
@@ -206,5 +206,5 @@ func battle() -> void:
 							half_turns += 1
 						else:
 							half_turns -= 1
-				yield(press_turn_container.update_turns(full_turns, half_turns), "completed")
+				yield(press_turn_container.update_turns(full_turns, half_turns, sub_cycle[0].get_parent() == $PlayerParty), "completed")
 			switch_sub_cycle()

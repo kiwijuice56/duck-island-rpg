@@ -64,11 +64,12 @@ func calculate_aspect_ratio():
 layer = -1
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="."]
-position = Vector2( -480, -180 )
+position = Vector2( -480, -140 )
 motion_scale = Vector2( 0.6, 0.6 )
 motion_mirroring = Vector2( 1960, 0 )
 
 [node name="Sprite" parent="ParallaxLayer5" instance=ExtResource( 2 )]
+position = Vector2( 184, 0 )
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
 position = Vector2( -480, -150 )
@@ -89,7 +90,7 @@ motion_scale = Vector2( 0.9, 0.9 )
 motion_mirroring = Vector2( 980, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxLayer2"]
-position = Vector2( -200, 125 )
+position = Vector2( -200, 135 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 9 )
 region_enabled = true

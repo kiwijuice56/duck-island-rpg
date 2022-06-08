@@ -12,5 +12,6 @@ func body_entered(body) -> void:
 func talk(player) -> void:
 	disabled = true
 	player.disable()
+	overworld_ui.hide_prompt()
 	yield($Cutscene.play([player, self]), "completed")
 	player.enable()

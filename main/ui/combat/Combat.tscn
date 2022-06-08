@@ -1,10 +1,10 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://main/ui/_assets/text_box/TextBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/ui/_assets/fighter_bar/FighterBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main/ui/combat/combat.gd" type="Script" id=3]
 [ext_resource path="res://main/ui/_assets/themes/main.tres" type="Theme" id=4]
-[ext_resource path="res://main/ui/_assets/style_boxes/top_panel_container.tres" type="StyleBox" id=5]
+[ext_resource path="res://main/ui/_assets/style_rim/StyleRim.tscn" type="PackedScene" id=5]
 [ext_resource path="res://main/ui/combat/press_turn_container/press_turn_container.gd" type="Script" id=6]
 [ext_resource path="res://main/ui/_assets/fonts/main_font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://main/ui/combat/circle_menu/background.png" type="Texture" id=8]
@@ -15,16 +15,27 @@
 [ext_resource path="res://main/ui/combat/circle_menu/circle_button/items.png" type="Texture" id=13]
 [ext_resource path="res://main/ui/combat/circle_menu/circle_button/run.png" type="Texture" id=14]
 [ext_resource path="res://main/ui/combat/circle_menu/circle_button/defend.png" type="Texture" id=15]
+[ext_resource path="res://main/ui/combat/press_turn_container/sprites/press_turn1.png" type="Texture" id=16]
 [ext_resource path="res://main/ui/combat/skill_container/skill_container.gd" type="Script" id=17]
 [ext_resource path="res://main/ui/combat/fighter_selection/target_selector.gd" type="Script" id=18]
 [ext_resource path="res://main/ui/_assets/fonts/PressStart2P.ttf" type="DynamicFontData" id=19]
 [ext_resource path="res://main/combat/graphic_effects/extra/slash/light.png" type="Texture" id=20]
 [ext_resource path="res://main/ui/combat/item_container/item_container.gd" type="Script" id=21]
+[ext_resource path="res://main/ui/combat/press_turn_container/sprites/banner_player.png" type="Texture" id=22]
+[ext_resource path="res://main/ui/combat/press_turn_container/half_turn_sound.wav" type="AudioStream" id=23]
 
 [sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 8.0
+content_margin_bottom = 0.0
+bg_color = Color( 0, 0, 0, 1 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Blocker:modulate")
@@ -39,7 +50,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Blocker:modulate")
@@ -54,20 +65,24 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0.00877193, 0.0964912, 0.622807, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 3, 3, 3, 1, 2.5534, 2.5534, 2.5534, 0.776699, 1, 1, 1, 0 )
+
+[sub_resource type="StyleBoxFlat" id=6]
 content_margin_left = 1.0
 content_margin_right = 1.0
 content_margin_top = 1.0
 content_margin_bottom = 1.0
 bg_color = Color( 0.0980392, 0.0980392, 0.0980392, 0.631373 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.0980392, 0.0980392, 0.0980392, 0.631373 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.266667, 0.266667, 0.266667, 0.631373 )
 
-[sub_resource type="Theme" id=7]
+[sub_resource type="Theme" id=9]
 default_font = ExtResource( 7 )
 Button/colors/font_color = Color( 1, 1, 1, 1 )
 Button/colors/font_color_disabled = Color( 0.898039, 0.898039, 0.898039, 1 )
@@ -75,13 +90,13 @@ Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
 Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 Button/constants/hseparation = 2
 Button/fonts/font = null
-Button/styles/disabled = SubResource( 5 )
-Button/styles/focus = SubResource( 6 )
-Button/styles/hover = SubResource( 6 )
-Button/styles/normal = SubResource( 5 )
-Button/styles/pressed = SubResource( 6 )
+Button/styles/disabled = SubResource( 7 )
+Button/styles/focus = SubResource( 8 )
+Button/styles/hover = SubResource( 8 )
+Button/styles/normal = SubResource( 7 )
+Button/styles/pressed = SubResource( 8 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath("TurnLabel:modulate")
 tracks/0/interp = 1
@@ -179,7 +194,7 @@ tracks/7/keys = {
 "values": [ Color( 0.592157, 0.0705882, 0.0705882, 1 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=11]
 tracks/0/type = "value"
 tracks/0/path = NodePath("TurnLabel:modulate")
 tracks/0/interp = 1
@@ -277,7 +292,7 @@ tracks/7/keys = {
 "values": [ Color( 0.168627, 0.121569, 0.737255, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=12]
 size = 8
 outline_size = 1
 font_data = ExtResource( 19 )
@@ -294,57 +309,123 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Top" type="PanelContainer" parent="VBoxContainer"]
 margin_right = 1024.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 0, 48 )
+margin_bottom = 56.0
+rect_min_size = Vector2( 0, 32 )
 size_flags_vertical = 0
-custom_styles/panel = ExtResource( 5 )
+custom_styles/panel = SubResource( 1 )
 
-[node name="PressTurnContainer" type="HBoxContainer" parent="VBoxContainer/Top"]
-margin_left = 512.0
-margin_top = 20.0
-margin_right = 512.0
-margin_bottom = 20.0
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Top"]
+margin_top = 8.0
+margin_right = 1024.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 0, 48 )
+custom_constants/separation = 0
+
+[node name="PressTurnContainer" type="HBoxContainer" parent="VBoxContainer/Top/VBoxContainer"]
+margin_left = 484.0
+margin_right = 540.0
+margin_bottom = 30.0
 size_flags_horizontal = 6
-size_flags_vertical = 4
-custom_constants/separation = 1
+size_flags_vertical = 7
+custom_constants/separation = 0
 script = ExtResource( 6 )
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Top/VBoxContainer/PressTurnContainer"]
+margin_top = 5.0
+margin_right = 28.0
+margin_bottom = 25.0
+size_flags_vertical = 4
+texture = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/Top/VBoxContainer/PressTurnContainer"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 56.0
+margin_bottom = 25.0
+size_flags_vertical = 4
+texture = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Banner" type="TextureRect" parent="VBoxContainer/Top/VBoxContainer"]
+margin_left = 485.0
+margin_top = 30.0
+margin_right = 539.0
+margin_bottom = 48.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = ExtResource( 22 )
 
 [node name="Blocker" type="PanelContainer" parent="VBoxContainer/Top"]
 modulate = Color( 1, 1, 1, 0 )
+margin_top = 8.0
 margin_right = 1024.0
-margin_bottom = 40.0
-custom_styles/panel = SubResource( 1 )
+margin_bottom = 56.0
+custom_styles/panel = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/Top"]
 playback_speed = 1.45
-anims/fade_in = SubResource( 2 )
-anims/fade_out = SubResource( 3 )
+anims/fade_in = SubResource( 3 )
+anims/fade_out = SubResource( 4 )
+
+[node name="StyleRim" parent="VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 56.0
+margin_right = 1024.0
+margin_bottom = 72.0
+rect_pivot_offset = Vector2( 0, 16 )
+flip_v = true
+
+[node name="ShimmerParticles" type="CPUParticles2D" parent="VBoxContainer"]
+position = Vector2( 528, 40 )
+scale = Vector2( 2, 2 )
+emitting = false
+amount = 64
+lifetime = 2.0
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 78.0
+initial_velocity_random = 1.0
+orbit_velocity = 1.0
+orbit_velocity_random = 0.5
+color_ramp = SubResource( 5 )
+hue_variation_random = 0.15
+
+[node name="ShimmerSound" type="AudioStreamPlayer" parent="VBoxContainer"]
+stream = ExtResource( 23 )
 
 [node name="FighterBar" parent="VBoxContainer" instance=ExtResource( 2 )]
 margin_left = 452.0
-margin_top = 52.0
+margin_top = 72.0
 margin_right = 572.0
-margin_bottom = 124.0
+margin_bottom = 144.0
 
 [node name="TextBox" parent="VBoxContainer" instance=ExtResource( 1 )]
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 442.0
+margin_top = 416.0
 margin_right = 1024.0
 margin_bottom = 600.0
 
 [node name="CircleMenu" type="Control" parent="."]
-margin_left = 270.0
-margin_top = 160.0
-margin_right = 670.0
-margin_bottom = 288.0
+margin_left = 152.0
+margin_top = 176.0
+margin_right = 552.0
+margin_bottom = 304.0
 rect_min_size = Vector2( 400, 128 )
 script = ExtResource( 9 )
 __meta__ = {
@@ -359,7 +440,7 @@ margin_left = 108.0
 margin_top = 44.0
 margin_right = 236.0
 margin_bottom = 84.0001
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -391,7 +472,7 @@ margin_bottom = 128.0
 [node name="VBoxContainer" type="VBoxContainer" parent="CircleMenu/SkillContainer/ScrollContainer"]
 margin_right = 330.0
 size_flags_horizontal = 11
-theme = SubResource( 7 )
+theme = SubResource( 9 )
 custom_constants/separation = 2
 
 [node name="Tween" type="Tween" parent="CircleMenu/SkillContainer"]
@@ -516,8 +597,8 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TurnLabel"]
 playback_speed = 0.8
-anims/enemy_turn = SubResource( 8 )
-anims/player_turn = SubResource( 9 )
+anims/enemy_turn = SubResource( 10 )
+anims/player_turn = SubResource( 11 )
 
 [node name="TextureRect" type="TextureRect" parent="TurnLabel"]
 modulate = Color( 0.937255, 0.196078, 0.682353, 0.560784 )
@@ -548,7 +629,7 @@ margin_bottom = 4.0
 rect_min_size = Vector2( 88, 0 )
 rect_scale = Vector2( 2, 2 )
 rect_pivot_offset = Vector2( 44, 4 )
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 1, 0.486275, 0.701961, 1 )
 custom_colors/font_outline_modulate = Color( 0.592157, 0.0705882, 0.0705882, 1 )
 custom_constants/shadow_offset_x = 0

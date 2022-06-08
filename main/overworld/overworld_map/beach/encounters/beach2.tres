@@ -10,4 +10,4 @@ script = ExtResource( 1 )
 enemies = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ]
 spawn_chances = [ 0.5, 0.25, 0.25 ]
 enemy_count_min = 2
-enemy_count_max = 5
+enemy_count_max = 4

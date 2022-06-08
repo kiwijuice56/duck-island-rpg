@@ -9,4 +9,4 @@ cost_type = ""
 accuracy = 0.925
 graphic_effect = ExtResource( 2 )
 power = 25
-critical = 0.07
+critical = 1.0

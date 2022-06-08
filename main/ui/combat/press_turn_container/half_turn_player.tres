@@ -1,0 +1,18 @@
+[gd_resource type="AnimatedTexture" load_steps=4 format=2]
+
+[ext_resource path="res://main/ui/combat/press_turn_container/sprites/press_turn2.png" type="Texture" id=1]
+[ext_resource path="res://main/ui/combat/press_turn_container/sprites/press_turn3.png" type="Texture" id=2]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/press_turn1.png-21bcd78e57054b78f2a2957a0a96f5e3.stex"
+
+[resource]
+frames = 4
+fps = 10.0
+frame_0/texture = SubResource( 1 )
+frame_1/texture = ExtResource( 1 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 2 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 1 )
+frame_3/delay_sec = 0.0

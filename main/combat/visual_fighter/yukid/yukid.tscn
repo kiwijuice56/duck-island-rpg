@@ -122,7 +122,7 @@ tracks/1/keys = {
 
 [node name="Yukid" instance=ExtResource( 1 )]
 save_id = "yukid"
-level = 25
+level = 7
 hp = 135
 mp = 135
 max_hp = 141
