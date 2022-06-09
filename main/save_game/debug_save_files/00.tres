@@ -10,8 +10,8 @@ data = {
 "combat_items": {
 },
 "healing_items": {
-Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1,
-Resource( "res://main/items/healing/cream puff/cream puff.tres" ): 1
+Resource( "res://main/items/healing/cream puff/cream puff.tres" ): 1,
+Resource( "res://main/items/healing/fruit puff/fruit puff.tres" ): 1
 }
 }
 },

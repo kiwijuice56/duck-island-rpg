@@ -38,13 +38,13 @@ tracks/0/keys = {
 margin_right = 32.0
 margin_bottom = 16.0
 rect_pivot_offset = Vector2( 0, -16 )
-texture = ExtResource( 13 )
+texture = ExtResource( 7 )
 stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RimAnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "norm_wave"
 playback_speed = 1.5
 anims/norm_wave = SubResource( 1 )

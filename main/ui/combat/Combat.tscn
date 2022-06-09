@@ -391,7 +391,7 @@ position = Vector2( 528, 40 )
 scale = Vector2( 2, 2 )
 emitting = false
 amount = 64
-lifetime = 2.0
+lifetime = 1.5
 one_shot = true
 speed_scale = 1.5
 explosiveness = 1.0
@@ -408,7 +408,7 @@ hue_variation_random = 0.15
 stream = ExtResource( 23 )
 
 [node name="FighterBar" parent="VBoxContainer" instance=ExtResource( 2 )]
-margin_left = 452.0
+margin_left = 451.0
 margin_top = 72.0
 margin_right = 572.0
 margin_bottom = 144.0
@@ -501,7 +501,6 @@ custom_constants/separation = 2
 [node name="Tween" type="Tween" parent="CircleMenu/ItemContainer"]
 
 [node name="Background" type="TextureRect" parent="CircleMenu"]
-modulate = Color( 1, 1, 1, 0.662745 )
 margin_right = 164.0
 margin_bottom = 164.0
 texture = ExtResource( 8 )

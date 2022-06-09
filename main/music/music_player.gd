@@ -1,6 +1,6 @@
 extends AudioStreamPlayer
 
-const battle = preload("res://main/music/encounter.mp3")
+const battle = preload("res://main/music/encounter_theme_5.mp3")
 const boss = preload("res://main/music/boss_theme_1.mp3")
 const overworld = preload("res://main/music/overworld_demo.mp3")
 const water = preload("res://main/music/swimming_ducklings.mp3")
@@ -17,7 +17,7 @@ var current_music: Resource
 var tween: Tween
 
 const volumes = {
-	battle: -12,
+	battle: -6,
 	overworld: -10.0,
 	boss: -7.0,
 	water: -6.5,

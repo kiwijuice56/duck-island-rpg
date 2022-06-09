@@ -6,11 +6,14 @@ export var cost: int
 export var accuracy := 1.0
 export(String, "all", "one", "random") var target_count = "one"
 export(String, "team", "enemy") var party_target = "enemy"
+
 onready var text_box = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/CombatUI/Combat/VBoxContainer/TextBox")
 onready var item_node = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/Items")
+onready var style_rim_top = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/UI/CombatUI/Combat/VBoxContainer/StyleRim")
 
 export var graphic_effect: PackedScene
 
+# handles main action for inherting classes while also dealing with basic universal animations
 func action(user: Node, targets: Array, item: ItemData = null, anim: bool = true) -> void:
 	if cost_type != "" and not item:
 		user.set(cost_type, user.get(cost_type) - cost)
@@ -33,29 +36,46 @@ func action(user: Node, targets: Array, item: ItemData = null, anim: bool = true
 		var init_pos: Vector2 = user.position
 		var new_effect = graphic_effect.instance()
 		add_child(new_effect)
+		
+		
 		yield(text_box.display_text(user.save_id + " used " + save_id.capitalize() + "!", 0.02, 0.35), "completed")
+		
 		if party_target == "enemy":
 			# assuming that user is a node2d (which it should for this game)
 			# sloppy but uses parenting to flip position moved
 			tween.interpolate_property(user, "global_position:x", null, 256, 0.25, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
-			tween.interpolate_property(user, "position:y", init_pos.y, 0, 0.5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+			tween.interpolate_property(user, "position:y", init_pos.y, 0, 0.35, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+			
+			tween.interpolate_property(style_rim_top.get_node("AnimationPlayer"), "playback_speed", 1.5, 5.0, 0.4)
+			tween.interpolate_property(text_box.style_rim.get_node("AnimationPlayer"), "playback_speed", 1.5, 5.0, 0.4)
 			tween.start()
-			yield(tween, "tween_completed")
+			
+			yield(tween, "tween_all_completed")
+		
 		new_effect.animate(user, targets)
 		yield(new_effect, "effect_complete")
+		
 		if party_target == "enemy":
 			# assuming that user is a node2d (which it should for this game)
 			tween.interpolate_property(user, "position:x", null, init_pos.x, 0.35, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 			tween.interpolate_property(user, "position:y", null, init_pos.y, 0.35, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+			
+			tween.interpolate_property(style_rim_top.get_node("AnimationPlayer"), "playback_speed", 5.0, 1.5, .3)
+			tween.interpolate_property(text_box.style_rim.get_node("AnimationPlayer"), "playback_speed", 5.0, 1.5, .3)
 			tween.start()
-			yield(tween, "tween_completed")
+			
+			yield(tween, "tween_all_completed")
+		
 		new_effect.queue_free()
+		
 	else:
 		for target in targets:
 			target.on_impact()
 	# Item fade out
 	if item and anim:
 		yield(item_anim_out(item, item_sprite, tween), "completed")
+	if tween.is_active():
+		yield(tween, "tween_all_completed")
 	tween.queue_free()
 	item_sprite.queue_free()
 	emit_signal("action_completed", result)

@@ -15,3 +15,4 @@ __meta__ = {
 }
 
 [node name="FighterContainer" parent="." instance=ExtResource( 1 )]
+margin_right = 121.0

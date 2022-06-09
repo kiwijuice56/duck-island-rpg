@@ -20,7 +20,6 @@ tracks/0/keys = {
 }
 
 [node name="MainCamera" type="Camera2D"]
-offset = Vector2( -8, -8 )
 current = true
 script = ExtResource( 1 )
 
@@ -30,7 +29,7 @@ script = ExtResource( 1 )
 
 [node name="Cover" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 18.327, 0 )
+scale = Vector2( 2, 2 )
 z_index = 5
 texture = ExtResource( 2 )
 

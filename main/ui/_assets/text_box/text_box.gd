@@ -1,6 +1,7 @@
 extends Container
 
 export var speed_up_enabled := false
+onready var style_rim := get_node("VBoxContainer/StyleRim")
 var choice_button := preload("res://main/ui/_assets/text_box/choice_button/ChoiceButton.tscn")
 
 signal pressed

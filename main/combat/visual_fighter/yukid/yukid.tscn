@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://main/combat/visual_fighter/VisualFighter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/combat/visual_fighter/yukid/yukid_sprite.png" type="Texture" id=2]
@@ -88,11 +88,11 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=4]
-length = 0.6
+length = 0.5
 loop = true
 step = 0.025
 tracks/0/type = "value"
@@ -102,7 +102,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.275, 0.4, 0.525 ),
+"times": PoolRealArray( 0, 0.175, 0.275, 0.375 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 1 ]
@@ -118,6 +118,37 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "phys"
+length = 0.7
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.32, 0.38, 0.44, 0.5, 0.57 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 7, 8, 9, 10, 11, 12 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.38 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "animation_impact" ],
+"method": "emit_signal"
+} ]
 }
 
 [node name="Yukid" instance=ExtResource( 1 )]
@@ -139,7 +170,8 @@ offense = {
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
-hframes = 7
+hframes = 13
+frame = 12
 
 [node name="SelectIcon" parent="." index="2"]
 position = Vector2( 0, -72 )
@@ -181,3 +213,4 @@ energy = 0.0
 anims/hold_magic = SubResource( 2 )
 anims/hurt = SubResource( 3 )
 anims/idle = SubResource( 4 )
+anims/phys = SubResource( 5 )
