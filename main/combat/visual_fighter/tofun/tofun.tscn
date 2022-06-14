@@ -62,10 +62,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.375, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.775, 0.875 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.375, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.775, 0.85 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6 ]
+"values": [ 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 0 ]
 }
 tracks/1/type = "bezier"
 tracks/1/path = NodePath("Sprite:position:x")
@@ -111,10 +111,9 @@ offense = {
 
 [node name="Sprite" parent="." index="0"]
 modulate = Color( 1, 1, 1, 1 )
-position = Vector2( -64, -135 )
+position = Vector2( 0, -135 )
 texture = ExtResource( 2 )
 hframes = 9
-frame = 6
 
 [node name="SpriteAnimationPlayer" parent="." index="8"]
 anims/dead = SubResource( 1 )
