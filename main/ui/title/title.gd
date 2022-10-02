@@ -31,14 +31,24 @@ func pressed(button_name: String) -> void:
 	get_focus_owner().release_focus()
 	match button_name:
 		"New Game":
-			yield(transition.heavy_transition_in(), "completed")
-			save_file_handler.call_deferred("load_file", -1, true)
-			yield(save_file_handler, "file_managing_complete")
-			MusicPlayer.stop()
+			yield(transition.transition_in(), "completed")
+			save_ui.visible = true
+			save_ui.last = self
+			save_ui.last_func = "choose_button"
+			save_ui.label.text = "Load what file?"
+			save_ui.file_container.get_parent().scroll_vertical = 0
 			visible = false
-			player.disable()
-			yield($Cutscene.play([player]), "completed")
-			overworld.enable()
+			yield(transition.transition_out(), "completed")
+			save_ui.enable()
+			save_ui.load_file()
+#			yield(transition.heavy_transition_in(), "completed")
+#			save_file_handler.call_deferred("load_file", -1, true)
+#			yield(save_file_handler, "file_managing_complete")
+#			MusicPlayer.stop()
+#			visible = false
+#			player.disable()
+#			yield($Cutscene.play([player]), "completed")
+#			overworld.enable()
 		"Load Game":
 			yield(transition.transition_in(), "completed")
 			save_ui.visible = true
